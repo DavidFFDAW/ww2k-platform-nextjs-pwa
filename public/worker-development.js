@@ -3,17 +3,17 @@
 var __webpack_exports__ = {};
 
 
-self.addEventListener('push', function (event) {
+self.addEventListener("push", function (event) {
   const data = JSON.parse(event.data.text());
   event.waitUntil(registration.showNotification(data.title, {
     body: data.message,
-    icon: '/icons/android-chrome-192x192.png'
+    icon: "/icons/icons-192x192.png"
   }));
 });
-self.addEventListener('notificationclick', function (event) {
+self.addEventListener("notificationclick", function (event) {
   event.notification.close();
   event.waitUntil(clients.matchAll({
-    type: 'window',
+    type: "window",
     includeUncontrolled: true
   }).then(function (clientList) {
     if (clientList.length > 0) {
@@ -25,7 +25,7 @@ self.addEventListener('notificationclick', function (event) {
       }
       return client.focus();
     }
-    return clients.openWindow('/');
+    return clients.openWindow("/");
   }));
 });
 
