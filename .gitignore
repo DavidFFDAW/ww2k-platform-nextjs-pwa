@@ -6,6 +6,14 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .vapid-keys.json
+public/sw.js
+public/sw.js.map
+public/sw-register.js
+public/sw-register.js.map
+public/workbox-*.js
+public/workbox-*.js.map
+public/worker-*.js
+
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
