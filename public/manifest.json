@@ -1,10 +1,10 @@
 {
-    "name": "next-pwa",
-    "short_name": "next-pwa",
+    "name": "WWE-2K-Manager",
+    "short_name": "WWE-2K-Manager",
     "display": "standalone",
     "orientation": "portrait",
-    "theme_color": "#FFFFFF",
-    "background_color": "#FFFFFF",
+    "theme_color": "#000000dd",
+    "background_color": "#000000dd",
     "start_url": "/",
     "icons": [
         {
