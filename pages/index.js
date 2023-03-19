@@ -1,3 +1,6 @@
+import HomeLinks from '@/components/HomeLinks';
+import NativeLink from '@/components/NativeLink';
+import { BsFileTextFill } from 'react-icons/bs';
 import Head from 'next/head';
 
 const Index = () => {
@@ -17,6 +20,15 @@ const Index = () => {
                     backgroundRepeat: 'no-repeat',
                 }}
             >
+                <div className="w1 flex center al-center h1">
+                    <div className="w1 flex center column al-center h1">
+                        <HomeLinks
+                            text={'BLOG'}
+                            icon={<BsFileTextFill />}
+                            href={'/blog'}
+                        />
+                    </div>
+                </div>
                 {/* <CustomImage src={'/wallpaper.jpeg'} alt={'WWE 2K23'} /> */}
             </div>
         </>
