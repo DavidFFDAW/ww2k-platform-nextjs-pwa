@@ -18,8 +18,7 @@ export default function useLogin() {
     const [formData, setFormData] = React.useState({ email: '', password: '' });
 
     const setUserEmail = ev => setFormData({ ...formData, email: ev.target.value });
-    const setUserPassword = ev =>
-        setFormData({ ...formData, password: ev.target.value });
+    const setUserPassword = ev => setFormData({ ...formData, password: ev.target.value });
 
     const submitLogin = async event => {
         event.preventDefault();
@@ -32,7 +31,7 @@ export default function useLogin() {
         console.log(response);
 
         if (Boolean(response.token)) {
-            localStorage.setItem('next_auth_token', response.token);
+            localStorage.setItem(process.env.NEXT_AUTH_KEY, response.token);
             setUser(response);
             const redirectionPath =
                 response.type === 'admin' ? '/admin/dashboard' : '/user';
