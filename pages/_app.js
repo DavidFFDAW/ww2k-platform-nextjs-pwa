@@ -1,5 +1,6 @@
 import '@/styles/global.css';
 import Head from 'next/head';
+import UserContextProvider from '@/context/UserContext';
 
 const MyApp = ({ Component, pageProps }) => {
     return (
@@ -7,7 +8,9 @@ const MyApp = ({ Component, pageProps }) => {
             <Head>
                 <title>WWE-2K</title>
             </Head>
-            <Component {...pageProps} cookies={pageProps.cookies} />
+            <UserContextProvider>
+                <Component {...pageProps} cookies={pageProps.cookies} />
+            </UserContextProvider>
         </>
     );
 };
