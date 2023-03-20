@@ -25,5 +25,5 @@ export default function Input({ type, name, label, onChange, ...props }) {
         );
     }
 
-    return <div className="form-input">{input}</div>;
+    return <div className="form-group">{input}</div>;
 }
