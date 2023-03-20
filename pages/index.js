@@ -1,7 +1,9 @@
 import HomeLinks from '@/components/HomeLinks';
-import NativeLink from '@/components/NativeLink';
 import { BsFileTextFill } from 'react-icons/bs';
+import { SiWwe } from 'react-icons/si';
+import { MdAdminPanelSettings } from 'react-icons/md';
 import Head from 'next/head';
+import BackgroundPage from '@/components/BackgroundPage';
 
 const Index = () => {
     return (
@@ -10,27 +12,27 @@ const Index = () => {
                 <title>WWE 2K Manager</title>
             </Head>
 
-            <div
-                style={{
-                    width: '100%',
-                    height: '100vh',
-                    backgroundImage: 'url(/wallpaper.jpeg)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                }}
-            >
+            <BackgroundPage>
                 <div className="w1 flex center al-center h1">
-                    <div className="w1 flex center column al-center h1">
+                    <div className="w1 flex center column al-center h1 gap">
                         <HomeLinks
                             text={'BLOG'}
                             icon={<BsFileTextFill />}
                             href={'/blog'}
                         />
+                        <HomeLinks
+                            text={'WRESTLERS'}
+                            icon={<SiWwe />}
+                            href={'/wrestlers'}
+                        />
+                        <HomeLinks
+                            text={'PANEL DE ADMINISTRACIÓN'}
+                            icon={<MdAdminPanelSettings />}
+                            href={'/admin/'}
+                        />
                     </div>
                 </div>
-                {/* <CustomImage src={'/wallpaper.jpeg'} alt={'WWE 2K23'} /> */}
-            </div>
+            </BackgroundPage>
         </>
     );
 };
