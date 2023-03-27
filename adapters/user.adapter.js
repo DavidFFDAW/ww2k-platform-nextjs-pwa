@@ -1,4 +1,4 @@
-const commonData = model => { 
+const commonData = model => {
     return {
         id: model.id,
         name: model.name,
@@ -7,18 +7,18 @@ const commonData = model => {
         type: model.type,
         created_at: model.created_at,
         updated_at: model.updated_at,
-    }
-}
+    };
+};
 
 export const UserAdapters = {
-    publicDataAdapter: model => { 
+    publicDataAdapter: model => {
         const common = commonData(model);
         return common;
     },
 
-    loginDataAdapter: model => { 
+    loginDataAdapter: model => {
         const common = commonData(model);
-        common.api_token = model.api_token;
+        common.token = model.api_token;
         return common;
-    }
-}
+    },
+};

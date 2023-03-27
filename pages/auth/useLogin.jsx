@@ -2,15 +2,20 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { postRequest } from 'services/http.service';
 import { useUserContext } from '@/context/UserContext';
+import config from '@/constants/config';
+import CookieService from '@/services/cookie.service';
 
 export default function useLogin() {
     const router = useRouter();
     const { user, setUser } = useUserContext();
 
     React.useEffect(() => {
-        if (Boolean(user)) {
-            const redirectionPath =
-                user.type === 'admin' ? '/admin/dashboard' : '/user';
+        const isSetCookie = CookieService.get(config.NEXT_AUTH_KEY);
+        const isUser = localStorage.getItem(config.NEXT_USER);
+        const storedUser = Boolean(isUser) ? JSON.parse(isUser) : false;
+
+        if (Boolean(isSetCookie) && Boolean(isUser)) {
+            const redirectionPath = storedUser.type === 'admin' ? '/admin' : '/user';
             router.push(redirectionPath);
         }
     }, [router, user]);
@@ -18,7 +23,8 @@ export default function useLogin() {
     const [formData, setFormData] = React.useState({ email: '', password: '' });
 
     const setUserEmail = ev => setFormData({ ...formData, email: ev.target.value });
-    const setUserPassword = ev => setFormData({ ...formData, password: ev.target.value });
+    const setUserPassword = ev =>
+        setFormData({ ...formData, password: ev.target.value });
 
     const submitLogin = async event => {
         event.preventDefault();
@@ -31,10 +37,13 @@ export default function useLogin() {
         console.log(response);
 
         if (Boolean(response.token)) {
-            localStorage.setItem(process.env.NEXT_AUTH_KEY, response.token);
+            CookieService.save(config.NEXT_AUTH_KEY, response.token);
+            localStorage.setItem(config.NEXT_USER, JSON.stringify(response));
+
+            console.log('LOGIN response', response);
             setUser(response);
-            const redirectionPath =
-                response.type === 'admin' ? '/admin/dashboard' : '/user';
+
+            const redirectionPath = response.type === 'admin' ? '/admin' : '/user';
             router.push(redirectionPath);
         }
     };

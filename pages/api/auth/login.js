@@ -3,13 +3,12 @@
 import { UserAdapters } from '@/adapters/user.adapter';
 import UserTable from '@/database/User';
 import { APIService } from '@/services/api.service';
+import bcrypt from 'bcryptjs';
 
 // http://localhost:3000/api/hello
 export default async function handler(req, res) {
     const service = APIService(req, res);
     const { email, password } = req.body;
-    console.log('email: ', email);
-    console.log('password: ', password);
 
     service.checkAPIMethod('POST');
     const user = await UserTable.findOne({
@@ -18,11 +17,11 @@ export default async function handler(req, res) {
         },
     });
 
-    console.log('user_password', user.password);
-    // console.log('req.body.password', password);
-    return res.status(200).json({ message: 'Hello' });
+    const isCorrectPassword = bcrypt.compareSync(password, user.password);
 
-    // if (true || user) {
-    //     res.status(200).json(UserAdapters.publicDataAdapter(user));
-    // }
+    if (!isCorrectPassword) {
+        return res.status(404).json({ message: 'Password or user are not correct' });
+    }
+
+    return res.status(200).json(UserAdapters.loginDataAdapter(user));
 }

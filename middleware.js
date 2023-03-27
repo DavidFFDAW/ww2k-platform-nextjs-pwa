@@ -1,16 +1,20 @@
 import { NextResponse } from 'next/server';
+import configuration from './constants/config.js';
 
 export function middleware(request) {
     const { pathname } = request.nextUrl;
     const cookies = request.cookies;
     const isAdminRoute = pathname.startsWith('/admin');
-    const hasCookie = cookies.get(process.env.NEXT_AUTH_KEY) || false;
+    const hasCookie = cookies.get(configuration.NEXT_AUTH_KEY) || false;
+
+    console.log('isAdminRoute', isAdminRoute);
+    console.log('hasCookie', hasCookie);
 
     if (!isAdminRoute) {
         return NextResponse.next();
     }
 
-    if (isAdminRoute && !hasCookie) {
+    if (isAdminRoute && !Boolean(hasCookie)) {
         return NextResponse.redirect(
             new URL('/auth/login', request.url).toString(),
             {
