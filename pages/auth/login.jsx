@@ -2,7 +2,7 @@ import BackgroundPage from '@/components/BackgroundPage';
 import AppButton from '@/components/Button';
 import Input from '@/components/Forms/Input';
 import NativeLink from '@/components/NativeLink';
-import useLogin from './useLogin';
+import useLogin from '@/hooks/useLogin';
 
 export default function Login() {
     const { setUserEmail, setUserPassword, submitLogin } = useLogin();
