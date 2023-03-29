@@ -7,13 +7,14 @@ yarn-error.log*
 lerna-debug.log*
 .vapid-keys.json
 
-./public/sw.js/
-./public/sw.js.map/
-./public/sw-register.js/
-./public/sw-register.js.map/
-./public/workbox-*.js/
-./public/workbox-*.js.map/
-./public/worker-*.js/
+public/sw.js/
+public/sw.js.map/
+public/sw-register.js/
+public/sw-register.js.map/
+public/workbox-*.js/
+public/worker-*.js/
+public/sw.js
+public/workbox-*.js
 
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
