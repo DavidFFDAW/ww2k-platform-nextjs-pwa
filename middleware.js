@@ -7,9 +7,6 @@ export function middleware(request) {
     const isAdminRoute = pathname.startsWith('/admin');
     const hasCookie = cookies.get(configuration.NEXT_AUTH_KEY) || false;
 
-    console.log('isAdminRoute', isAdminRoute);
-    console.log('hasCookie', hasCookie);
-
     if (!isAdminRoute) {
         return NextResponse.next();
     }

@@ -4,4 +4,8 @@ const withPWA = require('next-pwa')({
     disableDevLogs: true,
 });
 
-module.exports = withPWA();
+module.exports = withPWA({
+    env: {
+        ENV: process.env.APP_ENV,
+    },
+});

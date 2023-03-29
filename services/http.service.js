@@ -1,6 +1,4 @@
-function _makeFetchRequest(url, method, data, json) {
-    const token = localStorage.getItem('next_auth_token');
-
+function _makeFetchRequest(url, method, data, token) {
     const options = {
         method: method,
         mode: 'cors',
@@ -13,17 +11,21 @@ function _makeFetchRequest(url, method, data, json) {
         options.headers = { ...options.headers, Authorization: 'Bearer ' + token };
     }
 
-    if (data) {
-        options.body = json ? JSON.stringify(data) : data;
+    if (!['GET', 'DELETE'].includes(method) && Boolean(data)) {
+        options.body = JSON.stringify(data);
     }
 
     return fetch(url, options).then(response => response.json());
 }
 
-export const getRequest = endpoint => _makeFetchRequest(endpoint, 'GET');
-export const putRequest = (endpoint, data, json = true) => _makeFetchRequest(endpoint, 'PUT', data, json);
-export const postRequest = (endpoint, data, json = true) => _makeFetchRequest(endpoint, 'POST', data, json);
-export const deleteRequest = endpoint => _makeFetchRequest(endpoint, 'DELETE');
+export const getRequest = (endpoint, token) =>
+    _makeFetchRequest(endpoint, 'GET', {}, token);
+export const putRequest = (endpoint, data, token) =>
+    _makeFetchRequest(endpoint, 'PUT', data, token);
+export const postRequest = (endpoint, data, token) =>
+    _makeFetchRequest(endpoint, 'POST', data, token);
+export const deleteRequest = (endpoint, token) =>
+    _makeFetchRequest(endpoint, 'DELETE', {}, token);
 
 const HttpService = {
     getRequest,

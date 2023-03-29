@@ -14,7 +14,7 @@ const Index = () => {
 
             <BackgroundPage>
                 <div className="w1 flex center al-center h1">
-                    <div className="w1 flex center column al-center h1 gap">
+                    <div className="w1 flex end column al-center h1 home-spas-links">
                         <HomeLinks
                             text={'BLOG'}
                             icon={<BsFileTextFill />}
@@ -26,7 +26,7 @@ const Index = () => {
                             href={'/wrestlers'}
                         />
                         <HomeLinks
-                            text={'PANEL DE ADMINISTRACIÓN'}
+                            text={'ADMINISTRACIÓN'}
                             icon={<MdAdminPanelSettings />}
                             href={'/admin/'}
                         />

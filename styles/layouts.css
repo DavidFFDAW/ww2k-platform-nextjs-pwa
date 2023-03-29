@@ -109,8 +109,16 @@
 .gap {
     gap: 35px;
 }
+.gap-small {
+    gap: 15px;
+}
 .grid {
     display: grid;
+}
+.grid.grid-admin-links {
+    grid-template-columns: repeat(4, 1fr);
+    place-content: center;
+    place-items: center;
 }
 .place-items {
     place-items: center;
