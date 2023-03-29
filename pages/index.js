@@ -26,7 +26,7 @@ const Index = () => {
                             href={'/wrestlers'}
                         />
                         <HomeLinks
-                            text={'ADMINISTRACIÓN'}
+                            text={'ADMIN'}
                             icon={<MdAdminPanelSettings />}
                             href={'/admin/'}
                         />

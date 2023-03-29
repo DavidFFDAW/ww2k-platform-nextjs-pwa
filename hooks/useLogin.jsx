@@ -4,6 +4,7 @@ import { postRequest } from 'services/http.service';
 import { useUserContext } from '@/context/UserContext';
 import config from '@/constants/config';
 import CookieService from '@/services/cookie.service';
+import { getEndpoint } from '@/utils/server.utils';
 
 export default function useLogin() {
     const router = useRouter();
@@ -30,7 +31,7 @@ export default function useLogin() {
         event.preventDefault();
         const { email, password } = formData;
 
-        const response = await postRequest('http://localhost:3000/api/auth/login', {
+        const response = await postRequest(getEndpoint('auth/login'), {
             email,
             password,
         });
