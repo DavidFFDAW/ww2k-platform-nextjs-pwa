@@ -127,3 +127,41 @@ body {
 .padded-big {
     padding: 25px;
 }
+.blog-post.single .date-created {
+    font-size: 15px;
+    font-weight: 400;
+    color: #6a6a6a;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+.blog-post.single .title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.blog-post.single .excerpt {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+@media only screen and (max-width: 768px) {
+    .blog-post.single .title {
+        width: 100%;
+        font-size: 12px;
+    }
+    .blog-post.single .excerpt {
+        display: none;
+    }
+    .blog-post.single .date-created {
+        font-size: 12px;
+        color: #333;
+        font-weight: 500;
+    }
+    .blog-post.single .actions {
+        display: flex;
+        padding: 15px 0;
+    }
+}

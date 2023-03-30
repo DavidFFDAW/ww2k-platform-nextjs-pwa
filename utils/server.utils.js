@@ -17,3 +17,7 @@ export function getServerSideCookie(context) {
 
     return JSON.parse(req.cookies[config.NEXT_USER]);
 }
+
+export function serializeValues(data) {
+    return JSON.parse(JSON.stringify(data));
+}
