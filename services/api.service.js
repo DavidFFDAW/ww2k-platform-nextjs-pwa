@@ -3,7 +3,7 @@ import UserTable from "@/database/User";
 export const APIService = (req, res) => {
     return {
         checkAPIMethod: (method = 'GET') => {
-            const methods = [method,'PATCH', 'OPTIONS'];
+            const methods = [method, 'PATCH', 'OPTIONS'];
             if (!methods.includes(req.method)) {
                 return res.status(405).json({ message: `Method ${req.method} not allowed` });
             }

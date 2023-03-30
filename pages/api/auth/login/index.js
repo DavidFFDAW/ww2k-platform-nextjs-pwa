@@ -16,6 +16,7 @@ export default async function handler(req, res) {
             email,
         },
     });
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
 
     const isCorrectPassword = bcrypt.compareSync(password, user.password);
 

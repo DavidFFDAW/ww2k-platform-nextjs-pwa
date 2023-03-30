@@ -1,12 +1,12 @@
 import config from '@/constants/config';
 
-function _makeFetchRequest(url, method, data, json) {
+function _makeFetchRequest(url, method, data, json = true) {
     const tokenStorage = localStorage.getItem(config.NEXT_USER);
     const token = tokenStorage ? JSON.parse(tokenStorage).token : false;
 
     const options = {
         method: method,
-        mode: 'cors',
+        mode: 'CORS',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -17,7 +17,7 @@ function _makeFetchRequest(url, method, data, json) {
     }
 
     if (data) {
-        options.body = json ? JSON.stringify(data) : data;
+        options.body = Boolean(json) ? JSON.stringify(data) : data;
     }
 
     return fetch(url, options).then(response => response.json());
