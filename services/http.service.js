@@ -6,7 +6,7 @@ function _makeFetchRequest(url, method, data, json = true) {
 
     const options = {
         method: method,
-        mode: 'CORS',
+        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
         },
