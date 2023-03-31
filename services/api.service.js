@@ -67,6 +67,7 @@ export const APIService = (req, res) => {
 };
 
 export async function isValidHeaderToken(token) {
+    console.log('isValidHeaderToken token: ', token);
     if (!token) return false;
 
     const foundUser = await UserTable.findOne({ where: { api_token: token } });

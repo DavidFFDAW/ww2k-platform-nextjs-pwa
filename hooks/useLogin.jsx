@@ -11,11 +11,10 @@ export default function useLogin() {
     const { user, setUser } = useUserContext();
 
     React.useEffect(() => {
-        const isSetCookie = CookieService.get(config.NEXT_AUTH_KEY);
-        const isUser = localStorage.getItem(config.NEXT_USER);
-        const storedUser = Boolean(isUser) ? JSON.parse(isUser) : false;
+        const isSetCookie = CookieService.get(config.NEXT_USER);
+        const storedUser = Boolean(isSetCookie) ? JSON.parse(isSetCookie) : false;
 
-        if (Boolean(isSetCookie) && Boolean(isUser)) {
+        if (Boolean(isSetCookie) && Boolean(storedUser.token)) {
             const redirectionPath = storedUser.type === 'admin' ? '/admin' : '/user';
             router.push(redirectionPath);
         }
@@ -38,8 +37,7 @@ export default function useLogin() {
         console.log(response);
 
         if (Boolean(response.token)) {
-            CookieService.save(config.NEXT_AUTH_KEY, response.token);
-            localStorage.setItem(config.NEXT_USER, JSON.stringify(response));
+            CookieService.save(config.NEXT_USER, response);
 
             console.log('LOGIN response', response);
             setUser(response);

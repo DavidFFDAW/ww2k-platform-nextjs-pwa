@@ -71,7 +71,9 @@ export default function Posts({ posts }) {
 
 export async function getServerSideProps(context) {
     const user = getServerSideCookie(context);
+    console.log('blogs getServerSideProps: ', user);
     const userCheck = await isValidHeaderToken(user.token);
+    console.log(userCheck);
 
     if (!userCheck) {
         return {
