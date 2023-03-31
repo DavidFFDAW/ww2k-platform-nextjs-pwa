@@ -37,7 +37,7 @@ export default function useLogin() {
         console.log(response);
 
         if (Boolean(response.token)) {
-            CookieService.save(config.NEXT_USER, response);
+            CookieService.save(config.NEXT_USER, JSON.stringify(response));
 
             console.log('LOGIN response', response);
             setUser(response);
