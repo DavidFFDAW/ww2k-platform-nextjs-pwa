@@ -1,4 +1,5 @@
 import '@/styles/global.css';
+import '@/styles/laravel-old-style.css';
 import Head from 'next/head';
 import UserContextProvider from '@/context/UserContext';
 
