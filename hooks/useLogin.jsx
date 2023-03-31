@@ -42,8 +42,8 @@ export default function useLogin() {
             console.log('LOGIN response', response);
             setUser(response);
 
-            const redirectionPath = response.type === 'admin' ? '/admin' : '/user';
-            router.push(redirectionPath);
+            // const redirectionPath = response.type === 'admin' ? '/admin' : '/user';
+            // router.push(redirectionPath);
         }
     };
 
