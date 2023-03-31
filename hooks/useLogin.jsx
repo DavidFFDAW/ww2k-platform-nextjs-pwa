@@ -8,17 +8,7 @@ import { getEndpoint } from '@/utils/server.utils';
 
 export default function useLogin() {
     const router = useRouter();
-    const { user, setUser } = useUserContext();
-
-    React.useEffect(() => {
-        const isSetCookie = CookieService.get(config.NEXT_USER);
-        const storedUser = Boolean(isSetCookie) ? JSON.parse(isSetCookie) : false;
-
-        if (Boolean(isSetCookie) && Boolean(storedUser.token)) {
-            const redirectionPath = storedUser.type === 'admin' ? '/admin' : '/user';
-            router.push(redirectionPath);
-        }
-    }, [router, user]);
+    const { _, setUser } = useUserContext();
 
     const [formData, setFormData] = React.useState({ email: '', password: '' });
 
@@ -34,7 +24,6 @@ export default function useLogin() {
             email,
             password,
         });
-        console.log(response);
 
         if (Boolean(response.token)) {
             CookieService.save(config.NEXT_USER, JSON.stringify(response));
@@ -42,8 +31,8 @@ export default function useLogin() {
             console.log('LOGIN response', response);
             setUser(response);
 
-            // const redirectionPath = response.type === 'admin' ? '/admin' : '/user';
-            // router.push(redirectionPath);
+            const redirectionPath = response.type === 'admin' ? '/admin' : '/user';
+            router.push(redirectionPath);
         }
     };
 

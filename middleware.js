@@ -5,7 +5,14 @@ export function middleware(request) {
     const { pathname } = request.nextUrl;
     const cookies = request.cookies;
     const isAdminRoute = pathname.startsWith('/admin');
-    const hasCookie = cookies.get(configuration.NEXT_AUTH_KEY) || false;
+    const isLogin = pathname.startsWith('/auth/login');
+    const hasCookie = cookies.get(configuration.NEXT_USER) || false;
+
+    if (isLogin && Boolean(hasCookie)) {
+        return NextResponse.redirect(new URL('/admin', request.url).toString(), {
+            status: 307,
+        });
+    }
 
     if (!isAdminRoute) {
         return NextResponse.next();
