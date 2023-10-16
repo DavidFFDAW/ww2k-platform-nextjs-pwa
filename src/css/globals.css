@@ -94,7 +94,7 @@ dialog.dialog-modal .dialog-header {
     width: 100%;
     height: 30px;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     background-color: var(--dialog-header);
     border-radius: 10px 10px 0 0;
