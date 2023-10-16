@@ -1,27 +1,4 @@
-const withPWA = require('next-pwa')({
-    dest: 'public',
-    mode: 'production',
-    disableDevLogs: true,
-});
+/** @type {import('next').NextConfig} */
+const nextConfig = {}
 
-module.exports = withPWA({
-    env: {
-        ENV: process.env.APP_ENV,
-    },
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: '**',
-                port: '',
-                pathname: '**',
-            },
-            {
-                protocol: 'http',
-                hostname: '**',
-                port: '',
-                pathname: '**',
-            },
-        ],
-    },
-});
+module.exports = nextConfig
