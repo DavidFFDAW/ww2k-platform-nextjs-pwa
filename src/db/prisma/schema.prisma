@@ -19,23 +19,25 @@ model Brand {
   updated_at   DateTime?      @updatedAt
   background   String?        @db.VarChar(255)
   Championship Championship[]
+  Team         Team[]
 
   @@map(name: "brands")
 }
 
 model Championship {
-  id          Int       @id @default(autoincrement())
-  name        String?   @db.VarChar(100)
-  metadata    String    @db.VarChar(255)
-  gender      String    @db.VarChar(1)
-  image       String    @db.VarChar(255)
-  tag         Int       @db.TinyInt
-  active      Int       @db.TinyInt
-  created_at  DateTime? @default(now())
-  updated_at  DateTime? @updatedAt
-  brand       Brand?    @relation(fields: [brandId], references: [id])
-  brandId     Int
-  short_title String?   @db.VarChar(20)
+  id                Int                 @id @default(autoincrement())
+  name              String?             @db.VarChar(100)
+  metadata          String              @db.VarChar(255)
+  gender            String              @db.VarChar(1)
+  image             String              @db.VarChar(255)
+  tag               Int                 @db.TinyInt
+  active            Int                 @db.TinyInt
+  created_at        DateTime?           @default(now())
+  updated_at        DateTime?           @updatedAt
+  brand             Brand?              @relation(fields: [brandId], references: [id])
+  brandId           Int
+  short_title       String?             @db.VarChar(20)
+  ChampionshipReign ChampionshipReign[]
 
   @@map(name: "championships")
 }
@@ -82,24 +84,27 @@ model UserRole {
 }
 
 model Wrestler {
-  id             Int       @id @default(autoincrement())
-  name           String    @db.VarChar(255)
-  alias          String?   @db.VarChar(255)
-  brand          String    @db.VarChar(255)
-  status         String    @db.VarChar(255)
-  is_tag         Int?      @db.TinyInt
-  is_champ       Int?      @db.TinyInt
-  twitter_acc    String    @db.VarChar(255)
-  twitter_name   String    @db.VarChar(255)
-  finisher       String    @db.VarChar(255)
-  overall        Int       @db.Int
-  image_name     String?   @db.VarChar(255)
-  sex            String    @db.VarChar(1)
-  kayfabe_status String    @db.VarChar(255)
-  twitter_image  String?   @db.VarChar(255)
-  categories     String?   @default("general") @db.VarChar(150)
-  created_at     DateTime? @default(now())
-  updated_at     DateTime? @updatedAt
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(255)
+  alias             String?             @db.VarChar(255)
+  brand             String              @db.VarChar(255)
+  status            String              @db.VarChar(255)
+  is_tag            Int?                @db.TinyInt
+  is_champ          Int?                @db.TinyInt
+  twitter_acc       String              @db.VarChar(255)
+  twitter_name      String              @db.VarChar(255)
+  finisher          String              @db.VarChar(255)
+  overall           Int                 @db.Int
+  image_name        String?             @db.VarChar(255)
+  sex               String              @db.VarChar(1)
+  kayfabe_status    String              @db.VarChar(255)
+  twitter_image     String?             @db.VarChar(255)
+  categories        String?             @default("general") @db.VarChar(150)
+  created_at        DateTime?           @default(now())
+  updated_at        DateTime?           @updatedAt
+  Team              Team[]
+  WrestlerTeam      WrestlerTeam[]
+  ChampionshipReign ChampionshipReign[]
 
   @@map(name: "wrestler")
 }
@@ -150,4 +155,47 @@ model Tweets {
   Tweets         Tweets[]  @relation("reply_to")
 
   @@map(name: "tweets")
+}
+
+model Team {
+  id               Int            @id @default(autoincrement())
+  name             String         @db.VarChar(125)
+  average          Int?           @db.Int
+  created_at       DateTime?      @default(now())
+  updated_at       DateTime?      @updatedAt
+  member_champion1 Int?           @db.Int
+  member_champion2 Int?           @db.Int
+  brand            Int?           @db.Int
+  actual_brand     Brand?         @relation(fields: [brand], references: [id])
+  Wrestler         Wrestler?      @relation(fields: [wrestlerId], references: [id])
+  wrestlerId       Int?
+  WrestlerTeam     WrestlerTeam[]
+
+  @@map(name: "teams")
+}
+
+model WrestlerTeam {
+  id          Int      @id @default(autoincrement())
+  wrestler_id Int      @db.Int
+  team_id     Int      @db.Int
+  Wrestler    Wrestler @relation(fields: [wrestler_id], references: [id])
+  Team        Team     @relation(fields: [team_id], references: [id])
+
+  @@map(name: "wrestler_team")
+}
+
+model ChampionshipReign {
+  id              Int          @id @default(autoincrement())
+  days            Int          @db.Int
+  current         Int          @db.TinyInt
+  wrestler_id     Int          @db.Int
+  Wrestler        Wrestler     @relation(fields: [wrestler_id], references: [id])
+  championship_id Int          @db.Int
+  Championship    Championship @relation(fields: [championship_id], references: [id])
+  won_date        DateTime     @db.DateTime
+  lost_date       DateTime?    @db.DateTime
+  created_at      DateTime?    @default(now())
+  updated_at      DateTime?    @updatedAt
+
+  @@map(name: "championship_reigns")
 }
