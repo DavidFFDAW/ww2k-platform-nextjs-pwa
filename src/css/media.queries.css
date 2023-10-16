@@ -1,0 +1,67 @@
+@media only screen and (max-width: 768px) {
+    .sidebar-main-margin .custom-totalpage-wallpaper {
+        margin: 0;
+        width: 100%;
+        height: 105vh;
+    }
+
+    .sidebar.shown {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .custom-totalpage-wallpaper.principal {
+        background-image: url('/rhea.webp');
+    }
+
+    .custom-totalpage-wallpaper.default {
+        background-image: url('/cody.jpg');
+    }
+
+    .labeled-possible-states .possible-state-item.label {
+        font-size: 16px;
+        padding: 5px 10px;
+    }
+
+    .pagination .pagination-numbers button.pagination-button {
+        padding: 0 4px;
+        font-size: 12px;
+    }
+
+    .pagination .pagination-numbers button.pagination-button .unlink {
+        color: blue;
+    }
+
+    a .fixed.btn.got-to-admin {
+        position: fixed;
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .reigns-team-create-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    dialog.dialog-modal {
+        min-width: 90%;
+    }
+
+    .wrestler-card__image {
+        width: 50%;
+    }
+
+    .home-spas-links .home-links {
+        width: 45%;
+    }
+
+    .home-links .link {
+        font-size: 20px;
+    }
+
+    input,
+    textarea.custom,
+    select.custom {
+        font-size: 0.9em;
+    }
+}

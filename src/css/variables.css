@@ -1,0 +1,54 @@
+:root {
+    --danger-red: #d32f2f;
+    --blue: #6272a4;
+    --dark: #44475a;
+    --darker: #282a36;
+}
+
+:root {
+    --page-background: #ebebeb;
+    --main-color: #282a36;
+    --main-background: #FFF;
+    --blackwhite: #000;
+
+    --label: #2f2f2f;
+    --input-color: #2d2d2d;
+    --input-bg: #ededed;
+
+    --mediumlight: #44475a;
+    --darklight: #282a36;
+
+
+    --title-color: #111010;
+    --dialog-background: #ffffff;
+    --dialog-header: #ebebeb;
+
+    --pagination-color: #676767;
+    --pagination-background: #ffffff;
+
+    --borderRadius: 10px;
+    --shadows: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+html.dark-theme {
+    --page-background: #44475a;
+    --main-background: #282a36;
+    --main-color: #fff;
+    --blackwhite: #fff;
+
+    --label: #eee;
+    --input-color: #fff;
+    --input-bg: #44475a;
+
+    --mediumlight: #ffffff;
+    --darklight: #f8f8f2;
+    --blue: #6272a4;
+
+    --title-color: #f2f2f2;
+    --dialog-background: var(--darker);
+    --dialog-header: #6272a4;
+
+    --pagination-color: #ffffff;
+    --pagination-background: #282a36;
+
+}
