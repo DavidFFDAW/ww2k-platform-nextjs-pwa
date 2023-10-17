@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react'
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { ComponentSpinner } from '@/app/components/Spinner/Spinner';
+import { ComponentSpinner } from '@/components/Spinner/Spinner';
 
 interface FormState {
     visiblePassword: boolean;

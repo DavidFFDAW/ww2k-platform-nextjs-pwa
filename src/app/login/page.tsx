@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from './components/LoginForm';
 import styles from './login.module.css'
-import PageBackground from '../components/PageBackground/PageBackground';
+import PageBackground from '@/components/PageBackground/PageBackground';
 
 export default function Login() {
 
