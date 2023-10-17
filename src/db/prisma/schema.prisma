@@ -34,12 +34,12 @@ model Championship {
   active            Int                 @db.TinyInt
   created_at        DateTime?           @default(now())
   updated_at        DateTime?           @updatedAt
-  brand             Brand?              @relation(fields: [brandId], references: [id])
-  brandId           Int
+  brand_model       Brand?              @relation(fields: [brand], references: [id])
+  brand             Int
   short_title       String?             @db.VarChar(20)
   ChampionshipReign ChampionshipReign[]
 
-  @@map(name: "championships")
+  @@map(name: "championship")
 }
 
 model User {
@@ -74,12 +74,12 @@ model Roles {
 }
 
 model UserRole {
-  user   User  @relation(fields: [userId], references: [id])
-  userId Int
-  role   Roles @relation(fields: [roleId], references: [id])
-  roleId Int
+  user    User  @relation(fields: [user_id], references: [id])
+  user_id Int
+  role    Roles @relation(fields: [role_id], references: [id])
+  role_id Int
 
-  @@id([userId, roleId])
+  @@id([user_id, role_id])
   @@map(name: "user_role")
 }
 

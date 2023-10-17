@@ -8,6 +8,9 @@ export default withAuth(
             role: string;
         };
 
+        console.log({ authRole, url: request.nextUrl, user: request.nextauth.token?.user });
+
+
         const userRole = authRole?.role.toUpperCase();
 
         if (request.nextUrl.pathname.startsWith(PROTECTED_ROUTES.ADMIN) && userRole !== USER_ROLES.ADMIN) {

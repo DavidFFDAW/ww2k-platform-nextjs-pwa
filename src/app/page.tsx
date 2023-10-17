@@ -1,7 +1,26 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import { prisma } from '@/db/conn';
 
-export default function Home() {
+async function getData() {
+  return await prisma.championshipReign.findFirst({
+    take: 10,
+    include: {
+      Championship: true,
+      Wrestler: true
+    },
+    where: {
+      current: 1
+    }
+  });
+}
+
+async function Home() {
+
+  const datas = await getData();
+  console.log({ datas, w: datas?.Wrestler, chp: datas?.Championship });
+
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -42,3 +61,5 @@ export default function Home() {
     </main>
   )
 }
+
+export default Home;
