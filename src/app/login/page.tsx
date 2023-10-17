@@ -1,68 +1,27 @@
-'use client';
-import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import React, { FormEvent } from 'react';
+import React from 'react';
+import LoginForm from './components/LoginForm';
+import styles from './login.module.css'
+import PageBackground from '../components/PageBackground/PageBackground';
 
 export default function Login() {
-    const router = useRouter();
-    const session = useSession();
-    const [error, setError] = React.useState<string | null>('');
-
-    if (session.status === 'authenticated') router.push('/admin');
-
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const form = new FormData(event.currentTarget);
-
-        if (!form.get('login_email') || !form.get('login_password'))
-            return setError('Por favor, ingrese su correo y contraseña');
-
-        try {
-            const response = await signIn('credentials', {
-                email: form.get('login_email'),
-                password: form.get('login_password'),
-                redirect: false,
-            });
-
-            console.log({ response });
-
-            const isError = Boolean(response?.error) && response?.status !== 200 && !response?.ok;
-            if (response?.error) return setError(response.error as string);
-            if (!isError) return router.push('/admin');
-        } catch (error: any) {
-            setError(error.message as string);
-        }
-    };
 
     return (
-        <div>
-            <h2 className="dreadnotus font-700 upper">Iniciar sesion</h2>
+        <PageBackground>
+            <div className={styles.login_container}>
+                <div className={`${styles.login} flex between a-center column`}>
+                    <h1>
+                        <img src="/icons/icon-96x96.png" alt="" />
+                    </h1>
 
-            <form onSubmit={handleSubmit} className="w1 flex acenter column gap-medium">
-                <input
-                    className="w1 input"
-                    type="email"
-                    placeholder="abc@gmail.com"
-                    name="login_email"
-                    autoComplete="email"
-                />
-                <input
-                    className="w1 input"
-                    type="password"
-                    placeholder="********"
-                    name="login_password"
-                    autoComplete="current-password"
-                />
+                    <h2>
+                        <span className="dreadnotus" style={{ color: '#fff' }}>Acceder</span>
+                    </h2>
 
-                <div className="w1 flex children between gap">
-                    <a className="btn futura font-300" href="/" type="reset">
-                        Volver
-                    </a>
-                    <button className="btn cta futura font-700" type="submit">
-                        Iniciar sesión
-                    </button>
+                    <div className='down login-auth-form-container'>
+                        <LoginForm />
+                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </PageBackground>
     )
 }

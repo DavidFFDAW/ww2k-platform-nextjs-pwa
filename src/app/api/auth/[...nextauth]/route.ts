@@ -28,9 +28,6 @@ export const OPTIONS: NextAuthOptions = {
                     where: {
                         email: credentials?.email,
                     },
-                    include: {
-                        UserRole: true,
-                    },
                 });
 
                 if (!foundUser) {
@@ -48,7 +45,7 @@ export const OPTIONS: NextAuthOptions = {
                     name: foundUser.name,
                     username: foundUser.username,
                     email: foundUser.email,
-                    role: foundUser.UserRole[0],
+                    api_token: foundUser.api_token,
                 };
 
                 console.log(user);
