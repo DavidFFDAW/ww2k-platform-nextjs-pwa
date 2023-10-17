@@ -46,6 +46,7 @@ const OPTIONS: NextAuthOptions = {
                     username: foundUser.username,
                     email: foundUser.email,
                     api_token: foundUser.api_token,
+                    role: foundUser.type,
                 };
 
                 console.log(user);
