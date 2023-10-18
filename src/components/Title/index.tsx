@@ -1,18 +1,22 @@
 import React from 'react';
+import { BootstrapIcon } from '../Icon/BootstrapIcon';
 // import { MaterialIcon } from '../Icon/Icon';
 
 interface TitleProps {
     title: string;
+    icon?: string;
     children?: React.ReactNode;
 }
 
-function TitleWithChildren({ title, children }: TitleProps) {
+function TitleWithChildren({ title, icon, children }: TitleProps) {
     return (
-        <div className="title-container flex between al-center">
-            <div className="flex start al-center gap">
-                <div>
-                    {/* <MaterialIcon icon={'arrow_back_ios'} /> */}
-                </div>
+        <div className="title-container flex between acenter">
+            <div className="flex start acenter gap-small">
+                {icon ?
+                    <div>
+                        <BootstrapIcon icon={icon} />
+                    </div>
+                    : null}
                 <h2 className="page-title-custom dreadnotus">{title}</h2>
             </div>
             {children}
@@ -20,7 +24,7 @@ function TitleWithChildren({ title, children }: TitleProps) {
     );
 }
 
-export default function Title({ title, children }: TitleProps) {
+export default function Title({ title, icon, children }: TitleProps) {
     if (children)
         return (
             <TitleWithChildren title={title}>
@@ -29,10 +33,12 @@ export default function Title({ title, children }: TitleProps) {
         );
 
     return (
-        <div className="title-container flex start al-center gap">
-            <div>
-                {/* <MaterialIcon icon={'arrow_back_ios'} /> */}
-            </div>
+        <div className="title-container flex start acenter gap-small">
+            {icon ?
+                <div>
+                    <BootstrapIcon icon={icon} />
+                </div>
+                : null}
             <h2 className="page-title-custom dreadnotus">{title}</h2>
         </div>
     );

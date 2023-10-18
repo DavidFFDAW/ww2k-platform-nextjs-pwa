@@ -440,6 +440,10 @@ img.rounded-preview-icon,
     margin-bottom: 15px;
 }
 
+.title-container .app-bootstrap-custom-icon {
+    font-size: 32px;
+}
+
 .page-title-custom {
     color: #111010;
     font-size: 31px;
@@ -539,13 +543,13 @@ input.date-input[type='date']::-webkit-calendar-picker-indicator {
     bottom: 60px;
     right: 20px;
     z-index: 99;
-    background-color: #2d2d2d;
+    background-color: #1da1f2;
     color: #ffffff;
     padding: 10px 15px;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    font-size: 25px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+    font-size: 28px;
     font-weight: 600;
     animation: appear 0.3s ease;
 }
