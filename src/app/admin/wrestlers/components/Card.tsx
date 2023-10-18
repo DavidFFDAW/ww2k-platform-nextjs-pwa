@@ -3,7 +3,7 @@ interface WrestlerCardProps {
 }
 
 export default function WrestlerCard({ wrestler }: WrestlerCardProps) {
-    const imageSrc = wrestler.image || '/noimage.jpg';
+    const imageSrc = wrestler.image_name || '/noimage.jpg';
     // const isReleased = wrestler.status === 'released';
 
     return (

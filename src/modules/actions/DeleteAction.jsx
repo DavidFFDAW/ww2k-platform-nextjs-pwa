@@ -4,6 +4,7 @@ import { DangerButton } from '../Buttons/Buttons';
 import { NullableLoading } from '../Loading/LoadingComponent';
 import { DialogWithFooter } from '../Modal/Dialog';
 import { ColorTypes } from './Actions';
+import { TrashIcon } from '@/components/Icons/CommonIcons';
 
 export function DeleteAction({ text, endpoint, toggler, stateUpdaterCallback, deleteId }) {
     const http = useHttp();
