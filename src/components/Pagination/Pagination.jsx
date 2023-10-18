@@ -1,6 +1,12 @@
-import { Link } from 'next/link';
+import { Link } from "next/link";
 
-export function SimplePagination({ page, maxPages, currentPage, baseUrl, goUp = false }) {
+export function SimplePagination({
+    page,
+    maxPages,
+    currentPage,
+    baseUrl,
+    goUp = false,
+}) {
     const pages = {
         next: Number(currentPage) + 1,
         prev: Number(currentPage) - 1,
@@ -10,7 +16,7 @@ export function SimplePagination({ page, maxPages, currentPage, baseUrl, goUp = 
 
     const movePageToTop = () => {
         if (goUp) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
     };
 
@@ -18,7 +24,11 @@ export function SimplePagination({ page, maxPages, currentPage, baseUrl, goUp = 
         <div className="w1 pagination flex between al-center">
             <div className="pagination-previous">
                 {showPrev ? (
-                    <Link to={`${baseUrl}/page/${pages.prev}`} className="page pagination-button" onClick={movePageToTop}>
+                    <Link
+                        to={`${baseUrl}/page/${pages.prev}`}
+                        className="page pagination-button"
+                        onClick={movePageToTop}
+                    >
                         &lt;
                     </Link>
                 ) : null}
@@ -26,7 +36,11 @@ export function SimplePagination({ page, maxPages, currentPage, baseUrl, goUp = 
 
             <div className="pagination-next">
                 {showNext ? (
-                    <Link to={`${baseUrl}/page/${pages.next}`} className="page pagination-button" onClick={movePageToTop}>
+                    <Link
+                        to={`${baseUrl}/page/${pages.next}`}
+                        className="page pagination-button"
+                        onClick={movePageToTop}
+                    >
                         &gt;
                     </Link>
                 ) : null}
@@ -48,16 +62,27 @@ export function CompletePagination({ page, maxPages, currentPage, baseUrl }) {
         <div className="pagination flex between al-center">
             <div className="pagination-previous">
                 {showPrev && (
-                    <button type="button" className="pagination-button" disabled={!showPrev}>
-                        <Link to={`${baseUrl}/page/${pages.prev}`} className="unlink">
+                    <button
+                        type="button"
+                        className="pagination-button"
+                        disabled={!showPrev}
+                    >
+                        <Link
+                            to={`${baseUrl}/page/${pages.prev}`}
+                            className="unlink"
+                        >
                             &lt;
                         </Link>
                     </button>
                 )}
             </div>
             <div className="pagination-numbers">
-                {totalPages.map(page => (
-                    <button type="button" className="pagination-button">
+                {totalPages.map((page, index) => (
+                    <button
+                        key={index}
+                        type="button"
+                        className="pagination-button"
+                    >
                         <Link to={`${baseUrl}/page/${page}`} className="unlink">
                             {page}
                         </Link>
@@ -66,8 +91,15 @@ export function CompletePagination({ page, maxPages, currentPage, baseUrl }) {
             </div>
             <div className="pagination-next">
                 {showNext && (
-                    <button type="button" className="pagination-button" disabled={!showNext}>
-                        <Link to={`${baseUrl}/page/${pages.next}`} className="unlink">
+                    <button
+                        type="button"
+                        className="pagination-button"
+                        disabled={!showNext}
+                    >
+                        <Link
+                            to={`${baseUrl}/page/${pages.next}`}
+                            className="unlink"
+                        >
                             &gt;
                         </Link>
                     </button>
