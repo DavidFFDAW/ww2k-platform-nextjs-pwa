@@ -1,0 +1,120 @@
+.sticky-header {
+    position: sticky;
+    top: -1px;
+    left: 0;
+    z-index: 999;
+}
+
+.admin-header-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+header {
+    z-index: 2;
+    /* padding: 0 0 10px 0; */
+}
+
+header .admin-header {
+    padding: 10px 20px;
+    background-color: var(--darker);
+    color: #ffffff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.admin-header button.menu {
+    display: flex;
+    flex-direction: column;
+    width: 34px;
+    height: auto;
+    border: 0;
+    background: transparent;
+    gap: 5px;
+}
+
+.admin-header button.menu>div {
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.admin-header button.menu.active>div:nth-child(1) {
+    width: 50%;
+    transform: translate(10px, 4px) rotate(45deg);
+}
+
+.admin-header button.menu.active>div:nth-child(2) {
+    opacity: 0;
+}
+
+.admin-header button.menu.active>div:nth-child(3) {
+    width: 50%;
+    transform: translate(10px, -10px) rotate(-45deg);
+}
+
+header .menu-content ul.list-menu {
+    list-style: none;
+    position: fixed;
+    top: 41px;
+    right: 0;
+    width: 50%;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 0 5px;
+    padding: 10px 0;
+    z-index: 99999;
+    animation: appear 0.3s ease;
+}
+
+header .menu-content ul.list-menu li {
+    padding: 5px 15px;
+    text-align: end;
+}
+
+header .menu-content ul.list-menu li .super-menu-item {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+header .menu-content ul.list-menu li ul.submenu {
+    padding-top: 10px;
+    list-style: disclosure-closed;
+}
+
+header .menu-content ul.list-menu li ul.submenu li {
+    color: var(--blue);
+}
+
+header .menu-content ul.list-menu li ul.submenu li a.unlink {
+    color: #363636;
+}
+
+header .menu-content ul.header-submenu.submenu-items.submenu-active {
+    display: block;
+}
+header .menu-content ul.header-submenu.submenu-items.submenu-hidden {
+    display: none;
+}
+
+header .logout .logout-link {
+    font-weight: 700;
+    color: #363636;
+    text-transform: uppercase;
+}
+
+/* GENERATE MEDIA QUERY FOR MOBILE */
+@media only screen and (max-width: 798px) {
+    header .menu-content ul.list-menu {
+        width: 100%;
+        height: 100%;
+    }
+
+    header .menu-content ul.list-menu li {
+        padding: 12px 20px;
+        text-align: start;
+    }
+}

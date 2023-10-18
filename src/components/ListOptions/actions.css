@@ -1,0 +1,128 @@
+:root {
+    --action-bg: #fff;
+    --action-border-color: #eee;
+    --action-hover: #eee;
+    --action-hover-icon: #fff;
+}
+
+html.dark-theme {
+    --action-bg: #3d4258;
+    --action-border-color: #dfdddd;
+    --action-hover: #999999;
+}
+
+.actions-option-group .three-dots-actions {
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0;
+    outline: none;
+    border: none;
+    padding: 10px 10px;
+    background-color: var(--action-bg);
+    box-shadow: var(--shadows);
+}
+
+.actions-option-group .three-dots-actions.active {
+    border-radius: 50% 50% 0 0;
+    background-color: var(--action-bg);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.actions-option-group .three-dots-actions svg {
+    width: 22px;
+    height: 22px;
+}
+
+.actions-option-group .three-dots-actions svg circle {
+    stroke: var(--blackwhite);
+}
+
+.actions-option-group .actions-group-actions-list .action-link.delete-action h4.action-text {
+    color: #d80000;
+}
+
+.actions-option-group .actions-group-actions-list h4.action-text {
+    font-weight: 400;
+    color: var(--blackwhite);
+}
+
+.actions-option-group .actions-group-actions-list {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 250px;
+    background: var(--action-bg);
+    box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.1), -4px 5px 8px rgba(0, 0, 0, 0.1);
+    border-radius: var(--borderRadius);
+    border-top-right-radius: 0;
+    z-index: 5;
+}
+
+.actions-option-group .actions-group-actions-list .action-link {
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--action-border-color);
+    cursor: pointer;
+}
+
+.actions-option-group .actions-group-actions-list .action-link:last-child {
+    /* padding: 8px 10px; */
+    border: none;
+}
+
+.actions-option-group .actions-group-actions-list .action-link:hover {
+    background-color: var(--action-hover);
+}
+
+.actions-option-group .actions-group-actions-list .action-link:hover:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+.actions-option-group .actions-group-actions-list .action-link:hover:first-child {
+    border-radius: 10px 0 0 0;
+}
+
+.actions-option-group .icon-wrapper .action-icon.customs-icons {
+    width: 22px;
+    height: 22px;
+}
+
+.actions-option-group .actions-group-actions-list .action-link:hover .icon-wrapper {
+    background-color: var(--action-hover-icon);
+}
+
+.actions-option-group .icon-wrapper {
+    padding: 5px 5px 1px;
+    border-radius: 50%;
+    background: #deffec;
+}
+
+.actions-option-group .success-action .icon-wrapper {
+    background: #85e4ad;
+}
+
+.actions-option-group .default-action .icon-wrapper {
+    background: #deffec;
+}
+
+.actions-option-group .delete-action .icon-wrapper {
+    background: #ffcccc;
+}
+
+.actions-option-group .warning-action .icon-wrapper {
+    background: #f5edbb;
+}
+
+.actions-option-group .info-action .icon-wrapper {
+    background: #a8bef4;
+}
+
+.actions-option-group .dark-action .icon-wrapper {
+    background: #2c2c2c;
+}
+
+.actions-option-group .actions-group-actions-list .warning-action h4.action-text {
+    color: #b8a122;
+}

@@ -1,0 +1,42 @@
+.scrollable-section-component .scroll-section-title {
+    padding: 20px;
+    background: #f7f7f7;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #ebebeb;
+    border-bottom: none;
+}
+
+body.dark-theme .scrollable-section-component .scroll-section-title {
+    background: var(--darker);
+    border: 1px solid var(--dark);
+    color: var(--light);
+}
+
+.scrollable-section-component .scroll-section-title h3 {
+    font-weight: 600;
+    color: #2d2d2d;
+}
+
+body.dark-theme .scrollable-section-component .scroll-section-title h3 {
+    color: var(--light);
+}
+
+.scrollable-section-component .scrollable-area {
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #ebebeb;
+}
+
+body.dark-theme .scrollable-section-component .scrollable-area {
+    border: 1px solid var(--dark);
+}
+
+.scrollable-section-component .scrollable-item {
+    padding: 10px;
+    border-bottom: 1px solid #ebebeb;
+    background: #fff;
+}
+
+body.dark-theme .scrollable-section-component .scrollable-item {
+    background: var(--dark);
+    border-bottom: 1px solid var(--dark);
+}
