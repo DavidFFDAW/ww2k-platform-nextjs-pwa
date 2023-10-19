@@ -6,7 +6,8 @@ import { NullableLoading } from "@/components/Loading/LoadingComponent";
 import CreateButton from "@/components/Buttons/CreateButton";
 import { PageContext } from "@/shared/models";
 import { Pagination } from "@/components/Pagination/Pagination";
-import TableItem, { TableRow } from "./components/TableItem";
+import SearchForm from "./components/SearchForm";
+// import TableItem, { TableRow } from "./components/TableItem";
 
 async function getWrestlers(page: number) {
     const realPage = page || 1;
@@ -40,6 +41,10 @@ export default async function WrestlerListPage(context: PageContext) {
         <>
             <Title title={"Wrestlers"} icon="list-ul" />
 
+            <Pagination page={Number(page)} total={total} />
+
+            {/* <SearchForm /> */}
+
             <div className="w1 flex between column al-center gap">
                 <NullableLoading condition={wrestlers.length}>
                     <div className="w1 pagination-block"></div>
@@ -60,7 +65,6 @@ export default async function WrestlerListPage(context: PageContext) {
                             <TableItem width={200}>Actions</TableItem>
                         </TableRow> */}
 
-
                         <NullableLoading condition={wrestlers.length > 0}>
                             {wrestlers.map((wrestler) => (
                                 <WrestlerCard
@@ -72,7 +76,7 @@ export default async function WrestlerListPage(context: PageContext) {
                     </div>
                 </div>
 
-                <Pagination page={page} total={total} />
+                <Pagination page={Number(page)} total={total} />
 
                 <CreateButton endpoint={"wrestlers/create/new"} />
             </div>
