@@ -640,6 +640,16 @@ body.dark-theme ::-webkit-scrollbar-thumb {
     height: 40px;
 }
 
+.pagination .pagination-item {
+    padding: 8px 10px;
+    background-color: #FFF;
+    color: #111010;
+    border: 1px solid #dadadac2;
+}
+
+
+
+/* ANIMATIONS */
 @keyframes show {
     from {
         opacity: 0;
@@ -650,7 +660,6 @@ body.dark-theme ::-webkit-scrollbar-thumb {
     }
 }
 
-/* ANIMATIONS */
 @keyframes bounceIn {
     0% {
         opacity: 0;

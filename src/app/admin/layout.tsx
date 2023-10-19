@@ -1,4 +1,5 @@
 import React from 'react'
+import Sidebar from '@/components/Sidebar/Sidebar'
 
 interface AdminMainLayoutProps {
     children: React.ReactNode;
@@ -6,8 +7,11 @@ interface AdminMainLayoutProps {
 
 export default function AdminMainLayout({ children }: AdminMainLayoutProps) {
     return (
-        <section className='responsive-lockup sidebar-main-margin'>
-            {children}
-        </section>
+        <>
+            <Sidebar />
+            <section className='responsive-lockup sidebar-main-margin'>
+                {children}
+            </section>
+        </>
     )
 }

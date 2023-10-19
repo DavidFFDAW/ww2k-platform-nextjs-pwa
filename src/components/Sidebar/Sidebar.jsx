@@ -1,9 +1,9 @@
+'use client'
 import React, { useState } from 'react';
-import { HeaderMenu } from '~/constants/Menus';
 import Image from '../Image/Image';
+import Link from 'next/link';
 import SidebarLink from './SidebarLink';
-import { Link } from 'react-router-dom';
-import { MaterialIcon } from '../Icon/Icon';
+import { BootstrapIcon } from '../Icon/BootstrapIcon';
 import './sidebar.css';
 
 export default function Sidebar() {
@@ -16,10 +16,6 @@ export default function Sidebar() {
         setSidebarData(p => ({ ...p, showSidebar: !p.showSidebar }));
     };
 
-    const setActive = id => {
-        setSidebarData(p => ({ ...p, activeLink: id }));
-    };
-
     const showSidebar = sidebarData.showSidebar ? 'shown' : '';
 
     return (
@@ -27,36 +23,27 @@ export default function Sidebar() {
             <button type="button" role="button" className="btn close responsive" onClick={toggleSidebar}></button>
 
             <div className="flex center sidebar-image-container">
-                <Link to={'/admin/dashboard'} title="Image Dashboard Link">
+                <Link href={'/admin'} title="Image Dashboard Link">
                     <Image src={'/icons/icon-512x512.png'} width={128} height={128} className="sidebar-image-logo" />
                 </Link>
             </div>
 
             <div className="flex center links-container-big">
                 <div className="sidebar-links-container links">
-                    {HeaderMenu.admin.map(item => {
-                        if (item.showOnSidebar) {
-                            return (
-                                <SidebarLink
-                                    id={item.key}
-                                    active={sidebarData.activeLink}
-                                    setActive={setActive}
-                                    icon={item.material}
-                                    to={item.url}
-                                    key={item.key}
-                                    text={item.name}
-                                />
-                            );
-                        }
-                    })}
+                    <SidebarLink icon="list-ul" to={'/admin/wrestlers'} text="Wrestlers" />
+                    <SidebarLink icon="card-list" to={'/admin/wrestlers'} text="Blog" />
+                    <SidebarLink icon="twitter-x" to={'/admin/wrestlers'} text="Twitter" />
+                    <SidebarLink icon="microsoft-teams" to={'/admin/wrestlers'} text="Teams" />
+                    <SidebarLink icon="trophy" to={'/admin/wrestlers'} text="Champions" />
+                    <SidebarLink icon="arrows-move" to={'/admin/wrestlers'} text="Draft" />
                 </div>
             </div>
 
             <button className="btn-sidebar btn-open-sidebar" onClick={toggleSidebar}>
                 {sidebarData.showSidebar ? (
-                    <MaterialIcon icon={'chevron_left'} />
+                    <BootstrapIcon icon={'chevron-left'} />
                 ) : (
-                    <MaterialIcon icon={'chevron_right'} />
+                    <BootstrapIcon icon={'chevron-right'} />
                 )}
             </button>
         </aside>

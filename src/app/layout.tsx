@@ -1,10 +1,11 @@
 import '@/css/globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import AuthSession from './auth.provider';
 import '@/css/media.queries.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "animate.css"
+import AppProviders from '@/components/AppProviders/app.providers';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className}>
-        <AuthSession>
+        <AppProviders>
           <main className='app-page-wrapper'>
-            {children}
+            <div className="boxed-content">
+              {children}
+            </div>
           </main>
-        </AuthSession>
+        </AppProviders>
       </body>
     </html>
   )

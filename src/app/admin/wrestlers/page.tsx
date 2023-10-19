@@ -5,9 +5,12 @@ import WrestlerCard from "./components/Card";
 import { NullableLoading } from "@/components/Loading/LoadingComponent";
 import CreateButton from "@/components/Buttons/CreateButton";
 import { PageContext } from "@/shared/models";
+import { Pagination } from "@/components/Pagination/Pagination";
+import TableItem, { TableRow } from "./components/TableItem";
 
 async function getWrestlers(page: number) {
-    const offset = Math.abs((page - 1) * 10);
+    const realPage = page || 1;
+    const offset = Math.abs((realPage - 1) * 10);
     const total = await prisma.wrestler.count({
         where: {
             status: "active",
@@ -49,6 +52,15 @@ export default async function WrestlerListPage(context: PageContext) {
                             de busqueda
                         </NullableLoading>
 
+                        {/* <TableRow>
+                            <TableItem width={200}>Imagen</TableItem>
+                            <TableItem width={200}>Nombre</TableItem>
+                            <TableItem width={200}>Status</TableItem>
+                            <TableItem width={200}>Sexo</TableItem>
+                            <TableItem width={200}>Actions</TableItem>
+                        </TableRow> */}
+
+
                         <NullableLoading condition={wrestlers.length > 0}>
                             {wrestlers.map((wrestler) => (
                                 <WrestlerCard
@@ -60,11 +72,7 @@ export default async function WrestlerListPage(context: PageContext) {
                     </div>
                 </div>
 
-                <div className="flex center acenter">
-                    <button className="cta">
-                        {Math.round(total / 10)} pages
-                    </button>
-                </div>
+                <Pagination page={page} total={total} />
 
                 <CreateButton endpoint={"wrestlers/create/new"} />
             </div>
