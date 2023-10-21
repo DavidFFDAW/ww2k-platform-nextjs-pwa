@@ -1,14 +1,23 @@
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 export function StatusLabelContainer({ children }) {
-    return <div className="flex start al-center gap-small labeled-possible-states">{children}</div>;
+    return (
+        <div className="flex start al-center gap-small labeled-possible-states">
+            {children}
+        </div>
+    );
 }
 
-export default function StatusLabel({ text, name, activeLink, onClick }) {
-    const activeClass = activeLink === name.toLowerCase() ? 'active' : 'non-active';
+export default function StatusLabel({ text, name, activeLink, href }) {
+    const activeClass =
+        activeLink === name.toLowerCase() ? "active" : "non-active";
     return (
-        <div className={`possible-state-item label ${activeClass}`} onClick={onClick}>
+        <Link
+            className={`possible-state-item label ${activeClass}`}
+            href={href}
+        >
             {text}
-        </div>
+        </Link>
     );
 }

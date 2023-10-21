@@ -131,8 +131,8 @@ model ReportComments {
   id         Int       @id @default(autoincrement())
   username   String    @db.VarChar(255)
   comment    String    @db.Text
-  report_id  Int       @db.Int
-  report     Report    @relation(fields: [report_id], references: [id])
+  news_id  Int       @db.Int
+  report     Report    @relation(fields: [news_id], references: [id])
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 

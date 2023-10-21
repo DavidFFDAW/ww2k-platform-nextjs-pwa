@@ -6,8 +6,7 @@ import { NullableLoading } from "@/components/Loading/LoadingComponent";
 import CreateButton from "@/components/Buttons/CreateButton";
 import { PageContext } from "@/shared/models";
 import { Pagination } from "@/components/Pagination/Pagination";
-import SearchForm from "./components/SearchForm";
-// import TableItem, { TableRow } from "./components/TableItem";
+import WrestlersSearchForm from "./components/WrestlersSearchForm";
 
 async function getWrestlers(page: number, searchParams: any) {
     const realPage = page || 1;
@@ -52,7 +51,7 @@ export default async function WrestlerListPage(context: PageContext) {
 
             <Pagination page={Number(page)} total={total} />
 
-            <SearchForm params={context.searchParams} />
+            <WrestlersSearchForm params={context.searchParams} />
 
             <div className="w1 flex between column al-center gap">
                 <NullableLoading condition={wrestlers.length}>
