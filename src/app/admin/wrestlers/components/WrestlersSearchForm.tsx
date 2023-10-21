@@ -1,53 +1,33 @@
 "use client";
 import { NullableLoading } from "@/components/Loading/LoadingComponent";
-import { useRouter } from "next/navigation";
 import { FilterIcon } from "@/components/Icons/CommonIcons";
-
 import {
-    CheckboxInput,
     InputWithDeleteButton,
     UpsertSelect,
 } from "@/components/Forms/FormInputs";
+
 import {
     BlackButton,
     ButtonCTA,
     ButtonSecondary,
 } from "@/components/Buttons/Buttons";
+
+import SearchForm from "@/components/Forms/SearchForm";
 import React from "react";
 
 interface SearchFormProps {
     params: any;
 }
 
-export default function SearchForm({ params }: SearchFormProps) {
-    console.log(params);
-
-    const router = useRouter();
+export default function WrestlersSearchForm({ params }: SearchFormProps) {
     const [showFilters, setShowFilters] = React.useState<boolean>(false);
-
-    const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const query = new URLSearchParams(formData as any).entries();
-        const nonEmptyParams = Array.from(query)
-            .filter(([_, value]) => value !== "")
-            .map(([key, value]) => `${key}=${value}`)
-            .join("&");
-
-        router.push("/admin/wrestlers?" + nonEmptyParams);
-    };
 
     const handleShowFilters = () => {
         setShowFilters((prevState) => !prevState);
     };
 
     return (
-        <form
-            action=""
-            method="GET"
-            className="wrestlers-filters-list-container"
-            onSubmit={handlerSubmit}
-        >
+        <SearchForm url={"/admin/wrestlers"}>
             <div className="w1 down boxed flex center column gap-small padded al-center filters-block__content">
                 <header className="w1 flex between acenter filter-header buttons">
                     <NullableLoading condition={showFilters}>
@@ -142,6 +122,6 @@ export default function SearchForm({ params }: SearchFormProps) {
                     </div>
                 </NullableLoading>
             </div>
-        </form>
+        </SearchForm>
     );
 }
