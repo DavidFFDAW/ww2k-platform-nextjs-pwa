@@ -1,0 +1,44 @@
+.admin-blog-page .post-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.checkbox-grouped-actions {
+    height: 100%;
+}
+
+.sticky.blog-preview {
+    width: 90%;
+}
+.admin-blog-page .sticky.blog-preview .post-image {
+    width: 80px;
+    height: 80px;
+}
+.admin-blog-page .sticky.blog-preview .blog.title {
+    font-size: 16px;
+}
+.admin-blog-page .sticky.blog-preview .blog.content {
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 768px) {
+    .admin-blog-page .post.boxed {
+        flex-direction: column;
+        position: relative;
+    }
+    .admin-blog-page .actions-option-group.relative {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .admin-blog-page .blog-separation-image {
+        flex-direction: column;
+    }
+    .admin-blog-page .post-image {
+        width: 100%;
+    }
+}

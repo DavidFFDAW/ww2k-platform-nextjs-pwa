@@ -1,13 +1,63 @@
 import React from "react";
-import GalleryModule from "@/modules/gallery/GalleryModule";
+import { prisma } from "@/db/conn";
 import Title from "@/components/Title";
+import StatusLabel, {
+    StatusLabelContainer,
+} from "@/components/Status/StatusLabel";
+import { PageContext } from "@/shared/models";
+import CreateButton from "@/components/Buttons/CreateButton";
+import BlogCard from "./components/BlogCard";
 
-export default function page() {
+async function getBlogPosts(searchParams: any) {
+    const filters: any = {};
+
+    if (searchParams.status && searchParams.status !== "all")
+        filters["visible"] = searchParams.status === "published" ? 1 : 0;
+
+    return await prisma.report.findMany({
+        orderBy: {
+            created_at: "desc",
+        },
+        where: filters,
+    });
+}
+
+export default async function BlogPostsList({ searchParams }: PageContext) {
+    const blogPosts = await getBlogPosts(searchParams);
+
     return (
         <>
             <Title title={"Blog Posts"} icon="list-ul" />
 
-            <GalleryModule />
+            <StatusLabelContainer>
+                <StatusLabel
+                    name="all"
+                    text={"Todos"}
+                    href={"?status=all"}
+                    activeLink={searchParams.status}
+                ></StatusLabel>
+                <StatusLabel
+                    name="published"
+                    text={"Publicados"}
+                    href={"?status=published"}
+                    activeLink={searchParams.status}
+                ></StatusLabel>
+                <StatusLabel
+                    name="non-published"
+                    text={"No publicados"}
+                    href={"?status=non-published"}
+                    activeLink={searchParams.status}
+                ></StatusLabel>
+            </StatusLabelContainer>
+
+            <div className="flex center gap column down">
+                {blogPosts.map((post, index) => {
+                    const key = post.id ? post.id : index;
+                    return <BlogCard post={post} key={key} />;
+                })}
+            </div>
+
+            <CreateButton endpoint={"blog/create"} />
         </>
     );
 }
