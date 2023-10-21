@@ -1,7 +1,7 @@
-import React from 'react'
-import { NullableLoading } from '~/components/Loading/LoadingComponent'
-import { useGalleryContext } from '../context/GalleryContext'
-import { Gallery } from '.';
+import React from "react";
+import { NullableLoading } from "@/components/Loading/LoadingComponent";
+import { useGalleryContext } from "../context/GalleryContext";
+import { Gallery } from ".";
 
 function GalleryContainer() {
     const { galleryState, toggleGallery } = useGalleryContext();
@@ -13,16 +13,20 @@ function GalleryContainer() {
             </button>
 
             <NullableLoading condition={galleryState.showGallery}>
-                <dialog open={galleryState.showGallery} className='gallery-module-box boxed'>
-                    <header className='flex end acenter gallery-header'>
-                        <button className='btn close' onClick={toggleGallery}>&times;</button>
+                <dialog
+                    open={galleryState.showGallery}
+                    className="gallery-module-box boxed"
+                >
+                    <header className="flex end acenter gallery-header">
+                        <button className="btn close" onClick={toggleGallery}>
+                            &times;
+                        </button>
                     </header>
                     <Gallery />
                 </dialog>
             </NullableLoading>
-
         </div>
-    )
+    );
 }
 
-export default GalleryContainer
+export default GalleryContainer;

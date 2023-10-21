@@ -1,43 +1,32 @@
-import { UnbuttonButton } from '../Buttons/Buttons';
-import Image from '../Image/Image';
-import { FlexStart } from '../Layouts/Flex';
-import { NullableLoading } from '../Loading/LoadingComponent';
-import { ComponentSpinner } from '../Spinner/Spinner';
-import './toggle.css';
+// import { UnbuttonButton } from "../Buttons/Buttons";
+// import Image from "../Image/Image";
+// import { FlexStart } from "../Layouts/Flex";
+// import { NullableLoading } from "../Loading/LoadingComponent";
+// import { ComponentSpinner } from "../Spinner/Spinner";
+import "./toggle.css";
 
 export default function UpsertInput({
     type,
-    max,
+    max = 100,
     label,
-    property,
-    literalValue,
-    formState,
-    setFormState,
-    onChangeCallback,
-    placeholder = 'Default placeholder',
+    name,
+    value = "",
+    placeholder = "Default placeholder",
     required = false,
 }) {
-    const value = literalValue || formState[`${property}`] || '';
-    const defaultChange = ev => setFormState({ ...formState, [property]: ev.target.value });
-    const change = !setFormState && Boolean(onChangeCallback) ? onChangeCallback : defaultChange;
-
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
             <div className="input-wrapper-container-div relative">
                 <input
                     className="w1"
-                    maxLength={max || 100}
-                    type={type || 'text'}
-                    name={property}
+                    maxLength={max}
+                    type={type || "text"}
+                    name={name}
                     required={required}
-                    value={value}
-                    onChange={change}
+                    defaultValue={value}
                     placeholder={placeholder}
                 />
-                <NullableLoading condition={formState.loading}>
-                    <ComponentSpinner className="input-loading-spinner" />
-                </NullableLoading>
             </div>
         </div>
     );
@@ -46,14 +35,10 @@ export default function UpsertInput({
 export function UpsertSelect({
     children,
     label,
-    property,
-    formState,
-    setFormState,
-    defaultVal = '',
+    name,
+    value = "",
     required = false,
 }) {
-    const value = formState[`${property}`] || defaultVal;
-
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
@@ -61,54 +46,74 @@ export function UpsertSelect({
             <div className="input-wrapper-container-div relative">
                 <select
                     className="w1 custom"
-                    name={property}
-                    value={value}
+                    name={name}
+                    defaultValue={value}
                     required={required}
-                    onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
                 >
                     {children}
                 </select>
 
-                <NullableLoading condition={formState.loading}>
+                {/* <NullableLoading condition={formState.loading}>
                     <ComponentSpinner className="input-loading-spinner" />
-                </NullableLoading>
+                </NullableLoading> */}
             </div>
         </div>
     );
 }
 
-export function UpsertTextArea({ label, property, formState, setFormState, required = false, rows = 5 }) {
+export function UpsertTextArea({
+    label,
+    name,
+    value = "",
+    required = false,
+    rows = 5,
+}) {
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
             <textarea
                 className="w1 custom input"
-                name={property}
-                value={formState[`${property}`]}
+                name={name}
                 rows={rows}
+                defaultValue={value}
                 required={required}
-                onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
             />
         </div>
     );
 }
 
-export function UpsertToggle({ property, formState, setFormState, label }) {
-    const isChecked = Boolean(formState[property]);
-    const toggler = _ => setFormState(previous => ({ ...previous, [property]: !previous[property] }));
+// export function UpsertToggle({ property, formState, setFormState, label }) {
+//     const isChecked = Boolean(formState[property]);
+//     const toggler = (_) =>
+//         setFormState((previous) => ({
+//             ...previous,
+//             [property]: !previous[property],
+//         }));
 
-    return (
-        <div className="custom-toggle-switch flex column center al-center">
-            <label className="form-label block">{label}</label>
-            <label className="switch block">
-                <input type="checkbox" name={property} checked={isChecked || false} onChange={toggler} />
-                <span className="slider round"></span>
-            </label>
-        </div>
-    );
-}
+//     return (
+//         <div className="custom-toggle-switch flex column center al-center">
+//             <label className="form-label block">{label}</label>
+//             <label className="switch block">
+//                 <input
+//                     type="checkbox"
+//                     name={property}
+//                     checked={isChecked || false}
+//                     onChange={toggler}
+//                 />
+//                 <span className="slider round"></span>
+//             </label>
+//         </div>
+//     );
+// }
 
-export function UpsertDate({ min, max, label, property, formState, setFormState, required = false }) {
+export function UpsertDate({
+    min = "2020-01-01",
+    max = "2030-12-31",
+    label,
+    name,
+    required = false,
+    value = "",
+}) {
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
@@ -117,75 +122,70 @@ export function UpsertDate({ min, max, label, property, formState, setFormState,
                 max={max}
                 className="w1 date-input"
                 type="date"
-                name={property}
+                name={name}
                 required={required}
-                value={formState[`${property}`] || ''}
-                onChange={ev => setFormState({ ...formState, [property]: ev.target.value })}
+                defaultValue={value}
             />
         </div>
     );
 }
 
-export function InputWithDeleteButton({ type, max, label, property, formState, setFormState, required = false }) {
-    const defaultChange = ev => setFormState({ ...formState, [property]: ev.target.value });
+export function InputWithDeleteButton({
+    type,
+    max = 100,
+    label,
+    name,
+    value = "",
+    required = false,
+}) {
     return (
-        <FlexStart align={'center'} gap="smaller">
+        <div className="flex start gap-smaller acenter">
             <div className="w1 flex column gap-5">
                 <label className="label">{label}</label>
                 <div className="flex al-center gap-smaller">
                     <input
                         className="w1"
-                        maxLength={max || 100}
-                        type={type || 'text'}
-                        name={property}
+                        maxLength={max}
+                        type={type || "text"}
+                        name={name}
                         required={required}
-                        value={formState[`${property}`] || ''}
-                        onChange={defaultChange}
-                    />
-                    <UnbuttonButton
-                        text={<>&times;</>}
-                        onClick={_ => setFormState(prev => ({ ...prev, [property]: '' }))}
+                        defaultValue={value}
                     />
                 </div>
             </div>
-        </FlexStart>
+        </div>
     );
 }
 
-export function CheckboxInput({ label, property, formState, defaultChecked, setFormState }) {
-    const checked = formState[`${property}`] || Boolean(defaultChecked);
-
+export function CheckboxInput({ label, name, checked = false }) {
     return (
         <div className="w1">
             <label className="flex gap-5">
-                <input
-                    type="checkbox"
-                    name={property}
-                    checked={checked}
-                    onChange={_ => setFormState(previous => ({ ...previous, pagination: !previous.pagination }))}
-                />
+                <input type="checkbox" name={name} defaultChecked={checked} />
                 {label}
             </label>
         </div>
     );
 }
 
-export function UpsertImage({ placeholder = 'Imagen', formState, setFormState, property = 'image' }) {
+export function UpsertImage({
+    placeholder = "Imagen",
+    name = "image",
+    imageSrc = "",
+}) {
     const size = 100;
-    const imageSrc = formState[property];
 
     return (
         <div className="w1 flex between al-center gap-small">
-            <Image width={size} height={size} src={imageSrc}></Image>
+            <img width={size} height={size} src={imageSrc}></img>
             <div className="w1">
                 <UpsertInput
-                    type={'text'}
-                    formState={formState}
-                    setFormState={setFormState}
-                    property={property}
+                    type={"text"}
+                    property={name}
                     required={true}
                     max={255}
                     placeholder={placeholder}
+                    defaultValue={imageSrc}
                 />
             </div>
         </div>

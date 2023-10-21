@@ -1,6 +1,6 @@
-import HttpService from '~/services/http.service';
+import HttpService from "@/services/http.service";
 
-const API_ENDPOINT = 'https://vps-f87b433e.vps.ovh.net/2k/api/v2/';
+const API_ENDPOINT = "https://vps-f87b433e.vps.ovh.net/2k/api/v2/";
 
 export async function getAllImages() {
     const response = await HttpService.get(`${API_ENDPOINT}images`);
@@ -24,42 +24,42 @@ export async function getAllImages() {
 }
 
 function wpGalleryDeleteImage(filename) {
-    const urlGalleryDeletion = API_ENDPOINT + 'images/delete?img=' + filename;
-    console.log('urlGalleryDeletion: ', urlGalleryDeletion);
-    if (!confirm('¿Estás seguro de eliminar esta imagen?')) return;
+    const urlGalleryDeletion = API_ENDPOINT + "images/delete?img=" + filename;
+    console.log("urlGalleryDeletion: ", urlGalleryDeletion);
+    if (!confirm("¿Estás seguro de eliminar esta imagen?")) return;
 
     HttpService.delete(urlGalleryDeletion)
-        .then(response => {
+        .then((response) => {
             console.log(response);
 
             if (response.code === 200) {
                 wpDeleteSelectedImage(filename);
             }
         })
-        .catch(err => alert(err.message));
+        .catch((err) => alert(err.message));
 }
 
 function wpUploadFormData(formData) {
-    return fetch(API_ENDPOINT + 'images/new', {
-        method: 'POST',
+    return fetch(API_ENDPOINT + "images/new", {
+        method: "POST",
         body: formData,
-    }).then(response => response.json());
+    }).then((response) => response.json());
 }
 
 function wpAsyncUploadImage(files) {
     const formData = wpPrepareFormData(files);
     wpCreateImageLoadingDiv(files);
     wpUploadFormData(formData)
-        .then(response => {
+        .then((response) => {
             console.log(response);
             if (response.code === 200) {
                 wpRemoveLoadingDivs();
                 wpPrependImages(response);
             }
         })
-        .catch(error => {
-            console.log(' -- Error -- ');
-            console.error('Error:', error.message);
+        .catch((error) => {
+            console.log(" -- Error -- ");
+            console.error("Error:", error.message);
             wpRemoveLoadingDivs();
             alert(error.message);
         });

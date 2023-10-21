@@ -9,20 +9,31 @@ import { Pagination } from "@/components/Pagination/Pagination";
 import SearchForm from "./components/SearchForm";
 // import TableItem, { TableRow } from "./components/TableItem";
 
-async function getWrestlers(page: number) {
+async function getWrestlers(page: number, searchParams: any) {
     const realPage = page || 1;
     const offset = Math.abs((realPage - 1) * 10);
-    const total = await prisma.wrestler.count({
-        where: {
-            status: "active",
+
+    console.log({ searchParams });
+
+    const filters: any = {
+        name: {
+            contains: searchParams.name || "",
         },
+    };
+    if (searchParams.status) filters["status"] = searchParams.status;
+    if (searchParams.gender) filters["sex"] = searchParams.gender;
+
+    if (searchParams.brand) filters["brand"] = searchParams.brand;
+
+    console.log({ filters });
+
+    const total = await prisma.wrestler.count({
+        where: filters,
     });
     const wrestlers = await prisma.wrestler.findMany({
         take: 10,
         skip: offset,
-        where: {
-            status: "active",
-        },
+        where: filters,
         orderBy: {
             name: "asc",
         },
@@ -33,9 +44,7 @@ async function getWrestlers(page: number) {
 
 export default async function WrestlerListPage(context: PageContext) {
     const { page } = context.searchParams;
-    const { wrestlers, total } = await getWrestlers(page);
-
-    if (wrestlers.length <= 0) return <Title title="No Wrestlers" />;
+    const { wrestlers, total } = await getWrestlers(page, context.searchParams);
 
     return (
         <>
@@ -43,7 +52,7 @@ export default async function WrestlerListPage(context: PageContext) {
 
             <Pagination page={Number(page)} total={total} />
 
-            {/* <SearchForm /> */}
+            <SearchForm params={context.searchParams} />
 
             <div className="w1 flex between column al-center gap">
                 <NullableLoading condition={wrestlers.length}>
@@ -53,8 +62,10 @@ export default async function WrestlerListPage(context: PageContext) {
                 <div className="w1 list-block overflow-y">
                     <div className="wrestlers-list items-listing">
                         <NullableLoading condition={wrestlers.length <= 0}>
-                            No se han encontrado resultados con estos criterios
-                            de busqueda
+                            <div className="down">
+                                No se han encontrado resultados con estos
+                                criterios de busqueda
+                            </div>
                         </NullableLoading>
 
                         {/* <TableRow>

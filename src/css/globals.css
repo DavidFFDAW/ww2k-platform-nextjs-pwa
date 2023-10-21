@@ -796,7 +796,8 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 .pagination-item.active {
     background-color: #111010;
 }
-.pagination-item.active a {
+.pagination-item.active a,
+.pagination-item.active {
     color: #fff;
 }
 
