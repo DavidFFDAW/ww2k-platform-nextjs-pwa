@@ -4,6 +4,9 @@
         width: 100%;
         height: 105vh;
     }
+    .sidebar.shown + .sidebar-main-margin {
+        margin-left: 0;
+    }
 
     .sidebar.shown {
         overflow-x: hidden;
@@ -11,11 +14,11 @@
     }
 
     .custom-totalpage-wallpaper.principal {
-        background-image: url('/rhea.webp');
+        background-image: url("/rhea.webp");
     }
 
     .custom-totalpage-wallpaper.default {
-        background-image: url('/cody.jpg');
+        background-image: url("/cody.jpg");
     }
 
     .labeled-possible-states .possible-state-item.label {
