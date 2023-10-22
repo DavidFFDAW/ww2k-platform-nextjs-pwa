@@ -3,18 +3,18 @@
 // import { FlexStart } from "../Layouts/Flex";
 // import { NullableLoading } from "../Loading/LoadingComponent";
 // import { ComponentSpinner } from "../Spinner/Spinner";
-"use client";
-import { useState } from "react";
-import "./toggle.css";
-import Image from "../Image/Image";
+'use client';
+import { useState } from 'react';
+import './toggle.css';
+import Image from '../Image/Image';
 
 export default function UpsertInput({
     type,
     max = 100,
     label,
     name,
-    value = "",
-    placeholder = "Default placeholder",
+    value = '',
+    placeholder = 'Default placeholder',
     required = false,
 }) {
     return (
@@ -24,7 +24,7 @@ export default function UpsertInput({
                 <input
                     className="w1"
                     maxLength={max}
-                    type={type || "text"}
+                    type={type || 'text'}
                     name={name}
                     required={required}
                     defaultValue={value}
@@ -35,24 +35,13 @@ export default function UpsertInput({
     );
 }
 
-export function UpsertSelect({
-    children,
-    label,
-    name,
-    value = "",
-    required = false,
-}) {
+export function UpsertSelect({ children, label, name, value = '', required = false }) {
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
 
             <div className="input-wrapper-container-div relative">
-                <select
-                    className="w1 custom"
-                    name={name}
-                    defaultValue={value}
-                    required={required}
-                >
+                <select className="w1 custom" name={name} defaultValue={value} required={required}>
                     {children}
                 </select>
 
@@ -64,23 +53,11 @@ export function UpsertSelect({
     );
 }
 
-export function UpsertTextArea({
-    label,
-    name,
-    value = "",
-    required = false,
-    rows = 5,
-}) {
+export function UpsertTextArea({ label, name, value = '', required = false, rows = 5 }) {
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
-            <textarea
-                className="w1 custom input"
-                name={name}
-                rows={rows}
-                defaultValue={value}
-                required={required}
-            />
+            <textarea className="w1 custom input" name={name} rows={rows} defaultValue={value} required={required} />
         </div>
     );
 }
@@ -90,11 +67,7 @@ export function UpsertToggle({ name, checked = false, label }) {
         <div className="custom-toggle-switch flex column center al-center">
             <label className="form-label block">{label}</label>
             <label className="switch block">
-                <input
-                    type="checkbox"
-                    name={name}
-                    defaultChecked={checked || false}
-                />
+                <input type="checkbox" name={name} defaultChecked={checked || false} />
                 <span className="slider round"></span>
             </label>
         </div>
@@ -102,12 +75,12 @@ export function UpsertToggle({ name, checked = false, label }) {
 }
 
 export function UpsertDate({
-    min = "2020-01-01",
-    max = "2030-12-31",
+    min = '2020-01-01',
+    max = '2030-12-31',
     label,
     name,
     required = false,
-    value = new Date().toISOString().split("T")[0],
+    value = new Date().toISOString().split('T')[0],
 }) {
     return (
         <div className="w1 flex column gap-5">
@@ -125,14 +98,7 @@ export function UpsertDate({
     );
 }
 
-export function InputWithDeleteButton({
-    type,
-    max = 100,
-    label,
-    name,
-    value = "",
-    required = false,
-}) {
+export function InputWithDeleteButton({ type, max = 100, label, name, value = '', required = false }) {
     return (
         <div className="flex start gap-smaller acenter">
             <div className="w1 flex column gap-5">
@@ -141,7 +107,7 @@ export function InputWithDeleteButton({
                     <input
                         className="w1"
                         maxLength={max}
-                        type={type || "text"}
+                        type={type || 'text'}
                         name={name}
                         required={required}
                         defaultValue={value}
@@ -163,32 +129,23 @@ export function CheckboxInput({ label, name, checked = false }) {
     );
 }
 
-export function UpsertImage({
-    placeholder = "Imagen",
-    name = "image",
-    imageSrc = "",
-}) {
+export function UpsertImage({ placeholder = 'Imagen', name = 'image', imageSrc = '' }) {
     const [image, setImage] = useState(imageSrc);
 
     const size = 100;
-    const handleImageChange = (e) => {
+    const handleImageChange = e => {
         const image = e.target.value;
         setImage(image);
     };
 
     return (
         <div className="w1 flex between al-center gap-small">
-            <Image
-                width={size}
-                height={size}
-                src={image}
-                alt="post banner image preview"
-            />
+            <Image width={size} height={size} src={image} alt="post banner image preview" />
             <div className="w1">
                 <input
                     className="w1"
                     maxLength={255}
-                    type={"text"}
+                    type={'text'}
                     name={name}
                     required={true}
                     defaultValue={image}
