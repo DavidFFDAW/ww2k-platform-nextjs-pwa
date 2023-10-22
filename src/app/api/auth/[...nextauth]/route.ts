@@ -1,28 +1,29 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import { prisma } from '@/db/conn';
-import bcrypt from 'bcrypt';
+import NextAuth, { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { prisma } from "@/db/conn";
+import bcrypt from "bcryptjs";
 
 const OPTIONS: NextAuthOptions = {
     providers: [
         CredentialsProvider({
-            name: 'credentials',
-            id: 'credentials',
+            name: "credentials",
+            id: "credentials",
 
             credentials: {
                 email: {
-                    label: 'Email',
-                    type: 'email',
-                    placeholder: 'jsmith',
+                    label: "Email",
+                    type: "email",
+                    placeholder: "jsmith",
                 },
                 password: {
-                    label: 'Password',
-                    type: 'password',
-                    placeholder: '********',
+                    label: "Password",
+                    type: "password",
+                    placeholder: "********",
                 },
             },
             async authorize(credentials): Promise<any> {
-                if (!credentials?.password) throw new Error('Debes introducir una contraseña');
+                if (!credentials?.password)
+                    throw new Error("Debes introducir una contraseña");
 
                 const foundUser = await prisma.user.findUnique({
                     where: {
@@ -31,13 +32,18 @@ const OPTIONS: NextAuthOptions = {
                 });
 
                 if (!foundUser) {
-                    throw new Error('No se ha encontrado este usuario');
+                    throw new Error("No se ha encontrado este usuario");
                 }
 
-                const passwordMatch = await bcrypt.compare(credentials!.password, foundUser.password);
+                console.log({ foundUser, pwd: credentials.password });
+
+                const passwordMatch = await bcrypt.compare(
+                    credentials.password.trim(),
+                    foundUser.password.trim()
+                );
 
                 if (!passwordMatch) {
-                    throw new Error('La contraseña no coincide');
+                    throw new Error("La contraseña no coincide");
                 }
 
                 const user = {
@@ -68,11 +74,11 @@ const OPTIONS: NextAuthOptions = {
         },
     },
     pages: {
-        signIn: '/login',
-        error: '/login',
+        signIn: "/login",
+        error: "/login",
     },
     session: {
-        strategy: 'jwt',
+        strategy: "jwt",
         maxAge: 30 * 24 * 60 * 60, // 30 days
     },
 };

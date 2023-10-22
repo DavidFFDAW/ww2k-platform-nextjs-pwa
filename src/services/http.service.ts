@@ -1,13 +1,14 @@
 export default class HttpService {
-    static get = (endpoint) => this._makeFetchRequest(endpoint, "GET");
-    static put = (endpoint, data) =>
+    static get = (endpoint: string) => this._makeFetchRequest(endpoint, "GET");
+    static put = (endpoint: string, data: any) =>
         this._makeFetchRequest(endpoint, "PUT", data);
-    static post = (endpoint, data) =>
+    static post = (endpoint: string, data: any) =>
         this._makeFetchRequest(endpoint, "POST", data);
-    static delete = (endpoint) => this._makeFetchRequest(endpoint, "DELETE");
+    static delete = (endpoint: string) =>
+        this._makeFetchRequest(endpoint, "DELETE");
 
-    static _makeFetchRequest(url, method, data = false) {
-        const options = {
+    static _makeFetchRequest(url: string, method: string, data: any = false) {
+        const options: any = {
             method: method,
             mode: "cors",
             headers: {

@@ -3,7 +3,10 @@
 // import { FlexStart } from "../Layouts/Flex";
 // import { NullableLoading } from "../Loading/LoadingComponent";
 // import { ComponentSpinner } from "../Spinner/Spinner";
+"use client";
+import { useState } from "react";
 import "./toggle.css";
+import Image from "../Image/Image";
 
 export default function UpsertInput({
     type,
@@ -82,29 +85,21 @@ export function UpsertTextArea({
     );
 }
 
-// export function UpsertToggle({ property, formState, setFormState, label }) {
-//     const isChecked = Boolean(formState[property]);
-//     const toggler = (_) =>
-//         setFormState((previous) => ({
-//             ...previous,
-//             [property]: !previous[property],
-//         }));
-
-//     return (
-//         <div className="custom-toggle-switch flex column center al-center">
-//             <label className="form-label block">{label}</label>
-//             <label className="switch block">
-//                 <input
-//                     type="checkbox"
-//                     name={property}
-//                     checked={isChecked || false}
-//                     onChange={toggler}
-//                 />
-//                 <span className="slider round"></span>
-//             </label>
-//         </div>
-//     );
-// }
+export function UpsertToggle({ name, checked = false, label }) {
+    return (
+        <div className="custom-toggle-switch flex column center al-center">
+            <label className="form-label block">{label}</label>
+            <label className="switch block">
+                <input
+                    type="checkbox"
+                    name={name}
+                    defaultChecked={checked || false}
+                />
+                <span className="slider round"></span>
+            </label>
+        </div>
+    );
+}
 
 export function UpsertDate({
     min = "2020-01-01",
@@ -112,7 +107,7 @@ export function UpsertDate({
     label,
     name,
     required = false,
-    value = "",
+    value = new Date().toISOString().split("T")[0],
 }) {
     return (
         <div className="w1 flex column gap-5">
@@ -173,19 +168,32 @@ export function UpsertImage({
     name = "image",
     imageSrc = "",
 }) {
+    const [image, setImage] = useState(imageSrc);
+
     const size = 100;
+    const handleImageChange = (e) => {
+        const image = e.target.value;
+        setImage(image);
+    };
 
     return (
         <div className="w1 flex between al-center gap-small">
-            <img width={size} height={size} src={imageSrc}></img>
+            <Image
+                width={size}
+                height={size}
+                src={image}
+                alt="post banner image preview"
+            />
             <div className="w1">
-                <UpsertInput
+                <input
+                    className="w1"
+                    maxLength={255}
                     type={"text"}
-                    property={name}
+                    name={name}
                     required={true}
-                    max={255}
+                    defaultValue={image}
                     placeholder={placeholder}
-                    defaultValue={imageSrc}
+                    onChange={handleImageChange}
                 />
             </div>
         </div>

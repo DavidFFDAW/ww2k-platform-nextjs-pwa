@@ -7,12 +7,15 @@ import StatusLabel, {
 import { PageContext } from "@/shared/models";
 import CreateButton from "@/components/Buttons/CreateButton";
 import BlogCard from "./components/BlogCard";
+import { NullableLoading } from "@/components/Loading/LoadingComponent";
 
 async function getBlogPosts(searchParams: any) {
     const filters: any = {};
 
     if (searchParams.status && searchParams.status !== "all")
         filters["visible"] = searchParams.status === "published" ? 1 : 0;
+
+    if (searchParams.deletable) filters["deletable"] = 1;
 
     return await prisma.report.findMany({
         orderBy: {
@@ -48,14 +51,24 @@ export default async function BlogPostsList({ searchParams }: PageContext) {
                     href={"?status=non-published"}
                     activeLink={searchParams.status}
                 ></StatusLabel>
+                <StatusLabel
+                    name="deletables"
+                    text={"Con borrado automático"}
+                    href={"?deletable=1"}
+                    activeLink={searchParams.status}
+                ></StatusLabel>
             </StatusLabelContainer>
 
-            <div className="flex center gap column down">
-                {blogPosts.map((post, index) => {
-                    const key = post.id ? post.id : index;
-                    return <BlogCard post={post} key={key} />;
-                })}
-            </div>
+            <NullableLoading condition={Boolean(blogPosts)}>
+                <div className="flex center gap column down">
+                    {blogPosts.map((post, index) => {
+                        const key = post.id ? post.id : index;
+                        return (
+                            <BlogCard post={post} key={key} actions={true} />
+                        );
+                    })}
+                </div>
+            </NullableLoading>
 
             <CreateButton endpoint={"blog/create"} />
         </>

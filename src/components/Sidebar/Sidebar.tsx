@@ -33,6 +33,7 @@ export default function Sidebar() {
                         width={128}
                         height={128}
                         className="sidebar-image-logo"
+                        alt="Image Dashboard Logo"
                     />
                 </Link>
             </div>
@@ -46,7 +47,7 @@ export default function Sidebar() {
                     />
                     <SidebarLink
                         icon="card-list"
-                        to={"/admin/wrestlers"}
+                        to={"/admin/blog"}
                         text="Blog"
                     />
                     <SidebarLink
