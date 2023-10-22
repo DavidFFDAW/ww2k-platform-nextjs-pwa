@@ -8,11 +8,7 @@ export default withAuth(
             role: string;
         };
 
-        console.log({ authRole });
-        console.log({ tk: request.nextauth.token });
-
         const userRole = authRole?.role.toUpperCase();
-        console.log({ userRole });
 
         if (
             request.nextUrl.pathname.startsWith(PROTECTED_ROUTES.ADMIN) &&
@@ -35,6 +31,10 @@ export default withAuth(
     {
         callbacks: {
             authorized: ({ token }) => !!token,
+        },
+        pages: {
+            signIn: "/login",
+            error: "/error",
         },
     }
 );

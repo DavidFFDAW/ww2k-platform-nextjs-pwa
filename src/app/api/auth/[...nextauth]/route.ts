@@ -6,8 +6,8 @@ import bcrypt from "bcrypt";
 const OPTIONS: NextAuthOptions = {
     providers: [
         CredentialsProvider({
+            id: "wk-credentials",
             name: "credentials",
-            id: "credentials",
 
             credentials: {
                 email: {
@@ -74,7 +74,7 @@ const OPTIONS: NextAuthOptions = {
         },
     },
     pages: {
-        signIn: "/signin",
+        signIn: "/login",
         error: "/login",
     },
     session: {
