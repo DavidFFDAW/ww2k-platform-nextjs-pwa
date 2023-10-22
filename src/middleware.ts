@@ -30,7 +30,10 @@ export default withAuth(
     },
     {
         callbacks: {
-            authorized: ({ token }) => !!token,
+            authorized: ({ token }) => {
+                console.log("authorized", token);
+                return !!token;
+            },
         },
         pages: {
             signIn: "/login",

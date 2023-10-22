@@ -1,5 +1,5 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import { prisma } from "@/db/conn";
 import bcrypt from "bcrypt";
 
@@ -54,9 +54,6 @@ const OPTIONS: NextAuthOptions = {
                     api_token: foundUser.api_token,
                     role: foundUser.type,
                 };
-
-                console.log(user);
-
                 return user;
             },
         }),
