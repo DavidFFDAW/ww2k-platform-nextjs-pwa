@@ -4,15 +4,18 @@ import React from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ComponentSpinner } from "@/components/Spinner/Spinner";
+import { FormErrorMessage } from "./FormErrorMessage";
 
 interface FormState {
     visiblePassword: boolean;
     loadingState: boolean;
+    error: string;
 }
 
 const initialFormState: FormState = {
     visiblePassword: false,
     loadingState: false,
+    error: '',
 };
 
 export default function LoginForm() {
@@ -33,23 +36,33 @@ export default function LoginForm() {
                 email: form.get("login_email"),
                 password: form.get("login_password"),
                 redirect: false,
+                callbackUrl: "/admin",
             });
             setFormState((previous) => ({ ...previous, loadingState: false }));
 
             console.log({ response });
 
-            const isError =
-                Boolean(response?.error) &&
-                response?.status !== 200 &&
-                !response?.ok;
-            if (!isError) return router.push("/admin");
+            // const isError =
+            //     Boolean(response?.error) &&
+            //     response?.status !== 200 &&
+            // !response?.ok;
+
+            // if (isError) setFormState((previous) => ({ ...previous, error: response?.error as string }));
+            if (response?.error) return setFormState((previous) => ({ ...previous, error: response?.error as string }));
+            // if (!isError) return router.push("/admin");
         } catch (error: any) {
-            console.warn({ error });
+            setFormState((previous) => ({
+                ...previous,
+                loadingState: false,
+                error: error.message,
+            }));
         }
     };
 
     return (
         <>
+            {Boolean(formState.error) && <FormErrorMessage message={formState.error} setError={setFormState} />}
+
             <form onSubmit={(ev) => submitForm(ev)} method="POST">
                 <div
                     className="flex center gap column al-start"
