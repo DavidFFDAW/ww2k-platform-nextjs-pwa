@@ -35,11 +35,9 @@ export const OPTIONS: NextAuthOptions = {
                     throw new Error("No se ha encontrado este usuario");
                 }
 
-                console.log({ foundUser, pwd: credentials.password });
-
                 const passwordMatch = await bcrypt.compare(
-                    credentials.password.trim(),
-                    foundUser.password.trim()
+                    credentials!.password.trim(),
+                    foundUser.password
                 );
 
                 if (!passwordMatch) {
@@ -54,6 +52,7 @@ export const OPTIONS: NextAuthOptions = {
                     api_token: foundUser.api_token,
                     role: foundUser.type,
                 };
+
                 return user;
             },
         }),

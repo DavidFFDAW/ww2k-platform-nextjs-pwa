@@ -30,11 +30,14 @@ export default function LoginForm() {
         ev.preventDefault();
         const form = new FormData(ev.currentTarget);
 
+        if (!form.get('login_email') || !form.get('login_password'))
+            return setFormState((previous) => ({ ...previous, error: 'Por favor, ingrese su correo y contraseña' }));
+
         try {
             setFormState((previous) => ({ ...previous, loadingState: true }));
             const response = await signIn("Credentials", {
-                email: form.get("login_email"),
-                password: form.get("login_password"),
+                email: form.get("login_email")?.toString().trim(),
+                password: form.get("login_password")?.toString().trim(),
                 redirect: false,
                 callbackUrl: "/admin",
             });
