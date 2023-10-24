@@ -6,9 +6,9 @@ export async function GET(req: NextRequest) {
     const searchParams = req.nextUrl.searchParams as any;
 
     if (searchParams.status && searchParams.status !== 'all')
-        filters['visible'] = searchParams.status === 'published' ? 1 : 0;
+        filters['visible'] = searchParams.status === 'published'
 
-    if (searchParams.deletable) filters['deletable'] = 1;
+    if (searchParams.deletable) filters['deletable'] = true;
 
     return await prisma.report.findMany({
         orderBy: {
