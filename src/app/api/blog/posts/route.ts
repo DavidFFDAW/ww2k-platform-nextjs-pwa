@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/db/conn";
 
 export async function GET(req: NextRequest) {
@@ -10,11 +10,13 @@ export async function GET(req: NextRequest) {
 
     if (searchParams.deletable) filters['deletable'] = true;
 
-    return await prisma.report.findMany({
+    const posts = await prisma.report.findMany({
         orderBy: {
             created_at: 'desc',
         },
         where: filters,
     });
+
+    return NextResponse.json({ posts });
 
 }
