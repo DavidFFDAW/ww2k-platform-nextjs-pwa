@@ -6,6 +6,7 @@
     --sidebar-width: 320px;
     --sidebar-bg: #17181c;
 }
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -22,21 +23,27 @@
     transform: translateX(-100%);
     z-index: 99999;
 }
+
 .sidebar.shown {
     transform: translateX(0);
 }
+
 .sidebar-image-container {
     margin-top: 25px;
 }
+
 .sidebar-link-submenu-container .sidebar-links-container {
     margin-top: 0;
 }
+
 .sidebar-links-container {
     margin: 50px 0;
 }
+
 .sidebar-link-submenu-container.non-active {
     display: none;
 }
+
 .sidebar-link-submenu-container {
     position: absolute;
     top: 0;
@@ -44,6 +51,7 @@
     background-color: var(--sidebar-bg);
     padding: 15px;
 }
+
 .sidebar .links {
     display: flex;
     flex-direction: column;
@@ -51,6 +59,7 @@
     align-items: start;
     gap: 10px;
 }
+
 .sidebar .links .sidebar-link {
     width: 100%;
     color: #fff;
@@ -59,12 +68,14 @@
     border-radius: 10px;
     font-family: "Dreadnotus";
 }
+
 .sidebar .links .sidebar-link.active,
 .sidebar .links .sidebar-link:hover {
     background: #c91727;
     background: linear-gradient(140deg, #c91727 0%, rgba(31, 31, 31, 1) 100%);
 }
-.sidebar.shown + .sidebar-main-margin {
+
+.sidebar.shown+.sidebar-main-margin {
     margin-left: var(--sidebar-width);
 }
 
@@ -80,12 +91,14 @@
     cursor: pointer;
     transition: all 0.5s ease-in-out;
 }
+
 .sidebar .btn-open-sidebar {
     right: -30px;
     display: grid;
     place-items: center;
     border-radius: 0;
 }
+
 .sidebar.shown .btn-open-sidebar {
     right: -15px;
     border-radius: 50%;
@@ -136,7 +149,7 @@
         transform: translateX(0);
     }
 
-    .sidebar.shown + .btn-open-sidebar {
+    .sidebar.shown+.btn-open-sidebar {
         display: none;
     }
 
@@ -293,7 +306,7 @@ dialog[open] {
     z-index: 0;
 }
 
-.sidebar.shown + .sidebar-main-margin .custom-totalpage-wallpaper {
+.sidebar.shown+.sidebar-main-margin .custom-totalpage-wallpaper {
     margin-left: 320px;
     width: calc(100% - 320px);
 }
@@ -796,6 +809,7 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 .pagination-item.active {
     background-color: #111010;
 }
+
 .pagination-item.active a,
 .pagination-item.active {
     color: #fff;

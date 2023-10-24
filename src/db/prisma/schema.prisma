@@ -13,7 +13,7 @@ datasource db {
 model Brand {
   id           Int            @id @default(autoincrement())
   name         String         @db.VarChar(50)
-  active       Int            @default(1) @db.TinyInt
+  active       Boolean        @default(true) @db.TinyInt
   logo         String         @db.VarChar(255)
   created_at   DateTime?      @default(now())
   updated_at   DateTime?      @updatedAt
@@ -30,8 +30,8 @@ model Championship {
   metadata          String              @db.VarChar(255)
   gender            String              @db.VarChar(1)
   image             String              @db.VarChar(255)
-  tag               Int                 @db.TinyInt
-  active            Int                 @db.TinyInt
+  tag               Boolean             @db.TinyInt
+  active            Boolean             @db.TinyInt
   created_at        DateTime?           @default(now())
   updated_at        DateTime?           @updatedAt
   brand_model       Brand?              @relation(fields: [brand], references: [id])
@@ -89,8 +89,8 @@ model Wrestler {
   alias             String?             @db.VarChar(255)
   brand             String              @db.VarChar(255)
   status            String              @db.VarChar(255)
-  is_tag            Int?                @db.TinyInt
-  is_champ          Int?                @db.TinyInt
+  is_tag            Boolean?            @default(false)
+  is_champ          Boolean?            @default(false)
   twitter_acc       String              @db.VarChar(255)
   twitter_name      String              @db.VarChar(255)
   finisher          String              @db.VarChar(255)
@@ -119,9 +119,9 @@ model Report {
   created_at     DateTime?        @default(now())
   updated_at     DateTime?        @updatedAt
   exceptr        String?          @db.Text
-  visible        Int?             @default(1) @db.TinyInt
+  visible        Boolean?         @default(true) @db.TinyInt
   category       String?          @db.VarChar(255)
-  deletable      Int?             @default(0) @db.TinyInt
+  deletable      Boolean?         @default(false) @db.TinyInt
   ReportComments ReportComments[]
 
   @@map(name: "news")
@@ -131,7 +131,7 @@ model ReportComments {
   id         Int       @id @default(autoincrement())
   username   String    @db.VarChar(255)
   comment    String    @db.Text
-  news_id  Int       @db.Int
+  news_id    Int       @db.Int
   report     Report    @relation(fields: [news_id], references: [id])
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -187,7 +187,7 @@ model WrestlerTeam {
 model ChampionshipReign {
   id              Int          @id @default(autoincrement())
   days            Int          @db.Int
-  current         Int          @db.TinyInt
+  current         Boolean      @db.TinyInt
   wrestler_id     Int          @db.Int
   Wrestler        Wrestler     @relation(fields: [wrestler_id], references: [id])
   championship_id Int          @db.Int

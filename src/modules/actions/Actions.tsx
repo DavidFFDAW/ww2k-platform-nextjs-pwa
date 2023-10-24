@@ -1,11 +1,12 @@
 "use client";
 import React, { useRef, useState } from "react";
-// import useClickOutside from "~/hooks/useClickOutside";
 import { NullableLoading } from "@/components/Loading/LoadingComponent";
 import { DotsIcon } from "@/components/Icons/CommonIcons";
 import { ActionOption } from "./ActionOption";
-import "./actions.css";
 import { ActionFetch } from "./ActionFetch";
+import { ActionSubmit } from "./ActionSubmit";
+import useClickOutside from "@/hooks/useClickOutside";
+import "./actions.css";
 
 const ActionTypes = {
     BUTTON: "button",
@@ -22,21 +23,24 @@ const ColorTypes = {
     DARK: "dark-action",
 };
 
-function ActionsContainer({ children }) {
-    const ref = useRef(null);
-    const [showOptions, setShowOptions] = useState(false);
-    const toggleShowOpts = (_) => setShowOptions((show) => !show);
+interface ActionsContainerProps {
+    children: React.ReactNode;
+}
 
-    // useClickOutside(ref, (_) => {
-    //     setShowOptions(false);
-    // });
+function ActionsContainer({ children }: ActionsContainerProps) {
+    const ref = useRef<HTMLDivElement>(null);
+    const [showOptions, setShowOptions] = useState<boolean>(false);
+    const toggleShowOpts = () => setShowOptions((show) => !show);
+
+    useClickOutside(ref, () => {
+        setShowOptions(false);
+    });
 
     return (
         <div className="actions-option-group relative" ref={ref}>
             <button
-                className={`three-dots-actions ${
-                    showOptions ? "active" : "normal"
-                }`}
+                className={`three-dots-actions ${showOptions ? "active" : "normal"
+                    }`}
                 role="button"
                 aria-label="Open actions list"
                 type="button"
@@ -58,6 +62,7 @@ const Actions = {
     Container: ActionsContainer,
     Link: ActionOption,
     Button: ActionFetch,
+    Submit: ActionSubmit,
     Types: ActionTypes,
     Colors: ColorTypes,
 };

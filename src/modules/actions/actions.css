@@ -38,14 +38,23 @@ html.dark-theme {
     stroke: var(--blackwhite);
 }
 
-.actions-option-group
-    .actions-group-actions-list
-    .action-link.delete-action
-    h4.action-text {
+.actions-option-group .actions-group-actions-list .action-link.delete-action .action-text {
     color: #d80000;
 }
 
-.actions-option-group .actions-group-actions-list h4.action-text {
+.actions-option-group .actions-group-actions-list .submit-button.action-text {
+    font-weight: 400;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 16px;
+    text-align: start;
+}
+
+.actions-option-group .actions-group-actions-list .action-text {
     font-weight: 400;
     color: var(--blackwhite);
 }
@@ -79,15 +88,11 @@ html.dark-theme {
     background-color: var(--action-hover);
 }
 
-.actions-option-group
-    .actions-group-actions-list
-    .action-link:hover:last-child {
+.actions-option-group .actions-group-actions-list .action-link:hover:last-child {
     border-radius: 0 0 10px 10px;
 }
 
-.actions-option-group
-    .actions-group-actions-list
-    .action-link:hover:first-child {
+.actions-option-group .actions-group-actions-list .action-link:hover:first-child {
     border-radius: 10px 0 0 0;
 }
 
@@ -97,10 +102,7 @@ html.dark-theme {
     /* max-height: 25px; */
 }
 
-.actions-option-group
-    .actions-group-actions-list
-    .action-link:hover
-    .icon-wrapper {
+.actions-option-group .actions-group-actions-list .action-link:hover .icon-wrapper {
     background-color: var(--action-hover-icon);
 }
 
@@ -135,9 +137,6 @@ html.dark-theme {
     background: #2c2c2c;
 }
 
-.actions-option-group
-    .actions-group-actions-list
-    .warning-action
-    h4.action-text {
+.actions-option-group .actions-group-actions-list .warning-action .action-text {
     color: #b8a122;
 }
