@@ -36,12 +36,6 @@ export default function LoginForm() {
 
         try {
             setFormState((previous) => ({ ...previous, loadingState: true }));
-            // const response = await signIn("Credentials", {
-            //     email: form.get("login_email")?.toString().trim(),
-            //     password: form.get("login_password")?.toString().trim(),
-            //     redirect: false,
-            //     callbackUrl: "/admin",
-            // });
 
             const response = await HttpService.post('/api/login', {
                 email: form.get("login_email")?.toString().trim(),
@@ -60,6 +54,8 @@ export default function LoginForm() {
             if (response?.error) return setFormState((previous) => ({ ...previous, error: response?.error as string }));
             if (!isError) return router.push("/admin");
         } catch (error: any) {
+            console.warn({ error });
+
             setFormState((previous) => ({
                 ...previous,
                 loadingState: false,
