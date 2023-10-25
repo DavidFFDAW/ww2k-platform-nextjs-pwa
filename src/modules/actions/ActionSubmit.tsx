@@ -13,7 +13,7 @@ interface ActionSubmitProps {
 export function ActionSubmit({ text, icon, color, value, name }: ActionSubmitProps) {
 
     return (
-        <div className={`flex start al-center gap-small action-link ${color}`} data-value-passed={value}>
+        <div className={`flex start acenter gap-small action-link ${color}`} data-value-passed={value}>
             <input type="hidden" value={value} name={name} />
 
             <NullableLoading condition={icon}>

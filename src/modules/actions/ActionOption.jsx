@@ -5,7 +5,7 @@ import { BootstrapIcon } from "@/components/Icon/BootstrapIcon";
 export function ActionOption({ toHref, text, icon, color }) {
     return (
         <Link
-            className={`flex start al-center gap-small action-link ${color}`}
+            className={`flex start acenter gap-small action-link ${color}`}
             href={toHref}
         >
             <NullableLoading condition={icon}>

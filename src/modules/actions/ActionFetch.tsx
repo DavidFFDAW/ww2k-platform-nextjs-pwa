@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { NullableLoading } from "@/components/Loading/LoadingComponent";
-import { BootstrapIcon } from "@/components/Icon/BootstrapIcon";
-import { enqueueSnackbar } from "notistack";
-import { FormEvent } from "react";
-import HttpService from "@/services/http.service";
+import Link from 'next/link';
+import { NullableLoading } from '@/components/Loading/LoadingComponent';
+import { BootstrapIcon } from '@/components/Icon/BootstrapIcon';
+import { enqueueSnackbar } from 'notistack';
+import { FormEvent } from 'react';
+import HttpService from '@/services/http.service';
 
 interface Props {
     href: string;
@@ -20,18 +20,14 @@ export function ActionFetch({ href, text, icon, color }: Props) {
             console.log({ fetchResponseAction: response });
         } catch (error) {
             console.log({ fetchResponseActionError: error });
-            enqueueSnackbar("There was an error while trying to fetch", {
-                variant: "error",
+            enqueueSnackbar('There was an error while trying to fetch', {
+                variant: 'error',
             });
         }
     };
 
     return (
-        <Link
-            className={`flex start al-center gap-small action-link ${color}`}
-            href={href}
-            onClick={handlerFetchAction}
-        >
+        <Link className={`flex start acenter gap-small action-link ${color}`} href={href} onClick={handlerFetchAction}>
             <NullableLoading condition={icon}>
                 <div className="icon-wrapper">
                     <BootstrapIcon icon={icon} />
