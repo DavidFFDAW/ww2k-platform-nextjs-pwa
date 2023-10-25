@@ -89,8 +89,8 @@ model Wrestler {
   alias             String?             @db.VarChar(255)
   brand             String              @db.VarChar(255)
   status            String              @db.VarChar(255)
-  is_tag            Boolean?            @default(false)
-  is_champ          Boolean?            @default(false)
+  is_tag            Boolean?            @default(false) @db.TinyInt
+  is_champ          Boolean?            @default(false) @db.TinyInt
   twitter_acc       String              @db.VarChar(255)
   twitter_name      String              @db.VarChar(255)
   finisher          String              @db.VarChar(255)

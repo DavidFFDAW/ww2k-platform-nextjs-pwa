@@ -1,46 +1,19 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import PageBackground from '@/components/PageBackground/PageBackground';
+import HomeLink from '@/components/HomeLink/HomeLink';
+import { PublicMenu } from '@/constants/routes';
 
 function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p className='dreadnotus white' style={{ color: '#fff' }}>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-    </main>
-  )
+    return (
+        <PageBackground custom={'principal'}>
+            <div className="dashboard-home flex end column acenter">
+                <div className="home-spas-links">
+                    {PublicMenu.map((item, index) => {
+                        return <HomeLink href={item.url} icon={<item.icon />} text={item.name} key={index} />;
+                    })}
+                </div>
+            </div>
+        </PageBackground>
+    );
 }
 
 export default Home;

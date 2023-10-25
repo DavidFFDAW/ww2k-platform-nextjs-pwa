@@ -8,36 +8,31 @@ export function WWEChampionship() {
             id="svg5"
             className="svg customs-svg wwe-championship-icon-svg"
             xmlSpace="preserve"
-            inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-            sodipodi:docname="Proyectos svgs.svg"
-            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:svg="http://www.w3.org/2000/svg"
         >
-            <sodipodi:namedview
+            {/* <sodipodiNamedview
                 id="namedview7"
                 pagecolor="#505050"
                 bordercolor="#ffffff"
                 borderopacity="1"
-                inkscape:showpageshadow="0"
-                inkscape:pageopacity="0"
-                inkscape:pagecheckerboard="1"
-                inkscape:deskcolor="#505050"
-                inkscape:document-units="mm"
+                inkscapeShowpageshadow="0"
+                inkscapePageopacity="0"
+                inkscapePagecheckerboard="1"
+                inkscapeDeskcolor="#505050"
+                inkscapeDocument-units="mm"
                 showgrid="false"
-                inkscape:zoom="2.9825758"
-                inkscape:cx="113.82779"
-                inkscape:cy="90.1905"
-                inkscape:window-width="1920"
-                inkscape:window-height="1017"
-                inkscape:window-x="-8"
-                inkscape:window-y="-8"
-                inkscape:window-maximized="1"
-                inkscape:current-layer="layer1"
-            />
+                inkscapeZoom="2.9825758"
+                inkscapeCx="113.82779"
+                inkscapeCy="90.1905"
+                inkscapeWindowWidth="1920"
+                inkscapeWindowHeight="1017"
+                inkscapeWindowX="-8"
+                inkscapeWindowY="-8"
+                inkscapeWindowMaximized="1"
+                inkscapeCurrentLayer="layer1"
+            /> */}
             <defs id="defs2" />
-            <g inkscape:label="Capa 1" inkscape:groupmode="layer" id="layer1" transform="translate(-30.860131,-12.740824)">
+            <g id="layer1" transform="translate(-30.860131,-12.740824)">
                 <path
                     style={{
                         fill: '#bdbdbd',
@@ -85,36 +80,14 @@ export function AdminIcon() {
             id="svg5"
             xmlSpace="preserve"
             className="svg customs-svg admin-icon"
-            inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-            sodipodi:docname="Proyectos svgs.svg"
-            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+            inkscapeversion="1.2.1 (9c6d41e410, 2022-07-14)"
+            sodipodiDocname="Proyectos svgs.svg"
+            xmlnsinkscape="http://www.inkscape.org/namespaces/inkscape"
+            xmlnssodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:svg="http://www.w3.org/2000/svg"
+            xmlnsSvg="http://www.w3.org/2000/svg"
         >
-            <sodipodi:namedview
-                id="namedview7"
-                pagecolor="#505050"
-                bordercolor="#ffffff"
-                borderopacity="1"
-                inkscape:showpageshadow="0"
-                inkscape:pageopacity="0"
-                inkscape:pagecheckerboard="1"
-                inkscape:deskcolor="#505050"
-                inkscape:document-units="mm"
-                showgrid="false"
-                inkscape:zoom="4.2179991"
-                inkscape:cx="143.07732"
-                inkscape:cy="55.9507"
-                inkscape:window-width="1920"
-                inkscape:window-height="1017"
-                inkscape:window-x="-8"
-                inkscape:window-y="-8"
-                inkscape:window-maximized="1"
-                inkscape:current-layer="layer1"
-            />
-            <defs id="defs2" />
-            <g inkscape:label="Capa 1" inkscape:groupmode="layer" id="layer1" transform="translate(-3.6547228,-1.579029)">
+            <g inkscapelabel="Capa 1" inkscapegroupmode="layer" id="layer1" transform="translate(-3.6547228,-1.579029)">
                 <path
                     id="path6674"
                     style={{
@@ -143,36 +116,19 @@ export function BlogIcon() {
             id="svg5"
             className="svg customs-svg blog-icon"
             xmlSpace="preserve"
-            inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-            sodipodi:docname="Proyectos svgs.svg"
-            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+            inkscapeversion="1.2.1 (9c6d41e410, 2022-07-14)"
+            sodipodidocname="Proyectos svgs.svg"
+            xmlnsinkscape="http://www.inkscape.org/namespaces/inkscape"
+            xmlnssodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:svg="http://www.w3.org/2000/svg"
+            xmlnsSvg="http://www.w3.org/2000/svg"
         >
-            <sodipodi:namedview
-                id="namedview7"
-                pagecolor="#505050"
-                bordercolor="#ffffff"
-                borderopacity="1"
-                inkscape:showpageshadow="0"
-                inkscape:pageopacity="0"
-                inkscape:pagecheckerboard="1"
-                inkscape:deskcolor="#505050"
-                inkscape:document-units="mm"
-                showgrid="false"
-                inkscape:zoom="4.2179991"
-                inkscape:cx="143.07732"
-                inkscape:cy="55.9507"
-                inkscape:window-width="1920"
-                inkscape:window-height="1017"
-                inkscape:window-x="-8"
-                inkscape:window-y="-8"
-                inkscape:window-maximized="1"
-                inkscape:current-layer="layer1"
-            />
-            <defs id="defs2" />
-            <g inkscape:label="Capa 1" inkscape:groupmode="layer" id="layer1" transform="translate(-4.5790487,-3.1713826)">
+            <g
+                inkscapelabel="Capa 1"
+                inkscapegroupmode="layer"
+                id="layer1"
+                transform="translate(-4.5790487,-3.1713826)"
+            >
                 <path
                     id="rect11239"
                     style={{
@@ -182,9 +138,9 @@ export function BlogIcon() {
                         paintOrder: 'stroke fill markers',
                     }}
                     d="m 16.034163,3.1713826 c -1.907248,0 -1.707389,1.3973308 -1.707389,1.3973308 l -0.04444,3.681429 -0.266133,0.060978 V 12.06438 H 7.9623047 L 7.9617879,12.0866 H 5.7438354 c 0,0 -1.175078,-0.06654 -1.1529012,1.840714 0.016341,1.405314 -3.316e-4,3.114993 -0.011885,4.118612 v 35.146692 c 0,0 0.083885,6.528824 5.2942505,7.309631 h 5.3769323 v -0.0021 h 39.920562 l -0.0021,-0.03101 h 6.099886 c 0,0 7.825321,-0.753023 7.919413,-8.311637 0.09409,-7.558613 0,-11.322306 0,-11.322306 l 0.182934,0.0093 V 15.598531 l 0.0052,-0.0031 V 4.7986735 c 0,0 0.045,-1.1893451 -1.02371,-1.486731 -3.16e-4,-8.78e-5 -8.2e-4,8.77e-5 -0.001,0 -0.316831,-0.1695676 -0.599446,-0.118339 -0.599446,-0.118339 H 21.600749 c 0,0 -3.659333,-0.022221 -5.566586,-0.022221 z M 16.81086,5.6456502 H 66.522038 V 52.61591 c -0.294518,1.265606 -1.424909,4.585486 -5.213119,5.04672 l 0.299724,0.04289 -42.159184,0.08113 v 0.0078 c 0,0 -0.22885,-0.0062 -0.26355,-0.0072 l -3.750675,0.0072 0.07906,-0.08061 c -0.06634,4e-4 -0.186322,-0.0021 -0.237712,-10e-4 -0.0089,0.0054 -0.01755,0.007 -0.02635,0.01137 v -0.0098 c 0.01237,-3.5e-4 0.01287,-0.0013 0.02635,-0.0016 0.439069,-0.26947 0.937691,-1.828836 1.247469,-2.942972 0.06253,-0.443718 0.164107,-1.179874 0.285771,-2.267046 l -0.0217,-1.006656 0.02274,-0.0021 v -3.374471 c -0.0055,-0.012 -0.0072,-0.02107 0,-0.02377 z m 2.383834,3.8886516 V 21.201807 H 65.236328 V 9.5343018 Z M 7.2920614,14.756205 h 6.6548906 l 0.06925,0.0016 v 39.700419 c -0.560723,1.659589 -1.513305,3.212147 -3.117123,3.219441 -3.449985,0.01568 -3.6070146,-5.614127 -3.6070146,-5.614127 z M 19.947103,23.083862 V 37.510889 H 40.772705 V 23.083862 Z M 44.5363,24.212476 v 4.014742 h 18.191137 v -4.014742 z m -0.125574,8.531262 v 4.014225 H 62.601864 V 32.743738 Z M 21.32738,41.400057 v 4.265373 h 41.023336 v -4.265373 z m -0.376721,8.405172 v 4.51652 h 41.651205 v -4.51652 z"
-                    inkscape:export-filename="blog.svg.svg"
-                    inkscape:export-xdpi="96"
-                    inkscape:export-ydpi="96"
+                    inkscapeexportfilename="blog.svg.svg"
+                    inkscapeexportxdpi="96"
+                    inkscapeexportydpi="96"
                 />
             </g>
         </svg>
@@ -368,39 +324,22 @@ export function DraftIcon() {
             version="1.1"
             id="svg5"
             xmlSpace="preserve"
-            inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-            sodipodi:docname="Proyectos svgs.svg"
-            inkscape:export-filename="draftttt.svg"
-            inkscape:export-xdpi="96"
-            inkscape:export-ydpi="96"
-            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+            inkscapeversion="1.2.1 (9c6d41e410, 2022-07-14)"
+            sodipodiDocname="Proyectos svgs.svg"
+            inkscapeexportfilename="draftttt.svg"
+            inkscapeexportxdpi="96"
+            inkscapeexportydpi="96"
+            xmlnsinkscape="http://www.inkscape.org/namespaces/inkscape"
+            xmlnssodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:svg="http://www.w3.org/2000/svg"
+            xmlnsSvg="http://www.w3.org/2000/svg"
         >
-            <sodipodi:namedview
-                id="namedview7"
-                pagecolor="#505050"
-                bordercolor="#ffffff"
-                borderopacity="1"
-                inkscape:showpageshadow="0"
-                inkscape:pageopacity="0"
-                inkscape:pagecheckerboard="1"
-                inkscape:deskcolor="#505050"
-                inkscape:document-units="mm"
-                showgrid="false"
-                inkscape:zoom="4.2179991"
-                inkscape:cx="143.07732"
-                inkscape:cy="55.9507"
-                inkscape:window-width="1920"
-                inkscape:window-height="1017"
-                inkscape:window-x="-8"
-                inkscape:window-y="-8"
-                inkscape:window-maximized="1"
-                inkscape:current-layer="layer1"
-            />
-            <defs id="defs2" />
-            <g inkscape:label="Capa 1" inkscape:groupmode="layer" id="layer1" transform="translate(-2.9980903,-1.9881279)">
+            <g
+                inkscapelabel="Capa 1"
+                inkscapegroupmode="layer"
+                id="layer1"
+                transform="translate(-2.9980903,-1.9881279)"
+            >
                 <g
                     transform="matrix(0.03527778,0,0,-0.08273004,0.79724328,78.927065)"
                     fill="#000000"
@@ -454,7 +393,10 @@ export function DraftIcon() {
                         d="m 585,490 c -4,-12 -21,-38 -38,-58 -29,-35 -30,-35 -3,-12 29,26 61,78 53,87 -3,2 -8,-5 -12,-17 z"
                         id="path13247"
                     />
-                    <path d="m 2418,403 c 61,-2 163,-2 225,0 61,1 11,3 -113,3 -124,0 -174,-2 -112,-3 z" id="path13249" />
+                    <path
+                        d="m 2418,403 c 61,-2 163,-2 225,0 61,1 11,3 -113,3 -124,0 -174,-2 -112,-3 z"
+                        id="path13249"
+                    />
                     <path
                         d="m 585,390 c -4,-6 6,-11 24,-11 59,-3 66,-7 56,-39 -6,-19 -13,-21 -91,-19 -47,1 -87,-1 -91,-5 -3,-3 92,-5 213,-4 120,1 184,4 142,5 l -78,4 v 29 30 h 224 c 190,0 225,-2 230,-15 3,-8 3,-22 0,-30 -5,-12 4,-15 45,-15 50,0 51,1 51,30 v 30 h 230 c 242,0 241,0 224,-44 -5,-13 -36,-15 -211,-15 -113,0 -208,-3 -211,-6 -8,-7 383,-6 457,1 59,7 61,8 61,35 v 29 h 230 c 127,0 230,-3 230,-7 0,-5 -3,-18 -6,-30 -5,-20 -14,-23 -78,-26 l -71,-3 84,-2 c 77,-2 88,0 123,24 21,15 38,31 38,35 0,5 8,9 18,9 12,-1 6,-11 -23,-35 l -40,-35 h 31 c 20,0 47,12 77,36 26,20 47,38 47,40 0,2 -430,4 -956,4 -526,0 -960,3 -964,5 -5,3 -11,1 -15,-5 z m 1253,-27 c -10,-2 -26,-2 -35,0 -10,3 -2,5 17,5 19,0 27,-2 18,-5 z"
                         id="path13251"
