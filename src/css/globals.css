@@ -75,7 +75,7 @@
     background: linear-gradient(140deg, #c91727 0%, rgba(31, 31, 31, 1) 100%);
 }
 
-.sidebar.shown+.sidebar-main-margin {
+.sidebar.shown + .sidebar-main-margin {
     margin-left: var(--sidebar-width);
 }
 
@@ -133,6 +133,12 @@
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+img.total-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
 .responsive {
     display: none;
 }
@@ -149,7 +155,7 @@
         transform: translateX(0);
     }
 
-    .sidebar.shown+.btn-open-sidebar {
+    .sidebar.shown + .btn-open-sidebar {
         display: none;
     }
 
@@ -306,7 +312,7 @@ dialog[open] {
     z-index: 0;
 }
 
-.sidebar.shown+.sidebar-main-margin .custom-totalpage-wallpaper {
+.sidebar.shown + .sidebar-main-margin .custom-totalpage-wallpaper {
     margin-left: 320px;
     width: calc(100% - 320px);
 }
