@@ -8,9 +8,6 @@ export async function POST(request: NextRequest) {
     const token = await getJWT(request);
     if (!token) return getNonTokenResponse();
 
-    const isValid = await isTokenValid(token);
-    if (!isValid) return getNonValidTokenResponse();
-
     const { title, content, image, published, date_publication } = body;
 
     if (!title || title.length <= 0)
@@ -37,7 +34,7 @@ export async function POST(request: NextRequest) {
             created_at: publishedDateHour,
             deletable: deletable,
             exceptr: content.slice(0, 20),
-            admin_id: (token.user as any).id,
+            admin_id: token.id as number,
         },
     });
 

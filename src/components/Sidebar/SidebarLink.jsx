@@ -17,3 +17,18 @@ export default function SidebarLink({ to, icon, text, }) {
         </>
     );
 }
+
+export function SidebarSubmit({ icon, text }) {
+    return (
+        <>
+            <button
+                type='submit'
+                title={text + ' Menu Link'}
+                className="uppercase sidebar-link flex start gap-small acenter unsubmit-appearance"
+            >
+                <BootstrapIcon icon={icon} />
+                {text}
+            </button>
+        </>
+    );
+}

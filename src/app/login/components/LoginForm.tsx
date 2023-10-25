@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { signIn, useSession } from "next-auth/react";
+// import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ComponentSpinner } from "@/components/Spinner/Spinner";
 import { FormErrorMessage } from "./FormErrorMessage";
+import HttpService from "@/services/http.service";
 
 interface FormState {
     visiblePassword: boolean;
@@ -20,11 +21,11 @@ const initialFormState: FormState = {
 
 export default function LoginForm() {
     const router = useRouter();
-    const session = useSession();
+    // const session = useSession();
     const [formState, setFormState] =
         React.useState<FormState>(initialFormState);
 
-    if (session.status === "authenticated") router.push("/admin");
+    // if (session.status === "authenticated") router.push("/admin");
 
     const submitForm = async (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
@@ -35,24 +36,29 @@ export default function LoginForm() {
 
         try {
             setFormState((previous) => ({ ...previous, loadingState: true }));
-            const response = await signIn("Credentials", {
+            // const response = await signIn("Credentials", {
+            //     email: form.get("login_email")?.toString().trim(),
+            //     password: form.get("login_password")?.toString().trim(),
+            //     redirect: false,
+            //     callbackUrl: "/admin",
+            // });
+
+            const response = await HttpService.post('/api/login', {
                 email: form.get("login_email")?.toString().trim(),
                 password: form.get("login_password")?.toString().trim(),
-                redirect: false,
-                callbackUrl: "/admin",
             });
-            setFormState((previous) => ({ ...previous, loadingState: false }));
 
+            setFormState((previous) => ({ ...previous, loadingState: false }));
             console.log({ response });
 
-            // const isError =
-            //     Boolean(response?.error) &&
-            //     response?.status !== 200 &&
-            // !response?.ok;
+            const isError =
+                Boolean(response?.error) &&
+                response?.status !== 200 &&
+                !response?.ok;
 
             // if (isError) setFormState((previous) => ({ ...previous, error: response?.error as string }));
             if (response?.error) return setFormState((previous) => ({ ...previous, error: response?.error as string }));
-            // if (!isError) return router.push("/admin");
+            if (!isError) return router.push("/admin");
         } catch (error: any) {
             setFormState((previous) => ({
                 ...previous,

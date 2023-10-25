@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import Image from "../Image/Image";
 import Link from "next/link";
-import SidebarLink from "./SidebarLink";
+import SidebarLink, { SidebarSubmit } from "./SidebarLink";
 import { BootstrapIcon } from "../Icon/BootstrapIcon";
+import { logout } from "@/actions/auth.actions";
 
 export default function Sidebar() {
     const [sidebarData, setSidebarData] = useState({
@@ -70,6 +71,12 @@ export default function Sidebar() {
                         to={"/admin/wrestlers"}
                         text="Draft"
                     />
+                    <form action={logout}>
+                        <SidebarSubmit
+                            icon="signpost"
+                            text="Cerrar sesión"
+                        />
+                    </form>
                 </div>
             </div>
 

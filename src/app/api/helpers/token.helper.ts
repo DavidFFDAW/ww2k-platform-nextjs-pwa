@@ -1,9 +1,13 @@
+import { TOKEN_COOKIE } from '@/constants/config';
 import { prisma } from '@/db/conn';
-import { JWT, getToken } from 'next-auth/jwt';
+import { verifyJwtToken } from '@/utilities/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function getJWT(req: NextRequest) {
-    return await getToken({ req });
+    const token = req.cookies.get(TOKEN_COOKIE);
+    if (!token || !token.value) return null;
+
+    return verifyJwtToken(token.value);
 }
 
 export function getNonTokenResponse() {
@@ -27,15 +31,17 @@ export function getNonValidTokenResponse() {
     );
 }
 
-export async function isTokenValid(token: JWT) {
-    const apiToken = (token.user as any).api_token;
+export async function isTokenValid(token: string) {
+    const tokenUser = await verifyJwtToken(token);
+    if (!tokenUser) return false;
+
     const user = await prisma.user.findFirst({
         where: {
-            api_token: apiToken,
+            api_token: tokenUser.api_token as string,
         },
     });
 
     if (!user) return false;
 
-    return token.email === user.email;
+    return tokenUser.email === user.email;
 }

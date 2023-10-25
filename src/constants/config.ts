@@ -1,4 +1,5 @@
 export const ITEMS_PER_PAGE = 10;
+export const TOKEN_COOKIE = "next-access-token";
 
 export const USER_ROLES = {
     ADMIN: "ADMIN",
@@ -11,6 +12,7 @@ export const PROTECTED_ROUTES = {
 };
 
 export const STATIC_PAGES = {
+    LOGIN: '/login',
     ABOUT: "/about",
     CONTACT: "/contact",
     PRIVACY: "/privacy",
