@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useRef } from "react";
+import React, { SyntheticEvent } from "react";
 
 interface Props {
     src?: string;
@@ -18,7 +18,6 @@ export default function Image({
     height = 512,
 }: Props) {
     const imageSrc = src || "/noimage.jpg";
-    const ref = useRef(null);
 
     const errorCatch = (e: SyntheticEvent) => {
         e.preventDefault();
@@ -29,7 +28,6 @@ export default function Image({
 
     return (
         <img
-            ref={ref}
             className={className}
             width={width}
             height={height}
