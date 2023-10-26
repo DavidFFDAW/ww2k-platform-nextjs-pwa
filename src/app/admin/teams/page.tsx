@@ -1,6 +1,5 @@
 import { prisma } from '@/db/conn'
 import Title from '@/components/Title';
-import CustomSelect from '@/components/CustomSelect/CustomSelect';
 
 function getTeams() {
     return prisma.team.findMany({
@@ -17,7 +16,7 @@ function getWrestlers() {
     });
 }
 
-export default async function AdminTeamsCreatePage() {
+export default async function AdminTeamsPage() {
     const teams = await getTeams();
     const wrestlers = await getWrestlers();
 
@@ -36,4 +35,5 @@ export default async function AdminTeamsCreatePage() {
                 })}
             </div>
         </>
+    );
 }
