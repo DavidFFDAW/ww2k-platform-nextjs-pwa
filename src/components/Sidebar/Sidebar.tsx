@@ -38,10 +38,10 @@ export default function Sidebar() {
                 <div className="sidebar-links-container links">
                     <SidebarLink icon="list-ul" to={'/admin/wrestlers'} text="Wrestlers" />
                     <SidebarLink icon="newspaper" to={'/admin/blog'} text="Blog" />
-                    <SidebarLink icon="twitter-x" to={'/admin/wrestlers'} text="Twitter" />
-                    <SidebarLink icon="people-fill" to={'/admin/wrestlers'} text="Teams" />
-                    <SidebarLink icon="trophy" to={'/admin/wrestlers'} text="Champions" />
-                    <SidebarLink icon="arrows-move" to={'/admin/wrestlers'} text="Draft" />
+                    <SidebarLink icon="twitter-x" to={'/admin/twitter'} text="Twitter" />
+                    <SidebarLink icon="people-fill" to={'/admin/teams'} text="Teams" />
+                    <SidebarLink icon="trophy" to={'/admin/championships/reigns'} text="Champions" />
+                    <SidebarLink icon="arrows-move" to={'/admin/draft'} text="Draft" />
                     <form action={logout}>
                         <SidebarSubmit icon="signpost" text="Cerrar sesión" />
                     </form>

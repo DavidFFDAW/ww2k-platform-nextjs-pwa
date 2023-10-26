@@ -66,6 +66,7 @@ export default function useCustomSelect(list, nameProp, imageProp, value, delete
     );
 
     return {
+        selected: selectState.id,
         showList: selectState.showList,
         search: selectState.search,
         searchResults: selectState.searchResults,

@@ -35,7 +35,7 @@ model Championship {
   created_at        DateTime?           @default(now())
   updated_at        DateTime?           @updatedAt
   brand_model       Brand?              @relation(fields: [brand], references: [id])
-  brand             Int
+  brand             Int?                @db.Int
   short_title       String?             @db.VarChar(20)
   ChampionshipReign ChampionshipReign[]
 
@@ -102,7 +102,6 @@ model Wrestler {
   categories        String?             @default("general") @db.VarChar(150)
   created_at        DateTime?           @default(now())
   updated_at        DateTime?           @updatedAt
-  Team              Team[]
   WrestlerTeam      WrestlerTeam[]
   ChampionshipReign ChampionshipReign[]
 
@@ -158,18 +157,16 @@ model Tweets {
 }
 
 model Team {
-  id               Int            @id @default(autoincrement())
-  name             String         @db.VarChar(125)
-  average          Int?           @db.Int
-  created_at       DateTime?      @default(now())
-  updated_at       DateTime?      @updatedAt
-  member_champion1 Int?           @db.Int
-  member_champion2 Int?           @db.Int
-  brand            Int?           @db.Int
-  actual_brand     Brand?         @relation(fields: [brand], references: [id])
-  Wrestler         Wrestler?      @relation(fields: [wrestlerId], references: [id])
-  wrestlerId       Int?
-  WrestlerTeam     WrestlerTeam[]
+  id                Int            @id @default(autoincrement())
+  name              String         @db.VarChar(125)
+  average           Int?           @db.Int
+  created_at        DateTime?      @default(now())
+  updated_at        DateTime?      @updatedAt
+  member_champion_1 Int?           @db.Int
+  member_champion_2 Int?           @db.Int
+  brand             Int?           @db.Int
+  actual_brand      Brand?         @relation(fields: [brand], references: [id])
+  WrestlerTeam      WrestlerTeam[]
 
   @@map(name: "teams")
 }

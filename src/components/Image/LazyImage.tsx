@@ -1,7 +1,7 @@
+"use client";
 import useOnScreen from "@/hooks/useOnScreen";
 import React, { SyntheticEvent, useRef } from "react";
-import { ConditionalLoading } from "../Loading/LoadingComponent";
-import Spinner, { ComponentSpinner } from "../Spinner/Spinner";
+import { ComponentSpinner } from "../Spinner/Spinner";
 
 interface Props {
     src?: string;
