@@ -1,10 +1,6 @@
-import { ComponentSpinner } from "@/components/Spinner/Spinner";
+import Spinner from "@/components/Spinner/Spinner";
 import React from "react";
 
 export default function WrestlersLoading() {
-    return (
-        <>
-            <ComponentSpinner />
-        </>
-    );
+    return <Spinner />;
 }
