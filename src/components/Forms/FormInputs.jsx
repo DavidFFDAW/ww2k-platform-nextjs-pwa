@@ -1,12 +1,8 @@
-// import { UnbuttonButton } from "../Buttons/Buttons";
-// import Image from "../Image/Image";
-// import { FlexStart } from "../Layouts/Flex";
-// import { NullableLoading } from "../Loading/LoadingComponent";
-// import { ComponentSpinner } from "../Spinner/Spinner";
 'use client';
 import { useState } from 'react';
-import './toggle.css';
 import Image from '../Image/Image';
+import { ButtonSecondary } from '../Buttons/Buttons';
+import './toggle.css';
 
 export default function UpsertInput({
     type,
@@ -141,7 +137,7 @@ export function UpsertImage({ placeholder = 'Imagen', name = 'image', imageSrc =
     return (
         <div className="w1 flex between al-center gap-small">
             <Image width={size} height={size} src={image} alt="post banner image preview" />
-            <div className="w1">
+            <div className="w1 flex column gap-smaller">
                 <input
                     className="w1"
                     maxLength={255}
@@ -152,6 +148,9 @@ export function UpsertImage({ placeholder = 'Imagen', name = 'image', imageSrc =
                     placeholder={placeholder}
                     onChange={handleImageChange}
                 />
+                <div>
+                    <ButtonSecondary text={'Abrir Galería'} type={'button'} onClick={() => { }} />
+                </div>
             </div>
         </div>
     );
