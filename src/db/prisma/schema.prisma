@@ -166,6 +166,7 @@ model Team {
   member_champion_2 Int?           @db.Int
   brand             Int?           @db.Int
   actual_brand      Brand?         @relation(fields: [brand], references: [id])
+  ChampionshipReign ChampionshipReign[]
   WrestlerTeam      WrestlerTeam[]
 
   @@map(name: "teams")
@@ -186,9 +187,13 @@ model ChampionshipReign {
   days            Int          @db.Int
   current         Boolean      @db.TinyInt
   wrestler_id     Int          @db.Int
-  Wrestler        Wrestler     @relation(fields: [wrestler_id], references: [id])
+  Wrestler        Wrestler     @relation("wrestler",fields: [wrestler_id], references: [id])
   championship_id Int          @db.Int
   Championship    Championship @relation(fields: [championship_id], references: [id])
+  partner_id      Int?         @db.Int
+  Partner        Wrestler?    @relation("partner",fields: [partner_id], references: [id])
+  team_id         Int?         @db.Int
+  Team            Team?        @relation(fields: [team_id], references: [id])
   won_date        DateTime     @db.DateTime
   lost_date       DateTime?    @db.DateTime
   created_at      DateTime?    @default(now())
