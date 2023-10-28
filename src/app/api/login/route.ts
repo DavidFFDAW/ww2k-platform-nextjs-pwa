@@ -9,7 +9,11 @@ export async function POST(request: NextRequest) {
     try {
         const credentials = await request.json();
 
-        if (!credentials?.password) return NextResponse.json({ error: true, message: "Debes introducir una contraseña" });
+        if (!credentials?.password)
+            return NextResponse.json({
+                error: true,
+                message: "Debes introducir una contraseña",
+            });
 
         const foundUser = await prisma.user.findUnique({
             where: {
@@ -17,15 +21,22 @@ export async function POST(request: NextRequest) {
             },
         });
 
-        if (!foundUser) return NextResponse.json({ error: true, message: "No se ha encontrado este usuario" });
-
+        if (!foundUser)
+            return NextResponse.json({
+                error: true,
+                message: "No se ha encontrado este usuario",
+            });
 
         const passwordMatch = await bcrypt.compare(
             credentials!.password.trim(),
             foundUser.password
         );
 
-        if (!passwordMatch) return NextResponse.json({ error: true, message: "La contraseña no coincide" });
+        if (!passwordMatch)
+            return NextResponse.json({
+                error: true,
+                message: "La contraseña no coincide",
+            });
 
         const user = {
             id: foundUser.id,
@@ -56,6 +67,10 @@ export async function POST(request: NextRequest) {
         return response;
     } catch (error: any) {
         console.log(error);
-        return NextResponse.json({ error: true, message: "Ha ocurrido un error", error_message: error.message });
+        return NextResponse.json({
+            error: true,
+            message: "Ha ocurrido un error",
+            error_message: error.message,
+        });
     }
-};
+}

@@ -2,6 +2,8 @@ import Title from "@/components/Title";
 import React from "react";
 import { prisma } from "@/db/conn";
 import LazyImage from "@/components/Image/LazyImage";
+import Actions from "@/modules/actions/Actions";
+import ChampionshipActions from "./ChampionshipActions";
 
 function getChampionships() {
     return prisma.championship.findMany({
@@ -16,6 +18,7 @@ function getChampionships() {
 
 export default async function AdminChampionshipsPage() {
     const championships = await getChampionships();
+
     return (
         <>
             <Title title="Championships" icon="trophy" />
@@ -38,6 +41,8 @@ export default async function AdminChampionshipsPage() {
                             ? "Tiene reinados"
                             : "No tiene reinados"}
                     </p>
+
+                    <ChampionshipActions championship={championship} />
                 </div>
             ))}
         </>

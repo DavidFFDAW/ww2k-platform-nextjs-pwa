@@ -1,4 +1,3 @@
-"use client";
 import React, { useRef, useState } from "react";
 import { NullableLoading } from "@/components/Loading/LoadingComponent";
 import { DotsIcon } from "@/components/Icons/CommonIcons";
@@ -39,8 +38,9 @@ function ActionsContainer({ children }: ActionsContainerProps) {
     return (
         <div className="actions-option-group relative" ref={ref}>
             <button
-                className={`three-dots-actions ${showOptions ? "active" : "normal"
-                    }`}
+                className={`three-dots-actions ${
+                    showOptions ? "active" : "normal"
+                }`}
                 role="button"
                 aria-label="Open actions list"
                 type="button"
@@ -61,7 +61,7 @@ function ActionsContainer({ children }: ActionsContainerProps) {
 const Actions = {
     Container: ActionsContainer,
     Link: ActionOption,
-    Button: ActionFetch,
+    Fetch: ActionFetch,
     Submit: ActionSubmit,
     Types: ActionTypes,
     Colors: ColorTypes,
