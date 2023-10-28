@@ -16,7 +16,7 @@ interface FormState {
 const initialFormState: FormState = {
     visiblePassword: false,
     loadingState: false,
-    error: '',
+    error: "",
 };
 
 export default function LoginForm() {
@@ -31,13 +31,16 @@ export default function LoginForm() {
         ev.preventDefault();
         const form = new FormData(ev.currentTarget);
 
-        if (!form.get('login_email') || !form.get('login_password'))
-            return setFormState((previous) => ({ ...previous, error: 'Por favor, ingrese su correo y contraseña' }));
+        if (!form.get("login_email") || !form.get("login_password"))
+            return setFormState((previous) => ({
+                ...previous,
+                error: "Por favor, ingrese su correo y contraseña",
+            }));
 
         try {
             setFormState((previous) => ({ ...previous, loadingState: true }));
 
-            const response = await HttpService.post('/api/login', {
+            const response = await HttpService.post("/api/login", {
                 email: form.get("login_email")?.toString().trim(),
                 password: form.get("login_password")?.toString().trim(),
             });
@@ -50,8 +53,14 @@ export default function LoginForm() {
                 response?.status !== 200 &&
                 !response?.ok;
 
+            console.log({ isError });
+
             // if (isError) setFormState((previous) => ({ ...previous, error: response?.error as string }));
-            if (response?.error) return setFormState((previous) => ({ ...previous, error: response?.error as string }));
+            if (response?.error)
+                return setFormState((previous) => ({
+                    ...previous,
+                    error: response?.error as string,
+                }));
             if (!isError) return router.push("/admin");
         } catch (error: any) {
             console.warn({ error });
@@ -66,7 +75,12 @@ export default function LoginForm() {
 
     return (
         <>
-            {Boolean(formState.error) && <FormErrorMessage message={formState.error} setError={setFormState} />}
+            {Boolean(formState.error) && (
+                <FormErrorMessage
+                    message={formState.error}
+                    setError={setFormState}
+                />
+            )}
 
             <form onSubmit={(ev) => submitForm(ev)} method="POST">
                 <div

@@ -103,7 +103,8 @@ model Wrestler {
   created_at        DateTime?           @default(now())
   updated_at        DateTime?           @updatedAt
   WrestlerTeam      WrestlerTeam[]
-  ChampionshipReign ChampionshipReign[]
+  ChampionshipReign ChampionshipReign[] @relation("wrestler")
+  Partner           ChampionshipReign[] @relation("partner")
 
   @@map(name: "wrestler")
 }
@@ -190,8 +191,8 @@ model ChampionshipReign {
   Wrestler        Wrestler     @relation("wrestler",fields: [wrestler_id], references: [id])
   championship_id Int          @db.Int
   Championship    Championship @relation(fields: [championship_id], references: [id])
-  partner_id      Int?         @db.Int
-  Partner        Wrestler?    @relation("partner",fields: [partner_id], references: [id])
+  partner         Int?         @db.Int
+  Partner         Wrestler?    @relation("partner",fields: [partner], references: [id])
   team_id         Int?         @db.Int
   Team            Team?        @relation(fields: [team_id], references: [id])
   won_date        DateTime     @db.DateTime

@@ -6,3 +6,14 @@ export function transformDate(timestamp: Date) {
         day: "numeric",
     });
 }
+
+export function existingDateToString(date: Date | null | undefined) {
+    if (!date) {
+        return "";
+    }
+    return date.toLocaleDateString("es-ES", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+    });
+}
