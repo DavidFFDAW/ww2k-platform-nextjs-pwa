@@ -53,10 +53,7 @@ export async function POST(request: NextRequest) {
             .setExpirationTime("15d")
             .sign(getJwtSecretKey());
 
-        const response = NextResponse.json(
-            { success: true, token: token },
-            { status: 200, headers: { "content-type": "application/json" } }
-        );
+        const response = NextResponse.redirect("/admin");
 
         response.cookies.set({
             name: TOKEN_COOKIE,
