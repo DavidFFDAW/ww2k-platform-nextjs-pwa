@@ -170,7 +170,6 @@ img.total-image {
 
 * {
     margin: 0;
-    position: relative;
     box-sizing: border-box;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     text-overflow: ellipsis;
