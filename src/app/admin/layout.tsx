@@ -1,8 +1,8 @@
 import Sidebar from "@/components/Sidebar/Sidebar";
-import { LayoutInterface } from "@/shared/models";
+import { ChildrenInterface } from "@/shared/models";
 import React from "react";
 
-export default function AdminMainLayout({ children }: LayoutInterface) {
+export default function AdminMainLayout({ children }: ChildrenInterface) {
     return (
         <>
             <Sidebar />

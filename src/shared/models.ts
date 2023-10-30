@@ -3,6 +3,6 @@ export interface PageContext {
     searchParams: any;
 }
 
-export interface LayoutInterface {
+export interface ChildrenInterface {
     children: React.ReactNode;
 }

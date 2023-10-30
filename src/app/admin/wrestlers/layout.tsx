@@ -1,7 +1,7 @@
-import { LayoutInterface } from '@/shared/models'
 import React from 'react'
+import { ChildrenInterface } from '@/shared/models'
 
-export default function WrestlersAdminLayout({ children }: LayoutInterface) {
+export default function WrestlersAdminLayout({ children }: ChildrenInterface) {
     return (
         <div className="admin-wrestlers-page">
             {children}
