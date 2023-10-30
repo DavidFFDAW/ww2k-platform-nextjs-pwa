@@ -1,5 +1,6 @@
 "use client";
 import { SnackbarProvider, closeSnackbar } from "notistack";
+import RegisterServiceWorker from "../ServiceWorker/RegisterServiceWorker";
 
 export interface AppProvidersProps {
     children: React.ReactNode;
@@ -7,21 +8,23 @@ export interface AppProvidersProps {
 
 export default function AppProviders({ children }: AppProvidersProps) {
     return (
-        <SnackbarProvider
-            autoHideDuration={10000}
-            preventDuplicate={true}
-            // autoHideDuration={4000}
-            anchorOrigin={{ vertical: "top", horizontal: "right" }}
-            className="notistack-notification-popup"
-            maxSnack={3}
-            dense={true}
-            action={(snackbarId) => (
-                <button onClick={() => closeSnackbar(snackbarId)}>
-                    Dismiss
-                </button>
-            )}
-        >
-            {children}
-        </SnackbarProvider>
+        <RegisterServiceWorker>
+            <SnackbarProvider
+                autoHideDuration={10000}
+                preventDuplicate={true}
+                // autoHideDuration={4000}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                className="notistack-notification-popup"
+                maxSnack={3}
+                dense={true}
+                action={(snackbarId) => (
+                    <button onClick={() => closeSnackbar(snackbarId)}>
+                        Dismiss
+                    </button>
+                )}
+            >
+                {children}
+            </SnackbarProvider>
+        </RegisterServiceWorker>
     );
 }
