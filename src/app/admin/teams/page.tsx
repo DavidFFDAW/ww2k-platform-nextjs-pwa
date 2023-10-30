@@ -18,7 +18,6 @@ function getWrestlers() {
 
 export default async function AdminTeamsPage() {
     const teams = await getTeams();
-    const wrestlers = await getWrestlers();
 
     return (
         <>

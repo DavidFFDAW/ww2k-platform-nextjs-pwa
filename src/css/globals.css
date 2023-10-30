@@ -56,7 +56,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     gap: 10px;
 }
 
@@ -170,9 +170,22 @@ img.total-image {
 
 * {
     margin: 0;
+    position: relative;
     box-sizing: border-box;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    text-overflow: ellipsis;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #c0c0c0 #2d2d2d;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
+html {
+    overflow-x: hidden;
+}
+
 
 a {
     text-decoration: none;

@@ -42,4 +42,3 @@ export const BlogQueries = {
     deletePostAndCommentsIfAny,
     publishOrUnpublish: publishOrUnpublish
 }
-// 
