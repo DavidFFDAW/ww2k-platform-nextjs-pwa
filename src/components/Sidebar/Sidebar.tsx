@@ -42,8 +42,8 @@ export default function Sidebar() {
                     <SidebarLink icon="people-fill" to={'/admin/teams'} text="Teams" />
                     <SidebarLink icon="trophy" to={'/admin/championships/reigns'} text="Champions" />
                     <SidebarLink icon="arrows-move" to={'/admin/draft'} text="Draft" />
-                    <form action={logout}>
-                        <SidebarSubmit icon="signpost" text="Cerrar sesión" />
+                    <form action={logout} className='w1'>
+                        <SidebarSubmit icon="signpost" text="Logout" />
                     </form>
                 </div>
             </div>
