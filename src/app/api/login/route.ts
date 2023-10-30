@@ -53,7 +53,11 @@ export async function POST(request: NextRequest) {
             .setExpirationTime("15d")
             .sign(getJwtSecretKey());
 
-        const response = NextResponse.redirect("/admin");
+        const response = NextResponse.json({
+            error: false,
+            message: "Bienvenido",
+            user,
+        });
 
         response.cookies.set({
             name: TOKEN_COOKIE,
@@ -62,6 +66,7 @@ export async function POST(request: NextRequest) {
         });
 
         return response;
+
     } catch (error: any) {
         console.log(error);
         return NextResponse.json({

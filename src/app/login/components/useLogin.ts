@@ -1,5 +1,6 @@
+'use client';
 import HttpService from "@/services/http.service";
-import { redirect, useRouter } from "next/navigation";
+import Router from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React from "react";
 
@@ -16,12 +17,13 @@ const initialFormState: FormState = {
 };
 
 export default function useLogin() {
-    const router = useRouter();
     const [formState, setFormState] =
         React.useState<FormState>(initialFormState);
 
     const setError = (error: string) => {
-        setFormState((previous) => ({ ...previous, error }));
+        enqueueSnackbar(`Error: ${error}`, {
+            variant: "error",
+        });
     };
 
     const setLoading = (loadingState: boolean) => {
@@ -33,15 +35,6 @@ export default function useLogin() {
             email: credentials.email,
             password: credentials.password,
         });
-    };
-
-    const succesfulLog = (response: any) => {
-        setLoading(false);
-        console.log({ response });
-
-        if (response?.error) return setError(response?.error as string);
-
-        if (!response?.error) router.push("/admin");
     };
 
     const submitForm = async (ev: React.FormEvent<HTMLFormElement>) => {
@@ -58,7 +51,10 @@ export default function useLogin() {
             password: (form.get("login_password") as string).toString().trim(),
         })
             .then((response) => {
-                succesfulLog(response);
+                console.log({ response });
+                setLoading(false);
+                window.location.replace("/admin");
+                // window.location.reload();
             })
             .catch((error) => {
                 enqueueSnackbar(`Error: ${error.message}`, {

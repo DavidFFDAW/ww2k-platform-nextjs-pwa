@@ -23,9 +23,9 @@ export default async function AdminTeamsPage() {
         <>
             <Title title="Teams" icon='people-fill' />
 
-            <div className='w1'>
+            <div className='w1 flex column gap-small center acenter'>
                 {teams.map((team) => {
-                    return (<div key={team.id} className='w1 flex row acenter start gap'>
+                    return (<div key={team.id} className='w1 boxed flex row acenter start gap'>
                         <p style={{ width: 20 }}>{team.id}</p>
                         <h4 style={{ width: 250 }}>
                             {team.name}

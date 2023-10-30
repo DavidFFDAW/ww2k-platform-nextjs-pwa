@@ -182,12 +182,9 @@ img.total-image {
 
 * {
     margin: 0;
-    color: var(--title-color);
     box-sizing: border-box;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    /* text-overflow: ellipsis; */
-    /* scrollbar-width: thin;
-    scroll-behavior: smooth; */
+    text-overflow: ellipsis;
 }
 
 html {
@@ -629,6 +626,7 @@ img.rounded-preview-icon,
 
 .title-container .app-bootstrap-custom-icon {
     font-size: 32px;
+    color: var(--blackwhite)
 }
 
 .page-title-custom {

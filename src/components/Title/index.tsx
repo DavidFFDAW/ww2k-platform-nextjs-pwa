@@ -27,7 +27,7 @@ function TitleWithChildren({ title, icon, children }: TitleProps) {
 export default function Title({ title, icon, children }: TitleProps) {
     if (children)
         return (
-            <TitleWithChildren title={title}>
+            <TitleWithChildren title={title} icon={icon}>
                 {children}
             </TitleWithChildren>
         );

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
-import { TOKEN_COOKIE } from './constants/config';
+import { PROTECTED_ROUTES, STATIC_PAGES, TOKEN_COOKIE } from './constants/config';
 import { verifyJwtToken } from './utilities/jwt';
 
 const AUTH_PAGES = ["/login"];
@@ -19,17 +19,16 @@ export default async function middleware(req: NextRequest) {
             response.cookies.delete(TOKEN_COOKIE);
             return response;
         }
-        const response = NextResponse.redirect(new URL(`/`, url));
+        const response = NextResponse.redirect(new URL(PROTECTED_ROUTES.ADMIN, url));
         return response;
     }
 
     if (!hasVerifiedToken) {
         const searchParams = new URLSearchParams(nextUrl.searchParams);
         searchParams.set("next", nextUrl.pathname);
-        searchParams.append("status", 'unpermissioned');
 
         const response = NextResponse.redirect(
-            new URL(`/login?${searchParams}`, url)
+            new URL(`${STATIC_PAGES.LOGIN}?${searchParams}`, url)
         );
         response.cookies.delete(TOKEN_COOKIE);
         return response;

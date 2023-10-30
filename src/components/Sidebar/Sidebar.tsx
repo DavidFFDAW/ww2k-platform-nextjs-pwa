@@ -40,7 +40,7 @@ export default function Sidebar() {
                     <SidebarLink icon="newspaper" to={'/admin/blog'} text="Blog" />
                     <SidebarLink icon="twitter-x" to={'/admin/twitter'} text="Twitter" />
                     <SidebarLink icon="people-fill" to={'/admin/teams'} text="Teams" />
-                    <SidebarLink icon="trophy" to={'/admin/championships/reigns'} text="Champions" />
+                    <SidebarLink icon="trophy" to={'/admin/championships'} text="Championships" />
                     <SidebarLink icon="arrows-move" to={'/admin/draft'} text="Draft" />
                     <form action={logout} className='w1'>
                         <SidebarSubmit icon="signpost" text="Logout" />
