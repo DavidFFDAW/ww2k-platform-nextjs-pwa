@@ -2,12 +2,14 @@ import React from "react";
 import useGallery from "./useGallery";
 import Spinner from "@/components/Spinner/Spinner";
 import { useGalleryContext } from "../../context/GalleryContext";
+import LazyImage from "@/components/Image/LazyImage";
 
 function Gallery() {
-    const { galleryState, setItem } = useGalleryContext();
+    const { galleryState, setItem, selectImage } = useGalleryContext();
     const { images } = useGallery(galleryState, setItem);
 
-    console.log({ galleryState });
+    const isCurrentImageEmpty = !galleryState.currentImage;
+
 
     if (!images.length) return <Spinner />;
 
@@ -22,7 +24,7 @@ function Gallery() {
 
     return (
         <>
-            <div className="w1 flex center acenter">
+            <div className={`w1 flex center ${isCurrentImageEmpty ? 'acenter' : 'astart'}`}>
                 <div className="gallery-images-container">
                     {images.map((image, index) => (
                         <div
@@ -31,7 +33,7 @@ function Gallery() {
                             role="presentation"
                             onClick={(_) => setCurrentImage(image)}
                         >
-                            <img
+                            <LazyImage
                                 width={150}
                                 height={150}
                                 src={image.url}
@@ -68,8 +70,8 @@ function Gallery() {
                         style={{ height: "100%", background: "#eee" }}
                     >
                         <div className="gallery-image-modal-content">
-                            <img
-                                className="max-img"
+                            <LazyImage
+                                className="max-img gallery-aside-block-img"
                                 style={{ padding: 20, maxWidth: "100%" }}
                                 src={galleryState.currentImage?.url}
                                 alt="gallery"
@@ -79,12 +81,22 @@ function Gallery() {
                                     {galleryState.currentImage?.name}
                                 </p>
                             </div>
-                            <button
-                                type="button"
-                                onClick={(_) => setItem("currentImage", null)}
-                            >
-                                Cerrar
-                            </button>
+
+                            <div className="w1 flex between acenter gap row">
+                                <button
+                                    type="button"
+                                    onClick={(_) => setItem("currentImage", null)}
+                                >
+                                    Cerrar
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={selectImage}
+                                >
+                                    Seleccionar
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

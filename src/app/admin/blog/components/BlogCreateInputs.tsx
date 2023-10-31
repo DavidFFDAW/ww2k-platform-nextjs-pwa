@@ -1,14 +1,9 @@
-import UpsertInput, {
-    UpsertDate,
-    UpsertImage,
-    UpsertTextArea,
-    UpsertToggle,
-} from "@/components/Forms/FormInputs";
+import { Input, InputDate, ImageInput, Textarea, ToggleInput } from "@/components/Forms";
 
 export default function BlogDatas() {
     return (
         <div className="w1 flex column al-start gap-small">
-            <UpsertInput
+            <Input
                 type="text"
                 label="Título"
                 name="title"
@@ -16,15 +11,15 @@ export default function BlogDatas() {
                 placeholder="Titulo de la noticia"
             />
 
-            <UpsertImage placeholder="Imagen de la noticia" name="image" />
+            <ImageInput placeholder="Imagen de la noticia" name="image" />
 
-            <UpsertTextArea
+            <Textarea
                 label={"Contenido"}
                 name={"content"}
                 required={true}
                 rows={10}
             />
-            <UpsertDate
+            <InputDate
                 label={"Fecha de publicacion"}
                 name={"date_publication"}
                 required={true}
@@ -37,8 +32,8 @@ export function BlogStatus() {
     return (
         <div className="w1 flex column al-start gap-small">
             <div className="w1 flex evenly al-center gap">
-                <UpsertToggle label="Publicado" name="published" />
-                <UpsertToggle label="¿Se puede borrar?" name="is_deletable" />
+                <ToggleInput label="Publicado" name="published" />
+                <ToggleInput label="¿Se puede borrar?" name="is_deletable" />
             </div>
         </div>
     );

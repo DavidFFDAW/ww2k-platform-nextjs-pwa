@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 
 const GalleryContext = React.createContext({});
 
-export const GalleryContextProvider = ({ children }) => {
+export const GalleryContextProvider = ({ children, selectImageCallback }) => {
     const [galleryState, setGalleryState] = useState({
         showGallery: false,
         currentImage: null,
         images: []
     });
 
+    const selectImage = () => {
+        selectImageCallback(galleryState.currentImage);
+        toggleGallery();
+    };
     const toggleGallery = () => setGalleryState(prev => ({ ...prev, showGallery: !prev.showGallery }));
     const setItem = (key, value) => setGalleryState(prev => ({ ...prev, [key]: value }));
 
@@ -16,6 +20,7 @@ export const GalleryContextProvider = ({ children }) => {
         galleryState,
         setGalleryState,
         toggleGallery,
+        selectImage,
         setItem
     };
 

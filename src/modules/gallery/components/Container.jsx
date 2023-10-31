@@ -2,15 +2,14 @@ import React from "react";
 import { NullableLoading } from "@/components/Loading/LoadingComponent";
 import { useGalleryContext } from "../context/GalleryContext";
 import { Gallery } from ".";
+import { ButtonSecondary } from "@/components/Buttons/Buttons";
 
 function GalleryContainer() {
     const { galleryState, toggleGallery } = useGalleryContext();
 
     return (
         <div>
-            <button type="button" onClick={toggleGallery}>
-                Abrir Galería
-            </button>
+            <ButtonSecondary text={'Abrir Galería'} type={'button'} onClick={toggleGallery} />
 
             <NullableLoading condition={galleryState.showGallery}>
                 <dialog

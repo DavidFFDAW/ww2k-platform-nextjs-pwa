@@ -1,5 +1,12 @@
 import { TOKEN_COOKIE } from "@/constants/config";
-import { cookies } from "next/headers";
+
+interface IResponse {
+    ok: boolean;
+    status: number;
+    message?: string;
+    data?: any;
+    content?: any;
+}
 export default class HttpService {
     static get = (endpoint: string) => this._makeFetchRequest(endpoint, "GET");
     static put = (endpoint: string, data: any = null) =>
@@ -9,7 +16,7 @@ export default class HttpService {
     static delete = (endpoint: string) =>
         this._makeFetchRequest(endpoint, "DELETE");
 
-    static _makeFetchRequest(url: string, method: string, data: any = false) {
+    static _makeFetchRequest(url: string, method: string, data: any = false): Promise<IResponse> {
         const cookies = Object.fromEntries(document.cookie.split('; ').map(x => x.split('=')));
         const token = cookies[TOKEN_COOKIE];
         console.log({ cookies, token });
@@ -38,6 +45,7 @@ export default class HttpService {
                 ...content,
                 ok: response.ok,
                 status: response.status,
+                content: content,
             };
         });
     }

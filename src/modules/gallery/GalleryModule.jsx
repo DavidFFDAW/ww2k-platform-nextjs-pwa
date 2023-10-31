@@ -7,10 +7,10 @@ import GalleryContainer from "./components/Container";
 // Everything needed to work within the gallery
 // is used here just so when you need or want to use
 // the gallery, you can just import this module.
-function GalleryModule() {
+function GalleryModule({ selectImageCallback }) {
     return (
         <>
-            <GalleryContext.Provider>
+            <GalleryContext.Provider selectImageCallback={selectImageCallback}>
                 <aside
                     className="gallery-module"
                     style={{ position: "relative" }}

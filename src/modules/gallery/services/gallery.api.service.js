@@ -4,6 +4,7 @@ const API_ENDPOINT = "https://vps-f87b433e.vps.ovh.net/2k/api/v2/";
 
 export async function getAllImages() {
     const response = await HttpService.get(`${API_ENDPOINT}images`);
+    console.log({ response });
     const { content } = response;
 
     return {
