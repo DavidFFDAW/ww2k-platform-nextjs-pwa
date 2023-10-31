@@ -1,3 +1,5 @@
+import { TOKEN_COOKIE } from "@/constants/config";
+import { cookies } from "next/headers";
 export default class HttpService {
     static get = (endpoint: string) => this._makeFetchRequest(endpoint, "GET");
     static put = (endpoint: string, data: any = null) =>
@@ -8,6 +10,11 @@ export default class HttpService {
         this._makeFetchRequest(endpoint, "DELETE");
 
     static _makeFetchRequest(url: string, method: string, data: any = false) {
+        const cookies = Object.fromEntries(document.cookie.split('; ').map(x => x.split('=')));
+        const token = cookies[TOKEN_COOKIE];
+        console.log({ cookies, token });
+
+
         const options: any = {
             method: method,
             mode: "cors",
@@ -15,9 +22,11 @@ export default class HttpService {
                 "Content-Type": "application/json",
             },
         };
-        // if (addToken) {
-        //     options.headers = { ...options.headers, Authorization: 'Bearer ' + userToken };
-        // }
+
+        if (token) {
+            options.headers = { ...options.headers, Authorization: 'Bearer ' + token };
+        }
+
         if (data) {
             options.body = JSON.stringify(data);
         }

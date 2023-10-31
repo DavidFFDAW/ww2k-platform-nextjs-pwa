@@ -4,9 +4,11 @@ import { verifyJwtToken } from '@/utilities/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function getJWT(req: NextRequest) {
-    const token = req.cookies.get(TOKEN_COOKIE);
-    if (!token || !token.value) return null;
+    const cookieToken = req.cookies.get(TOKEN_COOKIE);
+    const bearerToken = { value: req.headers.get('Authorization')?.split(' ')[1] };
+    const token = cookieToken || bearerToken;
 
+    if (!token || !token.value) return null;
     return verifyJwtToken(token.value);
 }
 

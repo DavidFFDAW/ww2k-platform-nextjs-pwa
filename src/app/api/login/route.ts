@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
         const token = await new SignJWT({ ...user })
             .setProtectedHeader({ alg: "HS256" })
             .setIssuedAt()
-            .setExpirationTime("15d")
+            .setExpirationTime("30d")
             .sign(getJwtSecretKey());
 
         const response = NextResponse.json({
