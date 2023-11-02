@@ -2,18 +2,13 @@
 import { NullableLoading } from "@/components/Loading/LoadingComponent";
 import { FilterIcon } from "@/components/Icons/CommonIcons";
 import {
-    InputWithDeleteButton,
-    UpsertSelect,
-} from "@/components/Forms/FormInputs";
-
-import {
     BlackButton,
     ButtonCTA,
     ButtonSecondary,
 } from "@/components/Buttons/Buttons";
-
 import SearchForm from "@/components/Forms/SearchForm";
 import React from "react";
+import { Input, InputSelect } from "@/components/Forms";
 
 interface SearchFormProps {
     params: any;
@@ -51,7 +46,7 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
 
                 <NullableLoading condition={showFilters}>
                     <div className="w1 flex column al-snBlackButtonart gap-5 filters">
-                        <InputWithDeleteButton
+                        <Input
                             label={"Nombre"}
                             type="text"
                             name={"name"}
@@ -60,7 +55,7 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                     </div>
 
                     <div className="flex start gap acenter">
-                        <UpsertSelect
+                        <InputSelect
                             label={"Género"}
                             name={"gender"}
                             value={params.gender}
@@ -68,9 +63,9 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                             <option value="">Todos</option>
                             <option value="M">Hombre</option>
                             <option value="F">Mujer</option>
-                        </UpsertSelect>
+                        </InputSelect>
 
-                        <UpsertSelect
+                        <InputSelect
                             label={"Marca"}
                             name={"brand"}
                             value={params.brand}
@@ -79,7 +74,7 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                             <option value="RAW">RAW</option>
                             <option value="SD">SmackDown</option>
                             <option value="AWL">AWL</option>
-                        </UpsertSelect>
+                        </InputSelect>
                     </div>
 
                     <div className="flex center acenter gap">
@@ -93,7 +88,7 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                             <option value="30">30</option>
                         </UpsertSelect> */}
 
-                        <UpsertSelect
+                        <InputSelect
                             label={"Status"}
                             name={"status"}
                             value={params.status}
@@ -104,7 +99,7 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                             <option value="released">Despedidos</option>
                             <option value="semi-active">Semi en activo</option>
                             <option value="retired">Retirado</option>
-                        </UpsertSelect>
+                        </InputSelect>
                     </div>
 
                     {/* <CheckboxInput
