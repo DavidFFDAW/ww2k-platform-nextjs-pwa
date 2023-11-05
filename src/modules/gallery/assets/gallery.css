@@ -1,6 +1,6 @@
-.gallery-module {
-    z-index: 99999;
-}
+/* .gallery-module {
+    /* z-index: 9; 
+} */
 
 .gallery-module .gallery-module-box.boxed {
     position: fixed;
@@ -10,7 +10,7 @@
     height: 98%;
     padding: 0;
     overflow: hidden;
-    background: #FFF;
+    background: #fff;
     border-radius: 5px;
     transform: translate(-50%, -50%);
     border: none;
@@ -36,7 +36,6 @@
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 
 .gallery-module .gallery-image-modal-content {
     padding: 15px;
@@ -100,6 +99,10 @@
     opacity: 0;
     cursor: default;
     transition: all 0.3s ease;
+}
+
+.gallery-module .gallery-module-box.dialog {
+    z-index: 9999999;
 }
 
 .gallery-module .gallery-image-overlay .btn.delete-button {

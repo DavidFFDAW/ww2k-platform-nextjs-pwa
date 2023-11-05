@@ -11,7 +11,10 @@ export const metadata: Metadata = {
         "Your reliable source for WWE 2K news and updates about all universe related content.",
     themeColor: "#2A4494",
     authors: [
-        { name: 'David Fernández Flores', url: 'https://github.com/DavidFFDAW' }
+        {
+            name: "David Fernández Flores",
+            url: "https://github.com/DavidFFDAW",
+        },
     ],
     colorScheme: "dark light",
     category: "Entertainment & Sports",

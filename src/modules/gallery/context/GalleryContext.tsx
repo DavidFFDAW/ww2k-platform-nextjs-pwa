@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { GalleryContextProps, GalleryContextState } from "../gallery.models";
 
-const GalleryContext = React.createContext({});
+const GalleryContext = React.createContext({
+    galleryState: {} as GalleryContextState,
+    setGalleryState: (state: GalleryContextState) => {},
+    toggleGallery: () => {},
+    selectImage: () => {},
+    setItem: (key: any, value: any) => {},
+});
 
 export const GalleryContextProvider = ({
     children,
@@ -14,11 +20,6 @@ export const GalleryContextProvider = ({
     });
 
     const selectImage = () => {
-        console.log({
-            currentImage: galleryState.currentImage,
-            images: galleryState.images,
-            showGallery: galleryState.showGallery,
-        });
         selectImageCallback(galleryState?.currentImage?.url || "");
         toggleGallery();
     };

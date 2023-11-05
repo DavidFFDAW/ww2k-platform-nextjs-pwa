@@ -1,4 +1,5 @@
 import { ImageInput, Input, InputSelect } from "@/components/Forms";
+import GalleryModule from "@/modules/gallery/GalleryModule";
 
 export default function UpsertDatas() {
     return (
