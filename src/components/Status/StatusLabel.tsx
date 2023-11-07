@@ -12,7 +12,7 @@ export function StatusLabelContainer({ children }: { children: React.ReactNode }
 interface StatusLabelProps {
     text: string;
     name: string;
-    activeLink: string;
+    activeLink: string | null;
     href: string;
 }
 

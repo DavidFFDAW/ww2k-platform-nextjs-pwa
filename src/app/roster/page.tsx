@@ -2,7 +2,7 @@
 import * as React from "react";
 import useRoster from "./useRoster";
 import Title from "@/components/Title";
-import { ConditionalLoading } from "@/components/Loading/LoadingComponent";
+import { ConditionalLoading } from "@/components/Loading";
 import { ComponentSpinner } from "@/components/Spinner/Spinner";
 import RosterCard from "./RosterCard";
 import StatusLabel, { StatusLabelContainer } from "@/components/Status/StatusLabel";
