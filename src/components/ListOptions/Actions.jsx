@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { NullableLoading } from '../Loading/LoadingComponent';
+import { NullableLoading } from '../Loading';
 import { DotsIcon } from '../Icons/CommonIcons';
 import { ActionOptionButton } from './ActionOptionButtons';
 import { ActionOption } from './ActionOption';

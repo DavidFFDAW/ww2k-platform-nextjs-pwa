@@ -1,9 +1,6 @@
 import LazyImage from "@/components/Image/LazyImage";
-import React, { DragEvent } from "react";
-import { useGalleryContext } from "../../context/GalleryContext";
-import { NullableLoading } from "@/components/Loading/LoadingComponent";
+import React from "react";
 import useGalleryImages from "./useGalleryImages";
-import EmblaCarousel from "./Carousel/EmblaCarousel";
 import UploadingImages from "./UploadingImages";
 
 interface GalleryImagesProps {

@@ -3,7 +3,7 @@ import useGallery from "./useGallery";
 import Spinner from "@/components/Spinner/Spinner";
 import { useGalleryContext } from "../../context/GalleryContext";
 import GalleryImages from "./GalleryImages";
-import { NullableLoading } from "@/components/Loading/LoadingComponent";
+import { NullableLoading } from "@/components/Loading";
 import SelectedImage from "./SelectedImage";
 
 function Gallery() {
@@ -21,9 +21,8 @@ function Gallery() {
     return (
         <>
             <div
-                className={`w1 flex center ${
-                    isCurrentImageEmpty ? "acenter" : "astart"
-                }`}
+                className={`w1 flex center ${isCurrentImageEmpty ? "acenter" : "astart"
+                    }`}
             >
                 <GalleryImages
                     images={images}

@@ -1,6 +1,11 @@
 import './style.css';
 
-export default function NotFound({ title, message }) {
+interface NotFoundProps {
+    title?: string | number;
+    message?: string;
+}
+
+export default function NotFound({ title, message }: NotFoundProps) {
     return (
         <div className="ghost__container">
             <p className="text">{title || 404}</p>

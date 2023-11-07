@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { NullableLoading } from "@/components/Loading/LoadingComponent";
+import { NullableLoading } from "@/components/Loading";
 import { BootstrapIcon } from "@/components/Icon/BootstrapIcon";
 import { enqueueSnackbar } from "notistack";
 import { FormEvent } from "react";
@@ -54,7 +54,7 @@ export function ActionFetch({
             href={href}
             onClick={handlerFetchAction}
         >
-            <NullableLoading condition={icon}>
+            <NullableLoading condition={Boolean(icon)}>
                 <div className="icon-wrapper">
                     <BootstrapIcon icon={icon} />
                 </div>

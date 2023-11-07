@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ITEMS_PER_PAGE } from "@/constants/config";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormEvent } from "react";
-import { NullableLoading } from "../Loading/LoadingComponent";
+import { NullableLoading } from "../Loading";
 
 interface PaginationProps {
     page: number;
@@ -64,11 +64,10 @@ export function Pagination({ page, total }: PaginationProps) {
                         return (
                             <Link
                                 href={`&page=${pageNumber}`}
-                                className={`pagination-real-link pagination-item ${
-                                    realPage === pageNumber
+                                className={`pagination-real-link pagination-item ${realPage === pageNumber
                                         ? "active"
                                         : "non-active"
-                                }`}
+                                    }`}
                                 key={pageNumber}
                                 onClick={(e) => handleRequest(e, pageNumber)}
                             >

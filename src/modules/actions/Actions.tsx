@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { NullableLoading } from "@/components/Loading/LoadingComponent";
+import { NullableLoading } from "@/components/Loading";
 import { DotsIcon } from "@/components/Icons/CommonIcons";
 import { ActionOption } from "./ActionOption";
 import { ActionFetch } from "./ActionFetch";
@@ -38,9 +38,8 @@ function ActionsContainer({ children }: ActionsContainerProps) {
     return (
         <div className="actions-option-group relative" ref={ref}>
             <button
-                className={`three-dots-actions ${
-                    showOptions ? "active" : "normal"
-                }`}
+                className={`three-dots-actions ${showOptions ? "active" : "normal"
+                    }`}
                 role="button"
                 aria-label="Open actions list"
                 type="button"

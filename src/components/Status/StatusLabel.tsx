@@ -1,7 +1,7 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 
-export function StatusLabelContainer({ children }) {
+export function StatusLabelContainer({ children }: { children: React.ReactNode }) {
     return (
         <div className="flex responsive-wrap wrap start al-center gap-small labeled-possible-states">
             {children}
@@ -9,7 +9,14 @@ export function StatusLabelContainer({ children }) {
     );
 }
 
-export default function StatusLabel({ text, name, activeLink, href }) {
+interface StatusLabelProps {
+    text: string;
+    name: string;
+    activeLink: string;
+    href: string;
+}
+
+export default function StatusLabel({ text, name, activeLink, href }: StatusLabelProps) {
     const activeClass =
         activeLink === name.toLowerCase() ? "active" : "non-active";
     return (

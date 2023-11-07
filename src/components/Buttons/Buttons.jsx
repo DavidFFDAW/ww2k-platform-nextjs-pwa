@@ -30,7 +30,7 @@ export default function Button({
 export function ButtonCTA({
     text,
     type,
-    onClick = () => {},
+    onClick = () => { },
     disabled = false,
 }) {
     return (
@@ -45,7 +45,7 @@ export function ButtonCTA({
     );
 }
 
-export function ButtonSecondary({ text, type, onClick, disabled = false }) {
+export function ButtonSecondary({ text, type, onClick = () => { }, disabled = false }) {
     return (
         <Button
             disabled={disabled}

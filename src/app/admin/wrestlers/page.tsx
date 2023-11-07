@@ -2,13 +2,11 @@ import React from "react";
 import { prisma } from "@/db/conn";
 import Title from "@/components/Title";
 import WrestlerCard from "./components/Card";
-import { NullableLoading } from "@/components/Loading/LoadingComponent";
+import { NullableLoading } from "@/components/Loading";
 import CreateButton from "@/components/Buttons/CreateButton";
 import { PageContext } from "@/shared/models";
 import { Pagination } from "@/components/Pagination/Pagination";
 import WrestlersSearchForm from "./components/WrestlersSearchForm";
-import { TableContainer } from "@/modules/tables";
-import TableItem, { TableRow } from "@/modules/tables/components/TableRows";
 
 async function getWrestlers(page: number, searchParams: any) {
     const realPage = page || 1;
@@ -51,9 +49,9 @@ export default async function WrestlerListPage(context: PageContext) {
             <WrestlersSearchForm params={context.searchParams} />
 
             <div className="w1 flex between column al-center gap">
-                <NullableLoading condition={wrestlers.length}>
+                {/* <NullableLoading condition={wrestlers.length > 0}>
                     <div className="w1 pagination-block"></div>
-                </NullableLoading>
+                </NullableLoading> */}
 
                 <div className="w1 list-block overflow-y">
                     <div className="wrestlers-list items-listing">

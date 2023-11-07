@@ -1,6 +1,5 @@
 import React from 'react';
 import { BootstrapIcon } from '../Icon/BootstrapIcon';
-// import { MaterialIcon } from '../Icon/Icon';
 
 interface TitleProps {
     title: string;

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import Popup from './Modal/Popup';
 import { ButtonCTA, ButtonSecondary } from './Buttons/Buttons';
-import { NullableLoading } from './Loading/LoadingComponent';
+import { NullableLoading } from './Loading';
+import Popup from './Modal/Popup';
 
 export default function CookieAccept() {
-    console.log(document.cookie);
-    const [showPopup, setShowPopup] = useState(true);
+    const [showPopup, setShowPopup] = useState<boolean>(true);
     const setShownt = () => setShowPopup(p => !p);
 
     return (
@@ -19,8 +18,8 @@ export default function CookieAccept() {
                     la aplicación
                 </p>
                 <div className="down flex between acenter">
-                    <ButtonSecondary text={'Rechazar'} />
-                    <ButtonCTA text={'Aceptar'} onClick={setShownt} />
+                    <ButtonSecondary text={'Rechazar'} type={'button'} />
+                    <ButtonCTA text={'Aceptar'} type={'button'} onClick={setShownt} />
                 </div>
             </Popup>
         </>

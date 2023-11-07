@@ -1,7 +1,7 @@
 import useHttp from '~/hooks/useHttp';
 import { useState } from 'react';
 import { DangerButton } from '../Buttons/Buttons';
-import { NullableLoading } from '../Loading/LoadingComponent';
+import { NullableLoading } from '../Loading';
 import { DialogWithFooter } from '../Modal/Dialog';
 import { TrashIcon } from '../Icons/CommonIcons';
 import { ColorTypes } from './Actions';

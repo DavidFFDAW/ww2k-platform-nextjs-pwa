@@ -1,5 +1,5 @@
 import { ColorTypes } from './Actions';
-import { NullableLoading } from '../Loading/LoadingComponent';
+import { NullableLoading } from '../Loading';
 
 export function ActionOptionButton({ item, toggler, color }) {
     const executeCallback = _ => {

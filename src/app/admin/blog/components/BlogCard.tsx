@@ -2,7 +2,7 @@
 import React from "react";
 // import BlogActions from './BlogActions';
 import { transformDate } from "@/utilities/date.normalizer.utility";
-import { NullableLoading } from "@/components/Loading/LoadingComponent";
+import { NullableLoading } from "@/components/Loading";
 import Image from "@/components/Image/Image";
 import BlogActions from "./BlogActions";
 

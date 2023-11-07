@@ -1,4 +1,4 @@
-import { NullableLoading } from "@/components/Loading/LoadingComponent";
+import { NullableLoading } from "@/components/Loading";
 import React from "react";
 import EmblaCarousel, { EmblaSlide } from "./Carousel/EmblaCarousel";
 import Image from "@/components/Image/Image";

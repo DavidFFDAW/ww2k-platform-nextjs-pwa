@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NullableLoading } from "@/components/Loading/LoadingComponent";
+import { NullableLoading } from "@/components/Loading";
 import { BootstrapIcon } from "@/components/Icon/BootstrapIcon";
 
 export function ActionOption({ toHref, text, icon, color }) {

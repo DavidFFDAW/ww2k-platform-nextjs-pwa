@@ -40,3 +40,8 @@ body.dark-theme .scrollable-section-component .scrollable-item {
     background: var(--dark);
     border-bottom: 1px solid var(--dark);
 }
+
+.overflowY.non-overflowX {
+    overflow-y: auto;
+    overflow-x: hidden;
+}

@@ -1,24 +1,29 @@
 import React from 'react';
 import NotFound from './Not-found';
 
-export class ErrorBoundary extends React.Component {
-    constructor(props) {
+interface State {
+    hasError: boolean;
+    error: string;
+}
+
+export class ErrorBoundary extends React.Component<any, State> {
+    constructor(props: any) {
         super(props);
-        this.state = { hasError: false, error: '' };
+        this.state = { hasError: false, error: '' }
     }
 
-    static getDerivedStateFromError(error) {
+    static getDerivedStateFromError(error: any) {
         // Update state so the next render will show the fallback UI.
         return { hasError: true };
     }
 
-    componentDidCatch(error, errorInfo) {
+    componentDidCatch(error: any, errorInfo: any) {
         // You can also log the error to an error reporting service
         this.logErrorToMyService(error, errorInfo);
         this.setState({ ...this.state, error: error.message });
     }
 
-    logErrorToMyService(error, errorInfo) {
+    logErrorToMyService(error: any, errorInfo: any) {
         console.log(error, errorInfo);
     }
 

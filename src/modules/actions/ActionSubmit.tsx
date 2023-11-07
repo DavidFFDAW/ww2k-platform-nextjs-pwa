@@ -1,5 +1,5 @@
 import { BootstrapIcon } from '@/components/Icon/BootstrapIcon';
-import { NullableLoading } from '@/components/Loading/LoadingComponent';
+import { NullableLoading } from '@/components/Loading';
 import React, { MouseEvent } from 'react'
 
 interface ActionSubmitProps {
@@ -16,7 +16,7 @@ export function ActionSubmit({ text, icon, color, value, name }: ActionSubmitPro
         <div className={`flex start acenter gap-small action-link ${color}`} data-value-passed={value}>
             <input type="hidden" value={value} name={name} />
 
-            <NullableLoading condition={icon}>
+            <NullableLoading condition={Boolean(icon)}>
                 <div className="icon-wrapper">
                     <BootstrapIcon icon={icon} />
                 </div>

@@ -5,7 +5,7 @@ import StatusLabel, { StatusLabelContainer } from '@/components/Status/StatusLab
 import { PageContext } from '@/shared/models';
 import CreateButton from '@/components/Buttons/CreateButton';
 import BlogCard from './components/BlogCard';
-import { NullableLoading } from '@/components/Loading/LoadingComponent';
+import { NullableLoading } from '@/components/Loading';
 
 async function getBlogPosts(searchParams: any) {
     const filters: any = {};

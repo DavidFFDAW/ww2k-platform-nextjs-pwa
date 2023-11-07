@@ -1,11 +1,15 @@
 import React from 'react';
 import './scrollable.css';
 
-export default function ScrollableArea({ title, children, height }) {
+interface ScrollableAreaProps {
+    title: string;
+    children: React.ReactNode;
+    height?: number;
+}
+
+export default function ScrollableArea({ title, children, height }: ScrollableAreaProps) {
     const style = {
         height: height || 100,
-        overflowY: 'auto',
-        overflowX: 'hidden',
     };
 
     return (
@@ -15,7 +19,7 @@ export default function ScrollableArea({ title, children, height }) {
                     <h3>{title}</h3>
                 </header>
             ) : null}
-            <div className="scrollable-area" style={style}>
+            <div className="scrollable-area overflowY non-overflowX" style={style}>
                 {children}
             </div>
         </section>

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { NullableLoading } from '../Loading/LoadingComponent';
+import { NullableLoading } from '../Loading';
 
 export default function HomeLink({ icon, href, text }) {
     return (

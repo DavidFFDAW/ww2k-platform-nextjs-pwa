@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ColorTypes } from './Actions';
-import { NullableLoading } from '../Loading/LoadingComponent';
+import { NullableLoading } from '../Loading';
 
 export function ActionOption({ item, toggler, color }) {
     const type = color || ColorTypes.DEFAULT;

@@ -1,5 +1,5 @@
 "use client";
-import { NullableLoading } from "@/components/Loading/LoadingComponent";
+import { NullableLoading } from "@/components/Loading";
 import { FilterIcon } from "@/components/Icons/CommonIcons";
 import {
     BlackButton,
@@ -111,7 +111,7 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                         <ButtonSecondary
                             type={"reset"}
                             text={"Borrar"}
-                            onClick={() => {}}
+                            onClick={() => { }}
                         />
                         <ButtonCTA type={"submit"} text={"Buscar"} />
                     </div>
