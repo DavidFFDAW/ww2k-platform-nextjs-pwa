@@ -22,7 +22,7 @@ export default async function BlogPublicList() {
         <>
             <section className='public-blog-items-list flex column center acenter gap'>
                 {posts.map((post) => (
-                    <Link href={`/blog/post/${post.id}`} className="post boxed flex between gap" key={post.id}>
+                    <Link href={`/blog/post/${post.id}`} className="w1 post boxed flex between gap" key={post.id}>
                         <article className="w1 blog-separation-image flex start al-start gap">
                             <div className="first-column post-image">
                                 <Image
@@ -36,7 +36,7 @@ export default async function BlogPublicList() {
 
                             <div className="w1 second-column flex start gap column">
                                 <h2 className="title uppercase">{post.title}</h2>
-                                <p>{post.exceptr}</p>
+                                <p>{post.exceptr}...</p>
                                 <div className="flex end">
                                     <p>{existingDateToString(post.created_at)}</p>
                                 </div>
