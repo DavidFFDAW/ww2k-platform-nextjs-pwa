@@ -1,5 +1,14 @@
 import React from "react";
 
+interface CommonButtonProps {
+    text: string;
+    type?: "button" | "submit" | "reset";
+    className?: string;
+    onClick?: () => void;
+    disabled?: boolean;
+    alt?: string;
+}
+
 export default function Button({
     text,
     type,
@@ -7,7 +16,7 @@ export default function Button({
     onClick,
     disabled = false,
     alt,
-}) {
+}: CommonButtonProps) {
     const buttonType = type || "button";
     const buttonClass = className ? `btn button ${className}` : "btn button";
     const altAndTitle = alt ? alt : "Default action button";
@@ -19,7 +28,6 @@ export default function Button({
             role="button"
             type={buttonType}
             onClick={onClick}
-            alt={altAndTitle}
             title={altAndTitle}
         >
             {text}
@@ -32,7 +40,7 @@ export function ButtonCTA({
     type,
     onClick = () => { },
     disabled = false,
-}) {
+}: CommonButtonProps) {
     return (
         <Button
             disabled={disabled}
@@ -45,7 +53,7 @@ export function ButtonCTA({
     );
 }
 
-export function ButtonSecondary({ text, type, onClick = () => { }, disabled = false }) {
+export function ButtonSecondary({ text, type, onClick = () => { }, disabled = false }: CommonButtonProps) {
     return (
         <Button
             disabled={disabled}
@@ -58,7 +66,7 @@ export function ButtonSecondary({ text, type, onClick = () => { }, disabled = fa
     );
 }
 
-export function InfoButton({ text, type, onClick, disabled = false }) {
+export function InfoButton({ text, type, onClick, disabled = false }: CommonButtonProps) {
     return (
         <Button
             disabled={disabled}
@@ -71,7 +79,7 @@ export function InfoButton({ text, type, onClick, disabled = false }) {
     );
 }
 
-export function DangerButton({ text, type, onClick, disabled = false }) {
+export function DangerButton({ text, type, onClick, disabled = false }: CommonButtonProps) {
     return (
         <Button
             disabled={disabled}
@@ -83,7 +91,7 @@ export function DangerButton({ text, type, onClick, disabled = false }) {
         />
     );
 }
-export function BlackButton({ text, type, onClick, disabled = false }) {
+export function BlackButton({ text, type, onClick, disabled = false }: CommonButtonProps) {
     return (
         <Button
             disabled={disabled}
@@ -96,7 +104,7 @@ export function BlackButton({ text, type, onClick, disabled = false }) {
     );
 }
 
-export function GreyButton({ text, type, onClick, disabled = false }) {
+export function GreyButton({ text, type, onClick, disabled = false }: CommonButtonProps) {
     return (
         <Button
             disabled={disabled}
@@ -109,7 +117,7 @@ export function GreyButton({ text, type, onClick, disabled = false }) {
     );
 }
 
-export function UnbuttonButton({ text, type, onClick, disabled = false }) {
+export function UnbuttonButton({ text, type, onClick, disabled = false }: CommonButtonProps) {
     return (
         <Button
             disabled={disabled}
