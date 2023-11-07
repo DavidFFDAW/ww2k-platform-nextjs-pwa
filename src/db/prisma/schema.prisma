@@ -58,7 +58,6 @@ model User {
   api_token         String?    @db.VarChar(255)
   UserRole          UserRole[]
   Report            Report[]
-  Tweets            Tweets[]
 
   @@map(name: "users")
 }
@@ -105,6 +104,7 @@ model Wrestler {
   WrestlerTeam      WrestlerTeam[]
   ChampionshipReign ChampionshipReign[] @relation("wrestler")
   Partner           ChampionshipReign[] @relation("partner")
+  Tweets            Tweets[]
 
   @@map(name: "wrestler")
 }
@@ -147,26 +147,26 @@ model Tweets {
   comments       Int       @db.Int
   device         String    @db.VarChar(20)
   author_id      Int       @db.Int
-  user           User      @relation(fields: [author_id], references: [id])
+  wrestler       Wrestler  @relation(fields: [author_id], references: [id])
   created_at     DateTime? @default(now())
   updated_at     DateTime? @updatedAt
   reply_to       Int?      @db.Int
   reply_to_tweet Tweets?   @relation("reply_to", fields: [reply_to], references: [id])
-  Tweets         Tweets[]  @relation("reply_to")
+  replies        Tweets[]  @relation("reply_to")
 
   @@map(name: "tweets")
 }
 
 model Team {
-  id                Int            @id @default(autoincrement())
-  name              String         @db.VarChar(125)
-  average           Int?           @db.Int
-  created_at        DateTime?      @default(now())
-  updated_at        DateTime?      @updatedAt
-  member_champion_1 Int?           @db.Int
-  member_champion_2 Int?           @db.Int
-  brand             Int?           @db.Int
-  actual_brand      Brand?         @relation(fields: [brand], references: [id])
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(125)
+  average           Int?                @db.Int
+  created_at        DateTime?           @default(now())
+  updated_at        DateTime?           @updatedAt
+  member_champion_1 Int?                @db.Int
+  member_champion_2 Int?                @db.Int
+  brand             Int?                @db.Int
+  actual_brand      Brand?              @relation(fields: [brand], references: [id])
   ChampionshipReign ChampionshipReign[]
   WrestlerTeam      WrestlerTeam[]
 
@@ -188,11 +188,11 @@ model ChampionshipReign {
   days            Int          @db.Int
   current         Boolean      @db.TinyInt
   wrestler_id     Int          @db.Int
-  Wrestler        Wrestler     @relation("wrestler",fields: [wrestler_id], references: [id])
+  Wrestler        Wrestler     @relation("wrestler", fields: [wrestler_id], references: [id])
   championship_id Int          @db.Int
   Championship    Championship @relation(fields: [championship_id], references: [id])
   partner         Int?         @db.Int
-  Partner         Wrestler?    @relation("partner",fields: [partner], references: [id])
+  Partner         Wrestler?    @relation("partner", fields: [partner], references: [id])
   team_id         Int?         @db.Int
   Team            Team?        @relation(fields: [team_id], references: [id])
   won_date        DateTime     @db.DateTime

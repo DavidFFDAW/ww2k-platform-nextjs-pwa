@@ -1,6 +1,11 @@
-import Title from '@/components/Title';
-import React from 'react';
+import Spinner from '@/components/Spinner/Spinner';
+import React, { Suspense } from 'react';
+import TwitterList from './TwitterList';
 
 export default function TwitterPage() {
-    return <Title title="Twitter" icon="twitter" />;
+    return (<>
+        <Suspense fallback={<Spinner />}>
+            <TwitterList />
+        </Suspense>
+    </>);
 }

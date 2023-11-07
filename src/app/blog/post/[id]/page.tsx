@@ -33,7 +33,6 @@ export default async function BlogPostDetails({ params }: BlogPostDetailsProps) 
             <Title title={post.title} icon="newspaper" />;
 
             <div className='flex column start acenter gap'>
-
                 <section className='boxed w1 flex start gap astart'>
                     <Image
                         alt='blog post image'

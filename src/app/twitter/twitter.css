@@ -1,0 +1,251 @@
+:root {
+    --twitter-white: rgb(231, 233, 234);
+    --twitter-dark: #14171a;
+    --twitter-blue: #1da1f2;
+    --twitter-white: #fff;
+    --twitter-dark-gray: #657786;
+    --twitter-light-gray: #aab8c2;
+    --twitter-extra-light-gray: #e1e8ed;
+    --twitter-light: #f5f8fa;
+}
+
+@font-face {
+    font-family: 'TwitterChirp';
+    src: url(/fonts/Chirp-Regular.woff2);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'TwitterChirp';
+    src: url(/fonts/Chirp-Bold.woff2);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'TwitterChirp';
+    src: url(/fonts/Chirp-Black.woff2);
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: 'TwitterChirp';
+    src: url(/fonts/Chirp-Medium.woff2);
+    font-weight: 500;
+}
+
+.twitter__module * {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'TwitterChirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    text-decoration: none;
+}
+
+.tweet * {
+    color: #14171a;
+}
+
+.twitter__module a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.twitter__module {
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.twitter__module h1,
+.twitter__module h2,
+.twitter__module h3,
+.twitter__module h4,
+.twitter__module h5,
+.twitter__module h6 {
+    margin: 0;
+    padding: 0;
+    font-family: 'TwitterChirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: medium;
+}
+
+body {
+    background-color: var(--twitter-light);
+}
+
+.twitter__module .cctt {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 99vh;
+    padding: 0 0 70px 0;
+    max-width: 600px;
+    width: 600px;
+    margin: 0 auto;
+}
+
+body.dark-theme .twitter__module {
+    background-color: var(--dark);
+}
+
+body.dark-theme .twitter__module .cctt {
+    color: var(--twitter-white);
+}
+
+.twitter__module .super-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.twitter__module .tweet {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+    border-radius: 5px;
+    /* height: 250px; */
+    /* border: 1px solid lightgray; */
+    background: #fff;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+body.dark-theme .twitter__module .tweet {
+    background-color: var(--darker);
+    box-shadow: none;
+    border: none;
+}
+
+.twitter__module .tweet .tweet-header {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+}
+
+.twitter__module .tweet .tweet-header .tweet-header-avatar img {
+    /* max-width: 100%; */
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+}
+
+.twitter__module .tweet .tweet-header .tweet-header-avatar {
+    /* width: 65px; */
+    /* height: auto; */
+    overflow: hidden;
+    padding: 5px;
+}
+
+.twitter__module .tweet .tweet-header-name {
+    font-family: 'TwitterChirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.twitter__module .tweet .tweet-header-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.twitter__module .tweet .tweet-header-name .tweet-header-name-username .username {
+    font-size: 18px;
+    font-weight: 700;
+    word-wrap: break-word;
+    line-height: 20px;
+}
+
+.twitter__module .tweet .tweet-header-name .tweet-header-name-account .account {
+    font-size: 15px;
+    font-weight: 400;
+    word-wrap: break-word;
+    line-height: 20px;
+}
+
+body.dark-theme .twitter__module .tweet .tweet-header-name .tweet-header-name-account .account {
+    color: #edf0f1;
+}
+
+.twitter__module .tweet .tweet-header-name .tweet-header-name-account .account::before {
+    content: '@';
+}
+
+.twitter__module .tweet .tweet-content {
+    padding: 20px 10px 20px 30px;
+    word-break: break-word;
+}
+
+.twitter__module .tweet .tweet-footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 5px; */
+    padding: 0px;
+}
+
+.twitter__module .tweet .tweet-footer .tweet-footer-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+.twitter__module .tweet .tweet-footer .tweet-footer-item .icon {
+    min-width: 18px;
+    height: 18px;
+    fill: var(--twitter-blue);
+    stroke: var(--twitter-blue);
+}
+
+.twitter__module .tweet-date {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+}
+
+.twitter__module .btn.got-to-admin {
+    position: fixed;
+    bottom: 30px;
+    right: 600px;
+    fill: #fff;
+    stroke: #fff;
+    background-color: #1da1f2;
+    border-radius: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+    .twitter__module .btn.got-to-admin {
+        position: fixed;
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .twitter__module .super-container {
+        width: 100%;
+    }
+
+    .twitter__module .cctt {
+        gap: 44px;
+        width: 95%;
+        padding: 15px 0;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .twitter__module .tweet {
+        width: 100%;
+    }
+}
