@@ -38,7 +38,7 @@ export default function Title({ title, icon, children }: TitleProps) {
                     <BootstrapIcon icon={icon} />
                 </div>
                 : null}
-            <h2 className="page-title-custom dreadnotus">{title}</h2>
+            <h1 className="page-title-custom dreadnotus">{title}</h1>
         </div>
     );
 }
