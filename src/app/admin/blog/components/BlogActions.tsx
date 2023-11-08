@@ -16,7 +16,7 @@ export default function BlogActions({ post }: BlogProps) {
                     <Actions.Link
                         text={"Editar Post"}
                         color={Actions.Colors.DEFAULT}
-                        toHref={`/admin/blog/edit/${post.id}`}
+                        toHref={`/admin/blog/update/${post.id}`}
                         icon={"pencil-square"}
                     />
                     <Actions.Link
