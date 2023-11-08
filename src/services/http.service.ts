@@ -39,13 +39,27 @@ export default class HttpService {
         }
 
         return fetch(url, options).then(async (response) => {
-            const content = await response.json();
+            try {
+                const content = await response.json();
 
+                return {
+                    ...content,
+                    ok: response.ok,
+                    status: response.status,
+                    content: content,
+                }
+            } catch (error: any) {
+                return {
+                    ok: response.ok,
+                    status: response.status,
+                    message: error.message,
+                }
+            };
+        }).catch((error) => {
             return {
-                ...content,
-                ok: response.ok,
-                status: response.status,
-                content: content,
+                ok: false,
+                status: 500,
+                message: error.message,
             };
         });
     }
