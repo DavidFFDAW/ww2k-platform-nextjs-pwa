@@ -1,5 +1,5 @@
 import Image from "@/components/Image/Image";
-import GalleryModule from "@/modules/gallery/GalleryModule";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 
 interface ImageProps {
@@ -13,6 +13,9 @@ export function ImageInput({
     name = "image",
     imageSrc = "",
 }: ImageProps) {
+    const Gallery = dynamic(() => import("@/modules/gallery/GalleryModule"), {
+        ssr: false,
+    });
     const [image, setState] = useState<string>(imageSrc);
 
     const size = 100;
@@ -44,7 +47,7 @@ export function ImageInput({
                     placeholder={placeholder}
                     onChange={handleImageChange}
                 />
-                <GalleryModule selectImageCallback={selectImage} />
+                <Gallery selectImageCallback={selectImage} />
             </div>
         </div>
     );
