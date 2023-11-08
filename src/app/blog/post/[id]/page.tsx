@@ -1,11 +1,9 @@
-import Title from "@/components/Title";
 import { redirect } from "next/navigation";
 import React from "react";
 import { prisma } from "@/db/conn";
 import { existingDateToString } from "@/utilities/date.normalizer.utility";
 import Image from "@/components/Image/Image";
 import { NullableLoading } from "@/components/Loading";
-import { Input } from "@/components/Forms";
 import NewCommentForm from "./NewCommentForm";
 
 interface BlogPostDetailsProps {
