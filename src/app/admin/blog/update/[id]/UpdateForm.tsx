@@ -1,10 +1,11 @@
 'use client';
 import { Report } from '@prisma/client'
 import React from 'react'
-import { ImageInput, Input, InputDate, Textarea, ToggleInput } from '@/components/Forms';
+import { ImageInput, Input, InputDate, ToggleInput } from '@/components/Forms';
 import { parseFormatDate } from '@/utilities/date.normalizer.utility';
 import { ButtonCTA } from '@/components/Buttons/Buttons';
 import { Boxed } from '@/components/Box/Boxed';
+import { QuillEditor } from '@/components/Forms';
 import useUpdatePost from '../../create/hooks/useUpdatePost';
 
 export default function UpdateForm({ post }: { post: Report }) {
@@ -34,13 +35,16 @@ export default function UpdateForm({ post }: { post: Report }) {
 
                         <ImageInput placeholder="Imagen de la noticia" name="image" imageSrc={post.image as string} />
 
-                        <Textarea
+                        {/* <Textarea
                             label={"Contenido"}
                             name={"content"}
                             required={true}
                             rows={10}
                             value={post.content}
-                        />
+                        /> */}
+
+                        <QuillEditor name="content" placeholder='Contenido del post' value={post.content as string} />
+
                         <InputDate
                             label={"Fecha de publicacion"}
                             name={"date_publication"}
