@@ -45,3 +45,5 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
     return NextResponse.json({ message: 'Se ha actualizado el post correctamente' }, { status: 200 });
 }
+
+export const dynamic = 'force-dynamic';

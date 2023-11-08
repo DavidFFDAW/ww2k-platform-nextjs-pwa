@@ -3,6 +3,8 @@ import { prisma } from '@/db/conn'
 import { redirect } from 'next/navigation';
 import UpdateForm from './UpdateForm';
 
+export const dynamic = 'force-dynamic';
+
 function getBlogPost(id: number) {
     return prisma.report.findFirst({
         where: {

@@ -7,7 +7,9 @@ import CreateButton from '@/components/Buttons/CreateButton';
 import BlogCard from './components/BlogCard';
 import { NullableLoading } from '@/components/Loading';
 
-async function getBlogPosts(searchParams: any) {
+export const dynamic = 'force-dynamic';
+
+function getBlogPosts(searchParams: any) {
     const filters: any = {};
 
     if (searchParams.status && searchParams.status !== 'all')
@@ -15,7 +17,7 @@ async function getBlogPosts(searchParams: any) {
 
     if (searchParams.deletable) filters['deletable'] = true;
 
-    return await prisma.report.findMany({
+    return prisma.report.findMany({
         orderBy: {
             created_at: 'desc',
         },
