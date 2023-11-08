@@ -1,17 +1,35 @@
+'use client';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
-export default function HeaderLink({ href, closeMenu, children }) {
+interface HeaderLinkProps {
+    href: string;
+    closeMenu: () => void;
+    children: React.ReactNode;
+}
+
+export default function HeaderLink({ href, closeMenu, children }: HeaderLinkProps) {
     return (
         <li className="menu-item">
-            <Link to={href} className="unlink" onClick={closeMenu}>
+            <Link href={href} className="unlink" onClick={closeMenu}>
                 {children}
             </Link>
         </li>
     );
 }
 
-export function HeaderLinkWithSubmenu({ closeMenu, item }) {
+interface HeaderLinkWithSubmenuProps {
+    closeMenu: () => void;
+    item: {
+        name: string;
+        submenu: {
+            href: string;
+            label: string;
+        }[];
+    };
+}
+
+export function HeaderLinkWithSubmenu({ closeMenu, item }: HeaderLinkWithSubmenuProps) {
     const { submenu } = item;
     const [activeOrHidden, setActive] = useState('hidden');
 

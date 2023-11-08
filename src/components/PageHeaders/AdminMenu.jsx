@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '~/hooks/useAuth';
 import HeaderLink, { HeaderLinkWithSubmenu } from './MenuLink';
-import { UpsertToggle } from '../Forms/FormInputs';
 import { useEffect, useState } from 'react';
 import { HeaderMenu } from '~/constants/Menus';
 
