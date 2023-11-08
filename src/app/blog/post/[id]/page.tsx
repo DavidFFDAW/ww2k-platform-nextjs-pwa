@@ -46,9 +46,10 @@ export default async function BlogPostDetails({
                     </div>
 
                     <article className="w1 report-news-content">
-                        <p className="w1 blog-post-content sourcesans">
-                            {post.content}
-                        </p>
+                        <div className="w1 blog-post-content sourcesans" dangerouslySetInnerHTML={
+                            { __html: post.content }
+                        }>
+                        </div>
                     </article>
 
                     <Image
