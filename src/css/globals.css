@@ -161,6 +161,12 @@ img.total-image {
     white-space: pre-line;
 }
 
+.blog-post-content * {
+    font-size: 18px;
+    white-space: pre-line;
+    font-family: 'SourceSans';
+}
+
 .single-blog-post-container {
     width: 50%;
 }
