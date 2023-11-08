@@ -12,6 +12,18 @@ const nextConfig = {
             },
         ],
     },
+    headers: () => [
+        {
+            // Create glob to target specific pages you want
+            source: '/*',
+            headers: [
+                {
+                    key: 'Cache-Control',
+                    value: 'no-store',
+                },
+            ],
+        },
+    ],
 };
 
 module.exports = nextConfig;
