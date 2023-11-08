@@ -4,11 +4,8 @@ import Title from '@/components/Title';
 import StatusLabel, { StatusLabelContainer } from '@/components/Status/StatusLabel';
 import { PageContext } from '@/shared/models';
 import CreateButton from '@/components/Buttons/CreateButton';
-import BlogCard from './components/BlogCard';
 import { NullableLoading } from '@/components/Loading';
-
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+import dynamic from 'next/dynamic';
 
 function getBlogPosts(searchParams: any) {
     const filters: any = {};
@@ -25,6 +22,8 @@ function getBlogPosts(searchParams: any) {
         where: filters,
     });
 }
+
+const BlogCard = dynamic(() => import('./components/BlogCard'), { ssr: false });
 
 export default async function BlogPostsList({ searchParams }: PageContext) {
     const blogPosts = await getBlogPosts(searchParams);

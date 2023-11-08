@@ -6,7 +6,6 @@ import { NullableLoading } from "@/components/Loading";
 import Image from "@/components/Image/Image";
 import BlogActions from "./BlogActions";
 
-
 export default function BlogCard({
     post,
     actions = true,
@@ -26,7 +25,9 @@ export default function BlogCard({
 
                 <div className="w1 second-column flex start gap column">
                     <h2 className="title uppercase">{post.title}</h2>
-                    <p>{post.exceptr}</p>
+                    <p dangerouslySetInnerHTML={
+                        { __html: post.exceptr + '...' }
+                    }></p>
                     <div className="flex end">
                         <p>{transformDate(post.created_at)}</p>
                     </div>
@@ -36,6 +37,6 @@ export default function BlogCard({
             <NullableLoading condition={Boolean(actions)}>
                 <BlogActions post={post} />
             </NullableLoading>
-        </div>
+        </div >
     );
 }
