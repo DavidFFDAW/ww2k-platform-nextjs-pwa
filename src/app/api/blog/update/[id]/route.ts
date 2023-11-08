@@ -27,19 +27,19 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
             id: Number(id),
         },
         data: {
-            title: title,
-            content: content,
-            image: image,
+            title: title.trim(),
+            content: content.trim(),
+            image: image.trim(),
             visible: publishedState,
             created_at: new Date(date_publication),
             deletable: deletable,
-            exceptr: content.slice(0, 20),
+            exceptr: content.trim().slice(0, content.trim().length / 2),
             admin_id: token.id as number,
         },
     });
 
-    revalidatePath('/admin/blog');
-    revalidatePath(`/admin/blog/post/${id}`);
+    revalidatePath('/admin/blog', 'page');
+    revalidatePath(`/admin/blog/update/${id}`, 'page');
 
     if (!inserted.id)
         return NextResponse.json({ message: 'Ha habido un error y no se ha podido crear el post' }, { status: 500 });
