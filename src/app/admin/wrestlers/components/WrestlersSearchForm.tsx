@@ -29,7 +29,7 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                         <BlackButton
                             type={"button"}
                             text={<>&times;</>}
-                            onClick={(_: any) => setShowFilters(false)}
+                            onClick={() => setShowFilters(false)}
                         />
                     </NullableLoading>
 
