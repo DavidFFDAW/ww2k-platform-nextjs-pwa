@@ -10,8 +10,6 @@ import { useSearchParams } from "next/navigation";
 
 export default function RosterPage() {
     const search = useSearchParams();
-    console.log(search.get('brand'));
-
     const { wrestlers, isLoading, setNewPage } = useRoster();
 
     return (

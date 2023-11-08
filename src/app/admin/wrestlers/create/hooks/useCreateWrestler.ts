@@ -9,7 +9,6 @@ export default function useCreatePost() {
         e.preventDefault();
         const datas = new FormData(e.currentTarget);
         const data = Object.fromEntries(datas);
-        console.log(data);
 
         const response = await HttpService.post('/api/wrestlers/create', data);
 

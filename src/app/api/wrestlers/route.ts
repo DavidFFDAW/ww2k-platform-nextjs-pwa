@@ -15,9 +15,6 @@ export async function GET(req: NextRequest) {
         filters['brand'] = brand;
     }
 
-    console.log('filters', { filters, brand, search });
-
-
     try {
         const wrestlers = await prisma.wrestler.findMany({
             take: ITEMS_PER_PAGE,

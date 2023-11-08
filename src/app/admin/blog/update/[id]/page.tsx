@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import UpdateForm from './UpdateForm';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 function getBlogPost(id: number) {
     return prisma.report.findFirst({
@@ -18,11 +19,7 @@ function getBlogPost(id: number) {
 
 export default async function BlogUpdatePage({ params }: { params: { id: string } }) {
     if (!params.id) redirect('/admin/blog');
-    console.log({ params });
-
     const blogPost = await getBlogPost(Number(params.id));
-    console.log({ blogPost });
-
     if (!blogPost) redirect('/admin/blog');
 
     return (

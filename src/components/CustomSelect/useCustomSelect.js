@@ -39,7 +39,6 @@ export default function useCustomSelect(list, nameProp, imageProp, value, delete
 
     const handleSelect = item => {
         const name = item[nameProp] || item.name || '';
-        console.log({ name });
         const callback = previous => ({ ...previous, id: item.id, search: name, showList: false });
         setSelectState(callback);
     };

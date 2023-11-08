@@ -19,9 +19,6 @@ export default class HttpService {
     static _makeFetchRequest(url: string, method: string, data: any = false): Promise<IResponse> {
         const cookies = Object.fromEntries(document.cookie.split('; ').map(x => x.split('=')));
         const token = cookies[TOKEN_COOKIE];
-        console.log({ cookies, token });
-
-
         const options: any = {
             method: method,
             mode: "cors",

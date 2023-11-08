@@ -9,6 +9,7 @@ const isAuthPages = (url: string) => AUTH_PAGES.some((page) => page.startsWith(u
 
 export default async function middleware(req: NextRequest) {
     const { url, nextUrl, cookies } = req;
+    if (nextUrl.pathname === '/service-worker.js') return NextResponse.next();
     const { value: token } = cookies.get(TOKEN_COOKIE) ?? { value: null };
     const hasVerifiedToken = token && (await verifyJwtToken(token));
     const isAuthPageRequested = isAuthPages(nextUrl.pathname);

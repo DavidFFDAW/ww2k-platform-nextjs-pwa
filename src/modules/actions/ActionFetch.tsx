@@ -23,8 +23,6 @@ export function ActionFetch({
     color,
     method = "post",
 }: Props) {
-    console.log({ revalidatePath, color });
-
     const handlerFetchAction = async (e: FormEvent) => {
         e.preventDefault();
         try {
@@ -36,12 +34,10 @@ export function ActionFetch({
 
             const response = await HttpService[meth](href);
 
-            console.log({ fetchResponseAction: response });
             enqueueSnackbar(response.message, {
                 variant: "success",
             });
         } catch (error: any) {
-            console.log({ fetchResponseActionError: error });
             enqueueSnackbar(`There was an error. ${error.message}`, {
                 variant: "error",
             });

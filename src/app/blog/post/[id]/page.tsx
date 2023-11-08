@@ -34,9 +34,22 @@ export default async function BlogPostDetails({
         <>
             <div className="w1 flex row center astart gap-smaller flex-responsive wrap">
                 <section className="boxed single-blog-post-container flex column start gap-small astart">
-                    <h1 className="single-post-title sourcesans">
-                        {post.title}
-                    </h1>
+                    <div className="w1">
+                        <h1 className="w1 single-post-title sourcesans">
+                            {post.title}
+                        </h1>
+                        <div>
+                            <p className="sourcesans fw900 uppercase" style={{ color: '#d32f2f' }}>
+                                {existingDateToString(post.created_at)}
+                            </p>
+                        </div>
+                    </div>
+
+                    <article className="w1 report-news-content">
+                        <p className="w1 blog-post-content sourcesans">
+                            {post.content}
+                        </p>
+                    </article>
 
                     <Image
                         alt="blog post image"
@@ -46,20 +59,6 @@ export default async function BlogPostDetails({
                         width={300}
                         height={300}
                     />
-
-                    <article className="report-news-content">
-                        <p className="blog-post-content sourcesans">
-                            {post.content}
-                        </p>
-
-                        <div className="down w1 flex end">
-                            <p>
-                                <strong>
-                                    {existingDateToString(post.created_at)}
-                                </strong>
-                            </p>
-                        </div>
-                    </article>
                 </section>
 
                 <section

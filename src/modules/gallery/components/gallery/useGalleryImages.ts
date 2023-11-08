@@ -31,7 +31,6 @@ export default function useGalleryImages() {
 
     const onDrop = (e: DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        console.log(e.dataTransfer);
         const files = e.dataTransfer.files;
         if (!files || files.length <= 0) return;
 

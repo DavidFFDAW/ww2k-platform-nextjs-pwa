@@ -39,6 +39,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     });
 
     revalidatePath('/admin/blog');
+    revalidatePath(`/admin/blog/post/${id}`);
 
     if (!inserted.id)
         return NextResponse.json({ message: 'Ha habido un error y no se ha podido crear el post' }, { status: 500 });

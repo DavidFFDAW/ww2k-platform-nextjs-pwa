@@ -51,9 +51,8 @@ export default function useLogin() {
             password: (form.get("login_password") as string).toString().trim(),
         })
             .then((response) => {
-                console.log({ response });
                 setLoading(false);
-                window.location.replace("/admin");
+                if (response.ok) window.location.replace("/admin");
                 // window.location.reload();
             })
             .catch((error) => {

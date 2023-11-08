@@ -14,7 +14,6 @@ export async function deletePost(formData: FormData) {
         if (deleted.id) return revalidatePath('/admin/blog');
 
     } catch (error) {
-        console.log(error);
         return { message: 'Something went terribly wrong', error: true }
     }
 }
@@ -33,7 +32,6 @@ export async function toggleAutomaticPostDeletion(formData: FormData) {
         if (updated) return revalidatePath('/admin/blog');
 
     } catch (error) {
-        console.log(error);
         return { message: 'Something went terribly wrong', error: true }
     }
 }
@@ -52,7 +50,6 @@ export async function changePublishedState(formData: FormData) {
         if (updated) return revalidatePath('/admin/blog');
 
     } catch (error) {
-        console.log(error);
         return { message: 'Something went terribly wrong', error: true }
     }
 }

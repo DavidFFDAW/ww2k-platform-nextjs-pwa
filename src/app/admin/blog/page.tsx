@@ -8,6 +8,7 @@ import BlogCard from './components/BlogCard';
 import { NullableLoading } from '@/components/Loading';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 function getBlogPosts(searchParams: any) {
     const filters: any = {};
