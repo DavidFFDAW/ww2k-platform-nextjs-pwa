@@ -87,8 +87,9 @@
     background: linear-gradient(140deg, #c91727 0%, rgba(31, 31, 31, 1) 100%);
 }
 
-.sidebar.shown + .sidebar-main-margin {
+.sidebar.shown+.sidebar-main-margin {
     margin-left: var(--sidebar-width);
+    transition: all 0.5s ease-in-out;
 }
 
 .btn-open-sidebar {
@@ -154,19 +155,23 @@ img.total-image {
 .responsive {
     display: none;
 }
+
 .blog-post-content {
     font-size: 18px;
     white-space: pre-line;
 }
+
 .single-blog-post-container {
     width: 50%;
 }
+
 .single-post-title {
     font-size: 30px;
     font-weight: 700;
     color: #111010;
     text-transform: uppercase;
 }
+
 .max-total-image {
     width: 100%;
     max-width: 100%;
@@ -181,6 +186,7 @@ img.total-image {
         transform: translateX(-100%);
         border-right: none;
     }
+
     .single-blog-post-container {
         width: 100%;
     }
@@ -189,7 +195,7 @@ img.total-image {
         transform: translateX(0);
     }
 
-    .sidebar.shown + .btn-open-sidebar {
+    .sidebar.shown+.btn-open-sidebar {
         display: none;
     }
 
@@ -352,7 +358,7 @@ dialog[open] {
     z-index: 0;
 }
 
-.sidebar.shown + .sidebar-main-margin .custom-totalpage-wallpaper {
+.sidebar.shown+.sidebar-main-margin .custom-totalpage-wallpaper {
     margin-left: 320px;
     width: calc(100% - 320px);
 }
