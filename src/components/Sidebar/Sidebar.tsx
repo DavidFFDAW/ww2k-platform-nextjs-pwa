@@ -5,8 +5,11 @@ import Link from 'next/link';
 import SidebarLink, { SidebarSubmit } from './SidebarLink';
 import { BootstrapIcon } from '../Icon/BootstrapIcon';
 import { logout } from '@/actions/auth.actions';
+import { usePathname } from 'next/navigation';
 
 export default function Sidebar() {
+    const pathname = usePathname();
+
     const [sidebarData, setSidebarData] = useState({
         activeLink: '',
         showSidebar: true,
@@ -36,13 +39,13 @@ export default function Sidebar() {
 
             <div className="flex center links-container-big">
                 <div className="sidebar-links-container links">
-                    <SidebarLink icon="list-ul" to={'/admin/wrestlers'} text="Wrestlers" />
-                    <SidebarLink icon="newspaper" to={'/admin/blog'} text="Blog" />
-                    <SidebarLink icon="twitter-x" to={'/admin/twitter'} text="Twitter" />
-                    <SidebarLink icon="people-fill" to={'/admin/teams'} text="Teams" />
-                    <SidebarLink icon="trophy" to={'/admin/championships'} text="Championships" />
-                    <SidebarLink icon="arrows-move" to={'/admin/draft'} text="Draft" />
-                    <SidebarLink icon="cloud-download" to={'/admin/exportation'} text="Exportacion" />
+                    <SidebarLink active={pathname.includes('/admin/wrestlers')} icon="list-ul" to={'/admin/wrestlers'} text="Wrestlers" />
+                    <SidebarLink active={pathname.includes('/admin/blog')} icon="newspaper" to={'/admin/blog'} text="Blog" />
+                    <SidebarLink active={pathname.includes('/admin/twitter')} icon="twitter-x" to={'/admin/twitter'} text="Twitter" />
+                    <SidebarLink active={pathname.includes('/admin/teams')} icon="people-fill" to={'/admin/teams'} text="Teams" />
+                    <SidebarLink active={pathname.includes('/admin/championships')} icon="trophy" to={'/admin/championships'} text="Championships" />
+                    <SidebarLink active={pathname.includes('/admin/draft')} icon="arrows-move" to={'/admin/draft'} text="Draft" />
+                    <SidebarLink active={pathname.includes('/admin/exportation')} icon="cloud-download" to={'/admin/exportation'} text="Exportacion" />
                     <form action={logout} className='w1'>
                         <SidebarSubmit icon="signpost" text="Logout" />
                     </form>
