@@ -1,5 +1,7 @@
 import { prisma } from '@/db/conn'
 import Title from '@/components/Title';
+import { TableContainer } from '@/modules/tables';
+import TableItem, { TableRow } from '@/modules/tables/components/TableRows';
 
 function getTeams() {
     return prisma.team.findMany({
@@ -23,16 +25,20 @@ export default async function AdminTeamsPage() {
         <>
             <Title title="Teams" icon='people-fill' />
 
-            <div className='w1 flex column gap-small center acenter'>
+            <TableContainer>
                 {teams.map((team) => {
-                    return (<div key={team.id} className='w1 boxed flex row acenter start gap'>
-                        <p style={{ width: 20 }}>{team.id}</p>
-                        <h4 style={{ width: 250 }}>
-                            {team.name}
-                        </h4>
-                    </div>);
+                    return (
+                        <TableRow key={team.id}>
+                            <TableItem width={10} align="left">
+                                {team.id}
+                            </TableItem>
+                            <TableItem width={90} align="left">
+                                {team.name}
+                            </TableItem>
+                        </TableRow>
+                    );
                 })}
-            </div>
+            </TableContainer>
         </>
     );
 }
