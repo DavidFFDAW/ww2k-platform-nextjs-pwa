@@ -23,13 +23,13 @@ export default async function BlogPublicList() {
             <section className='public-blog-items-list flex column center acenter gap'>
                 {posts.map((post) => (
                     <Link href={`/blog/post/${post.id}`} className="w1 post boxed flex between gap" key={post.id}>
-                        <article className="w1 blog-separation-image flex start al-start gap">
+                        <article className="w1 blog-separation-image flex start al-start gap flex-responsive">
                             <div className="first-column post-image">
                                 <Image
                                     width={180}
                                     height={180}
                                     src={post.image as string}
-                                    className="post-image"
+                                    className="post-image total-image blog-post-list-image"
                                     alt={`${post.title} post banner image`}
                                 />
                             </div>

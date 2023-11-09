@@ -909,6 +909,10 @@ body.dark-theme ::-webkit-scrollbar-thumb {
     opacity: .8;
 }
 
+.total-image.blog-post-list-image {
+    width: 100%;
+}
+
 /* ANIMATIONS */
 @keyframes show {
     from {
