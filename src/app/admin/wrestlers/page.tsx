@@ -7,6 +7,11 @@ import CreateButton from "@/components/Buttons/CreateButton";
 import { PageContext } from "@/shared/models";
 import { Pagination } from "@/components/Pagination/Pagination";
 import WrestlersSearchForm from "./components/WrestlersSearchForm";
+import { TableContainer } from "@/modules/tables";
+import TableItem, { TableRow } from "@/modules/tables/components/TableRows";
+import LazyImage from "@/components/Image/LazyImage";
+import WrestlerActions from "./Actions";
+import { parseWrestlerStatus } from "@/utilities/wrestler.status.util";
 
 async function getWrestlers(page: number, searchParams: any) {
     const realPage = page || 1;
@@ -49,9 +54,6 @@ export default async function WrestlerListPage(context: PageContext) {
             <WrestlersSearchForm params={context.searchParams} />
 
             <div className="down w1 flex between column al-center gap">
-                {/* <NullableLoading condition={wrestlers.length > 0}>
-                    <div className="w1 pagination-block"></div>
-                </NullableLoading> */}
 
                 <div className="w1 list-block overflow-y">
                     <div className="wrestlers-list items-listing">
@@ -62,22 +64,41 @@ export default async function WrestlerListPage(context: PageContext) {
                             </div>
                         </NullableLoading>
 
-                        {/* <TableContainer>
+                        <TableContainer>
                             <TableRow>
-                                <TableItem width={20}>Imagen</TableItem>
-                                <TableItem width={70}>Nombre</TableItem>
-                                <TableItem width={10}>Sexo</TableItem>
+                                <TableItem width={20} align="start">Imagen</TableItem>
+                                <TableItem width={30} align="start">
+                                    Nombre
+                                </TableItem>
+                                <TableItem width={20} align="start">Sexo</TableItem>
+                                <TableItem width={30} align="start">Estado</TableItem>
+                                <TableItem width={10} align="end">Acciones</TableItem>
                             </TableRow>
-                        </TableContainer> */}
+                        </TableContainer>
 
-                        <NullableLoading condition={wrestlers.length > 0}>
-                            {wrestlers.map((wrestler) => (
-                                <WrestlerCard
-                                    key={wrestler.id}
-                                    wrestler={wrestler}
-                                />
-                            ))}
-                        </NullableLoading>
+                        <TableContainer>
+                            <NullableLoading condition={wrestlers.length > 0}>
+                                {wrestlers.map((wrestler) => (
+                                    <TableRow>
+                                        <TableItem width={20} align="start">
+                                            <LazyImage className="table-list-image total-image" src={wrestler.image_name as string} alt={wrestler.name} />
+                                        </TableItem>
+                                        <TableItem width={30} align="start">{wrestler.name}</TableItem>
+                                        <TableItem width={20} align="start">{wrestler.sex}</TableItem>
+                                        <TableItem width={30} align="start">
+                                            {parseWrestlerStatus(wrestler.status)}
+                                        </TableItem>
+                                        <TableItem width={10} align="end">
+                                            <WrestlerActions />
+                                        </TableItem>
+                                    </TableRow>
+                                    // <WrestlerCard
+                                    //     key={wrestler.id}
+                                    //     wrestler={wrestler}
+                                    // />
+                                ))}
+                            </NullableLoading>
+                        </TableContainer>
                     </div>
                 </div>
 

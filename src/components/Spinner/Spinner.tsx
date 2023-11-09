@@ -30,8 +30,8 @@ export default function Spinner() {
 
 export function ComponentSpinner({ className }: ClassNameInterface) {
     const css = className
-        ? `w1 flex center al-center component-spinner-ch4478asdw ${className}`
-        : "w1 flex center al-center component-spinner-ch4478asdw";
+        ? `w1 flex center acenter component-spinner-ch4478asdw ${className}`
+        : "w1 flex center acenter component-spinner-ch4478asdw";
 
     return (
         <div className={css}>
@@ -43,7 +43,7 @@ export function ComponentSpinner({ className }: ClassNameInterface) {
 export function DarkSpinner({ className }: ClassNameInterface) {
     return (
         <div
-            className={`w1 flex center al-center component-spinner-ch4478asdw ${className}`}
+            className={`w1 flex center acenter component-spinner-ch4478asdw ${className}`}
         >
             <div
                 className={`${spinnerCss.spinner} ${spinnerCss.small} ${spinnerCss.dark}`}

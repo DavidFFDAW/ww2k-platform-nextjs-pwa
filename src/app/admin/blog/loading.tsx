@@ -47,7 +47,7 @@ export default function BlogCardLoading() {
                                 </div>
                                 <div
                                     className="w1 second-column flex center"
-                                    style={{ height: 150 }}
+                                    style={{ height: 200 }}
                                 >
                                     <DarkSpinner />
                                 </div>

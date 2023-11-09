@@ -36,9 +36,10 @@ export default function LazyImage({
 
     return (
         <>
-            <div ref={ref}>
+            <div ref={ref} className={className}>
                 {isInView ? <img
-                    className={className}
+                    // className={className}
+                    className="lazy-image total-image"
                     width={width}
                     height={height}
                     loading="lazy"

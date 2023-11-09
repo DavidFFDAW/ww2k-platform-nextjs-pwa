@@ -29,6 +29,17 @@
     position: relative;
     text-align: center;
     width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.table-module-container .table-item .table-list-image {
+    width: 60px;
+    height: 60px;
+}
+
+.table-module-container .table-item .table-list-image img.lazy-image {
+    border-radius: 50%;
 }
 
 /*

@@ -54,6 +54,7 @@ export const AdminMenu = [
         icon: BlogIcon,
         material: 'dashboard',
         showOnSidebar: false,
+        bootstrap: 'dashboard',
     },
     {
         key: 'menu-blog',
@@ -62,6 +63,7 @@ export const AdminMenu = [
         icon: BlogIcon,
         material: 'feed',
         showOnSidebar: true,
+        bootstrap: 'newspaper',
     },
     {
         key: 'menu-wrestlers',
@@ -70,14 +72,16 @@ export const AdminMenu = [
         material: 'group',
         icon: WrestlersIcon,
         showOnSidebar: true,
+        bootstrap: 'list-ul',
     },
     {
         key: 'menu-champions',
         name: 'Champions',
-        url: '/admin/championships/reigns',
+        url: '/admin/championships',
         material: 'trophy',
         icon: WWEChampionship,
         showOnSidebar: true,
+        bootstrap: 'trophy',
     },
     {
         key: 'menu-teams',
@@ -86,6 +90,7 @@ export const AdminMenu = [
         material: 'diversity_3',
         icon: TeamsIcon,
         showOnSidebar: true,
+        bootstrap: 'people-fill',
     },
     {
         key: 'menu-user',
@@ -94,6 +99,7 @@ export const AdminMenu = [
         material: 'person',
         icon: UserIcon,
         showOnSidebar: true,
+        bootstrap: 'person-fill',
     },
     {
         key: 'menu-twitter',
@@ -102,6 +108,7 @@ export const AdminMenu = [
         material: 'post',
         icon: TwitterIcon,
         showOnSidebar: true,
+        bootstrap: 'twitter-x',
     },
     {
         key: 'menu-draft',
@@ -110,6 +117,7 @@ export const AdminMenu = [
         material: 'rebase_edit',
         icon: DraftIcon,
         showOnSidebar: true,
+        bootstrap: 'arrows-move',
     },
     {
         key: 'exportation',
@@ -118,6 +126,7 @@ export const AdminMenu = [
         material: 'cloud-download',
         icon: ExportDownloadIcon,
         showOnSidebar: true,
+        bootstrap: 'cloud-download',
     },
 ];
 

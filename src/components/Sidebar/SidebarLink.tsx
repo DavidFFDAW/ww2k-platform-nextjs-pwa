@@ -7,9 +7,10 @@ interface SidebarLinkProps {
     icon: string;
     text: string;
     active?: boolean;
+    onClick?: () => void;
 }
 
-export default function SidebarLink({ to, icon, text, active }: SidebarLinkProps) {
+export default function SidebarLink({ to, icon, text, active, onClick }: SidebarLinkProps) {
 
     return (
         <>
@@ -17,6 +18,7 @@ export default function SidebarLink({ to, icon, text, active }: SidebarLinkProps
                 href={to}
                 title={text + ' Menu Link'}
                 className={`uppercase sidebar-link flex start acenter gap-small ${active ? 'active' : 'non-active'}`}
+                onClick={onClick}
             >
                 <BootstrapIcon icon={icon} />
                 {text}
