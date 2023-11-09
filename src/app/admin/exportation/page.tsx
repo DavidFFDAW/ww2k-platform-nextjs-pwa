@@ -19,7 +19,7 @@ export default function AdminExportationPage() {
                     <div className='down w1 flex column astart gap-small'>
                         <ExportLink text='Wrestlers' endpoint='wrestlers' working={true} />
                         <ExportLink text='Blog Posts' endpoint='blog' working={true} />
-                        <ExportLink text='Users' endpoint='users' />
+                        <ExportLink text='Users' endpoint='users' working={true} />
                         <ExportLink text='Equipos' endpoint='teams' />
                         <ExportLink text='Campeonatos' endpoint='championships' />
                         <ExportLink text='Reinados' endpoint='championship/reigns' />

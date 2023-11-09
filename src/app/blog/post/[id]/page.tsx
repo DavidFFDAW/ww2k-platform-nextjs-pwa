@@ -32,7 +32,7 @@ export default async function BlogPostDetails({
 
     return (
         <>
-            <div className="w1 flex row center astart gap-smaller flex-responsive wrap">
+            <div className="w1 flex row center astart gap-smaller flex-responsive wrap blog-item-post-frontend">
                 <section className="boxed single-blog-post-container flex column start gap-small astart">
                     <div className="w1">
                         <h1 className="w1 single-post-title sourcesans">
@@ -64,7 +64,6 @@ export default async function BlogPostDetails({
 
                 <section
                     className="blog-post-comments-section flex column gap"
-                    style={{ minWidth: 350 }}
                 >
                     <NullableLoading
                         condition={Boolean(post.ReportComments.length > 0)}
@@ -92,7 +91,7 @@ export default async function BlogPostDetails({
                         ))}
                     </NullableLoading>
 
-                    <div className="boxed w1" style={{ minWidth: 350 }}>
+                    <div className="blog-post-comments-section boxed w1">
                         <NewCommentForm />
                     </div>
                 </section>

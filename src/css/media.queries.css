@@ -73,4 +73,19 @@
     .responsive {
         flex-direction: column;
     }
+
+    .total-image.blog-post-list-image {
+        width: 100%;
+        height: auto;
+        /* max-height: 192px; */
+    }
+
+    .blog-post-comments-section {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .blog-item-post-frontend {
+        gap: 30px;
+    }
 }

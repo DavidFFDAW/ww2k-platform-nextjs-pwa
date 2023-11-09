@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     if (!token) return getNonTokenResponse();
 
     try {
-        const wrestlers = await prisma.wrestler.findMany();
+        const wrestlers = await prisma.user.findMany();
         return NextResponse.json({ data: wrestlers }, { status: 200 });
 
     } catch (error: any) {

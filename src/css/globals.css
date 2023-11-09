@@ -910,7 +910,11 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 }
 
 .total-image.blog-post-list-image {
-    width: 100%;
+    height: 180px;
+}
+
+.blog-post-comments-section {
+    min-width: 350px;
 }
 
 /* ANIMATIONS */

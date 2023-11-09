@@ -48,7 +48,7 @@ export default async function WrestlerListPage(context: PageContext) {
 
             <WrestlersSearchForm params={context.searchParams} />
 
-            <div className="w1 flex between column al-center gap">
+            <div className="down w1 flex between column al-center gap">
                 {/* <NullableLoading condition={wrestlers.length > 0}>
                     <div className="w1 pagination-block"></div>
                 </NullableLoading> */}
