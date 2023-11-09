@@ -3,6 +3,26 @@ button {
     cursor: pointer;
 }
 
+.block {
+    display: block;
+}
+
+.none {
+    display: none;
+}
+
+.inline {
+    display: inline;
+}
+
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: block;
+}
+
 .pointer {
     cursor: pointer;
 }
@@ -280,4 +300,14 @@ button {
 
 .fw900 {
     font-weight: 900;
+}
+
+@media only screen and (max-width: 768px) {
+    .mobile-only {
+        display: block;
+    }
+
+    .desktop-only {
+        display: none;
+    }
 }
