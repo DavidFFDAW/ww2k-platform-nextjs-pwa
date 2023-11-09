@@ -10,7 +10,7 @@ export function Textarea({ label, name, value = '', required = false, rows = 5 }
     return (
         <div className="w1 flex column gap-5">
             <label className="label">{label}</label>
-            <textarea className="w1 custom input" name={name} rows={rows} defaultValue={value} required={required} />
+            <textarea className="w1 custom input" name={name} rows={rows} defaultValue={value} required={required} style={{ minHeight: 50 }} />
         </div>
     );
 }
