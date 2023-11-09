@@ -2,6 +2,7 @@ import {
     AdminIcon,
     BlogIcon,
     DraftIcon,
+    ExportDownloadIcon,
     TeamsIcon,
     TwitterIcon,
     UserIcon,
@@ -108,6 +109,14 @@ export const AdminMenu = [
         url: '/admin/draft',
         material: 'rebase_edit',
         icon: DraftIcon,
+        showOnSidebar: true,
+    },
+    {
+        key: 'exportation',
+        name: 'Exportación',
+        url: '/admin/exportation',
+        material: 'cloud-download',
+        icon: ExportDownloadIcon,
         showOnSidebar: true,
     },
 ];

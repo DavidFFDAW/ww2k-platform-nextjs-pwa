@@ -7,6 +7,7 @@
     --sidebar-bg: #17181c;
 }
 
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -217,7 +218,7 @@ img.total-image {
 * {
     margin: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "SourceSans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     text-overflow: ellipsis;
 }
 
@@ -566,6 +567,17 @@ button.cta {
     text-transform: uppercase;
 }
 
+button.blue {
+    background-color: #003891;
+    color: #ffffff;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+button:disabled {
+    opacity: .4;
+}
+
 button.cta-secondary {
     background-color: transparent;
     color: var(--blackwhite);
@@ -650,6 +662,14 @@ img.rounded-preview-icon,
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.boxed.noradius {
+    border-radius: 0;
+}
+
+.boxed.small-pad {
+    padding: 10px;
 }
 
 .title-container {
@@ -876,6 +896,17 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 
 .notistack-SnackbarContainer {
     z-index: 999999 !important;
+}
+
+.noradius {
+    border-radius: 0 !important;
+}
+
+.optional-text {
+    font-size: 10px;
+    color: #003891;
+    font-weight: 500;
+    opacity: .8;
 }
 
 /* ANIMATIONS */

@@ -4,7 +4,8 @@
         width: 100%;
         height: 105vh;
     }
-    .sidebar.shown + .sidebar-main-margin {
+
+    .sidebar.shown+.sidebar-main-margin {
         margin-left: 0;
     }
 
@@ -66,5 +67,10 @@
     textarea.custom,
     select.custom {
         font-size: 0.9em;
+    }
+
+    .flex-responsive,
+    .responsive {
+        flex-direction: column;
     }
 }
