@@ -2,6 +2,7 @@ import { prisma } from '@/db/conn'
 import Title from '@/components/Title';
 import { TableContainer } from '@/modules/tables';
 import TableItem, { TableRow } from '@/modules/tables/components/TableRows';
+import CreateButton from '@/components/Buttons/CreateButton';
 
 function getTeams() {
     return prisma.team.findMany({
@@ -29,16 +30,18 @@ export default async function AdminTeamsPage() {
                 {teams.map((team) => {
                     return (
                         <TableRow key={team.id}>
-                            <TableItem width={10} align="left">
+                            <TableItem width={10} align="start">
                                 {team.id}
                             </TableItem>
-                            <TableItem width={90} align="left">
+                            <TableItem width={90} align="start">
                                 {team.name}
                             </TableItem>
                         </TableRow>
                     );
                 })}
             </TableContainer>
+
+            <CreateButton endpoint='teams/create' />
         </>
     );
 }
