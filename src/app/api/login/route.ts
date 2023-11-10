@@ -1,9 +1,9 @@
-import bcrypt from "bcrypt";
-import { prisma } from "@/db/conn";
-import { NextRequest, NextResponse } from "next/server";
-import { SignJWT } from "jose";
-import { getJwtSecretKey } from "@/utilities/jwt";
-import { TOKEN_COOKIE } from "@/constants/config";
+import bcrypt from 'bcrypt';
+import { prisma } from '@/db/conn';
+import { NextRequest, NextResponse } from 'next/server';
+import { SignJWT } from 'jose';
+import { getJwtSecretKey } from '@/utilities/jwt';
+import { TOKEN_COOKIE } from '@/constants/config';
 
 export async function POST(request: NextRequest) {
     try {
@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
         if (!credentials?.password)
             return NextResponse.json({
                 error: true,
-                message: "Debes introducir una contraseña",
+                message: 'Debes introducir una contraseña',
             });
 
         const foundUser = await prisma.user.findUnique({
@@ -24,18 +24,15 @@ export async function POST(request: NextRequest) {
         if (!foundUser)
             return NextResponse.json({
                 error: true,
-                message: "No se ha encontrado este usuario",
+                message: 'No se ha encontrado este usuario',
             });
 
-        const passwordMatch = await bcrypt.compare(
-            credentials!.password.trim(),
-            foundUser.password
-        );
+        const passwordMatch = await bcrypt.compare(credentials!.password.trim(), foundUser.password);
 
         if (!passwordMatch)
             return NextResponse.json({
                 error: true,
-                message: "La contraseña no coincide",
+                message: 'La contraseña no coincide',
             });
 
         const user = {
@@ -48,29 +45,28 @@ export async function POST(request: NextRequest) {
         };
 
         const token = await new SignJWT({ ...user })
-            .setProtectedHeader({ alg: "HS256" })
+            .setProtectedHeader({ alg: 'HS256' })
             .setIssuedAt()
-            .setExpirationTime(3600 * 24 * 30)
+            .setExpirationTime('15d')
             .sign(getJwtSecretKey());
 
         const response = NextResponse.json({
             error: false,
-            message: "Bienvenido",
+            message: 'Bienvenido',
             user,
         });
 
         response.cookies.set({
             name: TOKEN_COOKIE,
             value: token,
-            path: "/",
+            path: '/',
         });
 
         return response;
-
     } catch (error: any) {
         return NextResponse.json({
             error: true,
-            message: "Ha ocurrido un error",
+            message: 'Ha ocurrido un error',
             error_message: error.message,
         });
     }

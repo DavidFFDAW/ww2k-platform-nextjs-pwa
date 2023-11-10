@@ -26,7 +26,7 @@ export default function Sidebar() {
         if (window.innerWidth < 768) {
             toggleSidebar();
         }
-    }
+    };
 
     const showSidebar = sidebarData.showSidebar ? 'shown' : '';
 
@@ -46,18 +46,25 @@ export default function Sidebar() {
                 </Link>
             </div>
 
-            <div className="flex center links-container-big">
+            <div className="flex center links-container-big sidebar-links-container-overflow">
                 <div className="sidebar-links-container links">
                     {AdminMenu.map((item, index) => {
                         const key = item.key || index;
                         if (item.showOnSidebar) {
                             return (
-                                <SidebarLink active={pathname.includes(item.url)} icon={item.bootstrap} to={item.url} text={item.name} key={key} onClick={toggleOnClick} />
+                                <SidebarLink
+                                    active={pathname.includes(item.url)}
+                                    icon={item.bootstrap}
+                                    to={item.url}
+                                    text={item.name}
+                                    key={key}
+                                    onClick={toggleOnClick}
+                                />
                             );
                         }
                     })}
 
-                    <form action={logout} className='w1'>
+                    <form action={logout} className="w1">
                         <SidebarSubmit icon="signpost" text="Logout" />
                     </form>
                 </div>
