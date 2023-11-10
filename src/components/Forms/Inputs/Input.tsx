@@ -1,3 +1,4 @@
+'use client';
 interface InputProps {
     type?: string;
     max?: number;
