@@ -1,14 +1,24 @@
 import React from 'react'
 import { prisma } from '@/db/conn'
-import Title from '@/components/Title';
+import { ButtonCTA, DangerButton } from '@/components/Buttons/Buttons';
+import { Wrestler } from '@prisma/client';
+import TeamCreateForm from './TeamCreateForm';
+
+function getPossibleMembers(): Promise<Wrestler[]> {
+    return prisma.wrestler.findMany({
+        orderBy: {
+            name: 'asc'
+        },
+    });
+}
 
 
 export default async function AdminTeamsCreatePage() {
+    const possibleMembers = await getPossibleMembers();
 
     return (
         <>
-            <Title title="Crear equipo" icon='people-fill' />
-
+            <TeamCreateForm possibleMembers={possibleMembers} />
         </>
-    )
+    );
 }

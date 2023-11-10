@@ -89,7 +89,7 @@ export default async function WrestlerListPage(context: PageContext) {
                                             {parseWrestlerStatus(wrestler.status)}
                                         </TableItem>
                                         <TableItem width={10} align="end">
-                                            <WrestlerActions />
+                                            <WrestlerActions wrestler={wrestler} />
                                         </TableItem>
                                     </TableRow>
                                     // <WrestlerCard
