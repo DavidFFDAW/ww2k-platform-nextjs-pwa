@@ -1,5 +1,6 @@
 'use client';
 import React from 'react'
+import useForm from './useForm';
 
 interface FormProps {
     method: "POST" | "GET";
@@ -9,23 +10,23 @@ interface FormProps {
     style?: React.CSSProperties;
     debug?: boolean;
     onSubmitCallback?: (formData: FormData) => void;
+    sendHttp?: boolean;
+    redirect?: string;
 }
 
-export default function Form({ method, action, children, className, style, debug, onSubmitCallback }: FormProps) {
+export default function Form({ method, action, children, className, style, debug, onSubmitCallback, sendHttp, redirect }: FormProps) {
+    const { onSubmitHook } = useForm({ action, redirectRoute: redirect });
+
+
     return (
         <form
             method={method}
             action={action}
             className={className}
             style={style}
-            onSubmit={(e) => {
-                e.preventDefault();
-                const formData = new FormData(e.target as HTMLFormElement);
-                if (debug) console.log('Form data:', JSON.stringify(Object.fromEntries(formData)));
-                if (onSubmitCallback) onSubmitCallback(formData);
-            }}
+            onSubmit={(e) => onSubmitHook({ event: e, debug, onSubmitCallback, sendHttp })}
         >
             {children}
-        </form>
+        </form >
     )
 }
