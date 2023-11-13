@@ -3,6 +3,7 @@ import Title from '@/components/Title';
 import { TableContainer } from '@/modules/tables';
 import TableItem, { TableRow } from '@/modules/tables/components/TableRows';
 import CreateButton from '@/components/Buttons/CreateButton';
+import TeamActions from './TeamActions';
 
 function getTeams() {
     return prisma.team.findMany({
@@ -29,14 +30,16 @@ export default async function AdminTeamsPage() {
 
             <TableContainer>
                 {teams.map((team) => {
-
                     return (
                         <TableRow key={team.id}>
                             <TableItem width={10} align="start">
                                 {team.id}
                             </TableItem>
-                            <TableItem width={90} align="start">
+                            <TableItem width={80} align="start">
                                 {team.name}
+                            </TableItem>
+                            <TableItem width={10} align="start">
+                                <TeamActions team={team} />
                             </TableItem>
                         </TableRow>
                     );
