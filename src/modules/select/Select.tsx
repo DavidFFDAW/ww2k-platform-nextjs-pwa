@@ -3,6 +3,8 @@ import React from 'react'
 import { NullableLoading } from '@/components/Loading';
 import useSelect from './useSelect';
 import './customselect.css';
+import { BootstrapIcon } from '@/components/Icon/BootstrapIcon';
+import LazyImage from '@/components/Image/LazyImage';
 
 interface SelectProps {
     list: any[];
@@ -15,8 +17,8 @@ interface SelectProps {
 export default function Select({ list, name, zIndex, listHeight, selectCallback }: SelectProps) {
     const {
         search, showList, selectList, selectedItem,
-        toggleList, handleChangeSearch, selectItemFromList
-    } = useSelect(list, selectCallback);
+        toggleList, handleChangeSearch, selectItemFromList, removeSearchText
+    } = useSelect({ givenList: list, selectCallback });
 
     const resultListStyle: React.CSSProperties = {
         zIndex: zIndex || 0,
@@ -25,7 +27,7 @@ export default function Select({ list, name, zIndex, listHeight, selectCallback 
 
     return (
         <section className="custom-select-container">
-            <div className="custom-select flex start al-center">
+            <div className="custom-select flex start acenter">
                 <input
                     type="text"
                     className="input"
@@ -34,7 +36,10 @@ export default function Select({ list, name, zIndex, listHeight, selectCallback 
                     onClick={toggleList}
                 />
                 {selectedItem ? <input type="hidden" name={name} value={selectedItem.id} /> : null}
-                <button type="button" className="btn-list" onClick={toggleList}>
+                <button type="button" className="btn-list" onClick={removeSearchText}>
+                    <BootstrapIcon icon={'x-circle'} />
+                </button>
+                <button type="button" className="btn-list last" onClick={toggleList}>
                     {showList ? '▲' : '▼'}
                 </button>
                 <NullableLoading condition={showList}>
@@ -44,8 +49,9 @@ export default function Select({ list, name, zIndex, listHeight, selectCallback 
 
                             return (
                                 <div key={index} className="custom-select-result pointer" onClick={selectItemFromList(item)}>
-                                    <div className="custom-select-result-image flex start al-center gap-small">
-                                        <div className="backgroundimg" style={{ backgroundImage: `url(${img})` }}></div>
+                                    <div className="custom-select-result-image flex start acenter gap-small">
+                                        {/* <div className="backgroundimg" style={{ backgroundImage: `url(${img})` }}></div> */}
+                                        <LazyImage width={50} height={50} imgClassName='backgroundimg' src={img} alt={item.name} />
                                         <p>{item.name}</p>
                                     </div>
                                 </div>

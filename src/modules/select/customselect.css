@@ -12,6 +12,7 @@
     height: 40px;
     border: 1px solid lightgray;
     border-radius: 0;
+    box-shadow: none;
 }
 
 body.dark-theme .custom-select-container .input {
@@ -67,6 +68,11 @@ body.dark-theme .close-list-icon::after {
     background-color: transparent;
     border: 1px solid lightgray;
     border-left: none;
+    border-radius: 0;
+}
+
+.btn-list.last,
+.btn-list:last-child {
     border-radius: 0 5px 5px 0;
 }
 

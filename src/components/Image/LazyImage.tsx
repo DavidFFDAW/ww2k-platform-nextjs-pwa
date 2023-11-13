@@ -6,6 +6,7 @@ import { ComponentSpinner } from "../Spinner/Spinner";
 interface Props {
     src?: string;
     className?: string;
+    imgClassName?: string;
     alt?: string;
     draggable?: boolean;
     width?: number;
@@ -15,6 +16,7 @@ interface Props {
 export default function LazyImage({
     src,
     className,
+    imgClassName,
     alt = "defaul image",
     draggable = false,
     width = 512,
@@ -33,13 +35,14 @@ export default function LazyImage({
     };
 
     const imageSrcF = isInView ? imageSrc : '/noimage.jpg';
+    const imageClassName = `lazy-image total-image ${imgClassName}`;
 
     return (
         <>
             <div ref={ref} className={className}>
                 {isInView ? <img
                     // className={className}
-                    className="lazy-image total-image"
+                    className={imageClassName}
                     width={width}
                     height={height}
                     loading="lazy"

@@ -13,7 +13,12 @@ interface ISelectState {
     selectedItem: any;
 }
 
-export default function useSelect(givenList: ListType[], selectCallback?: (item: any) => void) {
+interface useSelectParameters {
+    givenList: ListType[];
+    selectCallback?: (item: any) => void;
+};
+
+export default function useSelect({ givenList, selectCallback = (item) => { } }: useSelectParameters) {
     const [state, setState] = React.useState<ISelectState>({
         list: givenList,
         showList: false,
@@ -23,8 +28,8 @@ export default function useSelect(givenList: ListType[], selectCallback?: (item:
 
     const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputVal = e.target.value;
-        const filteredList = givenList.filter(item => item.name.toLowerCase().includes(inputVal.toLowerCase()));
-        setState((prev: ISelectState) => ({ ...prev, search: inputVal, list: filteredList }));
+        const filteredList = state.search.length <= 0 ? givenList : givenList.filter(item => item.name.toLowerCase().includes(inputVal.toLowerCase()));
+        setState((prev: ISelectState) => ({ ...prev, showList: true, search: inputVal, list: filteredList }));
     };
 
     return {
@@ -38,10 +43,14 @@ export default function useSelect(givenList: ListType[], selectCallback?: (item:
             if (selectCallback) selectCallback(item);
             setState((prev: ISelectState) => ({
                 ...prev,
+                list: givenList.filter(i => i.id !== item.id),
                 search: item.name,
                 showList: false,
                 selectedItem: item
             }));
+        },
+        removeSearchText: () => {
+            setState((prev: ISelectState) => ({ ...prev, showList: false, search: '' }));
         }
     }
 }
