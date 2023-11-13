@@ -1,12 +1,11 @@
 'use client';
 import { Boxed } from '@/components/Box/Boxed'
 import { Input } from '@/components/Forms'
-import ScrollableArea from '@/components/Scrollable/ScrollableArea'
 import { Wrestler } from '@prisma/client'
 import React from 'react'
-import Form from '@/components/Forms/Form'
+import Form from '@/components/Forms/Form/Form'
 import { ButtonCTA } from '@/components/Buttons/Buttons';
-import Select from '@/modules/select/Select';
+import GroupSelection from './GroupSelection';
 
 export default function TeamCreateForm({ possibleMembers }: { possibleMembers: Wrestler[] }) {
 
@@ -14,11 +13,11 @@ export default function TeamCreateForm({ possibleMembers }: { possibleMembers: W
         <>
             <Form
                 method="POST"
+                action='/api/teams/create'
                 className="flex center al-center column gap wrestler-upsert-form space-down"
-                onSubmitCallback={(formData: FormData) => {
-                    console.log('formData', formData);
-                }}
                 debug={true}
+                sendHttp={true}
+                redirect='/admin/teams'
             >
                 <Boxed title={'Datos del equipo'} w={'100'}>
                     <div className="flex center astart gap-small">
@@ -38,22 +37,7 @@ export default function TeamCreateForm({ possibleMembers }: { possibleMembers: W
                     </div>
                 </Boxed>
 
-                <Boxed w={'100'}>
-                    <div className="space-down">
-                        <ScrollableArea height={200} title={'Miembros de equipo'}>
-                            {/* <MembersList property={'members'} /> */}
-                        </ScrollableArea>
-                    </div>
-
-                    <Select
-                        zIndex={100}
-                        listHeight={250}
-                        name={'select-wrestler-team'}
-                        list={possibleMembers.map(i => ({ id: i.id, name: i.name, image: i.image_name }))}
-                        selectCallback={(item: any) => { console.log('selected ', { item }); }}
-                    />
-
-                </Boxed>
+                <GroupSelection list={possibleMembers} />
 
                 <div className='flex end acenter fixed-button'>
                     <ButtonCTA type={'submit'} text={'Guardar'} />

@@ -1,0 +1,58 @@
+import { Boxed } from '@/components/Box/Boxed';
+import { ButtonSecondary, DangerButton } from '@/components/Buttons/Buttons';
+import Image from '@/components/Image/Image';
+import ScrollableArea from '@/components/Scrollable/ScrollableArea';
+import Select from '@/modules/select/Select';
+import React from 'react'
+
+interface SelectedState {
+    temporal: any;
+    selected: any[];
+}
+
+export default function GroupSelection({ list }: { list: any[] }) {
+    const [selected, setSelected] = React.useState<SelectedState>({ temporal: null, selected: [] });
+
+    const removeTeamMemberByID = (id: number) => {
+        setSelected(p => ({ ...p, selected: p.selected.filter(m => m.id !== id) }));
+    }
+
+    const justIDs = selected.selected.map(i => i.id);
+
+    return (
+        <Boxed w={'100'}>
+            <div className="space-down">
+                <ScrollableArea height={200} title={'Miembros de equipo'}>
+                    {selected.selected.map((member, index) => {
+                        const image = member.image || '/noimage.jpg';
+                        return (
+                            <div key={index} className="w1 scrollable-item flex between acenter gap">
+                                <input type="hidden" name="members[]" value={member.id} />
+                                <div className="flex start acenter gap">
+                                    {/* <div className="backgroundimage" style={{ backgroundImage: `url(${image})` }}></div> */}
+                                    <Image width={50} height={50} className='total-img' src={image} alt={member.name} />
+                                    <p>{member.name}</p>
+                                </div>
+                                <DangerButton text={<>&times;</>} onClick={() => removeTeamMemberByID(member.id)} />
+                            </div>
+                        );
+                    })}
+                </ScrollableArea>
+            </div>
+
+            <Select
+                zIndex={100}
+                listHeight={250}
+                name={'select-wrestler-team'}
+                list={list.map(i => ({ id: i.id, name: i.name, image: i.image_name }))}
+                selectCallback={(item: any) => { setSelected(p => ({ ...p, temporal: item })) }}
+            />
+
+            <div className='down w1 flex end acenter'>
+                <ButtonSecondary text={'Agregar'} onClick={() => {
+                    setSelected(p => ({ ...p, selected: [...p.selected, p.temporal] }))
+                }} />
+            </div>
+        </Boxed>
+    )
+}

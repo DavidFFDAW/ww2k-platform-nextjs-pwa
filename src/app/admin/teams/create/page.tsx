@@ -1,6 +1,5 @@
 import React from 'react'
 import { prisma } from '@/db/conn'
-import { ButtonCTA, DangerButton } from '@/components/Buttons/Buttons';
 import { Wrestler } from '@prisma/client';
 import TeamCreateForm from './TeamCreateForm';
 
@@ -9,6 +8,11 @@ function getPossibleMembers(): Promise<Wrestler[]> {
         orderBy: {
             name: 'asc'
         },
+        include: {
+            WrestlerTeam: true,
+        },
+        where:
+            { WrestlerTeam: { none: {} } },
     });
 }
 

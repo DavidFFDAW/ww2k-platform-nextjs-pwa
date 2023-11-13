@@ -9,12 +9,13 @@ function getTeams() {
         orderBy: {
             name: 'asc'
         },
-    });
-}
-function getWrestlers() {
-    return prisma.wrestler.findMany({
-        orderBy: {
-            name: 'asc'
+        include: {
+            WrestlerTeam: {
+                include: {
+                    Team: true,
+                    Wrestler: true,
+                }
+            }
         },
     });
 }
@@ -28,6 +29,7 @@ export default async function AdminTeamsPage() {
 
             <TableContainer>
                 {teams.map((team) => {
+
                     return (
                         <TableRow key={team.id}>
                             <TableItem width={10} align="start">
