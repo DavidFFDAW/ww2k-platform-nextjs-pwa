@@ -1,15 +1,14 @@
-// import { prisma } from '@/db/conn';
+import { prisma } from '@/db/conn';
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { getJWT, getNonTokenResponse } from '@/app/api/helpers/token.helper';
 import { checkRequiredFields } from '@/app/api/helpers/request.helper';
+import { WrestlerTeam } from '@prisma/client';
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
     const body = await request.json();
     const token = await getJWT(request);
     if (!token) return getNonTokenResponse();
-    console.log({ params });
-
 
     const requiredFields = ['name', 'overall', 'members'];
     const { error, fields } = checkRequiredFields(body, requiredFields);
@@ -26,10 +25,44 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
         return NextResponse.json({ message: `Un equipo puede tener como máximo 5 miembros` }, { status: 400 });
     }
 
-    revalidatePath('/admin/teams');
+    const currentMembers = (
+        await prisma.wrestlerTeam.findMany({
+            where: {
+                team_id: Number(params.id),
+            },
+            select: {
+                wrestler_id: true,
+            },
+        })
+    ).map((wrestler: { wrestler_id: number }) => wrestler.wrestler_id.toString());
 
-    // if (!inserted.id)
-    //     return NextResponse.json({ message: 'Ha habido un error y no se ha podido crear el equipo' }, { status: 500 });
+    const toCreate = members.filter((member: string) => !currentMembers.includes(member));
+    const toDelete = currentMembers.filter((member: string) => !members.includes(member));
 
-    return NextResponse.json({ message: 'Se ha creado el equipo correctamente' }, { status: 200 });
+    try {
+        await prisma.team.update({
+            where: {
+                id: Number(params.id),
+            },
+            data: {
+                name,
+                average: Number(overall),
+                WrestlerTeam: {
+                    deleteMany: toDelete.map((member: string) => ({
+                        wrestler_id: Number(member),
+                    })),
+                    create: toCreate.map((member: string) => ({
+                        wrestler_id: Number(member),
+                    })),
+                },
+            },
+        });
+
+        revalidatePath('/admin/teams');
+        revalidatePath('/admin/teams/update/[id]', 'page');
+
+        return NextResponse.json({ message: 'Se ha creado el equipo correctamente' }, { status: 200 });
+    } catch (err: any) {
+        return NextResponse.json({ message: 'Error: ' + err.message }, { status: 500 });
+    }
 }
