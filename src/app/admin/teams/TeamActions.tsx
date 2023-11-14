@@ -1,10 +1,14 @@
-'use client';
-import { deleteTeam } from '@/actions/team.actions';
-import Actions from '@/modules/actions/Actions';
-import { Team } from '@prisma/client';
-import React from 'react'
+"use client";
+import { deleteTeam } from "@/actions/team.actions";
+import Actions from "@/modules/actions/Actions";
+import { ChampionshipReign, Team } from "@prisma/client";
+import React from "react";
 
-export default function TeamActions({ team }: { team: Team }) {
+export default function TeamActions({
+    team,
+}: {
+    team: Team & { ChampionshipReign: ChampionshipReign[] };
+}) {
     return (
         <div className="actions-grouped-container">
             <Actions.Container>
@@ -20,16 +24,18 @@ export default function TeamActions({ team }: { team: Team }) {
                     toHref={"/admin/teams/create"}
                     icon={"plus-circle"}
                 />
-                <form action={deleteTeam} className="w1 form-delete">
-                    <Actions.Submit
-                        text={`Borrar equipo '${team.name}'`}
-                        color={Actions.Colors.DELETE}
-                        icon={"trash-fill"}
-                        name="team_id"
-                        value={team.id.toString()}
-                    />
-                </form>
+                {team.ChampionshipReign.length <= 0 ? (
+                    <form action={deleteTeam} className="w1 form-delete">
+                        <Actions.Submit
+                            text={`Borrar equipo '${team.name}'`}
+                            color={Actions.Colors.DELETE}
+                            icon={"trash-fill"}
+                            name="team_id"
+                            value={team.id.toString()}
+                        />
+                    </form>
+                ) : null}
             </Actions.Container>
         </div>
-    )
+    );
 }
