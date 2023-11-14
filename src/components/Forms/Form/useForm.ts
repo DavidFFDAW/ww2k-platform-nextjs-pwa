@@ -10,11 +10,12 @@ interface SubmitHook {
 }
 
 interface useFormParameters {
+    method: 'post' | 'put' | 'delete' | 'get';
     action: string | undefined;
     redirectRoute?: string;
 }
 
-export default function useForm({ action, redirectRoute }: useFormParameters) {
+export default function useForm({ method, action, redirectRoute }: useFormParameters) {
     const router = useRouter();
 
     const serializeFormDatas = (form: HTMLFormElement) => {
@@ -39,7 +40,7 @@ export default function useForm({ action, redirectRoute }: useFormParameters) {
     const handleSendRequest = (serializedDatas: any) => {
         if (!action) throw new Error('Action is required');
 
-        return HttpService.post(action, serializedDatas).then((response) => {
+        return HttpService[method](action, serializedDatas).then((response) => {
             if (!response.ok) return enqueueSnackbar(response.message, { variant: 'error' });
             enqueueSnackbar(response.message, { variant: 'success' });
 

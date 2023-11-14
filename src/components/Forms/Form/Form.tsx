@@ -3,7 +3,7 @@ import React from 'react'
 import useForm from './useForm';
 
 interface FormProps {
-    method: "POST" | "GET";
+    method: "POST" | "GET" | "PUT" | "DELETE";
     action?: string;
     children: React.ReactNode;
     className?: string;
@@ -15,8 +15,7 @@ interface FormProps {
 }
 
 export default function Form({ method, action, children, className, style, debug, onSubmitCallback, sendHttp, redirect }: FormProps) {
-    const { onSubmitHook } = useForm({ action, redirectRoute: redirect });
-
+    const { onSubmitHook } = useForm({ action, redirectRoute: redirect, method: method.toLowerCase() as "post" | "get" | "put" | "delete" });
 
     return (
         <form
