@@ -57,6 +57,7 @@ html.dark-theme {
 .actions-option-group .actions-group-actions-list .action-text {
     font-weight: 400;
     color: var(--blackwhite);
+    text-align: start;
 }
 
 .actions-option-group .actions-group-actions-list {
