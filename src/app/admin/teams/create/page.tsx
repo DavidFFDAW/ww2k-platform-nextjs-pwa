@@ -1,7 +1,9 @@
 import React from 'react'
 import { prisma } from '@/db/conn'
 import { Wrestler } from '@prisma/client';
-import TeamCreateForm from './TeamCreateForm';
+import Form from '../../../../components/Forms/Form/Form';
+import TeamUpsertForm from '../components/TeamUpsertForm';
+
 
 function getPossibleMembers(): Promise<Wrestler[]> {
     return prisma.wrestler.findMany({
@@ -22,7 +24,16 @@ export default async function AdminTeamsCreatePage() {
 
     return (
         <>
-            <TeamCreateForm possibleMembers={possibleMembers} />
+            <Form
+                method="POST"
+                action='/api/teams/create'
+                className="flex center al-center column gap wrestler-upsert-form space-down"
+                debug={true}
+                sendHttp={true}
+                redirect='/admin/teams'
+            >
+                <TeamUpsertForm possibleMembers={possibleMembers} />
+            </Form>
         </>
     );
 }
