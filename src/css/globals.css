@@ -7,7 +7,6 @@
     --sidebar-bg: #17181c;
 }
 
-
 .sidebar {
     position: fixed;
     top: 0;
@@ -93,7 +92,7 @@
     background: linear-gradient(140deg, #c91727 0%, rgba(31, 31, 31, 1) 100%);
 }
 
-.sidebar.shown+.sidebar-main-margin {
+.sidebar.shown + .sidebar-main-margin {
     margin-left: var(--sidebar-width);
 }
 .sidebar-main-margin {
@@ -172,7 +171,7 @@ img.total-image {
 .blog-post-content * {
     font-size: 18px;
     white-space: pre-line;
-    font-family: 'SourceSans';
+    font-family: "SourceSans";
 }
 
 .single-blog-post-container {
@@ -192,6 +191,17 @@ img.total-image {
     height: auto;
     object-fit: cover;
 }
+.badge {
+    background-color: rgb(240, 189, 189);
+    color: rgb(199, 15, 15);
+    display: block;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 20px;
+}
+.badge i.bi {
+    color: rgb(199, 15, 15);
+}
 
 @media only screen and (max-width: 768px) {
     .sidebar {
@@ -209,7 +219,7 @@ img.total-image {
         transform: translateX(0);
     }
 
-    .sidebar.shown+.btn-open-sidebar {
+    .sidebar.shown + .btn-open-sidebar {
         display: none;
     }
 
@@ -372,7 +382,7 @@ dialog[open] {
     z-index: 0;
 }
 
-.sidebar.shown+.sidebar-main-margin .custom-totalpage-wallpaper {
+.sidebar.shown + .sidebar-main-margin .custom-totalpage-wallpaper {
     margin-left: 320px;
     width: calc(100% - 320px);
 }
@@ -582,7 +592,7 @@ button.blue {
 }
 
 button:disabled {
-    opacity: .4;
+    opacity: 0.4;
 }
 
 button.cta-secondary {
@@ -913,7 +923,7 @@ body.dark-theme ::-webkit-scrollbar-thumb {
     font-size: 10px;
     color: #003891;
     font-weight: 500;
-    opacity: .8;
+    opacity: 0.8;
 }
 
 .total-image.blog-post-list-image {
