@@ -1,23 +1,23 @@
-'use client';
-import React, { useState } from 'react';
-import Image from '../Image/Image';
-import Link from 'next/link';
-import SidebarLink, { SidebarSubmit } from './SidebarLink';
-import { BootstrapIcon } from '../Icon/BootstrapIcon';
-import { logout } from '@/actions/auth.actions';
-import { usePathname } from 'next/navigation';
-import { AdminMenu } from '@/constants/routes';
+"use client";
+import React, { useState } from "react";
+import Image from "../Image/Image";
+import Link from "next/link";
+import SidebarLink, { SidebarSubmit } from "./SidebarLink";
+import { BootstrapIcon } from "../Icon/BootstrapIcon";
+import { logout } from "@/actions/auth.actions";
+import { usePathname } from "next/navigation";
+import { AdminMenu } from "@/constants/routes";
 
 export default function Sidebar() {
     const pathname = usePathname();
 
     const [sidebarData, setSidebarData] = useState({
-        activeLink: '',
-        showSidebar: true,
+        activeLink: "",
+        showSidebar: window.innerWidth < 768 ? false : true,
     });
 
     const toggleSidebar = () => {
-        setSidebarData(p => ({ ...p, showSidebar: !p.showSidebar }));
+        setSidebarData((p) => ({ ...p, showSidebar: !p.showSidebar }));
     };
 
     const toggleOnClick = () => {
@@ -28,16 +28,21 @@ export default function Sidebar() {
         }
     };
 
-    const showSidebar = sidebarData.showSidebar ? 'shown' : '';
+    const showSidebar = sidebarData.showSidebar ? "shown" : "";
 
     return (
         <aside className={`sidebar ${showSidebar}`} id="sidebear">
-            <button type="button" role="button" className="btn close responsive" onClick={toggleSidebar}></button>
+            <button
+                type="button"
+                role="button"
+                className="btn close responsive"
+                onClick={toggleSidebar}
+            ></button>
 
             <div className="flex center sidebar-image-container">
-                <Link href={'/admin'} title="Image Dashboard Link">
+                <Link href={"/admin"} title="Image Dashboard Link">
                     <Image
-                        src={'/icons/icon-512x512.png'}
+                        src={"/icons/icon-512x512.png"}
                         width={128}
                         height={128}
                         className="sidebar-image-logo"
@@ -70,11 +75,14 @@ export default function Sidebar() {
                 </div>
             </div>
 
-            <button className="btn-sidebar btn-open-sidebar" onClick={toggleSidebar}>
+            <button
+                className="btn-sidebar btn-open-sidebar"
+                onClick={toggleSidebar}
+            >
                 {sidebarData.showSidebar ? (
-                    <BootstrapIcon icon={'chevron-left'} />
+                    <BootstrapIcon icon={"chevron-left"} />
                 ) : (
-                    <BootstrapIcon icon={'chevron-right'} />
+                    <BootstrapIcon icon={"chevron-right"} />
                 )}
             </button>
         </aside>
