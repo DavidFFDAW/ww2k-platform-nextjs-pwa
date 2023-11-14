@@ -38,7 +38,7 @@ export default async function AdminTeamsPage() {
                             <TableItem width={80} align="start">
                                 {team.name}
                             </TableItem>
-                            <TableItem width={10} align="start">
+                            <TableItem width={10} align="end">
                                 <TeamActions team={team} />
                             </TableItem>
                         </TableRow>

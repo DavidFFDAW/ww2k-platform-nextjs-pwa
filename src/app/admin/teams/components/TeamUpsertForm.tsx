@@ -7,7 +7,7 @@ import Form from '@/components/Forms/Form/Form'
 import { ButtonCTA } from '@/components/Buttons/Buttons';
 import GroupSelection from './GroupSelection';
 
-export default function TeamCreateForm({ possibleMembers }: { possibleMembers: Wrestler[] }) {
+export default function TeamUpsertForm({ possibleMembers }: { possibleMembers: Wrestler[] }) {
 
     return (
         <>

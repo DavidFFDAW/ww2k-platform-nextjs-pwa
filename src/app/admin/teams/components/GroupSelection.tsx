@@ -1,3 +1,4 @@
+'use client';
 import { Boxed } from '@/components/Box/Boxed';
 import { ButtonSecondary, DangerButton } from '@/components/Buttons/Buttons';
 import Image from '@/components/Image/Image';
@@ -10,14 +11,17 @@ interface SelectedState {
     selected: any[];
 }
 
-export default function GroupSelection({ list }: { list: any[] }) {
-    const [selected, setSelected] = React.useState<SelectedState>({ temporal: null, selected: [] });
+interface GroupSelectionProps {
+    list: any[];
+    members?: any[];
+}
+
+export default function GroupSelection({ list, members }: GroupSelectionProps) {
+    const [selected, setSelected] = React.useState<SelectedState>({ temporal: null, selected: members || [] });
 
     const removeTeamMemberByID = (id: number) => {
         setSelected(p => ({ ...p, selected: p.selected.filter(m => m.id !== id) }));
     }
-
-    const justIDs = selected.selected.map(i => i.id);
 
     return (
         <Boxed w={'100'}>
