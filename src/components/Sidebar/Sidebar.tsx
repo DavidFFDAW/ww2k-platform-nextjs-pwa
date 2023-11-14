@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Image from "../Image/Image";
 import Link from "next/link";
 import SidebarLink, { SidebarSubmit } from "./SidebarLink";
@@ -11,10 +11,16 @@ import { AdminMenu } from "@/constants/routes";
 export default function Sidebar() {
     const pathname = usePathname();
 
-    const [sidebarData, setSidebarData] = useState({
-        activeLink: "",
-        showSidebar: window.innerWidth < 768 ? false : true,
+    const [sidebarData, setSidebarData] = useState<{ showSidebar: boolean }>({
+        showSidebar: false,
     });
+
+    useEffect(() => {
+        setSidebarData((p) => ({
+            ...p,
+            showSidebar: window.innerWidth <= 768 ? false : true,
+        }));
+    }, []);
 
     const toggleSidebar = () => {
         setSidebarData((p) => ({ ...p, showSidebar: !p.showSidebar }));
