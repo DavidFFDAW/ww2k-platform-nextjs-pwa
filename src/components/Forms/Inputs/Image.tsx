@@ -1,3 +1,4 @@
+'use client';
 import Image from "@/components/Image/Image";
 import dynamic from "next/dynamic";
 import { useState } from "react";

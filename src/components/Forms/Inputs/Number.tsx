@@ -4,18 +4,17 @@ interface InputProps {
     max?: number;
     label: string;
     name: string;
-    value?: string;
+    value?: string | number | undefined | null;
     placeholder?: string;
     required?: boolean;
 }
 
-export function Input({
-    type,
+export function NumberInput({
     max = 100,
     label,
     name,
     value = '',
-    placeholder = 'Default placeholder',
+    placeholder = '3141595',
     required = false,
 }: InputProps) {
     return (
@@ -25,10 +24,11 @@ export function Input({
                 <input
                     className="w1"
                     maxLength={max}
-                    type={type || 'text'}
+                    type={'number'}
+                    inputMode="numeric"
                     name={name}
                     required={required}
-                    defaultValue={value ? value : ''}
+                    defaultValue={value ? Number(value) : ''}
                     placeholder={placeholder}
                 />
             </div>
