@@ -13,6 +13,7 @@ interface useFormParameters {
     method: 'post' | 'put' | 'delete' | 'get';
     action: string | undefined;
     redirectRoute?: string;
+    refresh?: boolean;
 }
 
 export default function useForm({ method, action, redirectRoute, refresh }: useFormParameters) {
