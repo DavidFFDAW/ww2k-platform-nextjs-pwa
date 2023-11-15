@@ -30,6 +30,7 @@ export default async function AdminTeamUpdatePage({ params }: { params: { id: st
                 debug={true}
                 sendHttp={true}
                 redirect="/admin/teams"
+                refresh={true}
             >
 
                 <Suspense fallback={<TeamUpdateSkeleton />}>

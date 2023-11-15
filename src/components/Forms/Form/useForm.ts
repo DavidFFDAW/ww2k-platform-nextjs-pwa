@@ -15,7 +15,7 @@ interface useFormParameters {
     redirectRoute?: string;
 }
 
-export default function useForm({ method, action, redirectRoute }: useFormParameters) {
+export default function useForm({ method, action, redirectRoute, refresh }: useFormParameters) {
     const router = useRouter();
 
     const serializeFormDatas = (form: HTMLFormElement) => {
@@ -43,6 +43,7 @@ export default function useForm({ method, action, redirectRoute }: useFormParame
         return HttpService[method](action, serializedDatas).then((response) => {
             if (!response.ok) return enqueueSnackbar(response.message, { variant: 'error' });
             enqueueSnackbar(response.message, { variant: 'success' });
+            if (refresh) router.refresh();
 
             if (redirectRoute) {
                 setTimeout(() => {

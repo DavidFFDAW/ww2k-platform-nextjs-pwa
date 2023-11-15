@@ -12,10 +12,11 @@ interface FormProps {
     onSubmitCallback?: (formData: FormData) => void;
     sendHttp?: boolean;
     redirect?: string;
+    refresh?: boolean;
 }
 
-export default function Form({ method, action, children, className, style, debug, onSubmitCallback, sendHttp, redirect }: FormProps) {
-    const { onSubmitHook } = useForm({ action, redirectRoute: redirect, method: method.toLowerCase() as "post" | "get" | "put" | "delete" });
+export default function Form({ method, action, children, className, style, debug, onSubmitCallback, sendHttp, redirect, refresh }: FormProps) {
+    const { onSubmitHook } = useForm({ refresh, action, redirectRoute: redirect, method: method.toLowerCase() as "post" | "get" | "put" | "delete" });
 
     return (
         <form
