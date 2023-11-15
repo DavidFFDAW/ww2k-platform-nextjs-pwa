@@ -1,9 +1,20 @@
 import React from 'react'
 import { prisma } from '@/db/conn'
 import { Wrestler } from '@prisma/client';
-import Form from '../../../../components/Forms/Form/Form';
-import TeamUpsertForm from '../components/TeamUpsertForm';
+import Form from '@/components/Forms/Form/Form';
+import GroupSelection from '../components/GroupSelection';
+import { Boxed } from '@/components/Box/Boxed';
+import { Input } from '@/components/Forms';
+import { NumberInput } from '@/components/Forms/Inputs/Number';
+import { Metadata } from 'next';
+import { getNamedTitle } from '@/utilities/metadatas.utility';
+import { ButtonCTA } from '@/components/Buttons/Buttons';
+import Title from '@/components/Title';
 
+export const metadata: Metadata = {
+    title: getNamedTitle('Nuevo equipo'),
+    description: "Crear un nuevo equipo",
+};
 
 function getPossibleMembers(): Promise<Wrestler[]> {
     return prisma.wrestler.findMany({
@@ -32,7 +43,26 @@ export default async function AdminTeamsCreatePage() {
                 sendHttp={true}
                 redirect='/admin/teams'
             >
-                <TeamUpsertForm possibleMembers={possibleMembers} />
+                <Boxed title={'Datos del equipo'} w={'100'}>
+                    <div className="flex center astart gap-small">
+                        <Input required={true} max={150} label={'Nombre'} name={'name'} />
+                        <NumberInput
+                            type={'number'}
+                            max={3}
+                            required={true}
+                            label={'Media'}
+                            name={'overall'}
+                        />
+                    </div>
+                </Boxed>
+
+                <GroupSelection list={possibleMembers} />
+
+
+
+                <div className="flex end acenter fixed-button">
+                    <ButtonCTA type={'submit'} text={'Guardar'} />
+                </div>
             </Form>
         </>
     );

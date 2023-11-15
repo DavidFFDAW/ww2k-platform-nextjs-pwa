@@ -1,4 +1,5 @@
 import HttpService from "@/services/http.service";
+import { debug } from "console";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 
@@ -14,9 +15,10 @@ interface useFormParameters {
     action: string | undefined;
     redirectRoute?: string;
     refresh?: boolean;
+    debug?: boolean;
 }
 
-export default function useForm({ method, action, redirectRoute, refresh }: useFormParameters) {
+export default function useForm({ method, action, redirectRoute, refresh, debug }: useFormParameters) {
     const router = useRouter();
 
     const serializeFormDatas = (form: HTMLFormElement) => {
@@ -57,7 +59,7 @@ export default function useForm({ method, action, redirectRoute, refresh }: useF
         });
     };
 
-    const onSubmitHook = ({ event, debug, onSubmitCallback, sendHttp }: SubmitHook) => {
+    const onSubmitHook = ({ event, onSubmitCallback, sendHttp }: SubmitHook) => {
         event.preventDefault();
         const form = event.target as HTMLFormElement;
         const formData = new FormData(form);

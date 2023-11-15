@@ -16,7 +16,7 @@ interface FormProps {
 }
 
 export default function Form({ method, action, children, className, style, debug, onSubmitCallback, sendHttp, redirect, refresh }: FormProps) {
-    const { onSubmitHook } = useForm({ refresh, action, redirectRoute: redirect, method: method.toLowerCase() as "post" | "get" | "put" | "delete" });
+    const { onSubmitHook } = useForm({ debug, refresh, action, redirectRoute: redirect, method: method.toLowerCase() as "post" | "get" | "put" | "delete" });
 
     return (
         <form
@@ -24,7 +24,7 @@ export default function Form({ method, action, children, className, style, debug
             action={action}
             className={className}
             style={style}
-            onSubmit={(e) => onSubmitHook({ event: e, debug, onSubmitCallback, sendHttp })}
+            onSubmit={(e) => onSubmitHook({ event: e, onSubmitCallback, sendHttp })}
         >
             {children}
         </form >
