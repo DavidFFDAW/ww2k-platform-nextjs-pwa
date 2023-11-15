@@ -22,6 +22,8 @@ function getTeams() {
     });
 }
 
+export const revalidate = 0;
+
 export default async function AdminTeamsPage() {
     const teams = await getTeams();
 

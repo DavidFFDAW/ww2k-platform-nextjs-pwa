@@ -34,6 +34,8 @@ function getCurrentTeamData(id: string) {
     });
 }
 
+export const revalidate = 0;
+
 export default async function AdminTeamUpdatePage({ params }: { params: { id: string } }) {
     const id = params.id;
     const [possibleMembers, currentTeamData] = await Promise.all([getPossibleMembers(), getCurrentTeamData(id)]);
