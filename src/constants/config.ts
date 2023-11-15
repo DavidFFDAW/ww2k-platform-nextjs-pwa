@@ -19,3 +19,5 @@ export const STATIC_PAGES = {
     TERMS: "/terms",
     DENIED: "/denied",
 };
+
+export const APP_TITLE = 'WWE2K'
