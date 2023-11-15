@@ -23,6 +23,7 @@
     transform: translateX(-100%);
     z-index: 99999;
 }
+
 .sidebar-links-container-overflow {
     overflow-y: auto;
     height: 100%;
@@ -92,9 +93,10 @@
     background: linear-gradient(140deg, #c91727 0%, rgba(31, 31, 31, 1) 100%);
 }
 
-.sidebar.shown + .sidebar-main-margin {
+.sidebar.shown+.sidebar-main-margin {
     margin-left: var(--sidebar-width);
 }
+
 .sidebar-main-margin {
     transition: all 0.5s ease-in-out;
 }
@@ -191,6 +193,7 @@ img.total-image {
     height: auto;
     object-fit: cover;
 }
+
 .badge {
     background-color: rgb(240, 189, 189);
     color: rgb(199, 15, 15);
@@ -199,6 +202,7 @@ img.total-image {
     text-align: center;
     border-radius: 20px;
 }
+
 .badge i.bi {
     color: rgb(199, 15, 15);
 }
@@ -219,7 +223,7 @@ img.total-image {
         transform: translateX(0);
     }
 
-    .sidebar.shown + .btn-open-sidebar {
+    .sidebar.shown+.btn-open-sidebar {
         display: none;
     }
 
@@ -382,7 +386,7 @@ dialog[open] {
     z-index: 0;
 }
 
-.sidebar.shown + .sidebar-main-margin .custom-totalpage-wallpaper {
+.sidebar.shown+.sidebar-main-margin .custom-totalpage-wallpaper {
     margin-left: 320px;
     width: calc(100% - 320px);
 }
@@ -444,7 +448,11 @@ select.custom {
     background-color: #eeeeee;
     color: var(--input-color);
     cursor: pointer;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); */
+}
+
+input.skeleton-loading {
+    border: none;
 }
 
 textarea,
@@ -932,6 +940,31 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 
 .blog-post-comments-section {
     min-width: 350px;
+}
+
+.skeleton-loading.skeleton-line {
+    min-height: 20px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.skeleton-loading.skeleton-circle {
+    border-radius: 50%;
+}
+
+.skeleton-loading {
+    animation: skeleton-loading 1s linear infinite alternate;
+
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: #a3a3a344;
+    }
+
+    100% {
+        background-color: #f1f1f145;
+    }
 }
 
 /* ANIMATIONS */
