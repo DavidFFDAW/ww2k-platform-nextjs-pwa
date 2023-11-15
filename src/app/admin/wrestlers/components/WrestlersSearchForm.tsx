@@ -22,7 +22,7 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
     };
 
     return (
-        <SearchForm url={"/admin/wrestlers"}>
+        <SearchForm url={"/admin/wrestlers"} className="wrestlers-filters-list-container">
             <div className="w1 down boxed flex center column gap-small padded al-center filters-block__content">
                 <header className="w1 flex between acenter filter-header buttons">
                     <NullableLoading condition={showFilters}>

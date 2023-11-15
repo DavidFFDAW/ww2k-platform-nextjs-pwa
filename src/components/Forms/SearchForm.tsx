@@ -4,10 +4,12 @@ import React from "react";
 
 interface SearchFormProps {
     url: string;
+    className?: string;
+    style?: React.CSSProperties;
     children: React.ReactNode;
 }
 
-export default function SearchForm({ url, children }: SearchFormProps) {
+export default function SearchForm({ url, className, style, children }: SearchFormProps) {
     const router = useRouter();
     const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -18,13 +20,17 @@ export default function SearchForm({ url, children }: SearchFormProps) {
             .map(([key, value]) => `${key}=${value}`)
             .join("&");
 
+        console.log(nonEmptyParams);
+
+
         router.push(url + "?" + nonEmptyParams);
     };
 
     return (
         <form
             method="GET"
-            className="wrestlers-filters-list-container"
+            className={className}
+            style={style}
             onSubmit={handlerSubmit}
         >
             {children}

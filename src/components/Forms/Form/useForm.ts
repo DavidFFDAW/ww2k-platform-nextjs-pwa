@@ -60,6 +60,9 @@ export default function useForm({ method, action, redirectRoute, refresh, debug 
     };
 
     const onSubmitHook = ({ event, onSubmitCallback, sendHttp }: SubmitHook) => {
+        const hasReasonToStop = !onSubmitCallback && !sendHttp;
+        if (hasReasonToStop) return;
+
         event.preventDefault();
         const form = event.target as HTMLFormElement;
         const formData = new FormData(form);
