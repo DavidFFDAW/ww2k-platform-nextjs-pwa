@@ -1,9 +1,16 @@
+import React from 'react'
 import HomeLink from '@/components/HomeLink/HomeLink';
 import PageBackground from '@/components/PageBackground/PageBackground';
 import { AdminMenu } from '@/constants/routes';
-import React from 'react'
+import { getTitle } from '@/utilities/metadatas.utility';
+import { Metadata } from 'next';
 
-export default function page() {
+export const metadata: Metadata = {
+    title: getTitle(),
+    description: "App admin dashboard",
+};
+
+export default function AdminDashboard() {
     return (
         <>
             <PageBackground>
