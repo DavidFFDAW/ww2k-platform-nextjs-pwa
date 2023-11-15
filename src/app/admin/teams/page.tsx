@@ -1,31 +1,22 @@
-import { prisma } from "@/db/conn";
 import Title from "@/components/Title";
 import { TableContainer } from "@/modules/tables";
 import TableItem, { TableRow } from "@/modules/tables/components/TableRows";
 import CreateButton from "@/components/Buttons/CreateButton";
-import TeamActions from "./TeamActions";
+import TeamActions from "./components/TeamActions";
 import { BootstrapIcon } from "@/components/Icon/BootstrapIcon";
-
-function getTeams() {
-    return prisma.team.findMany({
-        orderBy: {
-            name: "asc",
-        },
-        include: {
-            ChampionshipReign: true,
-            WrestlerTeam: {
-                include: {
-                    Wrestler: true,
-                },
-            },
-        },
-    });
-}
+import { Metadata } from "next";
+import { getNamedTitle } from "@/utilities/metadatas.utility";
+import { getTeamsWithMembers } from "@/queries/teams.queries";
 
 export const revalidate = 0;
 
+export const metadata: Metadata = {
+    title: getNamedTitle("Equipos"),
+    description: "Administrar equipos",
+};
+
 export default async function AdminTeamsPage() {
-    const teams = await getTeams();
+    const teams = await getTeamsWithMembers();
 
     return (
         <>

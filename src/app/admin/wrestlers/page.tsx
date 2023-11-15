@@ -12,6 +12,13 @@ import TableItem, { TableRow } from '@/modules/tables/components/TableRows';
 import LazyImage from '@/components/Image/LazyImage';
 import WrestlerActions from './Actions';
 import { parseWrestlerStatus } from '@/utilities/wrestler.status.util';
+import { getNamedTitle } from '@/utilities/metadatas.utility';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: getNamedTitle("Wrestlers"),
+    description: "Administrar luchadores",
+};
 
 async function getWrestlers(page: number, searchParams: any) {
     const realPage = page || 1;
