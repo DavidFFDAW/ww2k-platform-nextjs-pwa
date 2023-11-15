@@ -5,6 +5,7 @@ import { getNamedTitle } from "@/utilities/metadatas.utility";
 import TableListSkeleton from "./TableListSkeleton";
 import { Suspense } from "react";
 import TableList from "./TableList";
+import Link from "next/link";
 
 export const revalidate = 0;
 

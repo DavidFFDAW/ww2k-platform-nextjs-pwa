@@ -19,6 +19,12 @@ export default function TeamActions({
                     icon={"pencil-square"}
                 />
                 <Actions.Link
+                    text={'Panel de equipo aleatorio'}
+                    color={Actions.Colors.DEFAULT}
+                    toHref={'/admin/teams/random'}
+                    icon={"question-diamond"}
+                />
+                <Actions.Link
                     text={"Crear nuevo equipo"}
                     color={Actions.Colors.DEFAULT}
                     toHref={"/admin/teams/create"}
@@ -29,7 +35,7 @@ export default function TeamActions({
                         <Actions.Submit
                             text={`Borrar equipo '${team.name}'`}
                             color={Actions.Colors.DELETE}
-                            icon={"trash-fill"}
+                            icon={"trash"}
                             name="team_id"
                             value={team.id.toString()}
                         />
