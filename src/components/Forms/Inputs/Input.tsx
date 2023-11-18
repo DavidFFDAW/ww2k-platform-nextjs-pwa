@@ -1,4 +1,4 @@
-'use client';
+"use client";
 interface InputProps {
     type?: string;
     max?: number;
@@ -14,21 +14,24 @@ export function Input({
     max = 100,
     label,
     name,
-    value = '',
-    placeholder = 'Default placeholder',
+    value = "",
+    placeholder = "Default placeholder",
     required = false,
 }: InputProps) {
     return (
         <div className="w1 flex column gap-5">
-            <label className="label">{label}</label>
+            <label className="label">
+                {label}
+                {required ? <span className="required">*</span> : null}
+            </label>
             <div className="input-wrapper-container-div relative">
                 <input
                     className="w1"
                     maxLength={max}
-                    type={type || 'text'}
+                    type={type || "text"}
                     name={name}
                     required={required}
-                    defaultValue={value ? value : ''}
+                    defaultValue={value ? value : ""}
                     placeholder={placeholder}
                 />
             </div>

@@ -16,7 +16,9 @@ export function InputDate({
 }: DateProps) {
     return (
         <div className="w1 flex column gap-5">
-            <label className="label">{label}</label>
+            <label className="label">{label}
+                {required ? <span className="required">*</span> : null}
+            </label>
             <input
                 min={min}
                 max={max}
