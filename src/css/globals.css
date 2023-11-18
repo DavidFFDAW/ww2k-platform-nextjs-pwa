@@ -93,7 +93,7 @@
     background: linear-gradient(140deg, #c91727 0%, rgba(31, 31, 31, 1) 100%);
 }
 
-.sidebar.shown+.sidebar-main-margin {
+.sidebar.shown + .sidebar-main-margin {
     margin-left: var(--sidebar-width);
 }
 
@@ -223,7 +223,7 @@ img.total-image {
         transform: translateX(0);
     }
 
-    .sidebar.shown+.btn-open-sidebar {
+    .sidebar.shown + .btn-open-sidebar {
         display: none;
     }
 
@@ -386,7 +386,7 @@ dialog[open] {
     z-index: 0;
 }
 
-.sidebar.shown+.sidebar-main-margin .custom-totalpage-wallpaper {
+.sidebar.shown + .sidebar-main-margin .custom-totalpage-wallpaper {
     margin-left: 320px;
     width: calc(100% - 320px);
 }
@@ -432,6 +432,14 @@ label.label {
     font-weight: 500;
     color: var(--label);
     text-transform: uppercase;
+}
+
+label.label .required {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--danger-red);
+    vertical-align: middle;
+    margin-left: 5px;
 }
 
 input,
@@ -954,7 +962,6 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 
 .skeleton-loading {
     animation: skeleton-loading 1s linear infinite alternate;
-
 }
 
 @keyframes skeleton-loading {

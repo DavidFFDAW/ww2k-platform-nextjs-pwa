@@ -238,6 +238,11 @@ button {
     place-items: center;
 }
 
+.two-column {
+    grid-template-columns: repeat(2, 1fr);
+    place-items: end;
+}
+
 .place-items {
     place-items: center;
 }
