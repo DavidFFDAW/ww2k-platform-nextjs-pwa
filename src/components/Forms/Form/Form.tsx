@@ -1,6 +1,6 @@
-'use client';
-import React from 'react'
-import useForm from './useForm';
+"use client";
+import React from "react";
+import useForm from "./useForm";
 
 interface FormProps {
     method: "POST" | "GET" | "PUT" | "DELETE";
@@ -9,14 +9,31 @@ interface FormProps {
     className?: string;
     style?: React.CSSProperties;
     debug?: boolean;
-    onSubmitCallback?: (formData: FormData) => void;
+    onSubmitCallback?: (serializedDatas: any) => void;
     sendHttp?: boolean;
     redirect?: string;
     refresh?: boolean;
 }
 
-export default function Form({ method, action, children, className, style, debug, onSubmitCallback, sendHttp, redirect, refresh }: FormProps) {
-    const { onSubmitHook } = useForm({ debug, refresh, action, redirectRoute: redirect, method: method.toLowerCase() as "post" | "get" | "put" | "delete" });
+export default function Form({
+    method,
+    action,
+    children,
+    className,
+    style,
+    debug,
+    onSubmitCallback,
+    sendHttp,
+    redirect,
+    refresh,
+}: FormProps) {
+    const { onSubmitHook } = useForm({
+        debug,
+        refresh,
+        action,
+        redirectRoute: redirect,
+        method: method.toLowerCase() as "post" | "get" | "put" | "delete",
+    });
 
     return (
         <form
@@ -24,9 +41,11 @@ export default function Form({ method, action, children, className, style, debug
             action={action}
             className={className}
             style={style}
-            onSubmit={(e) => onSubmitHook({ event: e, onSubmitCallback, sendHttp })}
+            onSubmit={(e) =>
+                onSubmitHook({ event: e, onSubmitCallback, sendHttp })
+            }
         >
             {children}
-        </form >
-    )
+        </form>
+    );
 }
