@@ -14,8 +14,7 @@ export const metadata: Metadata = {
     description: "Administrar equipos",
 };
 
-export default async function AdminTeamsPage() {
-
+export default function AdminTeamsPage() {
     return (
         <>
             <Title title="Teams" icon="people-fill" />
