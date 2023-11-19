@@ -1,3 +1,4 @@
+"use client";
 import HttpService from "@/services/http.service";
 import { serializeFormDatas } from "@/utilities/form.utility";
 import { useRouter } from "next/navigation";
