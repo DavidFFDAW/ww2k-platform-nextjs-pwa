@@ -60,7 +60,9 @@ export default function LoginForm() {
                         </button>
                     </div>
 
-                    <a href="#forgot">He olvidado mi contraseña</a>
+                    <a href="#forgot" style={{ color: "#fff" }}>
+                        He olvidado mi contraseña
+                    </a>
                 </div>
 
                 <div className="w1 flex between row">
