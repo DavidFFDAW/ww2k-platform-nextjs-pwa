@@ -20,7 +20,7 @@ export function Input({
 }: InputProps) {
     return (
         <div className="w1 flex column gap-5">
-            <label className="label">
+            <label className="label" htmlFor={name}>
                 {label}
                 {required ? <span className="required">*</span> : null}
             </label>
