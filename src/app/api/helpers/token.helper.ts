@@ -1,11 +1,14 @@
-import { TOKEN_COOKIE } from '@/constants/config';
-import { prisma } from '@/db/conn';
-import { verifyJwtToken } from '@/utilities/jwt';
-import { NextRequest, NextResponse } from 'next/server';
+import { TOKEN_COOKIE } from "@/constants/config";
+import { prisma } from "@/db/conn";
+import { getJwtSecretKey, verifyJwtToken } from "@/utilities/jwt";
+import { SignJWT } from "jose";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function getJWT(req: NextRequest) {
     const cookieToken = req.cookies.get(TOKEN_COOKIE);
-    const bearerToken = { value: req.headers.get('Authorization')?.split(' ')[1] };
+    const bearerToken = {
+        value: req.headers.get("Authorization")?.split(" ")[1],
+    };
     const token = cookieToken || bearerToken;
 
     if (!token || !token.value) return null;
@@ -16,20 +19,21 @@ export function getNonTokenResponse() {
     return NextResponse.json(
         {
             message:
-                'No tienes permisos para realizar esta acción. Contacta con un administrador o inicia sesión en la API',
+                "No tienes permisos para realizar esta acción. Contacta con un administrador o inicia sesión en la API",
             status: 401,
         },
-        { status: 401 },
+        { status: 401 }
     );
 }
 
 export function getNonValidTokenResponse() {
     return NextResponse.json(
         {
-            message: 'El token introducido no es válido. Contacta con un administrador o inicia sesión en la API',
+            message:
+                "El token introducido no es válido. Contacta con un administrador o inicia sesión en la API",
             status: 401,
         },
-        { status: 401 },
+        { status: 401 }
     );
 }
 
@@ -46,4 +50,14 @@ export async function isTokenValid(token: string) {
     if (!user) return false;
 
     return tokenUser.email === user.email;
+}
+
+export function getSignedToken(datas: {}) {
+    return (
+        new SignJWT({ ...datas })
+            .setProtectedHeader({ alg: "HS256" })
+            .setIssuedAt()
+            // .setExpirationTime('15d')
+            .sign(getJwtSecretKey())
+    );
 }
