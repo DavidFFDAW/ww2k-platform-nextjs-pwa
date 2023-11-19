@@ -12,13 +12,8 @@ export default function useRandomTeam() {
         loading: false,
     });
 
-    const searchTeam = (serializedDatas: any) => {
-        console.log("useRandomTeam: ", { serializedDatas });
-    };
-
     return {
         state,
         setState,
-        searchTeam,
     };
 }

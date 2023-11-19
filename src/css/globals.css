@@ -6,6 +6,9 @@
     --sidebar-width: 320px;
     --sidebar-bg: #17181c;
 }
+* {
+    transition: all 0.5s ease-in-out;
+}
 
 .sidebar {
     position: fixed;
@@ -95,7 +98,7 @@
 
 .sidebar.shown + .sidebar-main-margin {
     min-height: 88vh;
-    position: relative;
+    /* position: relative; */
     margin-left: var(--sidebar-width);
 }
 

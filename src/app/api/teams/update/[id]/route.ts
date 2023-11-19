@@ -22,7 +22,7 @@ export async function PUT(
         );
     }
 
-    const { name, overall, members } = body;
+    const { name, overall, overalls, members } = body;
     if (members.length < 2) {
         return NextResponse.json(
             { message: `Un equipo debe tener al menos 2 miembros` },
@@ -56,13 +56,22 @@ export async function PUT(
         (member: string) => !members.includes(member)
     );
 
+    const insertingOverall = Math.floor(
+        overall
+            ? overall
+            : overalls.reduce(
+                  (acc: number, curr: number) => Number(acc) + Number(curr),
+                  0
+              ) / overalls.length
+    );
+
     await prisma.team.update({
         where: {
             id: Number(params.id),
         },
         data: {
             name,
-            average: Number(overall),
+            average: Number(insertingOverall),
             WrestlerTeam: {
                 deleteMany: toDelete.map((member: string) => ({
                     wrestler_id: Number(member),

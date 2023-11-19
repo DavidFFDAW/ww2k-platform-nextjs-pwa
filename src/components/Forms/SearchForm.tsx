@@ -9,7 +9,12 @@ interface SearchFormProps {
     children: React.ReactNode;
 }
 
-export default function SearchForm({ url, className, style, children }: SearchFormProps) {
+export default function SearchForm({
+    url,
+    className,
+    style,
+    children,
+}: SearchFormProps) {
     const router = useRouter();
     const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -19,9 +24,6 @@ export default function SearchForm({ url, className, style, children }: SearchFo
             .filter(([_, value]) => value !== "")
             .map(([key, value]) => `${key}=${value}`)
             .join("&");
-
-        console.log(nonEmptyParams);
-
 
         router.push(url + "?" + nonEmptyParams);
     };
