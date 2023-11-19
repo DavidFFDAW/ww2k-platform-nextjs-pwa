@@ -94,6 +94,8 @@
 }
 
 .sidebar.shown + .sidebar-main-margin {
+    min-height: 88vh;
+    position: relative;
     margin-left: var(--sidebar-width);
 }
 
@@ -294,7 +296,7 @@ body {
 
 .boxed-content {
     margin: 0 30px;
-    padding: 30px 0;
+    padding: 5px 0 30px 0;
 }
 
 .uppercase {

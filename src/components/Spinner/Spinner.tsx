@@ -40,6 +40,16 @@ export function ComponentSpinner({ className }: ClassNameInterface) {
     );
 }
 
+export function CenteredSpinner({ className }: ClassNameInterface) {
+    return (
+        <div
+            className={`w1 flex center acenter absolute ${spinnerCss.absolutespinner} component-spinner-ch4478asdw ${className}`}
+        >
+            <div className={`${spinnerCss.spinner} ${spinnerCss.small}`}></div>
+        </div>
+    );
+}
+
 export function DarkSpinner({ className }: ClassNameInterface) {
     return (
         <div

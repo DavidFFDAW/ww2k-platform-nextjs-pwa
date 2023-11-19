@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { BootstrapIcon } from "../Icon/BootstrapIcon";
+import CustomLink from "../Link/CustomLink";
 
 interface CreateButtonProps {
     endpoint: string;
@@ -7,8 +7,8 @@ interface CreateButtonProps {
 
 export default function CreateButton({ endpoint }: CreateButtonProps) {
     return (
-        <Link href={`/admin/${endpoint}`} className="create-new-button">
+        <CustomLink href={`/admin/${endpoint}`} className="create-new-button">
             <BootstrapIcon icon="plus" />
-        </Link>
+        </CustomLink>
     );
 }
