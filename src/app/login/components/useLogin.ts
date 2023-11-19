@@ -1,6 +1,6 @@
-'use client';
+"use client";
 import HttpService from "@/services/http.service";
-import Router from "next/router";
+import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 import React from "react";
 
@@ -17,6 +17,7 @@ const initialFormState: FormState = {
 };
 
 export default function useLogin() {
+    const router = useRouter();
     const [formState, setFormState] =
         React.useState<FormState>(initialFormState);
 
@@ -52,8 +53,11 @@ export default function useLogin() {
         })
             .then((response) => {
                 setLoading(false);
-                if (response.ok) window.location.replace("/admin");
-                // window.location.reload();
+                if (response.ok) {
+                    return setTimeout(() => {
+                        router.push("/admin");
+                    }, 500);
+                }
             })
             .catch((error) => {
                 enqueueSnackbar(`Error: ${error.message}`, {
