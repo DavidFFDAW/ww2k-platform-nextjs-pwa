@@ -54,12 +54,16 @@ export default function useLogin() {
             .then((response) => {
                 setLoading(false);
                 if (response.ok) {
+                    console.log({ response });
+
                     return setTimeout(() => {
                         router.push("/admin");
-                    }, 500);
+                    }, 1000);
                 }
             })
             .catch((error) => {
+                console.log({ error });
+
                 enqueueSnackbar(`Error: ${error.message}`, {
                     variant: "error",
                 });
