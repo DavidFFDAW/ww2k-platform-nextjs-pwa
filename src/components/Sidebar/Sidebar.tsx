@@ -27,8 +27,6 @@ export default function Sidebar() {
     };
 
     const toggleOnClick = () => {
-        console.log({ w: window.innerWidth });
-
         if (window.innerWidth < 768) {
             toggleSidebar();
         }
