@@ -4,7 +4,7 @@ import { Wrestler } from "@prisma/client";
 import Form from "@/components/Forms/Form/Form";
 import GroupSelection from "../components/GroupSelection";
 import { Boxed } from "@/components/Box/Boxed";
-import { Input } from "@/components/Forms";
+import { Input, ToggleInput } from "@/components/Forms";
 import { NumberInput } from "@/components/Forms/Inputs/Number";
 import { Metadata } from "next";
 import { getNamedTitle } from "@/utilities/metadatas.utility";
@@ -55,6 +55,11 @@ export default async function AdminTeamsCreatePage() {
                             required={true}
                             label={"Media"}
                             name={"overall"}
+                        />
+                        <ToggleInput
+                            label={"Activo"}
+                            name={"active"}
+                            checked={true}
                         />
                     </div>
                 </Boxed>

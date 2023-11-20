@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
             { status: 400 }
         );
     }
-    const { name, overall, overalls, members } = body;
+    const { name, overall, overalls, members, active } = body;
     if (members.length < 2)
         return NextResponse.json(
             { message: "Un equipo debe tener al menos 2 miembros" },
@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
         data: {
             name,
             average: Number(insertingOverall),
+            active: active,
             WrestlerTeam: {
                 create: members.map((member: any) => ({
                     wrestler_id: Number(member),
@@ -60,6 +61,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
         { message: "Se ha creado el equipo correctamente" },
-        { status: 200 }
+        { status: 400 }
     );
 }

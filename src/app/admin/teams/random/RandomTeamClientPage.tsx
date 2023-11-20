@@ -6,7 +6,6 @@ import HttpForm from "@/components/Forms/HttpForm/HttpForm";
 import { ComponentSpinner } from "@/components/Spinner/Spinner";
 import SearchRandomTeam from "./components/SearchRandomTeam";
 import CreateRandomTeam from "./components/CreateRandomTeam";
-import { ButtonSecondary } from "@/components/Buttons/Buttons";
 
 export default function RandomTeamClientPage() {
     const { state, setState } = useRandomTeam();

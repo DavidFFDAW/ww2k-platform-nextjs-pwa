@@ -1,9 +1,9 @@
-import { BootstrapIcon } from '@/components/Icon/BootstrapIcon';
-import { TableContainer } from '@/modules/tables';
-import TableItem, { TableRow } from '@/modules/tables/components/TableRows';
-import { getTeamsWithMembers } from '@/queries/teams.queries';
-import React from 'react'
-import TeamActions from './components/TeamActions';
+import { BootstrapIcon } from "@/components/Icon/BootstrapIcon";
+import { TableContainer } from "@/modules/tables";
+import TableItem, { TableRow } from "@/modules/tables/components/TableRows";
+import { getTeamsWithMembers } from "@/queries/teams.queries";
+import React from "react";
+import TeamActions from "./components/TeamActions";
 
 export default async function TableList() {
     const teams = await getTeamsWithMembers();
@@ -12,7 +12,15 @@ export default async function TableList() {
         <TableContainer>
             {teams.map((team) => {
                 return (
-                    <TableRow key={team.id}>
+                    <TableRow
+                        key={team.id}
+                        style={{
+                            borderLeft: team.active
+                                ? "none"
+                                : "3px solid #f44336",
+                            opacity: team.active ? 1 : 0.7,
+                        }}
+                    >
                         <TableItem width={90} align="start">
                             <div className="flex start acenter gap-small">
                                 {team.ChampionshipReign.length > 0 ? (
@@ -42,5 +50,5 @@ export default async function TableList() {
                 );
             })}
         </TableContainer>
-    )
+    );
 }

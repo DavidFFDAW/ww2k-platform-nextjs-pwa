@@ -4,7 +4,9 @@ import React from "react";
 import MembersList from "./MembersList";
 import { ButtonCTA } from "@/components/Buttons/Buttons";
 import { NumberInput } from "@/components/Forms/Inputs/Number";
-import { Input } from "@/components/Forms";
+import { Input, ToggleInput } from "@/components/Forms";
+import Grid from "@/components/Layouts/Grid/Grid";
+import Flex from "@/components/Layouts/Flex";
 
 interface Props {
     list: any[];
@@ -19,7 +21,7 @@ export default function CreateRandomTeam({ list }: Props) {
                 className="down"
             >
                 <div className="w1 flex column gap">
-                    <div className="grid two-column gap-small acenter">
+                    <Flex justify="start" align="end" gap={10}>
                         <Input
                             required={true}
                             max={150}
@@ -33,7 +35,12 @@ export default function CreateRandomTeam({ list }: Props) {
                             label={"Media"}
                             name={"overall"}
                         />
-                    </div>
+                        <ToggleInput
+                            label={"Activo"}
+                            name={"active"}
+                            checked={true}
+                        />
+                    </Flex>
 
                     <MembersList list={list} />
 

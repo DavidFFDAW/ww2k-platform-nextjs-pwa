@@ -2,7 +2,7 @@ import React from "react";
 import { getCompleteTeamDataByID } from "@/queries/teams.queries";
 import { HiddenInput } from "@/components/Forms/Inputs/Hidden";
 import { Boxed } from "@/components/Box/Boxed";
-import { Input } from "@/components/Forms";
+import { Input, ToggleInput } from "@/components/Forms";
 import { NumberInput } from "@/components/Forms/Inputs/Number";
 import GroupSelection from "./GroupSelection";
 import { getWrestlersWithoutTeam } from "@/queries/wrestler.queries";
@@ -45,6 +45,11 @@ export default async function LoadedUpdateInputs({ id }: { id: string }) {
                         label={"Media"}
                         name={"overall"}
                         value={currentTeamData.average}
+                    />
+                    <ToggleInput
+                        label={"Activo"}
+                        name={"active"}
+                        checked={currentTeamData.active}
                     />
                 </div>
             </Boxed>
