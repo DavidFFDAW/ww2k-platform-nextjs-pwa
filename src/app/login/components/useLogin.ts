@@ -54,11 +54,7 @@ export default function useLogin() {
             .then((response) => {
                 setLoading(false);
                 if (response.ok) {
-                    console.log({ response });
-
-                    return setTimeout(() => {
-                        router.refresh();
-                    }, 1000);
+                    router.refresh();
                 }
             })
             .catch((error) => {
