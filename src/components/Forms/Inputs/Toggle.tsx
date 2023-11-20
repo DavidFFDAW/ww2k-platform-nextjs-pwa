@@ -12,7 +12,7 @@ export function ToggleInput({ name, checked = false, label }: ToggleProps) {
             <label className="form-label block" htmlFor={name}>
                 {label}
             </label>
-            <label className="switch block" htmlFor={name}>
+            <label className="switch block" htmlFor={undefined}>
                 <input
                     type="checkbox"
                     name={name}
