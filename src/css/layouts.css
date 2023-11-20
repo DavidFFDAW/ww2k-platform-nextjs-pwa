@@ -240,7 +240,7 @@ button {
 
 .two-column {
     grid-template-columns: repeat(2, 1fr);
-    place-items: end;
+    align-items: end;
 }
 
 .place-items {
@@ -308,6 +308,9 @@ button {
 }
 
 @media only screen and (max-width: 768px) {
+    .responsive-grid {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
     .mobile-only {
         display: block;
     }
