@@ -57,7 +57,7 @@ export default function useLogin() {
                     console.log({ response });
 
                     return setTimeout(() => {
-                        router.push("/admin");
+                        router.refresh();
                     }, 1000);
                 }
             })
