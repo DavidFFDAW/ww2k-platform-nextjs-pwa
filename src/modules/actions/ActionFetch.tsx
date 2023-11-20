@@ -5,24 +5,26 @@ import { BootstrapIcon } from "@/components/Icon/BootstrapIcon";
 import { enqueueSnackbar } from "notistack";
 import { FormEvent } from "react";
 import HttpService from "@/services/http.service";
+import { useRouter } from "next/navigation";
 
 interface Props {
     href: string;
     text: string;
     icon: string;
     color?: string;
-    revalidatePath?: string;
+    refresh?: boolean;
     method: string;
 }
 
 export function ActionFetch({
-    revalidatePath = "",
+    refresh = false,
     href,
     text,
     icon,
     color,
     method = "post",
 }: Props) {
+    const router = useRouter();
     const handlerFetchAction = async (e: FormEvent) => {
         e.preventDefault();
         try {
@@ -33,10 +35,13 @@ export function ActionFetch({
                 | "delete";
 
             const response = await HttpService[meth](href);
+            if (!response.ok)
+                return enqueueSnackbar(response.message, { variant: "error" });
 
             enqueueSnackbar(response.message, {
                 variant: "success",
             });
+            if (refresh) return router.refresh();
         } catch (error: any) {
             enqueueSnackbar(`There was an error. ${error.message}`, {
                 variant: "error",
