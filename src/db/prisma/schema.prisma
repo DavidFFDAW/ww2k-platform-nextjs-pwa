@@ -167,6 +167,7 @@ model Team {
   member_champion_2 Int?                @db.Int
   brand             Int?                @db.Int
   actual_brand      Brand?              @relation(fields: [brand], references: [id])
+  active            Boolean             @default(true) @db.TinyInt
   ChampionshipReign ChampionshipReign[]
   WrestlerTeam      WrestlerTeam[]
 
