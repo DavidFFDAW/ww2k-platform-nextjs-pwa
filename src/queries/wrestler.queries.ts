@@ -1,5 +1,14 @@
 import { prisma } from "@/db/conn";
 
+export function getActiveWrestlers() {
+    return prisma.wrestler.findMany({
+        orderBy: {
+            name: "asc",
+        },
+        where: { status: "active" },
+    });
+}
+
 export function getWrestlersWithoutTeam() {
     return prisma.wrestler.findMany({
         orderBy: {
