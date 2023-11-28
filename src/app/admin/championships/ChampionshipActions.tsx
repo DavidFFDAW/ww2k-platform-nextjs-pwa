@@ -1,12 +1,15 @@
 "use client";
 import Actions from "@/modules/actions/Actions";
+import { Championship } from "@prisma/client";
 import React from "react";
+
+interface Props {
+    championship: Championship
+}
 
 export default function ChampionshipActions({
     championship,
-}: {
-    championship: any;
-}) {
+}: Props) {
     return (
         <>
             <Actions.Container>
@@ -15,8 +18,8 @@ export default function ChampionshipActions({
                     text="Borrar championship y reinados"
                     icon="trash-fill"
                     color={Actions.Colors.DELETE}
-                    revalidatePath="/admin/championships"
                     method="delete"
+                    refresh={true}
                 />
             </Actions.Container>
         </>
