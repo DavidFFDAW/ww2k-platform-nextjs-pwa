@@ -1,24 +1,38 @@
-'use client';
-import React from 'react'
-import { NullableLoading } from '@/components/Loading';
-import useSelect from './useSelect';
-import './customselect.css';
-import { BootstrapIcon } from '@/components/Icon/BootstrapIcon';
-import LazyImage from '@/components/Image/LazyImage';
+"use client";
+import React from "react";
+import { NullableLoading } from "@/components/Loading";
+import useSelect from "./useSelect";
+import "./customselect.css";
+import { BootstrapIcon } from "@/components/Icon/BootstrapIcon";
+import LazyImage from "@/components/Image/LazyImage";
 
 interface SelectProps {
     list: any[];
     name: string;
     zIndex?: number;
     listHeight?: number;
+    removeText?: boolean;
     selectCallback?: (selected: any) => void;
 }
 
-export default function Select({ list, name, zIndex, listHeight, selectCallback }: SelectProps) {
+export default function Select({
+    list,
+    name,
+    zIndex,
+    listHeight,
+    removeText = false,
+    selectCallback,
+}: SelectProps) {
     const {
-        search, showList, selectList, selectedItem,
-        toggleList, handleChangeSearch, selectItemFromList, removeSearchText
-    } = useSelect({ givenList: list, selectCallback });
+        search,
+        showList,
+        selectList,
+        selectedItem,
+        toggleList,
+        handleChangeSearch,
+        selectItemFromList,
+        removeSearchText,
+    } = useSelect({ givenList: list, selectCallback, removeText });
 
     const resultListStyle: React.CSSProperties = {
         zIndex: zIndex || 0,
@@ -35,23 +49,46 @@ export default function Select({ list, name, zIndex, listHeight, selectCallback 
                     value={search}
                     onClick={toggleList}
                 />
-                {selectedItem ? <input type="hidden" name={name} value={selectedItem.id} /> : null}
-                <button type="button" className="btn-list" onClick={removeSearchText}>
-                    <BootstrapIcon icon={'x-circle'} />
+                {selectedItem ? (
+                    <input type="hidden" name={name} value={selectedItem.id} />
+                ) : null}
+                <button
+                    type="button"
+                    className="btn-list"
+                    onClick={removeSearchText}
+                >
+                    <BootstrapIcon icon={"x-circle"} />
                 </button>
-                <button type="button" className="btn-list last" onClick={toggleList}>
-                    {showList ? '▲' : '▼'}
+                <button
+                    type="button"
+                    className="btn-list last"
+                    onClick={toggleList}
+                >
+                    {showList ? "▲" : "▼"}
                 </button>
                 <NullableLoading condition={showList}>
-                    <div className="custom-select-result-listing" style={resultListStyle}>
+                    <div
+                        className="custom-select-result-listing"
+                        style={resultListStyle}
+                    >
                         {selectList.map((item, index) => {
-                            const img = item.image || '/noimage.jpg';
+                            const img = item.image || "/noimage.jpg";
 
                             return (
-                                <div key={index} className="custom-select-result pointer" onClick={selectItemFromList(item)}>
+                                <div
+                                    key={index}
+                                    className="custom-select-result pointer"
+                                    onClick={selectItemFromList(item)}
+                                >
                                     <div className="custom-select-result-image flex start acenter gap-small">
                                         {/* <div className="backgroundimg" style={{ backgroundImage: `url(${img})` }}></div> */}
-                                        <LazyImage width={50} height={50} imgClassName='backgroundimg' src={img} alt={item.name} />
+                                        <LazyImage
+                                            width={50}
+                                            height={50}
+                                            imgClassName="backgroundimg"
+                                            src={img}
+                                            alt={item.name}
+                                        />
                                         <p>{item.name}</p>
                                     </div>
                                 </div>
@@ -61,5 +98,5 @@ export default function Select({ list, name, zIndex, listHeight, selectCallback 
                 </NullableLoading>
             </div>
         </section>
-    )
+    );
 }

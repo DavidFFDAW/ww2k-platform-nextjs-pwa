@@ -1,11 +1,12 @@
-'use client';
-import React, { useState } from 'react';
-import { Wrestler } from '@prisma/client';
-import Select from '@/modules/select/Select';
-import { Form } from '@/components/Forms';
-import './draft.css';
-import useDraft from './useDraft';
-import { NullableLoading } from '@/components/Loading';
+"use client";
+import React, { useState } from "react";
+import { Wrestler } from "@prisma/client";
+import Select from "@/modules/select/Select";
+import { Form } from "@/components/Forms";
+import "./draft.css";
+import useDraft from "./useDraft";
+import { NullableLoading } from "@/components/Loading";
+import { ButtonCTA } from "@/components/Buttons/Buttons";
 
 interface Props {
     wrestlers: Wrestler[];
@@ -13,28 +14,33 @@ interface Props {
 }
 
 export default function Draft({ wrestlers, brand }: Props) {
-    const { draftWrestlers, userSelection, handleFormSubmition } = useDraft(wrestlers);
+    const { draftWrestlers, userSelection, handleFormSubmition } =
+        useDraft(wrestlers);
 
     return (
         <>
             <div className="draft flex column gap">
-                <Form className="w1 boxed flex center al-center column gap wrestler-upsert-form"
-                    method='POST'
+                <Form
+                    className="w1 boxed flex center al-center column gap wrestler-upsert-form"
+                    method="POST"
                     sendHttp={false}
                     refresh={false}
-                    action='/api/drafts/create'
+                    action="/api/drafts/create"
                     onSubmitCallback={handleFormSubmition}
                 >
                     <Select
-                        name='selected_wrestler'
+                        name="selected_wrestler"
                         listHeight={400}
-                        list={draftWrestlers.map(wrestler => ({
+                        removeText={true}
+                        list={draftWrestlers.map((wrestler) => ({
                             id: wrestler.id,
                             name: wrestler.name,
                             image: wrestler.image_name,
                         }))}
                     />
-                    <button type='submit'>Submit</button>
+                    <div className="w1 flex end acenter">
+                        <ButtonCTA type="submit" text={"Seleccionar"} />
+                    </div>
                 </Form>
 
                 <div className="flex center al-center column gap wrestler-upsert-form">
@@ -49,13 +55,26 @@ export default function Draft({ wrestlers, brand }: Props) {
                         </NullableLoading> */}
                     {/* </div> */}
 
-                    <div className="w1 boxed flex start astart column gap wrestler-upsert-form">
-                        <div className="w1 flex between atart gap-small roster-list space-down">
-                            <NullableLoading condition={userSelection.length > 0}>
+                    <div className="w1 boxed flex start astart  gap wrestler-upsert-form">
+                        <div className="w1 flex between astart column gap-small roster-list space-down">
+                            <NullableLoading
+                                condition={userSelection.length > 0}
+                            >
                                 {userSelection.map((wrestler, index) => {
                                     return (
-                                        <div key={index} className="flex start acenter gap-small">
-                                            <img width={50} height={50} className='total-image' src={wrestler.image_name as string} alt={wrestler.name} />
+                                        <div
+                                            key={index}
+                                            className="flex start acenter gap-small"
+                                        >
+                                            <img
+                                                width={50}
+                                                height={50}
+                                                className="total-image"
+                                                src={
+                                                    wrestler.image_name as string
+                                                }
+                                                alt={wrestler.name}
+                                            />
                                             <p>{wrestler.name}</p>
                                         </div>
                                     );
