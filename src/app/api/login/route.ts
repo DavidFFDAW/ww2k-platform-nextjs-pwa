@@ -58,6 +58,7 @@ export async function POST(request: NextRequest) {
             name: TOKEN_COOKIE,
             value: token,
             path: "/",
+            maxAge: 60 * 60 * 24 * 30, // 30 days
         });
 
         return response;
