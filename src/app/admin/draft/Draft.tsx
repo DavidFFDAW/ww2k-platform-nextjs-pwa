@@ -7,6 +7,7 @@ import "./draft.css";
 import useDraft from "./useDraft";
 import { NullableLoading } from "@/components/Loading";
 import { ButtonCTA } from "@/components/Buttons/Buttons";
+import BrandRoster from "./BrandRoster";
 
 interface Props {
     wrestlers: Wrestler[];
@@ -14,7 +15,7 @@ interface Props {
 }
 
 export default function Draft({ wrestlers, brand }: Props) {
-    const { draftWrestlers, userSelection, handleFormSubmition } =
+    const { draftWrestlers, raw, smackdown, handleFormSubmition } =
         useDraft(wrestlers);
 
     return (
@@ -41,7 +42,7 @@ export default function Draft({ wrestlers, brand }: Props) {
                     <div className="w1 flex end acenter">
                         <ButtonCTA type="submit" text={"Seleccionar"} />
                     </div>
-                </Form>
+                </Form >
 
                 <div className="flex center al-center column gap wrestler-upsert-form">
                     {/* <div className="w1 boxed"> */}
@@ -56,47 +57,12 @@ export default function Draft({ wrestlers, brand }: Props) {
                     {/* </div> */}
 
                     <div className="w1 boxed flex start astart  gap wrestler-upsert-form">
-                        <div className="w1 flex between astart column gap-small roster-list space-down">
-                            <NullableLoading
-                                condition={userSelection.length > 0}
-                            >
-                                {userSelection.map((wrestler, index) => {
-                                    return (
-                                        <div
-                                            key={index}
-                                            className="flex start acenter gap-small"
-                                        >
-                                            <img
-                                                width={50}
-                                                height={50}
-                                                className="total-image"
-                                                src={
-                                                    wrestler.image_name as string
-                                                }
-                                                alt={wrestler.name}
-                                            />
-                                            <p>{wrestler.name}</p>
-                                        </div>
-                                    );
-                                })}
-                            </NullableLoading>
-                        </div>
+                        <BrandRoster list={raw} brand="Raw" />
+                        <BrandRoster list={smackdown} brand="Smackdown" />
 
-                        <div className="w1 flex between atart gap-small roster-list space-down">
-                            {/* <DraftBrandRoster
-                                draftedWrestlers={draftedWrestlers}
-                                brand={'RAW'}
-                                imgsrc={'/raw-logo.webp'}
-                            />
-                            <DraftBrandRoster
-                                draftedWrestlers={draftedWrestlers}
-                                brand={'SmackDown'}
-                                imgsrc={'/smackdown-logo.webp'}
-                            /> */}
-                        </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     );
 }
