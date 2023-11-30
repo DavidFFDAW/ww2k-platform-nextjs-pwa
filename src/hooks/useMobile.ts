@@ -16,8 +16,6 @@ export default function useMobile() {
         };
     }, []);
 
-    console.log({ width });
-
     return {
         isMobile: width <= 768,
     };
