@@ -8,6 +8,7 @@ import useDraft from "./useDraft";
 import { NullableLoading } from "@/components/Loading";
 import { ButtonCTA } from "@/components/Buttons/Buttons";
 import BrandRoster from "./BrandRoster";
+import DraftPick from "./DraftPick";
 
 interface Props {
     wrestlers: Wrestler[];
@@ -42,27 +43,19 @@ export default function Draft({ wrestlers, brand }: Props) {
                     <div className="w1 flex end acenter">
                         <ButtonCTA type="submit" text={"Seleccionar"} />
                     </div>
-                </Form >
+                </Form>
 
                 <div className="flex center al-center column gap wrestler-upsert-form">
-                    {/* <div className="w1 boxed"> */}
-                    {/* <DraftSelect draftedWrestlers={draftedWrestlers} getTheID={getTheID} />
-                        <DraftButton draftedWrestlers={draftedWrestlers} chooseOwnerWrestler={chooseOwnerWrestler} /> */}
-
-                    {/* <NullableLoading condition={!draftedWrestlers.loading && draftedWrestlers.list.length === 0}>
-                            <DraftDownloadButton
-                                draftedWrestlers={draftedWrestlers}
-                            />
-                        </NullableLoading> */}
-                    {/* </div> */}
+                    {/* <NullableLoading condition={raw.length > 0}>
+                        <DraftPick wrestler={raw[raw.length - 1]} brand="RAW" />
+                    </NullableLoading> */}
 
                     <div className="w1 boxed flex start astart  gap wrestler-upsert-form">
                         <BrandRoster list={raw} brand="Raw" />
                         <BrandRoster list={smackdown} brand="Smackdown" />
-
                     </div>
                 </div>
-            </div >
+            </div>
         </>
     );
 }
