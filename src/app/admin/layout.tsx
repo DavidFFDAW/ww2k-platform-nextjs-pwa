@@ -1,6 +1,10 @@
-import Sidebar from "@/components/Sidebar/Sidebar";
 import { ChildrenInterface } from "@/shared/models";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const Sidebar = dynamic(() => import("@/components/Sidebar/Sidebar"), {
+    ssr: false,
+});
 
 export default function AdminMainLayout({ children }: ChildrenInterface) {
     return (
