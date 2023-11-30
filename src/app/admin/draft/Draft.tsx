@@ -1,23 +1,25 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Wrestler } from "@prisma/client";
 import Select from "@/modules/select/Select";
 import { Form } from "@/components/Forms";
-import "./draft.css";
 import useDraft from "./useDraft";
-import { NullableLoading } from "@/components/Loading";
 import { ButtonCTA } from "@/components/Buttons/Buttons";
 import BrandRoster from "./BrandRoster";
-import DraftPick from "./DraftPick";
+import "./draft.css";
 
 interface Props {
     wrestlers: Wrestler[];
     brand: string;
 }
 
-export default function Draft({ wrestlers, brand }: Props) {
-    const { draftWrestlers, raw, smackdown, handleFormSubmition } =
-        useDraft(wrestlers);
+export default function Draft({ wrestlers }: Props) {
+    const {
+        draftWrestlers,
+        raw,
+        smackdown,
+        handleFormSubmition,
+    } = useDraft(wrestlers);
 
     return (
         <>
@@ -33,7 +35,6 @@ export default function Draft({ wrestlers, brand }: Props) {
                     <Select
                         name="selected_wrestler"
                         listHeight={400}
-                        removeText={true}
                         list={draftWrestlers.map((wrestler) => ({
                             id: wrestler.id,
                             name: wrestler.name,
