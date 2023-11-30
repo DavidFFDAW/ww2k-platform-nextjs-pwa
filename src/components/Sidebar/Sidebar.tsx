@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "../Image/Image";
 import Link from "next/link";
 import SidebarLink, { SidebarSubmit } from "./SidebarLink";

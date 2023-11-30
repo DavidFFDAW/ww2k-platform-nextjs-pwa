@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect } from "react";
 
 export default function useMobile() {
@@ -8,11 +9,14 @@ export default function useMobile() {
     }
 
     useEffect(() => {
+        // setWidth(window.innerWidth);
         window.addEventListener("resize", handleWindowSizeChange);
         return () => {
             window.removeEventListener("resize", handleWindowSizeChange);
         };
     }, []);
+
+    console.log({ width });
 
     return {
         isMobile: width <= 768,
