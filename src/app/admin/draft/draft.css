@@ -39,7 +39,7 @@
     position: absolute;
     top: 50%;
     font-size: 60px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: "Segoe UI", sans-serif;
     text-transform: uppercase;
     color: #fff;
     font-weight: 700;
@@ -53,17 +53,18 @@
 }
 
 .draft .anim-appear {
-    animation: draft-appear .8s ease-in-out;
+    animation: draft-appear 0.8s ease-in-out;
     animation-fill-mode: forwards;
     animation-direction: normal;
     animation-play-state: running;
 }
 
 .draft .anim-disappear {
-    animation: draft-disappear .8s ease-in-out;
+    animation: draft-disappear 0.8s ease-in-out;
     animation-fill-mode: forwards;
     animation-direction: normal;
     animation-play-state: running;
+    animation-delay: 1s;
 }
 
 .roster-list .brand-roster header {
