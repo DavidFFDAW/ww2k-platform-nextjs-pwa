@@ -7,20 +7,15 @@ import { BootstrapIcon } from "../Icon/BootstrapIcon";
 import { logout } from "@/actions/auth.actions";
 import { usePathname } from "next/navigation";
 import { AdminMenu } from "@/constants/routes";
+import useMobile from "@/hooks/useMobile";
 
 export default function Sidebar() {
     const pathname = usePathname();
+    const { isMobile } = useMobile();
 
     const [sidebarData, setSidebarData] = useState<{ showSidebar: boolean }>({
-        showSidebar: false,
+        showSidebar: isMobile ? false : true,
     });
-
-    useEffect(() => {
-        setSidebarData((p) => ({
-            ...p,
-            showSidebar: window.innerWidth <= 768 ? false : true,
-        }));
-    }, []);
 
     const toggleSidebar = () => {
         setSidebarData((p) => ({ ...p, showSidebar: !p.showSidebar }));
