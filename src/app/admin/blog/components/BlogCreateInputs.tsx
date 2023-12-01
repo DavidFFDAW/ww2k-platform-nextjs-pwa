@@ -1,4 +1,10 @@
-import { Input, InputDate, ImageInput, Textarea, ToggleInput } from "@/components/Forms";
+import {
+    Input,
+    InputDate,
+    ImageInput,
+    ToggleInput,
+    QuillEditor,
+} from "@/components/Forms";
 
 export default function BlogDatas() {
     return (
@@ -13,12 +19,8 @@ export default function BlogDatas() {
 
             <ImageInput placeholder="Imagen de la noticia" name="image" />
 
-            <Textarea
-                label={"Contenido"}
-                name={"content"}
-                required={true}
-                rows={10}
-            />
+            <QuillEditor name="content" placeholder="Contenido del post" />
+
             <InputDate
                 label={"Fecha de publicacion"}
                 name={"date_publication"}
