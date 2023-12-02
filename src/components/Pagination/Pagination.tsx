@@ -8,9 +8,14 @@ import { NullableLoading } from "../Loading";
 interface PaginationProps {
     page: number;
     total: number;
+    itemsPerPage?: number;
 }
 
-export function Pagination({ page, total }: PaginationProps) {
+export function Pagination({
+    page,
+    total,
+    itemsPerPage = ITEMS_PER_PAGE,
+}: PaginationProps) {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -18,7 +23,7 @@ export function Pagination({ page, total }: PaginationProps) {
     const realPage = Number(page) || 1;
     const previousPage = realPage - 1 || 1;
 
-    const innerPages = [...Array(Math.ceil(total / ITEMS_PER_PAGE))].map(
+    const innerPages = [...Array(Math.ceil(total / itemsPerPage))].map(
         (_, i) => i + 1
     );
     const lastPage = innerPages.length;
@@ -64,10 +69,11 @@ export function Pagination({ page, total }: PaginationProps) {
                         return (
                             <Link
                                 href={`&page=${pageNumber}`}
-                                className={`pagination-real-link pagination-item ${realPage === pageNumber
+                                className={`pagination-real-link pagination-item ${
+                                    realPage === pageNumber
                                         ? "active"
                                         : "non-active"
-                                    }`}
+                                }`}
                                 key={pageNumber}
                                 onClick={(e) => handleRequest(e, pageNumber)}
                             >
