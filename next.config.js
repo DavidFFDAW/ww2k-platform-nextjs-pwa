@@ -7,19 +7,19 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: 'https',
-                hostname: '**',
+                protocol: "https",
+                hostname: "**",
             },
         ],
     },
     headers: () => [
         {
             // Create glob to target specific pages you want
-            source: '/:path*',
+            source: "/*",
             headers: [
                 {
-                    key: 'Cache-Control',
-                    value: 'no-store',
+                    key: "Cache-Control",
+                    value: "no-store",
                 },
             ],
         },
