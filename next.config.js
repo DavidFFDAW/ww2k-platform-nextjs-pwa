@@ -15,7 +15,7 @@ const nextConfig = {
     headers: () => [
         {
             // Create glob to target specific pages you want
-            source: "/*",
+            source: "/:path*",
             headers: [
                 {
                     key: "Cache-Control",

@@ -4,8 +4,6 @@ import { existingDateToString } from "@/utilities/date.normalizer.utility";
 import Image from "@/components/Image/Image";
 import Link from "next/link";
 
-export const revalidate = 0;
-
 function getPublishedPosts() {
     return prisma.report.findMany({
         orderBy: {
