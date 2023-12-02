@@ -14,12 +14,10 @@ interface Props {
 }
 
 export default function Draft({ wrestlers }: Props) {
-    const {
-        draftWrestlers,
-        raw,
-        smackdown,
-        handleFormSubmition,
-    } = useDraft(wrestlers);
+    console.log("wrestlers", wrestlers);
+
+    const { draftWrestlers, raw, smackdown, handleFormSubmition } =
+        useDraft(wrestlers);
 
     return (
         <>
