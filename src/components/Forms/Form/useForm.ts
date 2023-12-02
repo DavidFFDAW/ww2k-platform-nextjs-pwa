@@ -60,14 +60,14 @@ export default function useForm({
         onSubmitCallback,
         sendHttp,
     }: SubmitHook) => {
-        const hasReasonToStop = !onSubmitCallback && !sendHttp;
-        if (hasReasonToStop) return;
-
         event.preventDefault();
+        const hasReasonToStop = !onSubmitCallback && !sendHttp;
+
         const form = event.target as HTMLFormElement;
         const serializedDatas = serializeFormDatas(form);
-
         if (debug) console.log({ serializedDatas });
+        if (hasReasonToStop) return;
+
         if (onSubmitCallback) return onSubmitCallback(serializedDatas);
         if (sendHttp) return handleSendRequest(serializedDatas);
     };
