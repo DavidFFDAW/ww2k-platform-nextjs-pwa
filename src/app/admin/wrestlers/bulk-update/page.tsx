@@ -71,18 +71,21 @@ export default async function AdminWrestlerBulkUpdate(params: PageContext) {
                                         name={`names[]`}
                                         value={wrestler.name}
                                         label="Nombre"
+                                        placeholder=""
                                     />
                                     <OnChangeInput
                                         type="text"
                                         name={`aliases[]`}
                                         value={wrestler.alias as string}
                                         label="Alias"
+                                        placeholder=""
                                     />
                                     <OnChangeInput
                                         type="text"
                                         name={`finishers[]`}
                                         value={wrestler.finisher as string}
                                         label="Finisher"
+                                        placeholder=""
                                     />
                                 </Flex>
                             </Boxed>

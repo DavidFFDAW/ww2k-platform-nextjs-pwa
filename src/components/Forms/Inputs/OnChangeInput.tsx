@@ -21,7 +21,7 @@ export function OnChangeInput({
     placeholder = "Default placeholder",
     required = false,
 }: InputProps) {
-    const [inputValue, setInputValue] = useState(value);
+    const [inputValue, setInputValue] = useState("");
     useEffect(() => {
         setInputValue(value);
     }, [value]);
