@@ -16,7 +16,7 @@ export default function BulkUpdateForm({ children }: ChildrenInterface) {
                         id,
                         name: serializedDatas.names[index],
                         alias: serializedDatas.aliases[index],
-                        finishers: serializedDatas.finishers[index],
+                        finisher: serializedDatas.finishers[index],
                     };
                 });
             }}
