@@ -1,7 +1,11 @@
 import { prisma } from "@/db/conn";
 
 export function getAllWrestlers() {
-    return prisma.wrestler.findMany();
+    return prisma.wrestler.findMany({
+        orderBy: {
+            name: "asc",
+        },
+    });
 }
 
 export function getActiveWrestlers() {
