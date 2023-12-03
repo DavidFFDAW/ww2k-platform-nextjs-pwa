@@ -56,6 +56,7 @@ export default async function AdminWrestlerBulkUpdate(params: PageContext) {
                                         type="hidden"
                                         name={`ids[]`}
                                         defaultValue={wrestler.id}
+                                        value={wrestler.id}
                                     />
                                     <input
                                         className="w1"
