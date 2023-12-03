@@ -168,6 +168,9 @@ img.total-image {
 img.rounded {
     border-radius: 50%;
 }
+.opacity-05 {
+    opacity: 0.5;
+}
 
 .responsive {
     display: none;
