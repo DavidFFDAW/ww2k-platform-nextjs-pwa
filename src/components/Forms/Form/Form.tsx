@@ -10,6 +10,7 @@ interface FormProps {
     style?: React.CSSProperties;
     debug?: boolean;
     onSubmitCallback?: (serializedDatas: any) => void;
+    preParseCallback?: (serializedDatas: any) => any;
     sendHttp?: boolean;
     redirect?: string;
     refresh?: boolean;
@@ -23,6 +24,7 @@ export default function Form({
     style,
     debug,
     onSubmitCallback,
+    preParseCallback,
     sendHttp,
     redirect,
     refresh,
@@ -42,7 +44,12 @@ export default function Form({
             className={className}
             style={style}
             onSubmit={(e) =>
-                onSubmitHook({ event: e, onSubmitCallback, sendHttp })
+                onSubmitHook({
+                    event: e,
+                    onSubmitCallback,
+                    preParseCallback,
+                    sendHttp,
+                })
             }
         >
             {children}

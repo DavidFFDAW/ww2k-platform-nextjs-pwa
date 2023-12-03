@@ -8,6 +8,7 @@ interface SubmitHook {
     event: React.FormEvent<HTMLFormElement>;
     debug?: boolean;
     onSubmitCallback?: (serializedDatas: {}) => void;
+    preParseCallback?: (serializedDatas: {}) => any;
     sendHttp?: boolean;
 }
 
@@ -58,18 +59,22 @@ export default function useForm({
     const onSubmitHook = ({
         event,
         onSubmitCallback,
+        preParseCallback,
         sendHttp,
     }: SubmitHook) => {
         event.preventDefault();
-        const hasReasonToStop = !onSubmitCallback && !sendHttp;
+        // const hasReasonToStop = !onSubmitCallback && !sendHttp;
 
         const form = event.target as HTMLFormElement;
         const serializedDatas = serializeFormDatas(form);
         if (debug) console.log({ serializedDatas });
-        if (hasReasonToStop) return;
 
         if (onSubmitCallback) return onSubmitCallback(serializedDatas);
-        if (sendHttp) return handleSendRequest(serializedDatas);
+        const datas = preParseCallback
+            ? { datas: preParseCallback(serializedDatas) }
+            : serializedDatas;
+
+        if (sendHttp) return handleSendRequest(datas);
     };
 
     return {
