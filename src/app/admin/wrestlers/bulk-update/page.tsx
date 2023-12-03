@@ -62,12 +62,14 @@ export default async function AdminWrestlerBulkUpdate(params: PageContext) {
                                         type="text"
                                         name={`names[]`}
                                         defaultValue={wrestler.name}
+                                        value={wrestler.name}
                                     />
                                     <input
                                         className="w1"
                                         type="text"
                                         name={`aliases[]`}
                                         defaultValue={wrestler.alias as string}
+                                        value={wrestler.alias as string}
                                     />
                                     <input
                                         className="w1"
@@ -76,6 +78,7 @@ export default async function AdminWrestlerBulkUpdate(params: PageContext) {
                                         defaultValue={
                                             wrestler.finisher as string
                                         }
+                                        value={wrestler.finisher as string}
                                     />
                                 </Flex>
                             </Boxed>
