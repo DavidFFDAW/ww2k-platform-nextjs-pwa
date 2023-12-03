@@ -10,6 +10,7 @@ import { getNamedTitle } from "@/utilities/metadatas.utility";
 import React from "react";
 import BulkUpdateForm from "./BulkUpdateForm";
 import { PageContext } from "@/shared/models";
+import { OnChangeInput } from "@/components/Forms/Inputs/OnChangeInput";
 
 export const revalidate = 0;
 
@@ -38,7 +39,15 @@ export default async function AdminWrestlerBulkUpdate(params: PageContext) {
                     {wrestlers
                         .slice(from, page * itemsPerPage)
                         .map((wrestler) => (
-                            <Boxed w="100" key={wrestler.id}>
+                            <Boxed
+                                w="100"
+                                key={wrestler.id}
+                                className={
+                                    wrestler.status == "released"
+                                        ? "opacity-05"
+                                        : "opacity-normal"
+                                }
+                            >
                                 <Flex
                                     direction="column"
                                     align="center"
@@ -55,31 +64,25 @@ export default async function AdminWrestlerBulkUpdate(params: PageContext) {
                                         className="w1"
                                         type="hidden"
                                         name={`ids[]`}
-                                        defaultValue={wrestler.id}
                                         value={wrestler.id}
                                     />
-                                    <input
-                                        className="w1"
+                                    <OnChangeInput
                                         type="text"
                                         name={`names[]`}
-                                        defaultValue={wrestler.name}
                                         value={wrestler.name}
+                                        label="Nombre"
                                     />
-                                    <input
-                                        className="w1"
+                                    <OnChangeInput
                                         type="text"
                                         name={`aliases[]`}
-                                        defaultValue={wrestler.alias as string}
                                         value={wrestler.alias as string}
+                                        label="Alias"
                                     />
-                                    <input
-                                        className="w1"
+                                    <OnChangeInput
                                         type="text"
                                         name={`finishers[]`}
-                                        defaultValue={
-                                            wrestler.finisher as string
-                                        }
                                         value={wrestler.finisher as string}
+                                        label="Finisher"
                                     />
                                 </Flex>
                             </Boxed>
