@@ -4,9 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
     const search = req.nextUrl.searchParams;
     const brand = search.get('brand');
-    const page = search.get('page');
-    const ITEMS_PER_PAGE = 15;
-    const offset = (Number(page) - 1) * ITEMS_PER_PAGE;
+    // const page = search.get('page');
+    // const ITEMS_PER_PAGE = 15;
+    // const offset = (Number(page) - 1) * ITEMS_PER_PAGE;
 
     const filters: any = {
         status: 'active',
@@ -17,8 +17,8 @@ export async function GET(req: NextRequest) {
 
     try {
         const wrestlers = await prisma.wrestler.findMany({
-            take: ITEMS_PER_PAGE,
-            skip: offset,
+            // take: ITEMS_PER_PAGE,
+            // skip: offset,
             where: filters,
             orderBy: {
                 name: 'asc',

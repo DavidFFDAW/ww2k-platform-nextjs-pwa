@@ -7,7 +7,6 @@ interface RosterState {
     wrestlers: Wrestler[];
     isLoading: boolean;
     error: any;
-    page: number;
 }
 
 export default function useRoster() {
@@ -17,23 +16,14 @@ export default function useRoster() {
         wrestlers: [],
         isLoading: true,
         error: null,
-        page: 1,
     };
     const [roster, setRoster] = useState(initialRosterState);
 
 
     useEffect(() => {
-        HttpService.get('/api/wrestlers?page=' + roster.page + (brand ? '&brand=' + brand : '')).then(list => {
-            setRoster(previous => ({
-                ...previous,
-                wrestlers: [...previous.wrestlers, ...list.content.wrestlers],
-                isLoading: false,
-            }));
-        });
-    }, [roster.page]);
+        console.log('useRoster:useEffect');
 
-    useEffect(() => {
-        HttpService.get('/api/wrestlers?page=1' + (brand ? '&brand=' + brand : '')).then(list => {
+        HttpService.get('/api/wrestlers?brand=' + (brand || '')).then(list => {
             setRoster(previous => ({
                 ...previous,
                 wrestlers: [...list.content.wrestlers],
@@ -44,9 +34,6 @@ export default function useRoster() {
         });
     }, [brand]);
 
-    const setNewPage = () => {
-        setRoster(previous => ({ ...previous, page: previous.page + 1 }));
-    };
 
-    return { ...roster, setRoster, setNewPage };
+    return { ...roster, setRoster };
 }

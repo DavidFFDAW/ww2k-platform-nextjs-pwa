@@ -5,7 +5,7 @@ export function StatusLabelContainer({ children, fixed = false }: { children: Re
     return (
         <div className="flex responsive-wrap wrap start al-center gap-small labeled-possible-states" style={{
             position: fixed ? 'sticky' : 'relative',
-            top: fixed ? 10 : 'auto',
+            top: fixed ? 0 : 'auto',
             left: fixed ? 0 : 'auto',
             zIndex: fixed ? 100 : 0,
             background: fixed ? 'var(--page-background)' : 'transparent',

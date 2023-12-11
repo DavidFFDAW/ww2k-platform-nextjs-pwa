@@ -6,8 +6,14 @@
     --sidebar-width: 320px;
     --sidebar-bg: #17181c;
 }
+
 * {
     transition: all 0.5s ease-in-out;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
 }
 
 .sidebar {
@@ -96,7 +102,7 @@
     background: linear-gradient(140deg, #c91727 0%, rgba(31, 31, 31, 1) 100%);
 }
 
-.sidebar.shown + .sidebar-main-margin {
+.sidebar.shown+.sidebar-main-margin {
     min-height: 88vh;
     /* position: relative; */
     margin-left: var(--sidebar-width);
@@ -165,9 +171,11 @@ img.total-image {
     height: auto;
     object-fit: cover;
 }
+
 img.rounded {
     border-radius: 50%;
 }
+
 .opacity-05 {
     opacity: 0.5;
 }
@@ -234,7 +242,7 @@ img.rounded {
         transform: translateX(0);
     }
 
-    .sidebar.shown + .btn-open-sidebar {
+    .sidebar.shown+.btn-open-sidebar {
         display: none;
     }
 
@@ -397,7 +405,7 @@ dialog[open] {
     z-index: 0;
 }
 
-.sidebar.shown + .sidebar-main-margin .custom-totalpage-wallpaper {
+.sidebar.shown+.sidebar-main-margin .custom-totalpage-wallpaper {
     margin-left: 320px;
     width: calc(100% - 320px);
 }

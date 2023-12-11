@@ -8,15 +8,16 @@ import RosterCard from "./RosterCard";
 import StatusLabel, { StatusLabelContainer } from "@/components/Status/StatusLabel";
 import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/Forms";
-import { ButtonCTA } from "@/components/Buttons/Buttons";
+import { ButtonSecondary } from "@/components/Buttons/Buttons";
 import './roster.css';
 
 export default function RosterPage() {
     const search = useSearchParams();
-    const { wrestlers, isLoading, setNewPage } = useRoster();
+    const { wrestlers, isLoading } = useRoster();
 
     return (
         <>
+            {/* Need to add an Skeleton to this page so it is loaded like it will be in the end */}
             <Title title="Roster" icon="list-ul" />
 
             <StatusLabelContainer fixed={true}>
@@ -47,19 +48,18 @@ export default function RosterPage() {
             </StatusLabelContainer>
 
             <form action="" method="GET">
-                <div className="w1 flex start">
+                <div className="w1 flex start gap-small">
+                    {/* Need to change this search input to some fancy new one */}
                     <Input label="Buscador" name="search" placeholder="Buscar" type="search" />
+                    <ButtonSecondary type="submit" className="ml-2" text="Buscar" />
                 </div>
-                <ButtonCTA type="submit" className="ml-2" text="Buscar" />
             </form>
 
 
             <ConditionalLoading condition={!isLoading && wrestlers.length > 0} fallback={<ComponentSpinner />}>
                 <div style={{ marginTop: 80 }} className="grid responsive-grid grid-three-column unconventional-grid gap">
                     {wrestlers.map((wrestler, index) => {
-                        return <RosterCard key={index} brand={wrestler.brand} name={wrestler.name} imgSrc={wrestler.image_name as string} imgAlt={wrestler.name} isLast={index === wrestlers.length - 1} newLimit={
-                            setNewPage
-                        } />;
+                        return <RosterCard key={index} brand={wrestler.brand} name={wrestler.name} imgSrc={wrestler.image_name as string} />;
                     })}
                 </div>
             </ConditionalLoading>
