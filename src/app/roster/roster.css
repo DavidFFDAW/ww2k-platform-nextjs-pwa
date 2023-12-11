@@ -8,13 +8,16 @@
     grid-row: span 2;
 }
 
-.grid-item:nth-child(8n+1),
-.grid-item:nth-child(8n+3),
-.grid-item:nth-child(8n+5),
-.grid-item:nth-child(8n+6) {
+.grid-item:nth-child(8n + 1),
+.grid-item:nth-child(8n + 3),
+.grid-item:nth-child(8n + 5),
+.grid-item:nth-child(8n + 6) {
     grid-row: span 3;
 }
 
+.roster-wrestler-name strong.lastname-SD {
+    color: #00a2ff;
+}
 .grid-item.brand-SD {
     background-color: #00a2ff;
 }
@@ -22,9 +25,15 @@
 .grid-item.brand-RAW {
     background-color: #f44336;
 }
+.roster-wrestler-name strong.lastname-RAW {
+    color: #f44336;
+}
 
 .grid-item.brand-AWL {
     background-color: rgb(164, 63, 184);
+}
+.roster-wrestler-name strong.lastname-AWL {
+    color: rgb(164, 63, 184);
 }
 
 .roster-card.relative {
@@ -86,15 +95,15 @@
     width: 65%;
     text-align: center;
     transform: translate(-50%, -50%);
-    z-index: 2
+    z-index: 2;
 }
 
 .roster-card.relative .roster-wrestler-brand img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: .7;
-    z-index: 2
+    opacity: 0.7;
+    z-index: 2;
 }
 
 @media screen and (max-width: 767px) {
@@ -108,10 +117,10 @@
         grid-row: span 1 !important;
     }
 
-    .grid-item:nth-child(8n+1),
-    .grid-item:nth-child(8n+3),
-    .grid-item:nth-child(8n+5),
-    .grid-item:nth-child(8n+6) {
+    .grid-item:nth-child(8n + 1),
+    .grid-item:nth-child(8n + 3),
+    .grid-item:nth-child(8n + 5),
+    .grid-item:nth-child(8n + 6) {
         grid-row: span 1 !important;
     }
 }

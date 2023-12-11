@@ -1,32 +1,52 @@
-import Image from '@/components/Image/Image'
-import React from 'react'
+import Image from "@/components/Image/Image";
+import React from "react";
 
 export default function BrandImage({ brand }: { brand: string }) {
-    const size = 60;
+    const size = 75;
 
-    if (brand.toUpperCase() === 'SD')
+    if (brand.toUpperCase() === "SD")
         return (
             <div className="brand-image">
-                <Image width={size} height={size} src="/smackdown-logo.webp" alt="SmackDown" />
+                <Image
+                    width={size}
+                    height={size}
+                    src="/smackdown-logo.webp"
+                    alt="SmackDown"
+                />
             </div>
-        )
+        );
 
-    if (brand.toUpperCase() === 'RAW')
+    if (brand.toUpperCase() === "RAW")
         return (
             <div className="brand-image">
-                <Image width={size} height={size} src="/raw-logo.webp" alt="RAW" />
+                <Image
+                    width={size}
+                    height={size}
+                    src="/raw-logo.webp"
+                    alt="RAW"
+                />
             </div>
-        )
+        );
 
-    if (brand.toUpperCase() === 'AWL')
+    if (brand.toUpperCase() === "AWL")
         return (
             <div className="brand-image">
-                <Image width={size} height={size} src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0c782e4c-fae0-4a87-b7b1-a752598d9df9/dcogl5e-ff49719d-366f-4858-b520-89d2cff14639.png/v1/fill/w_1024,h_458/wwe_evolution_2018_logo_png_by_ambriegnsasylum16_dcogl5e-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDU4IiwicGF0aCI6IlwvZlwvMGM3ODJlNGMtZmFlMC00YTg3LWI3YjEtYTc1MjU5OGQ5ZGY5XC9kY29nbDVlLWZmNDk3MTlkLTM2NmYtNDg1OC1iNTIwLTg5ZDJjZmYxNDYzOS5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.yvx49NdqdcFaFjdbh9N2RiO3bBHQoOaHfepGGea0vHQ" alt="AWL" />
+                <Image width={size} height={size} src="/awl.png" alt="AWL" />
             </div>
-        )
+        );
 
-    return (
-        <>
-        </>
-    )
+    if (brand.toUpperCase() === "LEGEND") {
+        return (
+            <div className="brand-image">
+                <Image
+                    width={size}
+                    height={size}
+                    src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/222fe538-4306-46a2-adc5-d53360edb994/dfv7acm-b5f8db76-1a77-485e-bc4f-219837deb346.png/v1/fill/w_551,h_382/wwf_retro_logo__by_artsector2003_dfv7acm-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzgyIiwicGF0aCI6IlwvZlwvMjIyZmU1MzgtNDMwNi00NmEyLWFkYzUtZDUzMzYwZWRiOTk0XC9kZnY3YWNtLWI1ZjhkYjc2LTFhNzctNDg1ZS1iYzRmLTIxOTgzN2RlYjM0Ni5wbmciLCJ3aWR0aCI6Ijw9NTUxIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.TyBQ-CS8Vmt7NvVxqc5Q202QtQN_Z95_Fh2XVE7iZxM"
+                    alt="Legend"
+                />
+            </div>
+        );
+    }
+
+    return <></>;
 }
