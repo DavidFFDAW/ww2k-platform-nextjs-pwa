@@ -21,17 +21,28 @@ export default function useRoster() {
     };
     const [roster, setRoster] = useState(initialRosterState);
 
-    const fetchUrl = '/api/wrestlers?page=' + roster.page + (brand ? '&brand=' + brand : '');
 
     useEffect(() => {
-        HttpService.get(fetchUrl).then(list => {
+        HttpService.get('/api/wrestlers?page=' + roster.page + (brand ? '&brand=' + brand : '')).then(list => {
             setRoster(previous => ({
                 ...previous,
                 wrestlers: [...previous.wrestlers, ...list.content.wrestlers],
                 isLoading: false,
             }));
         });
-    }, [roster.page, brand]);
+    }, [roster.page]);
+
+    useEffect(() => {
+        HttpService.get('/api/wrestlers?page=1' + (brand ? '&brand=' + brand : '')).then(list => {
+            setRoster(previous => ({
+                ...previous,
+                wrestlers: [...list.content.wrestlers],
+                isLoading: false,
+            }));
+        }).then(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }, [brand]);
 
     const setNewPage = () => {
         setRoster(previous => ({ ...previous, page: previous.page + 1 }));

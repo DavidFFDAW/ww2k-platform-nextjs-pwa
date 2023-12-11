@@ -40,10 +40,15 @@ export default function RosterCard({
     }, [isLast]);
 
     return (
-        <div ref={cardRef} className='flex center acenter column gap-small'>
-            <LazyImage width={128} height={128} src={imgSrc} alt={imgAlt} className='total-image' />
-            <h2>{name}</h2>
-            <BrandImage brand={brand} />
+        <div ref={cardRef} className={'w1 grid-item roster-card relative brand-' + brand} >
+            <div className='overlay-gradient'></div>
+            <div className='roster-wrestler-brand'>
+                <BrandImage brand={brand} />
+            </div>
+            <LazyImage width={128} height={128} src={imgSrc} alt={imgAlt} className='total-image image-container' />
+            <div className='roster-card-wrestler-name-container'>
+                <h2 className='roster-wrestler-name'>{name}</h2>
+            </div>
         </div>
     )
 }
