@@ -52,7 +52,7 @@ export default function RosterPage(context: PageContext) {
                 />
             </StatusLabelContainer>
 
-            <SearchForm url="/roster">
+            <SearchForm url="/roster" className="down">
                 <div className="w1 flex start gap-small">
                     {/* Need to change this search input to some fancy new one */}
                     <input

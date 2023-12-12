@@ -43,6 +43,14 @@
     height: 214px;
 }
 
+.search-input {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+}
+
 .roster-card.relative .image-container {
     display: grid;
     place-items: center;
