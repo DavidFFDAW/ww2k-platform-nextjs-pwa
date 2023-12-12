@@ -12,7 +12,7 @@ export function getRosterWrestlers(searchParams: any) {
     const filters: any = {
         status: {
             not: {
-                in: ["manager", "released"],
+                in: ["released"],
             },
         },
     };
