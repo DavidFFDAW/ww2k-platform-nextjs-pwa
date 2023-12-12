@@ -124,7 +124,6 @@ export default async function WrestlerUpdatePage({ params }: PageContext) {
                             imageSrc={wrestler.image_name as string}
                             name="app_image"
                             placeholder="Imagen de App"
-                            maxLength={255}
                         />
                     </div>
                     <div className="w1 flex start al-center gap-small">
@@ -132,7 +131,6 @@ export default async function WrestlerUpdatePage({ params }: PageContext) {
                             imageSrc={wrestler.twitter_image as string}
                             name="twitter_image"
                             placeholder="Imagen para Twitter"
-                            maxLength={255}
                         />
                     </div>
                 </div>
