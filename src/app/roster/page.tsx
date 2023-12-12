@@ -55,12 +55,14 @@ export default function RosterPage(context: PageContext) {
             <SearchForm url="/roster">
                 <div className="w1 flex start gap-small">
                     {/* Need to change this search input to some fancy new one */}
-                    <Input
-                        label="Buscador"
-                        name="search"
-                        placeholder="Buscar"
+                    <input
                         type="search"
-                        value={searchName}
+                        name="search"
+                        placeholder="Buscar..."
+                        defaultValue={searchName}
+                        className="w1 search-input"
+                        alt="Buscar..."
+                        about="Buscar..."
                     />
                     <ButtonSecondary
                         type="submit"
