@@ -22,6 +22,7 @@ export function ImageInput({
     const size = 100;
     const handleImageChange = (e: any) => {
         const image = e.target.value;
+        if (image.length > 255) return;
         setState(image);
     };
 

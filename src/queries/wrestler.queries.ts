@@ -8,6 +8,14 @@ export function getAllWrestlers() {
     });
 }
 
+export function getWrestlerByID(id: number) {
+    return prisma.wrestler.findUnique({
+        where: {
+            id: id,
+        },
+    });
+}
+
 export function getRosterWrestlers(searchParams: any) {
     const filters: any = {
         status: {

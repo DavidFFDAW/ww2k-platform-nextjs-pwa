@@ -8,7 +8,7 @@ export default function WrestlerCreatePage() {
     const { handleFormSubmit } = useCreateWrestler();
 
     return (
-        <form action="POST" className="flex center al-center column gap wrestler-upsert-form" onSubmit={handleFormSubmit}>
+        <form action="POST" className="grid two-column-grid astart responsive-grid gap wrestler-upsert-form" onSubmit={handleFormSubmit}>
             <div className="w1 boxed">
                 <h2 className="space-down">Datos Generales</h2>
                 <UpsertDatas />
@@ -24,7 +24,7 @@ export default function WrestlerCreatePage() {
                 <UpsertTwitter />
             </div>
 
-            <div className="w1 boxed">
+            <div className="w1 boxed desktop-mt-72">
                 <h2 className="space-down">Imágenes</h2>
                 <UpsertImages />
             </div>

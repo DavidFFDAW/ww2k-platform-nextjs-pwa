@@ -243,8 +243,16 @@ button {
     align-items: end;
 }
 
+.two-column-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .place-items {
     place-items: center;
+}
+
+.desktop-mt-72 {
+    margin-top: -72px;
 }
 
 .w1 {
@@ -311,11 +319,16 @@ button {
     .responsive-grid {
         grid-template-columns: repeat(1, 1fr) !important;
     }
+
     .mobile-only {
         display: block;
     }
 
     .desktop-only {
         display: none;
+    }
+
+    .desktop-mt-72 {
+        margin-top: unset;
     }
 }
