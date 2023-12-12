@@ -1,27 +1,24 @@
-"use client";
-import React from "react";
-import useRoster from "./useRoster";
+import { Suspense } from "react";
 import Title from "@/components/Title";
-import { ConditionalLoading } from "@/components/Loading";
-import { ComponentSpinner } from "@/components/Spinner/Spinner";
-import RosterCard from "./RosterCard";
 import StatusLabel, {
     StatusLabelContainer,
 } from "@/components/Status/StatusLabel";
-import { useSearchParams } from "next/navigation";
 import { Input, SearchForm } from "@/components/Forms";
 import { ButtonSecondary } from "@/components/Buttons/Buttons";
+import { PageContext } from "@/shared/models";
+import { Metadata } from "next";
+import { getNamedTitle } from "@/utilities/metadatas.utility";
+import RosterWrestlersList from "./components/RosterWrestlersList";
+import RosterWrestlersListSkeleton from "./components/RosterWrestlersListSkeleton";
 import "./roster.css";
-// import { Metadata } from "next";
-// import { getNamedTitle } from "@/utilities/metadatas.utility";
 
-// export const metadata: Metadata = {
-//     title: getNamedTitle("Roster"),
-// };
+export const metadata: Metadata = {
+    title: getNamedTitle("Roster"),
+};
 
-export default function RosterPage() {
-    const search = useSearchParams();
-    const { wrestlers, isLoading } = useRoster();
+export default function RosterPage(context: PageContext) {
+    const searchName = context.searchParams.search;
+    const searchBrand = context.searchParams.brand;
 
     return (
         <>
@@ -33,25 +30,25 @@ export default function RosterPage() {
                     name="all"
                     text={"Todos"}
                     href={"?"}
-                    activeLink={search.get("brand")}
+                    activeLink={searchBrand}
                 />
                 <StatusLabel
                     name="RAW"
                     text={"RAW"}
                     href={"?brand=RAW"}
-                    activeLink={search.get("brand")}
+                    activeLink={searchBrand}
                 />
                 <StatusLabel
                     name="SD"
                     text={"SmackDown"}
                     href={"?brand=SD"}
-                    activeLink={search.get("brand")}
+                    activeLink={searchBrand}
                 />
                 <StatusLabel
                     name="AWL"
                     text={"AWL"}
                     href={"?brand=AWL"}
-                    activeLink={search.get("brand")}
+                    activeLink={searchBrand}
                 />
             </StatusLabelContainer>
 
@@ -63,6 +60,7 @@ export default function RosterPage() {
                         name="search"
                         placeholder="Buscar"
                         type="search"
+                        value={searchName}
                     />
                     <ButtonSecondary
                         type="submit"
@@ -72,35 +70,11 @@ export default function RosterPage() {
                 </div>
             </SearchForm>
 
-            <React.Suspense fallback={<ComponentSpinner />}>
-                <ConditionalLoading
-                    condition={!isLoading && wrestlers.length > 0}
-                    fallback={<ComponentSpinner />}
-                >
-                    <div
-                        style={{ marginTop: 80 }}
-                        className="grid responsive-grid grid-three-column unconventional-grid gap"
-                    >
-                        {wrestlers.map((wrestler, index) => {
-                            const legendBrand = [
-                                "retired",
-                                "semi-active",
-                            ].includes(wrestler.status);
-
-                            return (
-                                <RosterCard
-                                    key={wrestler.id}
-                                    brand={
-                                        legendBrand ? "LEGEND" : wrestler.brand
-                                    }
-                                    name={wrestler.name}
-                                    imgSrc={wrestler.image_name as string}
-                                />
-                            );
-                        })}
-                    </div>
-                </ConditionalLoading>
-            </React.Suspense>
+            <div className="grid-pre-container" style={{ marginTop: 80 }}>
+                <Suspense fallback={<RosterWrestlersListSkeleton />}>
+                    <RosterWrestlersList searchParams={context.searchParams} />
+                </Suspense>
+            </div>
         </>
     );
 }

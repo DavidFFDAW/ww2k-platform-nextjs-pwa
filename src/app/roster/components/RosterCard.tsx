@@ -24,7 +24,7 @@ export default function RosterCard({
         <div className={"w1 grid-item roster-card relative brand-" + brand}>
             <div className="overlay-gradient"></div>
             <div className="roster-wrestler-brand">
-                <BrandImage brand={brand} />
+                <BrandImage brand={brand.toUpperCase()} />
             </div>
             <LazyImage
                 width={128}

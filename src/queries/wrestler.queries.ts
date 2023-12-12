@@ -8,6 +8,31 @@ export function getAllWrestlers() {
     });
 }
 
+export function getRosterWrestlers(searchParams: any) {
+    const filters: any = {
+        status: {
+            not: {
+                in: ["manager", "released"],
+            },
+        },
+    };
+    if (searchParams.search) {
+        filters["name"] = {
+            contains: searchParams.search,
+        };
+    }
+    if (searchParams.brand) {
+        filters["brand"] = searchParams.brand;
+    }
+
+    return prisma.wrestler.findMany({
+        where: filters,
+        orderBy: {
+            name: "asc",
+        },
+    });
+}
+
 export function getActiveWrestlers() {
     return prisma.wrestler.findMany({
         orderBy: {
