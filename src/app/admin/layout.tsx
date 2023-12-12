@@ -10,7 +10,7 @@ export default function AdminMainLayout({ children }: ChildrenInterface) {
     return (
         <>
             <Sidebar />
-            <section className="responsive-lockup sidebar-main-margin">
+            <section className="responsive-lockup sidebar-main-margin main-admin-layout">
                 {children}
             </section>
         </>
