@@ -5,7 +5,7 @@ const GalleryContext = React.createContext({
     galleryState: {} as GalleryContextState,
     setGalleryState: (state: GalleryContextState) => { },
     toggleGallery: () => { },
-    selectImage: () => { },
+    selectImage: (url: string) => { },
     setItem: (key: any, value: any) => { },
 });
 
@@ -19,8 +19,9 @@ export const GalleryContextProvider = ({
         images: [],
     });
 
-    const selectImage = () => {
-        selectImageCallback(galleryState?.currentImage?.url || "");
+    const selectImage = (url: string) => {
+        const imageURL = url || galleryState?.currentImage?.url || "";
+        selectImageCallback(imageURL);
         toggleGallery();
     };
     const toggleGallery = () =>

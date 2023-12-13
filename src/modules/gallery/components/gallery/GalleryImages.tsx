@@ -1,27 +1,22 @@
-import LazyImage from "@/components/Image/LazyImage";
 import React from "react";
 import useGalleryImages from "./useGalleryImages";
-import UploadingImages from "./UploadingImages";
+import LazyImage from "@/components/Image/LazyImage";
 
 interface GalleryImagesProps {
     images: Array<{ url: string }>;
     setCurrentImage: (image: { url: string }) => void;
+    selectImage: (url: string) => void;
 }
 
 export default function GalleryImages({
     images,
     setCurrentImage,
+    selectImage,
 }: GalleryImagesProps) {
-    const { uploadingImages, toggleUploadImages, onDragOver, onDrop } =
-        useGalleryImages();
+    const { onDragOver, onDrop } = useGalleryImages();
 
     return (
         <>
-            <UploadingImages
-                show={uploadingImages.show}
-                images={uploadingImages.uploadingImages}
-                toggleModal={toggleUploadImages}
-            />
             <div
                 className="gallery-images-container"
                 onDragOver={onDragOver}
@@ -33,6 +28,7 @@ export default function GalleryImages({
                         key={index}
                         role="presentation"
                         onClick={(_) => setCurrentImage(image)}
+                        onDoubleClick={() => selectImage(image.url)}
                     >
                         <LazyImage
                             width={150}

@@ -27,6 +27,7 @@ function Gallery() {
                 <GalleryImages
                     images={images}
                     setCurrentImage={setCurrentImage}
+                    selectImage={selectImage}
                 />
 
                 <NullableLoading condition={Boolean(galleryState.currentImage)}>
