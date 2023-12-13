@@ -10,21 +10,21 @@ export default function WrestlerActions({ wrestler }: { wrestler: Wrestler }) {
             <Actions.Container>
                 <Actions.Link
                     color={Actions.Colors.DEFAULT}
-                    toHref="/admin/wrestlers/bulk-update"
-                    icon="collection"
-                    text="Actualizar conjuntos"
+                    toHref={`/admin/wrestlers/update/${wrestler.id}`}
+                    icon="pencil-square"
+                    text={`Editar ${wrestler.name}`}
                 />
                 <Actions.Link
                     color={Actions.Colors.DEFAULT}
                     toHref="/admin/wrestlers/create"
                     icon="plus"
-                    text="Create Wrestler"
+                    text="Crear Wrestler"
                 />
                 <Actions.Link
                     color={Actions.Colors.DEFAULT}
-                    toHref={`/admin/wrestlers/update/${wrestler.id}`}
-                    icon="pencil-square"
-                    text="Update Wrestler"
+                    toHref="/admin/wrestlers/bulk-update"
+                    icon="collection"
+                    text="Actualizar conjuntos"
                 />
                 <form action="" method="POST">
                     <Actions.Submit
