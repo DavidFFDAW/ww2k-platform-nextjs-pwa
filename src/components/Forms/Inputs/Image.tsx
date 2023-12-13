@@ -17,12 +17,11 @@ export function ImageInput({
     const Gallery = dynamic(() => import("@/modules/gallery/GalleryModule"), {
         ssr: false,
     });
-    const [image, setState] = useState<string>(imageSrc);
+    const [image, setState] = useState<string>(() => imageSrc);
 
     const size = 100;
     const handleImageChange = (e: any) => {
         const image = e.target.value;
-        if (image.length > 255) return;
         setState(image);
     };
 
@@ -45,7 +44,7 @@ export function ImageInput({
                     type={"text"}
                     name={name}
                     required={true}
-                    defaultValue={image}
+                    value={image}
                     placeholder={placeholder}
                     onChange={handleImageChange}
                 />
