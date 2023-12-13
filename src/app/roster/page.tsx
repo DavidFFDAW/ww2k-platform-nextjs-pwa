@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     title: getNamedTitle("Roster"),
 };
 
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
+
 export default function RosterPage(context: PageContext) {
     const searchName = context.searchParams.search;
     const searchBrand = context.searchParams.brand;

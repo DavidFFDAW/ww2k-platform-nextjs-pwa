@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     description: "Administrar luchadores",
 };
 
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
+
 async function getWrestlers(page: number, searchParams: any) {
     const realPage = page || 1;
     const offset = Math.abs((realPage - 1) * 10);
