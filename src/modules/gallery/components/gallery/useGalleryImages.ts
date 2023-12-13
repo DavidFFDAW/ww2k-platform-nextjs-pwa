@@ -1,4 +1,8 @@
 import React, { DragEvent } from "react";
+import useCookies from "@/hooks/useCookies";
+import { useGalleryContext } from "../../context/GalleryContext";
+import { GalleryContextState, ImageUploadAPIResponse } from "../../gallery.models";
+import { uploadImages } from "../../services/gallery.api.service";
 
 interface UploadImagesState {
     uploadingImages: File[];
@@ -6,6 +10,8 @@ interface UploadImagesState {
 }
 
 export default function useGalleryImages() {
+    const cookieManager = useCookies();
+    const { galleryState, setItem } = useGalleryContext();
     const [uploadingImages, setUploadingImages] =
         React.useState<UploadImagesState>({
             uploadingImages: [],
@@ -29,17 +35,21 @@ export default function useGalleryImages() {
         e.preventDefault();
     };
 
-    const onDrop = (e: DragEvent<HTMLDivElement>) => {
+    const onDrop = async (e: DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        const files = e.dataTransfer.files;
-        if (!files || files.length <= 0) return;
+        const files = Array.from(e.dataTransfer.files);
+        const verified: any = await cookieManager.getDecodedToken();
+        if (!files || files.length <= 0 || !verified) return;
+        const response = await uploadImages(files, verified.api_token);
 
-        setUploadingImages((prevState) => ({
-            ...prevState,
-            uploadingImages: Array.from(files),
-            show: true,
-        }));
-    };
+        if (response.ok) {
+            const { data }: { data: ImageUploadAPIResponse[] } = response.content;
+            const uploadedImages = data.map((image) => {
+                return { url: image.url }
+            });
+            setItem('images', [...uploadedImages, ...galleryState.images]);
+        };
+    }
 
     return {
         uploadingImages,

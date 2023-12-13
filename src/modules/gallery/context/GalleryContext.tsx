@@ -3,10 +3,10 @@ import { GalleryContextProps, GalleryContextState } from "../gallery.models";
 
 const GalleryContext = React.createContext({
     galleryState: {} as GalleryContextState,
-    setGalleryState: (state: GalleryContextState) => {},
-    toggleGallery: () => {},
-    selectImage: () => {},
-    setItem: (key: any, value: any) => {},
+    setGalleryState: (state: GalleryContextState) => { },
+    toggleGallery: () => { },
+    selectImage: () => { },
+    setItem: (key: any, value: any) => { },
 });
 
 export const GalleryContextProvider = ({

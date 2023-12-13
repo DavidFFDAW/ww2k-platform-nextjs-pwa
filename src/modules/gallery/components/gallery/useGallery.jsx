@@ -1,6 +1,6 @@
 import React from "react";
-import { getAllImages } from "../../services/gallery.api.service";
 import { useGalleryContext } from "../../context/GalleryContext";
+import { getAllImages } from "../../services/gallery.api.service";
 
 export default function useGallery() {
     const { galleryState, setGalleryState } = useGalleryContext();
