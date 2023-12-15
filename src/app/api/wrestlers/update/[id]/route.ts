@@ -1,23 +1,44 @@
-import { prisma } from '@/db/conn';
-import { NextRequest, NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
-import { checkRequiredFields } from '@/app/api/helpers/request.helper';
-import { getJWT, getNonValidTokenResponse } from '@/app/api/helpers/token.helper';
+import { prisma } from "@/db/conn";
+import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
+import { checkRequiredFields } from "@/app/api/helpers/request.helper";
+import {
+    getJWT,
+    getNonValidTokenResponse,
+} from "@/app/api/helpers/token.helper";
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(
+    request: NextRequest,
+    { params }: { params: { id: string } }
+) {
     const body = await request.json();
     const token = await getJWT(request);
     if (!token) return getNonValidTokenResponse();
 
     if (!params.id) {
-        return NextResponse.json({ message: 'No se ha recibido ningun identificador' }, { status: 400 });
+        return NextResponse.json(
+            { message: "No se ha recibido ningun identificador" },
+            { status: 400 }
+        );
     }
 
-    const requiredFields = ['name', 'sex', 'finisher', 'brand', 'twitter_account', 'twitter_name', 'twitter_image', 'status'];
+    const requiredFields = [
+        "name",
+        "sex",
+        "finisher",
+        "brand",
+        "twitter_account",
+        "twitter_name",
+        "twitter_image",
+        "status",
+    ];
     const { error, fields } = checkRequiredFields(body, requiredFields);
 
     if (error) {
-        return NextResponse.json({ message: `Faltan campos obligatorios: ${fields.join(', ')}` }, { status: 400 });
+        return NextResponse.json(
+            { message: `Faltan campos obligatorios: ${fields.join(", ")}` },
+            { status: 400 }
+        );
     }
 
     try {
@@ -44,11 +65,26 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
         });
 
         if (!updated.id)
-            return NextResponse.json({ message: 'Ha habido un error y no se ha podido actualizar el luchador' }, { status: 500 });
+            return NextResponse.json(
+                {
+                    message:
+                        "Ha habido un error y no se ha podido actualizar el luchador",
+                },
+                { status: 500 }
+            );
 
-        revalidatePath('/admin/wrestlers');
-        return NextResponse.json({ message: `Se ha actualizado el wrestler ${updated.name}` }, { status: 200 });
+        revalidatePath("/admin/wrestlers");
+        revalidatePath("/roster/teams");
+        revalidatePath("/roster");
+
+        return NextResponse.json(
+            { message: `Se ha actualizado el wrestler ${updated.name}` },
+            { status: 200 }
+        );
     } catch (error: any) {
-        return NextResponse.json({ error: true, message: error.message }, { status: 500 });
+        return NextResponse.json(
+            { error: true, message: error.message },
+            { status: 500 }
+        );
     }
 }
