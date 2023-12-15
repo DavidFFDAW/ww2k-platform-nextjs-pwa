@@ -53,11 +53,12 @@ export function UpsertDatasState() {
             </InputSelect>
             <InputSelect label="Estado" name="status">
                 <option>--</option>
+                <option value="active">En activo</option>
                 <option value="released">Despedido</option>
+                <option value="retired">Retirado</option>
                 <option value="not-active">No activo</option>
                 <option value="manager">Manager</option>
                 <option value="semi-active">Semi-activo</option>
-                <option value="active">En activo</option>
             </InputSelect>
 
             <InputSelect label="Marca" name="brand">
