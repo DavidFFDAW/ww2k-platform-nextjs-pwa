@@ -1,0 +1,67 @@
+.brand-select-item {
+    position: relative;
+    width: 100%;
+    height: 125px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.brand-select-item .inner {
+    width: 50%;
+}
+
+.brand-select-item.selected.branded-RAW::before {
+    background: conic-gradient(transparent 270deg, var(--raw), transparent);
+}
+.brand-select-item.selected.branded-SD::before {
+    background: conic-gradient(
+        transparent 270deg,
+        var(--smackdown),
+        transparent
+    );
+}
+.brand-select-item.selected.branded-AWL::before {
+    background: conic-gradient(transparent 270deg, var(--awl), transparent);
+}
+.brand-select-item.selected::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 1;
+    width: 100%;
+    animation: brandSelectItem 2s linear infinite;
+}
+.brand-select-item.selected::after {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    border-radius: inherit;
+    inset: 3;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+}
+.brand-select-item.selected .inner {
+    width: 90%;
+    z-index: 1;
+}
+
+@keyframes brandSelectItem {
+    0% {
+        transform: translate(-50%, -50%) scale(1.4) rotate(0turn);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.4) rotate(1turn);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .brand-select-item.selected .inner {
+        width: 80%;
+    }
+}
