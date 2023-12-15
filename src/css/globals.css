@@ -5,6 +5,10 @@
 :root {
     --sidebar-width: 320px;
     --sidebar-bg: #17181c;
+    --smackdown: #00a2ff;
+    --raw: #f44336;
+    --awl: rgb(164, 63, 184);
+    --legend: #ff9800;
 }
 
 * {
@@ -106,7 +110,7 @@ body {
     background: linear-gradient(140deg, #c91727 0%, rgba(31, 31, 31, 1) 100%);
 }
 
-.sidebar.shown+.sidebar-main-margin {
+.sidebar.shown + .sidebar-main-margin {
     min-height: 88vh;
     /* position: relative; */
     margin-left: var(--sidebar-width);
@@ -246,7 +250,7 @@ img.rounded {
         transform: translateX(0);
     }
 
-    .sidebar.shown+.btn-open-sidebar {
+    .sidebar.shown + .btn-open-sidebar {
         display: none;
     }
 
@@ -409,7 +413,7 @@ dialog[open] {
     z-index: 0;
 }
 
-.sidebar.shown+.sidebar-main-margin .custom-totalpage-wallpaper {
+.sidebar.shown + .sidebar-main-margin .custom-totalpage-wallpaper {
     margin-left: 320px;
     width: calc(100% - 320px);
 }

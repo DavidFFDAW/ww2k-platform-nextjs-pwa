@@ -237,6 +237,9 @@ button {
     grid-template-columns: repeat(3, 1fr);
     place-items: center;
 }
+.grid.three-column-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
 
 .two-column {
     grid-template-columns: repeat(2, 1fr);
@@ -247,7 +250,7 @@ button {
     grid-template-columns: repeat(2, 1fr);
 }
 
-.place-items {
+.pcenter {
     place-items: center;
 }
 
@@ -316,6 +319,7 @@ button {
 }
 
 @media only screen and (max-width: 768px) {
+    .grid-responsive,
     .responsive-grid {
         grid-template-columns: repeat(1, 1fr) !important;
     }
