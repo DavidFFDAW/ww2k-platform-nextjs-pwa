@@ -1,3 +1,7 @@
+/* 
+root { --bounce: linear(0, 0.39, 0.57, 0.52, ..., 1); }
+.digit { transition: translate 1s var(--bounce); } 
+*/
 .grid.unconventional-grid {
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: 83px;
@@ -17,27 +21,34 @@
 }
 
 .roster-wrestler-name strong.lastname-SD {
-    color: #00a2ff;
+    color: var(--smackdown);
 }
 
 .grid-item.brand-SD {
-    background-color: #00a2ff;
+    background-color: var(--smackdown);
 }
 
 .grid-item.brand-RAW {
-    background-color: #f44336;
+    background-color: var(--raw);
 }
 
 .roster-wrestler-name strong.lastname-RAW {
-    color: #f44336;
+    color: var(--raw);
 }
 
 .grid-item.brand-AWL {
-    background-color: rgb(164, 63, 184);
+    background-color: var(--awl);
 }
 
 .roster-wrestler-name strong.lastname-AWL {
-    color: rgb(164, 63, 184);
+    color: var(--awl);
+}
+.grid-item.brand-LEGEND {
+    background-color: var(--legend);
+}
+
+.roster-wrestler-name strong.lastname-LEGEND {
+    color: var(--legend);
 }
 
 .roster-card.relative {
