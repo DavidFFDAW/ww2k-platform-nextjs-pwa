@@ -1,10 +1,11 @@
-"use client";
-import useOnScreen from "@/hooks/useOnScreen";
-import React, { SyntheticEvent, useRef } from "react";
-import { ComponentSpinner } from "../Spinner/Spinner";
+'use client';
+import useOnScreen from '@/hooks/useOnScreen';
+import React, { SyntheticEvent, useRef } from 'react';
+import { ComponentSpinner } from '../Spinner/Spinner';
 
 interface Props {
     src?: string;
+    srcError?: string;
     className?: string;
     imgClassName?: string;
     alt?: string;
@@ -17,7 +18,8 @@ export default function LazyImage({
     src,
     className,
     imgClassName,
-    alt = "defaul image",
+    alt = 'defaul image',
+    srcError = '/noimage.jpg',
     draggable = false,
     width = 512,
     height = 512,
@@ -25,13 +27,13 @@ export default function LazyImage({
     const ref = useRef<HTMLImageElement>(null);
     const { isInView } = useOnScreen(ref);
 
-    const imageSrc = src || "/noimage.jpg";
+    const imageSrc = src || srcError || '/noimage.jpg';
 
     const errorCatch = (e: SyntheticEvent) => {
         e.preventDefault();
         const target = e.currentTarget as HTMLImageElement;
         target.onerror = null;
-        target.src = "/noimage.jpg";
+        target.src = srcError || '/noimage.jpg';
     };
 
     const imageSrcF = isInView ? imageSrc : '/noimage.jpg';
@@ -40,20 +42,23 @@ export default function LazyImage({
     return (
         <>
             <div ref={ref} className={className}>
-                {isInView ? <img
-                    // className={className}
-                    className={imageClassName}
-                    width={width}
-                    height={height}
-                    loading="lazy"
-                    src={imageSrcF}
-                    alt={alt}
-                    data-src={imageSrc}
-                    draggable={draggable}
-                    onError={errorCatch}
-                /> : <ComponentSpinner />}
+                {isInView ? (
+                    <img
+                        // className={className}
+                        className={imageClassName}
+                        width={width}
+                        height={height}
+                        loading="lazy"
+                        src={imageSrcF}
+                        alt={alt}
+                        data-src={imageSrc}
+                        draggable={draggable}
+                        onError={errorCatch}
+                    />
+                ) : (
+                    <ComponentSpinner />
+                )}
             </div>
         </>
-
     );
 }

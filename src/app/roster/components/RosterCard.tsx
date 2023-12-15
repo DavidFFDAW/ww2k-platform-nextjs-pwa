@@ -1,7 +1,8 @@
-"use client";
-import React from "react";
-import BrandImage from "./BrandImage";
-import LazyImage from "@/components/Image/LazyImage";
+'use client';
+import React from 'react';
+import BrandImage from './BrandImage';
+import LazyImage from '@/components/Image/LazyImage';
+import RosterCardName from './RosterCardName';
 
 interface Props {
     imgAlt?: string;
@@ -10,18 +11,9 @@ interface Props {
     brand: string;
 }
 
-export default function RosterCard({
-    imgAlt = "noimage",
-    imgSrc = "/noimage.jpg",
-    name,
-    brand,
-}: Props) {
-    const splitted = name.split(" ");
-    const firstName = splitted[0];
-    const lastName = splitted.slice(1).join(" ");
-
+export default function RosterCard({ imgAlt = '/noimage.jpg', imgSrc = '/noimage.jpg', name, brand }: Props) {
     return (
-        <div className={"w1 grid-item roster-card relative brand-" + brand}>
+        <div className={'w1 grid-item roster-card relative brand-' + brand}>
             <div className="overlay-gradient"></div>
             <div className="roster-wrestler-brand">
                 <BrandImage brand={brand.toUpperCase()} />
@@ -30,14 +22,12 @@ export default function RosterCard({
                 width={128}
                 height={128}
                 src={imgSrc}
+                srcError={imgAlt}
                 alt={imgAlt}
                 className="total-image image-container"
             />
             <div className="roster-card-wrestler-name-container">
-                <h2 className="roster-wrestler-name">
-                    {firstName}{" "}
-                    <strong className={`lastname-${brand}`}>{lastName}</strong>
-                </h2>
+                <RosterCardName name={name} brand={brand} />
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 import { getRosterWrestlers } from '@/queries/wrestler.queries';
-import React from 'react'
+import React from 'react';
 import RosterCard from './RosterCard';
 
 interface Props {
@@ -12,24 +12,20 @@ export default async function RosterWrestlersList({ searchParams }: Props) {
     return (
         <>
             <div className="grid responsive-grid grid-three-column unconventional-grid gap">
-                {wrestlers.map((wrestler) => {
-                    const legendBrand = [
-                        "retired",
-                        "semi-active",
-                    ].includes(wrestler.status);
+                {wrestlers.map(wrestler => {
+                    const legendBrand = ['retired', 'semi-active'].includes(wrestler.status);
 
                     return (
                         <RosterCard
                             key={wrestler.id}
-                            brand={
-                                legendBrand ? "LEGEND" : wrestler.brand
-                            }
+                            brand={legendBrand ? 'LEGEND' : wrestler.brand}
                             name={wrestler.name}
                             imgSrc={wrestler.image_name as string}
+                            imgAlt="/vacant.webp"
                         />
                     );
                 })}
             </div>
         </>
-    )
+    );
 }
