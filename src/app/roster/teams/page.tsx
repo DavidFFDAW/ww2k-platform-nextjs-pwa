@@ -1,41 +1,38 @@
-import { Suspense } from 'react';
-import Title from '@/components/Title';
 import StatusLabel, { StatusLabelContainer } from '@/components/Status/StatusLabel';
-import { SearchForm } from '@/components/Forms';
-import { ButtonSecondary } from '@/components/Buttons/Buttons';
+import Title from '@/components/Title';
 import { PageContext } from '@/shared/models';
+import React, { Suspense } from 'react';
+import RosterWrestlersListSkeleton from '../components/RosterWrestlersListSkeleton';
+import { ButtonSecondary } from '@/components/Buttons/Buttons';
+import { SearchForm } from '@/components/Forms';
 import { Metadata } from 'next';
 import { getNamedTitle } from '@/utilities/metadatas.utility';
-import RosterWrestlersList from './components/RosterWrestlersList';
-import RosterWrestlersListSkeleton from './components/RosterWrestlersListSkeleton';
-import Link from 'next/link';
-
-export const metadata: Metadata = {
-    title: getNamedTitle('Roster'),
-};
+import { getTeamsWithMembers } from '@/queries/teams.queries';
+import { Team } from '@prisma/client';
+import TeamRosterItem from './TeamRosterItem';
 
 export const revalidate = 0;
+export const metadata: Metadata = {
+    title: getNamedTitle('Roster de Equipos'),
+};
 
-export default function RosterPage(context: PageContext) {
-    const searchName = context.searchParams.search;
-    const searchBrand = context.searchParams.brand;
+export default async function PublicRosterTeamsPage(ctx: PageContext) {
+    const searchName = ctx.searchParams.search;
+    const searchBrand = ctx.searchParams.brand;
+    const teams = await getTeamsWithMembers();
 
     return (
         <>
-            <Title title="Roster" icon="list-ul" />
+            <Title title="Equipos" icon="people" />
 
             <StatusLabelContainer fixed={true}>
                 <StatusLabel name="all" text={'Todos'} href={'?'} activeLink={searchBrand} />
                 <StatusLabel name="RAW" text={'RAW'} href={'?brand=RAW'} activeLink={searchBrand} />
                 <StatusLabel name="SD" text={'SmackDown'} href={'?brand=SD'} activeLink={searchBrand} />
                 <StatusLabel name="AWL" text={'AWL'} href={'?brand=AWL'} activeLink={searchBrand} />
-
-                <Link className="possible-state-item label" href="/roster/teams">
-                    Equipos
-                </Link>
             </StatusLabelContainer>
 
-            <SearchForm url="/roster" className="down">
+            <SearchForm url="/roster/teams" className="down">
                 <div className="w1 flex start gap-small">
                     <input
                         type="search"
@@ -51,9 +48,15 @@ export default function RosterPage(context: PageContext) {
             </SearchForm>
 
             <div className="grid-pre-container" style={{ marginTop: 80 }}>
-                <Suspense fallback={<RosterWrestlersListSkeleton />}>
-                    <RosterWrestlersList searchParams={context.searchParams} />
-                </Suspense>
+                {/* <Suspense fallback={<RosterWrestlersListSkeleton />}> */}
+                {/* <RosterWrestlersListSkeleton /> */}
+                <div className="grid responsive-grid grid-three-column unconventional-grid gap">
+                    {teams.map((team: Team) => (
+                        <TeamRosterItem key={team.id} team={team} />
+                    ))}
+                </div>
+                {/* <RosterWrestlersList searchParams={ctx.searchParams} /> */}
+                {/* </Suspense> */}
             </div>
         </>
     );

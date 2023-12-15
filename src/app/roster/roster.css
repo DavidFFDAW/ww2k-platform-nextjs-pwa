@@ -6,6 +6,7 @@
 
 .grid-item {
     grid-row: span 2;
+    overflow: hidden;
 }
 
 .grid-item:nth-child(8n + 1),
