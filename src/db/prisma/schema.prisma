@@ -19,7 +19,6 @@ model Brand {
   updated_at   DateTime?      @updatedAt
   background   String?        @db.VarChar(255)
   Championship Championship[]
-  Team         Team[]
 
   @@map(name: "brands")
 }
@@ -160,13 +159,13 @@ model Tweets {
 model Team {
   id                Int                 @id @default(autoincrement())
   name              String              @db.VarChar(125)
+  slug              String              @db.VarChar(125)
   average           Int?                @db.Int
+  brand             String              @db.VarChar(10)
   created_at        DateTime?           @default(now())
   updated_at        DateTime?           @updatedAt
   member_champion_1 Int?                @db.Int
   member_champion_2 Int?                @db.Int
-  brand             Int?                @db.Int
-  actual_brand      Brand?              @relation(fields: [brand], references: [id])
   active            Boolean             @default(true) @db.TinyInt
   ChampionshipReign ChampionshipReign[]
   WrestlerTeam      WrestlerTeam[]

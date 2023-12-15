@@ -15,6 +15,22 @@ export function getWrestlerByID(id: number) {
         },
     });
 }
+export function getWrestlerByIdOrName(id: string) {
+    if (isNaN(Number(id))) {
+        return prisma.wrestler.findFirst({
+            where: {
+                name: {
+                    contains: id,
+                },
+            },
+        });
+    }
+    return prisma.wrestler.findFirst({
+        where: {
+            id: Number(id),
+        },
+    });
+}
 
 export function getRosterWrestlers(searchParams: any) {
     const filters: any = {
