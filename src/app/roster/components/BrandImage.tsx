@@ -31,7 +31,12 @@ export default function BrandImage({ brand }: { brand: string }) {
     if (brand.toUpperCase() === "AWL")
         return (
             <div className="brand-image">
-                <Image width={size} height={size} src="/images/awl.png" alt="AWL" />
+                <Image
+                    width={size}
+                    height={size}
+                    src="/images/awl-logo.webp"
+                    alt="AWL"
+                />
             </div>
         );
 
