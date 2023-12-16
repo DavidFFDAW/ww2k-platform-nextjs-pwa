@@ -24,7 +24,8 @@
     "quill": "^1.3.7",
     "react": "latest",
     "react-dom": "latest",
-    "react-quill": "^2.0.0"
+    "react-quill": "^2.0.0",
+    "swiper": "^11.0.5"
   },
   "prisma": {
     "schema": "src/db/prisma/schema.prisma"
