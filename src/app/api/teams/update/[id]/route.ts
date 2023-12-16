@@ -73,6 +73,8 @@ export async function PUT(
             name,
             average: Number(insertingOverall),
             active: body.active,
+            brand: body.brand.trim(),
+            slug: body.slug.trim(),
             WrestlerTeam: {
                 deleteMany: toDelete.map((member: string) => ({
                     wrestler_id: Number(member),
@@ -84,8 +86,8 @@ export async function PUT(
         },
     });
 
-    revalidatePath("/admin/teams");
-    revalidatePath("/admin/teams/update/[id]");
+    revalidatePath("/admin/teams", "page");
+    revalidatePath("/admin/teams/update/[id]", "page");
 
     return NextResponse.json(
         { message: `Se ha actualizdo ${name} correctamente` },
