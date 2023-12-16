@@ -46,6 +46,7 @@
     inset: 3;
     width: calc(100% - 6px);
     height: calc(100% - 6px);
+    filter: blur(7px);
 }
 .brand-select-item.selected .inner {
     width: 75%;

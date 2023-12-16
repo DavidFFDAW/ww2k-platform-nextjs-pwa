@@ -94,4 +94,8 @@
     .blog-item-post-frontend {
         gap: 30px;
     }
+
+    .grouped-selection-overall {
+        display: none;
+    }
 }

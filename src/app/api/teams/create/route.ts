@@ -43,6 +43,8 @@ export async function POST(request: NextRequest) {
             name,
             average: Number(insertingOverall),
             active: active,
+            brand: body.brand,
+            slug: body.slug,
             WrestlerTeam: {
                 create: members.map((member: any) => ({
                     wrestler_id: Number(member),
@@ -61,6 +63,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
         { message: "Se ha creado el equipo correctamente" },
-        { status: 400 }
+        { status: 200 }
     );
 }

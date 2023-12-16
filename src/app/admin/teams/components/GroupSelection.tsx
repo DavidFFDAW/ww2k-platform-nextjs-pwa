@@ -50,7 +50,7 @@ export default function GroupSelection({ list, members }: GroupSelectionProps) {
                                     name="overalls[]"
                                     value={member.average}
                                 />
-                                <div className="flex start acenter gap">
+                                <div className="flex start acenter gap-small">
                                     {/* <div className="backgroundimage" style={{ backgroundImage: `url(${image})` }}></div> */}
                                     <Image
                                         width={50}
@@ -59,8 +59,12 @@ export default function GroupSelection({ list, members }: GroupSelectionProps) {
                                         src={image}
                                         alt={member.name}
                                     />
-                                    <p>{member.name}</p>
-                                    <p>Media: {member.average}</p>
+                                    <p className="grouped-selection-name">
+                                        {member.name}
+                                    </p>
+                                    <p className="grouped-selection-overall">
+                                        Media: {member.average}
+                                    </p>
                                 </div>
                                 <DangerButton
                                     text={<>&times;</>}
@@ -74,22 +78,22 @@ export default function GroupSelection({ list, members }: GroupSelectionProps) {
                 </ScrollableArea>
             </div>
 
-            <Select
-                zIndex={100}
-                listHeight={250}
-                name={"select-wrestler-team"}
-                list={list.map((i) => ({
-                    id: i.id,
-                    name: i.name,
-                    image: i.image_name,
-                    average: i.overall,
-                }))}
-                selectCallback={(item: any) => {
-                    setSelected((p) => ({ ...p, temporal: item }));
-                }}
-            />
+            <div className="flex start acenter gap-small">
+                <Select
+                    zIndex={100}
+                    listHeight={250}
+                    name={"select-wrestler-team"}
+                    list={list.map((i) => ({
+                        id: i.id,
+                        name: i.name,
+                        image: i.image_name,
+                        average: i.overall,
+                    }))}
+                    selectCallback={(item: any) => {
+                        setSelected((p) => ({ ...p, temporal: item }));
+                    }}
+                />
 
-            <div className="down w1 flex end acenter">
                 <ButtonSecondary
                     text={"Agregar"}
                     onClick={() => {

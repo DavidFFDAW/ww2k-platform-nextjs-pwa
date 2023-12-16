@@ -190,6 +190,11 @@ root { --bounce: linear(0, 0.39, 0.57, 0.52, ..., 1); }
     overflow: hidden;
     overflow-x: auto;
 }*/
+.roster-card.relative
+    .wrestlers-teams-list.inactive
+    img.lazy-image.total-image.image-slide {
+    filter: grayscale(1);
+}
 .roster-card.relative .wrestlers-teams-list .inactive-text {
     position: absolute;
     top: 0;

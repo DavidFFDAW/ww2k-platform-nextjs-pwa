@@ -31,44 +31,54 @@ export default async function LoadedUpdateInputs({ id }: { id: string }) {
             <Form
                 method="PUT"
                 action={`/api/teams/update/${currentTeamData.id}`}
-                className="flex center al-center column gap wrestler-upsert-form space-down"
+                className="flex column gap wrestler-upsert-form space-down"
                 sendHttp={true}
                 refresh={true}
             >
-                <Boxed title={"Datos del equipo"} w={"100"}>
-                    <div className="grid two-column-grid aend gap-small">
-                        <HiddenInput name={"id"} value={currentTeamData.id} />
-                        <Input
-                            required={true}
-                            max={150}
-                            label={"Nombre"}
-                            name={"name"}
-                            value={currentTeamData.name}
-                        />
-                        <NumberInput
-                            type={"number"}
-                            max={3}
-                            required={false}
-                            label={"Media"}
-                            name={"overall"}
-                            value={currentTeamData.average}
-                        />
-                        <Input
-                            required={true}
-                            max={150}
-                            label={"Slug"}
-                            name={"slug"}
-                            value={currentTeamData.slug || currentTeamData.name}
-                        />
-                        <ToggleInput
-                            label={"Activo"}
-                            name={"active"}
-                            checked={currentTeamData.active}
-                        />
-                    </div>
-                </Boxed>
+                <div className="grid two-column-grid responsive-grid gap">
+                    <Boxed title={"Datos del equipo"} w={"100"}>
+                        <div className="flex column start astart gap-small">
+                            <HiddenInput
+                                name={"id"}
+                                value={currentTeamData.id}
+                            />
+                            <Input
+                                required={true}
+                                max={150}
+                                label={"Nombre"}
+                                name={"name"}
+                                value={currentTeamData.name}
+                            />
+                            <NumberInput
+                                type={"number"}
+                                max={3}
+                                required={false}
+                                label={"Media"}
+                                name={"overall"}
+                                value={currentTeamData.average}
+                            />
+                            <Input
+                                required={true}
+                                max={150}
+                                label={"Slug"}
+                                name={"slug"}
+                                value={
+                                    currentTeamData.slug || currentTeamData.name
+                                }
+                            />
+                            <ToggleInput
+                                label={"Activo"}
+                                name={"active"}
+                                checked={currentTeamData.active}
+                            />
+                        </div>
+                    </Boxed>
 
-                <GroupSelection list={possibleMembers} members={teamMembers} />
+                    <GroupSelection
+                        list={possibleMembers}
+                        members={teamMembers}
+                    />
+                </div>
 
                 <Boxed title={"Datos de la marca"} w={"100"}>
                     <BrandSelect

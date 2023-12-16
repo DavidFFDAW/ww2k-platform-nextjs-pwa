@@ -321,7 +321,7 @@ button {
 @media only screen and (max-width: 768px) {
     .grid-responsive,
     .responsive-grid {
-        grid-template-columns: repeat(1, 1fr) !important;
+        grid-template-columns: repeat(1, 100%) !important;
     }
 
     .mobile-only {
