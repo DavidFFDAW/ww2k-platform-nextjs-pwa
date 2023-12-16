@@ -29,7 +29,7 @@ export default function Form({
     redirect,
     refresh,
 }: FormProps) {
-    const { onSubmitHook } = useForm({
+    const { onSubmitHook, handleFormReset } = useForm({
         debug,
         refresh,
         action,
@@ -43,6 +43,7 @@ export default function Form({
             action={action}
             className={className}
             style={style}
+            onReset={handleFormReset}
             onSubmit={(e) =>
                 onSubmitHook({
                     event: e,

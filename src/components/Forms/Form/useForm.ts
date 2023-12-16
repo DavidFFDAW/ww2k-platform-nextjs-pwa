@@ -80,5 +80,14 @@ export default function useForm({
     return {
         onSubmitHook,
         handleSendRequest,
+        handleFormReset: (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            const form = event.target as HTMLFormElement;
+            for (const element of form.elements as any) {
+                if (element.type === "submit" || element.type === "reset")
+                    continue;
+                element.value = "";
+            }
+        },
     };
 }
