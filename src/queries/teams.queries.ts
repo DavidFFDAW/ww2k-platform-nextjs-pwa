@@ -1,10 +1,12 @@
 import { prisma } from "@/db/conn";
 
 export function getCompleteTeamDataByID(id: string) {
+    const where: any = isNaN(Number(id))
+        ? { name: { contains: id } }
+        : { id: Number(id) };
+
     return prisma.team.findFirst({
-        where: {
-            id: Number(id),
-        },
+        where: where,
         include: {
             WrestlerTeam: {
                 include: {
@@ -27,7 +29,7 @@ export function getTeamDataByID(id: string) {
 export function getTeams() {
     return prisma.team.findMany({
         orderBy: {
-            name: "asc",
+            slug: "asc",
         },
     });
 }
@@ -35,7 +37,7 @@ export function getTeams() {
 export function getTeamsWithMembers() {
     return prisma.team.findMany({
         orderBy: {
-            name: "asc",
+            slug: "asc",
         },
         include: {
             ChampionshipReign: true,
