@@ -9,7 +9,6 @@ export async function GET(request: NextRequest) {
     try {
         const teams = await prisma.team.findMany({
             include: {
-                actual_brand: true,
                 WrestlerTeam: true,
             },
         });
