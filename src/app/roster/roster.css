@@ -53,6 +53,8 @@ root { --bounce: linear(0, 0.39, 0.57, 0.52, ..., 1); }
 
 .roster-card.relative {
     height: 214px;
+    --swiper-theme-color: #fff;
+    --swiper-pagination-bullet-inactive-color: #eee;
 }
 
 .search-input {
@@ -147,6 +149,9 @@ root { --bounce: linear(0, 0.39, 0.57, 0.52, ..., 1); }
     height: 100%;
     display: grid;
     place-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
     overflow: hidden;
 }
 
@@ -156,8 +161,64 @@ root { --bounce: linear(0, 0.39, 0.57, 0.52, ..., 1); }
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     z-index: 3;
+}
+.roster-card.relative .ppppppppppppp img.papiroflesiax {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* .roster-card.relative .team-members-slider {
+    display: flex;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+}
+.roster-card.relative .team-members-slider .image-container-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    overflow-x: auto;
+}*/
+.roster-card.relative .wrestlers-teams-list .inactive-text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    z-index: 2;
+}
+.roster-card.relative .wrestlers-teams-list .inactive-text.brand-RAW {
+    color: var(--raw);
+}
+.roster-card.relative .wrestlers-teams-list .inactive-text.brand-SD {
+    color: var(--smackdown);
+}
+.roster-card.relative .wrestlers-teams-list .inactive-text.brand-AWL {
+    color: var(--awl);
+}
+.roster-card.relative.inactive .overlay-gradient {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1));
+}
+.roster-card.relative .wrestlers-teams-list .swiper {
+    z-index: 2;
+}
+.roster-card.relative .swiper-wrapper .swiper-slide {
+    cursor: pointer;
+}
+.roster-card.relative .swiper-wrapper img.image-slide {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
 @media screen and (max-width: 767px) {

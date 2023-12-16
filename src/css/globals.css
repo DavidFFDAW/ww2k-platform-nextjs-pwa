@@ -20,6 +20,9 @@ body {
     scroll-behavior: smooth;
 }
 
+.hidden-image {
+    opacity: 0;
+}
 .main-admin-layout {
     padding: 50px 0;
 }
