@@ -15,7 +15,7 @@ interface Props {
     style?: React.CSSProperties;
 }
 
-export default function LazyImage({
+export default function LazyImageTwo({
     src,
     className,
     imgClassName,
@@ -43,25 +43,19 @@ export default function LazyImage({
 
     return (
         <>
-            <div ref={ref} className={className}>
-                {isInView ? (
-                    <img
-                        // className={className}
-                        style={style}
-                        className={imageClassName}
-                        width={width}
-                        height={height}
-                        loading="lazy"
-                        src={imageSrcF}
-                        alt={alt}
-                        data-src={imageSrc}
-                        draggable={draggable}
-                        onError={errorCatch}
-                    />
-                ) : (
-                    <ComponentSpinner />
-                )}
-            </div>
+            <img
+                ref={ref}
+                style={style}
+                className={isInView ? imageClassName : "hidden-image"}
+                width={width}
+                height={height}
+                loading="lazy"
+                {...(isInView && { src: imageSrcF })}
+                alt={alt}
+                data-src={imageSrc}
+                draggable={draggable}
+                onError={errorCatch}
+            />
         </>
     );
 }
