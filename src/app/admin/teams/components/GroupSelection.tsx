@@ -32,7 +32,15 @@ export default function GroupSelection({ list, members }: GroupSelectionProps) {
     return (
         <Boxed w={"100"}>
             <div className="space-down">
-                <ScrollableArea height={200} title={"Miembros de equipo"}>
+                <ScrollableArea
+                    height={200}
+                    title={"Miembros de equipo"}
+                    reset={true}
+                    buttonText={"Reset"}
+                    clearList={() =>
+                        setSelected((p) => ({ ...p, selected: [] }))
+                    }
+                >
                     {selected.selected.map((member, index) => {
                         const image = member.image || "/noimage.jpg";
                         return (
