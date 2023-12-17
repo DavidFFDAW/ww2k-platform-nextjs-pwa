@@ -12,12 +12,17 @@ interface TableItemProps {
 export function TableRow({
     children,
     style,
+    className,
 }: {
     style?: React.CSSProperties;
     children: React.ReactNode;
+    className?: string;
 }) {
     return (
-        <div className="table-row flex f1" style={style}>
+        <div
+            className={"table-row flex f1 " + (className || "a")}
+            style={style}
+        >
             {children}
         </div>
     );
