@@ -1,6 +1,7 @@
 import { ChildrenInterface } from "@/shared/models";
 import dynamic from "next/dynamic";
 import React from "react";
+import "./admin.css";
 
 const Sidebar = dynamic(() => import("@/components/Sidebar/Sidebar"), {
     ssr: false,
