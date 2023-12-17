@@ -22,37 +22,41 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
     };
 
     return (
-        <SearchForm url={"/admin/wrestlers"} className="wrestlers-filters-list-container">
+        <SearchForm
+            url={"/admin/wrestlers"}
+            className="wrestlers-filters-list-container"
+        >
             <div className="w1 down boxed flex center column gap-small padded al-center filters-block__content">
                 <header className="w1 flex between acenter filter-header buttons">
-                    <NullableLoading condition={showFilters}>
+                    {/* <NullableLoading condition={showFilters}>
                         <BlackButton
                             type={"button"}
                             text={<>&times;</>}
                             onClick={() => setShowFilters(false)}
                         />
-                    </NullableLoading>
+                    </NullableLoading> */}
 
-                    <div className="w1 flex end gap-smaller">
-                        <button
-                            type="button"
-                            className="filters"
-                            onClick={handleShowFilters}
-                        >
-                            <FilterIcon w={20} h={25} />
-                        </button>
-                    </div>
+                    <div className="w1 flex end gap-smaller"></div>
                 </header>
 
+                <div className="w1 flex between aend gap">
+                    <Input
+                        label={"Nombre"}
+                        type="search"
+                        name={"name"}
+                        value={params.name}
+                    />
+                    <button
+                        type="button"
+                        className="filters"
+                        onClick={handleShowFilters}
+                    >
+                        <FilterIcon w={20} h={25} />
+                    </button>
+                </div>
+
                 <NullableLoading condition={showFilters}>
-                    <div className="w1 flex column al-snBlackButtonart gap-5 filters">
-                        <Input
-                            label={"Nombre"}
-                            type="text"
-                            name={"name"}
-                            value={params.name}
-                        />
-                    </div>
+                    <div className="w1 flex column al-snBlackButtonart gap-5 filters"></div>
 
                     <div className="flex start gap acenter">
                         <InputSelect
@@ -108,14 +112,12 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                     /> */}
 
                     <div className="flex between gap acenter">
-                        <ButtonSecondary
-                            type={"reset"}
-                            text={"Borrar"}
-                            onClick={() => { }}
-                        />
-                        <ButtonCTA type={"submit"} text={"Buscar"} />
+                        <ButtonSecondary type={"reset"} text={"Borrar"} />
                     </div>
                 </NullableLoading>
+                <div className="w1 flex end acenter">
+                    <ButtonCTA type={"submit"} text={"Buscar"} />
+                </div>
             </div>
         </SearchForm>
     );
