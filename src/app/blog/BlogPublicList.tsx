@@ -42,7 +42,12 @@ export default async function BlogPublicList() {
                                 <h2 className="title uppercase">
                                     {post.title}
                                 </h2>
-                                <p>{post.exceptr}...</p>
+                                <p
+                                    dangerouslySetInnerHTML={{
+                                        __html:
+                                            (post.exceptr as string) + "...",
+                                    }}
+                                ></p>
                                 <div className="flex end">
                                     <p>
                                         {existingDateToString(post.created_at)}
