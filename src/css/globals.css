@@ -488,6 +488,23 @@ select.custom {
     cursor: pointer;
     /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); */
 }
+input[type="search"]::-webkit-search-cancel-button {
+    appearance: none;
+    height: 1em;
+    width: 1em;
+    position: relative;
+    border-radius: 50em;
+    background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg)
+        no-repeat 50% 50%;
+    background-size: contain;
+    pointer-events: none;
+    opacity: 0;
+}
+input[type="search"]:focus::-webkit-search-cancel-button {
+    opacity: 0.3;
+    pointer-events: all;
+    cursor: pointer;
+}
 
 input.skeleton-loading {
     border: none;
