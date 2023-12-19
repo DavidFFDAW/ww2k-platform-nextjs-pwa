@@ -3,8 +3,10 @@ import Link from "next/link";
 import { ITEMS_PER_PAGE } from "@/constants/config";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormEvent } from "react";
-import { NullableLoading } from "../Loading";
+import { ConditionalLoading, NullableLoading } from "../Loading";
 import { BootstrapIcon } from "../Icon/BootstrapIcon";
+import { positiveOrZero } from "./pagination.service";
+import PaginationLink from "./Pagination.components";
 
 interface PaginationProps {
     page: number;
@@ -23,18 +25,17 @@ export function Pagination({
 
     const realPage = Number(page) || 1;
     const previousPage = realPage - 1 || 1;
+    const numberOfPages = 4;
 
     const innerPages = [...Array(Math.ceil(total / itemsPerPage))].map(
         (_, i) => i + 1
     );
     const lastPage = innerPages.length;
-
-    console.log({
-        realPage,
-        previousPage,
-        innerPages,
-        lastPage: innerPages.length,
-    });
+    const beforePages = innerPages.slice(
+        positiveOrZero(realPage - numberOfPages - 1),
+        realPage - 1
+    );
+    const afterPages = innerPages.slice(realPage, realPage + numberOfPages);
 
     const handleRequest = (e: FormEvent, page: number) => {
         e.preventDefault();
@@ -59,72 +60,73 @@ export function Pagination({
     return (
         <div className="flex center acenter">
             <div className="w1 pagination flex center acenter">
-                <NullableLoading condition={realPage > 1}>
-                    <Link
-                        href={`?page=${previousPage}`}
-                        className="pagination-item pagination__item"
-                        onClick={(e) => handleRequest(e, realPage - 1 || 1)}
-                    >
-                        &lt;
-                    </Link>
-                </NullableLoading>
+                <ConditionalLoading
+                    condition={realPage > 1}
+                    fallback={
+                        <div className="pointer pagination__item pagination-item">
+                            &lt;
+                        </div>
+                    }
+                >
+                    <PaginationLink
+                        text="&lt;"
+                        page={previousPage}
+                        onLink={(e: any) => handleRequest(e, realPage - 1 || 1)}
+                    />
+                </ConditionalLoading>
 
-                {innerPages
-                    .filter((page) => page < lastPage)
-                    .slice(realPage - 1, realPage + 4)
-                    .map((i: number) => {
-                        const pageNumber = i;
+                {beforePages.map((page: number) => {
+                    return (
+                        <PaginationLink
+                            text={page}
+                            key={page}
+                            page={page}
+                            onLink={(e: any) => handleRequest(e, page)}
+                        />
+                    );
+                })}
+
+                <div className="pointer pagination-real-link pagination-item active">
+                    {realPage}
+                </div>
+
+                {afterPages
+                    .filter((i) => i !== lastPage)
+                    .map((page: number) => {
                         return (
-                            <Link
-                                href={`&page=${pageNumber}`}
-                                className={`pagination-real-link pagination-item ${
-                                    realPage === pageNumber
-                                        ? "active"
-                                        : "non-active"
-                                }`}
-                                key={pageNumber}
-                                onClick={(e) => handleRequest(e, pageNumber)}
-                            >
-                                {pageNumber}
-                            </Link>
+                            <PaginationLink
+                                text={page}
+                                key={page}
+                                page={page}
+                                onLink={(e: any) => handleRequest(e, page)}
+                            />
                         );
                     })}
 
-                <div className="pagination-item">...</div>
+                <div className="pointer pagination-item">...</div>
 
-                <div className="flex acenter">
-                    <input
-                        type="number"
-                        inputMode="numeric"
-                        className="search-your-page"
-                        defaultValue={realPage}
-                        min={1}
-                        max={lastPage}
+                <NullableLoading condition={realPage < lastPage}>
+                    <PaginationLink
+                        text={lastPage}
+                        page={lastPage}
+                        onLink={(e: any) => handleRequest(e, lastPage)}
                     />
-                    <button type="button" onClick={(e) => handleRequest(e, 2)}>
-                        <BootstrapIcon icon="search" />
-                    </button>
-                </div>
-
-                <NullableLoading condition={realPage < lastPage}>
-                    <Link
-                        href={`?page=${lastPage}`}
-                        className="pagination-item"
-                        onClick={(e) => handleRequest(e, lastPage)}
-                    >
-                        {lastPage}
-                    </Link>
                 </NullableLoading>
 
-                <NullableLoading condition={realPage < lastPage}>
-                    <Link
-                        href={`?page=${realPage + 1}`}
-                        className="pagination-item"
-                        onClick={(e) => handleRequest(e, realPage + 1)}
-                    >
-                        &gt;
-                    </Link>
-                </NullableLoading>
+                <ConditionalLoading
+                    condition={realPage < lastPage}
+                    fallback={
+                        <div className="pointer pagination__item pagination-item">
+                            &gt;
+                        </div>
+                    }
+                >
+                    <PaginationLink
+                        text="&gt;"
+                        page={realPage + 1}
+                        onLink={(e: any) => handleRequest(e, realPage + 1)}
+                    />
+                </ConditionalLoading>
             </div>
         </div>
     );
