@@ -966,6 +966,7 @@ body.dark-theme ::-webkit-scrollbar-thumb {
 }
 
 .pagination-item.active {
+    margin-bottom: 10px;
     background-color: #111010;
 }
 

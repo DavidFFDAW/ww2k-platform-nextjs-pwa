@@ -4,6 +4,7 @@ import { ITEMS_PER_PAGE } from "@/constants/config";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormEvent } from "react";
 import { NullableLoading } from "../Loading";
+import { BootstrapIcon } from "../Icon/BootstrapIcon";
 
 interface PaginationProps {
     page: number;
@@ -27,6 +28,13 @@ export function Pagination({
         (_, i) => i + 1
     );
     const lastPage = innerPages.length;
+
+    console.log({
+        realPage,
+        previousPage,
+        innerPages,
+        lastPage: innerPages.length,
+    });
 
     const handleRequest = (e: FormEvent, page: number) => {
         e.preventDefault();
@@ -82,8 +90,23 @@ export function Pagination({
                         );
                     })}
 
+                <div className="pagination-item">...</div>
+
+                <div className="flex acenter">
+                    <input
+                        type="number"
+                        inputMode="numeric"
+                        className="search-your-page"
+                        defaultValue={realPage}
+                        min={1}
+                        max={lastPage}
+                    />
+                    <button type="button" onClick={(e) => handleRequest(e, 2)}>
+                        <BootstrapIcon icon="search" />
+                    </button>
+                </div>
+
                 <NullableLoading condition={realPage < lastPage}>
-                    <div className="pagination-item">...</div>
                     <Link
                         href={`?page=${lastPage}`}
                         className="pagination-item"
