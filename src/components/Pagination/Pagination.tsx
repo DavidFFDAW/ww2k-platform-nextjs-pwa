@@ -1,31 +1,27 @@
 "use client";
-import Link from "next/link";
 import { ITEMS_PER_PAGE } from "@/constants/config";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { FormEvent } from "react";
 import { ConditionalLoading, NullableLoading } from "../Loading";
-import { BootstrapIcon } from "../Icon/BootstrapIcon";
 import { positiveOrZero } from "./pagination.service";
 import PaginationLink from "./Pagination.components";
+import usePaginate from "./usePaginate";
 
 interface PaginationProps {
     page: number;
     total: number;
+    numberOfPages?: number;
     itemsPerPage?: number;
 }
 
 export function Pagination({
     page,
     total,
+    numberOfPages = 4,
     itemsPerPage = ITEMS_PER_PAGE,
 }: PaginationProps) {
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
-    const router = useRouter();
+    const { handleRequest } = usePaginate();
 
     const realPage = Number(page) || 1;
     const previousPage = realPage - 1 || 1;
-    const numberOfPages = 4;
 
     const innerPages = [...Array(Math.ceil(total / itemsPerPage))].map(
         (_, i) => i + 1
@@ -36,26 +32,6 @@ export function Pagination({
         realPage - 1
     );
     const afterPages = innerPages.slice(realPage, realPage + numberOfPages);
-
-    const handleRequest = (e: FormEvent, page: number) => {
-        e.preventDefault();
-        const params = searchParams.entries();
-        const nonPageParams = Array.from(params).reduce(
-            (acc: any, [key, value]: any) => {
-                if (key !== "page") {
-                    acc += `${key}=${value}&`;
-                }
-                return acc;
-            },
-            ""
-        );
-
-        const query = Boolean(nonPageParams)
-            ? `?${nonPageParams}page=${page}`
-            : `?page=${page}`;
-
-        router.push(pathname + query);
-    };
 
     return (
         <div className="flex center acenter">
