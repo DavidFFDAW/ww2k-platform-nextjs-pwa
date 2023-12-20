@@ -14,6 +14,9 @@ export default function AdminMainLayout({ children }: ChildrenInterface) {
             <section className="responsive-lockup sidebar-main-margin main-admin-layout">
                 {children}
             </section>
+            {/* <a type="button" id="back-top" href="#top">
+                Volver
+            </a> */}
         </>
     );
 }

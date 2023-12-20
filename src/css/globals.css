@@ -958,6 +958,19 @@ body.dark-theme ::-webkit-scrollbar-thumb {
     height: 40px;
 }
 
+/* #back-top {
+    margin-top: 105vh;
+    position: sticky;
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%);
+    background-color: #00a2ff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 20px;
+    z-index: 999990;
+} */
+
 .pagination .pagination-item {
     padding: 8px 10px;
     background-color: #fff;
