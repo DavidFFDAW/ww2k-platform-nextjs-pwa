@@ -1,7 +1,9 @@
 import "@/css/globals.css";
 import type { Metadata } from "next";
 import AppProviders from "@/components/AppProviders/app.providers";
+import Header from "@/components/Header/Header";
 import "@/css/media.queries.css";
+import "@/css/dark-theme.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "animate.css";
 
@@ -29,6 +31,7 @@ export default function RootLayout({
         <html lang="es">
             <body className="app-body nextjs-app react-router-wrapper wwe2k-app-container">
                 <AppProviders>
+                    <Header />
                     <main className="app-page-wrapper">
                         <div className="boxed-content">{children}</div>
                     </main>
