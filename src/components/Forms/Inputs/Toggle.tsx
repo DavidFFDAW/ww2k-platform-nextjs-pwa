@@ -8,7 +8,7 @@ interface ToggleProps {
 
 export function ToggleInput({ name, checked = false, label }: ToggleProps) {
     return (
-        <div className="custom-toggle-switch flex column center al-center">
+        <div className="custom-toggle-switch flex column center acenter">
             <label className="form-label block" htmlFor={name}>
                 {label}
             </label>

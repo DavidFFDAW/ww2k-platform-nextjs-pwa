@@ -4,7 +4,6 @@ import Title from "@/components/Title";
 import { NullableLoading } from "@/components/Loading";
 import CreateButton from "@/components/Buttons/CreateButton";
 import { PageContext } from "@/shared/models";
-import { Pagination } from "@/components/Pagination/Pagination";
 import WrestlersSearchForm from "./components/WrestlersSearchForm";
 import { TableContainer } from "@/modules/tables";
 import TableItem, { TableRow } from "@/modules/tables/components/TableRows";
@@ -13,6 +12,9 @@ import WrestlerActions from "./Actions";
 import { parseWrestlerStatus } from "@/utilities/wrestler.status.util";
 import { getNamedTitle } from "@/utilities/metadatas.utility";
 import { Metadata } from "next";
+import { Pagination, SimplePagination } from "@/components/Pagination";
+import MobileRender from "@/components/Mobile/MobileRender";
+import WrestlerCard from "./components/Card";
 
 export const metadata: Metadata = {
     title: getNamedTitle("Wrestlers"),
@@ -57,7 +59,7 @@ export default async function WrestlerListPage(context: PageContext) {
         <>
             <Title title={"Wrestlers"} icon="list-ul" />
 
-            <Pagination page={Number(page)} total={total} />
+            <Pagination page={Number(page)} total={total} numberOfPages={3} />
 
             <WrestlersSearchForm params={context.searchParams} />
 
@@ -71,25 +73,27 @@ export default async function WrestlerListPage(context: PageContext) {
                             </div>
                         </NullableLoading>
 
-                        <TableContainer>
-                            <TableRow>
-                                <TableItem width={20} align="start">
-                                    Imagen
-                                </TableItem>
-                                <TableItem width={30} align="start">
-                                    Nombre
-                                </TableItem>
-                                <TableItem width={20} align="start">
-                                    Sexo
-                                </TableItem>
-                                <TableItem width={30} align="start">
-                                    Estado
-                                </TableItem>
-                                <TableItem width={10} align="end">
-                                    Acciones
-                                </TableItem>
-                            </TableRow>
-                        </TableContainer>
+                        <div className="desktop-only">
+                            <TableContainer>
+                                <TableRow>
+                                    <TableItem width={20} align="start">
+                                        Imagen
+                                    </TableItem>
+                                    <TableItem width={30} align="start">
+                                        Nombre
+                                    </TableItem>
+                                    <TableItem width={20} align="start">
+                                        Sexo
+                                    </TableItem>
+                                    <TableItem width={30} align="start">
+                                        Estado
+                                    </TableItem>
+                                    <TableItem width={10} align="end">
+                                        Acciones
+                                    </TableItem>
+                                </TableRow>
+                            </TableContainer>
+                        </div>
 
                         <TableContainer>
                             <NullableLoading condition={wrestlers.length > 0}>
@@ -131,7 +135,7 @@ export default async function WrestlerListPage(context: PageContext) {
                     </div>
                 </div>
 
-                <Pagination page={Number(page)} total={total} />
+                <SimplePagination page={Number(page)} total={total} />
 
                 <CreateButton endpoint={"wrestlers/create"} />
             </div>
