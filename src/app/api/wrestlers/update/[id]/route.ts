@@ -55,7 +55,7 @@ export async function PUT(
                 kayfabe_status: body.kayfabe,
                 alias: body.alias,
                 sex: body.sex,
-                is_tag: body.is_tag !== 0,
+                is_tag: body.is_tag !== "0",
                 is_champ: false,
                 image_name: body.app_image,
             },

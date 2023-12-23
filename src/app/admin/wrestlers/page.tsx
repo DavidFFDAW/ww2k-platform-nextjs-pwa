@@ -140,7 +140,7 @@ export default async function WrestlerListPage(context: PageContext) {
 
                 <SimplePagination page={Number(page)} total={total} />
 
-                <CreateButton endpoint={"wrestlers/create"} />
+                <CreateButton endpoint={"wrestlers/pages/create"} />
             </div>
         </>
     );

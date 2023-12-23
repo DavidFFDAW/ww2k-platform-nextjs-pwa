@@ -17,6 +17,22 @@
     border-radius: 50%;
 }
 
+.custom-clickable-options-component .clickable-option-select-item {
+    width: 100%;
+    text-align: center;
+    padding: 5px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #eee;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.custom-clickable-options-component .clickable-option-select-item.active {
+    color: #fff;
+    background-color: #616161;
+}
+
 @media only screen and (max-width: 767px) {
     .admin-table.admin-display.admin-teams.team-wrestlers-image {
         width: 50px;

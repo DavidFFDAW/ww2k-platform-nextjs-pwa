@@ -12,7 +12,7 @@ export const PROTECTED_ROUTES = {
 };
 
 export const STATIC_PAGES = {
-    LOGIN: '/login',
+    LOGIN: "/login",
     ABOUT: "/about",
     CONTACT: "/contact",
     PRIVACY: "/privacy",
@@ -20,4 +20,4 @@ export const STATIC_PAGES = {
     DENIED: "/denied",
 };
 
-export const APP_TITLE = 'WWE2K'
+export const APP_TITLE = "WWE2K";

@@ -8,6 +8,8 @@ import {
 } from "@/components/Forms";
 import { Wrestler } from "@prisma/client";
 import { initialWrestler } from "../../models/wrestler.model";
+import WrestlerStatusSelect from "./WrestlerStatus/WrestlerStatusSelect";
+import CustomClickableSelect from "@/components/Forms/Inputs/CustomClickableSelect";
 
 interface Props {
     wrestler?: Wrestler;
@@ -20,7 +22,7 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
         <>
             <div className="w1 boxed">
                 <h2 className="space-down">Datos Generales</h2>
-                <div className="w1 flex column al-start gap-small">
+                <div className="w1 flex column astart gap-small">
                     <Input
                         type="text"
                         label="Nombre"
@@ -50,40 +52,45 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
                         value={wrestlerData.overall as unknown as string}
                     />
 
-                    <InputSelect
+                    <CustomClickableSelect
                         label="Sexo"
                         name="sex"
+                        columns={2}
+                        list={[
+                            { value: "M", label: "Hombre" },
+                            { value: "F", label: "Mujer" },
+                        ]}
                         value={wrestlerData.sex}
-                    >
-                        <option>--</option>
-                        <option value="M">Hombre</option>
-                        <option value="F">Mujer</option>
-                    </InputSelect>
+                    />
                 </div>
             </div>
 
             <div className="w1 boxed">
                 <h2 className="space-down">Datos de Estado</h2>
-                <div className="w1 flex column al-start gap-small">
-                    <InputSelect
+                <div className="w1 flex column astart gap-small">
+                    <CustomClickableSelect
                         label="Tipo de competición"
-                        value={wrestlerData.is_tag ? "1" : "0"}
                         name="is_tag"
-                    >
-                        <option>--</option>
-                        <option value="0">Individual</option>
-                        <option value="1">Tag Team</option>
-                    </InputSelect>
-                    <InputSelect
+                        columns={2}
+                        list={[
+                            { value: false, label: "Individual" },
+                            { value: true, label: "Tag Team" },
+                        ]}
+                        value={wrestlerData.is_tag as boolean}
+                    />
+
+                    <CustomClickableSelect
                         label="Kayfabe Status"
                         name="kayfabe"
+                        columns={2}
+                        list={[
+                            { value: "face", label: "Face" },
+                            { value: "heel", label: "Heel" },
+                        ]}
                         value={wrestlerData.kayfabe_status}
-                    >
-                        <option>--</option>
-                        <option value="face">Face</option>
-                        <option value="heel">Heel</option>
-                    </InputSelect>
-                    <InputSelect
+                    />
+
+                    {/* <InputSelect
                         label="Estado"
                         name="status"
                         value={wrestlerData.status.trim()}
@@ -94,7 +101,13 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
                         <option value="not-active">No activo</option>
                         <option value="manager">Manager</option>
                         <option value="semi-active">Semi-activo</option>
-                    </InputSelect>
+                    </InputSelect> */}
+
+                    <WrestlerStatusSelect
+                        label="Estado"
+                        name="status"
+                        value={wrestlerData.status.trim()}
+                    />
 
                     <BrandSelect
                         label="Marca"
@@ -106,7 +119,7 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
 
             <div className="w1 boxed">
                 <h2 className="space-down">Datos de Twitter</h2>
-                <div className="w1 flex column al-start gap-small">
+                <div className="w1 flex column astart gap-small">
                     <Input
                         placeholder="Nombre de cuenta de twitter"
                         type="text"
@@ -126,7 +139,7 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
 
             <div className="w1 boxed desktop-mt-72a">
                 <h2 className="space-down">Imágenes</h2>
-                <div className="w1 flex column al-start gap-small">
+                <div className="w1 flex column astart gap-small">
                     <div className="w1 flex start al-center gap-small">
                         <ImageInput
                             imageSrc={wrestlerData.image_name as string}
