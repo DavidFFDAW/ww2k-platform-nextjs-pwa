@@ -4,17 +4,16 @@ import Title from "@/components/Title";
 import { NullableLoading } from "@/components/Loading";
 import CreateButton from "@/components/Buttons/CreateButton";
 import { PageContext } from "@/shared/models";
-import WrestlersSearchForm from "./components/WrestlersSearchForm";
+import WrestlersSearchForm from "./components/WrestlerForms/WrestlersSearchForm";
 import { TableContainer } from "@/modules/tables";
 import TableItem, { TableRow } from "@/modules/tables/components/TableRows";
 import LazyImage from "@/components/Image/LazyImage";
-import WrestlerActions from "./Actions";
 import { parseWrestlerStatus } from "@/utilities/wrestler.status.util";
 import { getNamedTitle } from "@/utilities/metadatas.utility";
 import { Metadata } from "next";
 import { Pagination, SimplePagination } from "@/components/Pagination";
-import MobileRender from "@/components/Mobile/MobileRender";
-import WrestlerCard from "./components/Card";
+import WrestlerActions from "./components/WrestlerActions";
+// import WrestlerCard from "./components/Card";
 
 export const metadata: Metadata = {
     title: getNamedTitle("Wrestlers"),
@@ -88,7 +87,7 @@ export default async function WrestlerListPage(context: PageContext) {
                                     <TableItem width={30} align="start">
                                         Estado
                                     </TableItem>
-                                    <TableItem width={10} align="end">
+                                    <TableItem width={20} align="end">
                                         Acciones
                                     </TableItem>
                                 </TableRow>
@@ -111,7 +110,11 @@ export default async function WrestlerListPage(context: PageContext) {
                                         <TableItem width={30} align="start">
                                             {wrestler.name}
                                         </TableItem>
-                                        <TableItem width={20} align="start">
+                                        <TableItem
+                                            width={20}
+                                            align="start"
+                                            className="wrestler-list-item sex-gender-item desktop-only"
+                                        >
                                             {wrestler.sex}
                                         </TableItem>
                                         <TableItem width={30} align="start">
@@ -119,7 +122,7 @@ export default async function WrestlerListPage(context: PageContext) {
                                                 wrestler.status
                                             )}
                                         </TableItem>
-                                        <TableItem width={10} align="end">
+                                        <TableItem width={20} align="end">
                                             <WrestlerActions
                                                 wrestler={wrestler}
                                             />
