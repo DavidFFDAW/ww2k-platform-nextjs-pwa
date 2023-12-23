@@ -971,6 +971,16 @@ body.dark-theme ::-webkit-scrollbar-thumb {
     z-index: 999990;
 } */
 
+.btn.btn-go-back-route {
+    border-radius: 50%;
+    background-color: transparent;
+    color: #111010;
+    font-size: 14px;
+    padding: 0;
+    padding-right: 20px;
+    /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); */
+}
+
 .pagination .pagination-item {
     padding: 8px 10px;
     background-color: #fff;

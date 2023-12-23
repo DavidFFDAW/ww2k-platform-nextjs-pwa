@@ -98,4 +98,12 @@
     .grouped-selection-overall {
         display: none;
     }
+
+    .table-item.wrestler-list-item.sex-gender-item.desktop-only {
+        display: none;
+    }
+    .title-container .btn.btn-go-back-route .app-bootstrap-custom-icon {
+        font-size: 15px;
+        cursor: pointer;
+    }
 }
