@@ -55,7 +55,7 @@ body.dark button.cta-secondary {
 }
 
 body.dark button.cta {
-    background: var(--accent-color);
+    background: var(--foreground);
     border: none;
     color: #eee;
 }
