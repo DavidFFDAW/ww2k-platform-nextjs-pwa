@@ -41,7 +41,7 @@ export default function Form({
         <form
             method={method}
             action={action}
-            className={className}
+            className={`custom-next-app-form ${className}`}
             style={style}
             onReset={handleFormReset}
             onSubmit={(e) =>

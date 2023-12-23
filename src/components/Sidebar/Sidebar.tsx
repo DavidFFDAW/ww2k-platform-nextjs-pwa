@@ -68,6 +68,14 @@ export default function Sidebar() {
                         }
                     })}
 
+                    <SidebarLink
+                        active={false}
+                        icon="window-split"
+                        to={"/"}
+                        text="Pagina publica"
+                        onClick={toggleOnClick}
+                    />
+
                     <form action={logout} className="w1">
                         <SidebarSubmit icon="signpost" text="Logout" />
                     </form>

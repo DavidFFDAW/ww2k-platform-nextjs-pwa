@@ -48,7 +48,7 @@ export async function PUT(
                 finisher: body.finisher,
                 twitter_acc: body.twitter_account,
                 twitter_name: body.twitter_name,
-                twitter_image: body.twitter_image,
+                twitter_image: body.twitter_image || "",
                 brand: body.brand,
                 status: body.status,
                 overall: Number(body.overall),
@@ -57,7 +57,7 @@ export async function PUT(
                 sex: body.sex,
                 is_tag: body.is_tag !== "0",
                 is_champ: false,
-                image_name: body.app_image,
+                image_name: body.app_image || "",
             },
             where: {
                 id: Number(params.id),

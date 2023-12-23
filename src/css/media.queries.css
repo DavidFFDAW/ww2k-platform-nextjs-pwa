@@ -5,6 +5,9 @@
     .two-column {
         grid-template-columns: repeat(1, 1fr);
     }
+    .grid.responsive-grid-2 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
     .sidebar-main-margin .custom-totalpage-wallpaper {
         margin: 0;
         width: 100%;

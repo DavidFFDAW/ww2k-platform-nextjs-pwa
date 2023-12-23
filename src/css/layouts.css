@@ -249,9 +249,12 @@ button {
 .two-column-grid {
     grid-template-columns: repeat(2, 1fr);
 }
-
+.place-items-center,
 .pcenter {
     place-items: center;
+}
+.place-items-normal {
+    place-items: normal;
 }
 
 .desktop-mt-72 {

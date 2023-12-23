@@ -22,7 +22,7 @@ export default async function WrestlerUpdatePage({ params }: PageContext) {
             <Title title={"Editando " + wrestler.name.toUpperCase()} />
 
             <Form
-                className="grid two-column-grid astart responsive-grid gap"
+                className="grid two-column-grid astart place-items-normal responsive-grid gap"
                 action={`/api/wrestlers/update/${wrestler.id}`}
                 sendHttp={true}
                 refresh={true}

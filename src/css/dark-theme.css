@@ -1,32 +1,87 @@
+:root {
+    --background: #282a36;
+    --background-dark: #15161c;
+    --foreground: #3b3e50;
+    --contrast-color: #ffff00;
+}
 body.dark {
+    --accent-color: #ffff00;
     color: #fff;
-    background: linear-gradient(#535353, #000);
+    background: var(--background-dark);
 }
 body.dark .page-title-custom,
 body.dark .title-container .app-bootstrap-custom-icon {
     color: #fff;
 }
 body.dark .boxed {
-    background: #282a36;
+    background: var(--background);
 }
-body.dark label {
+body.dark input,
+body.dark textarea,
+body.dark select,
+body.dark input[type="search"] {
+    color: #eee;
+    /* border: 1px solid var(--contrast-color); */
+    background: var(--background-dark);
+}
+
+body.dark .custom-clickable-options-component .clickable-option-select-item {
+    background-color: var(--foreground);
+    border: 1px solid var(--background-dark);
+    color: #eee;
+}
+body.dark
+    .custom-clickable-options-component
+    .clickable-option-select-item.active {
+    border: none;
     color: #fff;
+    background-color: var(--background-dark);
+}
+
+body.dark .brand-select-item {
+    background-color: transparent;
+    border: 1px solid #eee;
+    color: #eee;
+}
+
+body.dark .brand-select-item.selected::after {
+    background-color: var(--foreground);
+}
+
+body.dark button.cta-secondary {
+    background: var(--background);
+    border: 1px solid #eee;
+    color: #eee;
+}
+
+body.dark button.cta {
+    background: var(--accent-color);
+    border: none;
+    color: #eee;
+}
+
+body.dark .sidebar {
+    background: var(--background);
+}
+
+body.dark label {
+    color: #ffffff;
 }
 body.dark .table-module-container .table-row {
-    background: #282a36;
+    background: var(--foreground);
 }
 body.dark .table-module-container * {
     color: #fff;
 }
 body.dark .actions-option-group .three-dots-actions {
-    background-color: #282a36;
+    background: var(--foreground);
     color: #fff;
 }
 body.dark .actions-option-group .three-dots-actions svg circle {
     stroke: #fff;
 }
 body.dark .actions-option-group .actions-group-actions-list {
-    background-color: #282a36;
+    background: var(--foreground);
     color: #fff;
 }
 body.dark .actions-option-group .actions-group-actions-list .action-text {

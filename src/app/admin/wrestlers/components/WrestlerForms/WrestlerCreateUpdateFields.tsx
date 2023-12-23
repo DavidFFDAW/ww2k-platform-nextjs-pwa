@@ -1,11 +1,6 @@
 import React from "react";
 import { ButtonCTA } from "@/components/Buttons/Buttons";
-import {
-    BrandSelect,
-    ImageInput,
-    Input,
-    InputSelect,
-} from "@/components/Forms";
+import { BrandSelect, ImageInput, Input } from "@/components/Forms";
 import { Wrestler } from "@prisma/client";
 import { initialWrestler } from "../../models/wrestler.model";
 import WrestlerStatusSelect from "./WrestlerStatus/WrestlerStatusSelect";
@@ -21,8 +16,7 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
     return (
         <>
             <div className="w1 boxed">
-                <h2 className="space-down">Datos Generales</h2>
-                <div className="w1 flex column astart gap-small">
+                <div className="w1 flex column astart gap">
                     <Input
                         type="text"
                         label="Nombre"
@@ -66,8 +60,7 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
             </div>
 
             <div className="w1 boxed">
-                <h2 className="space-down">Datos de Estado</h2>
-                <div className="w1 flex column astart gap-small">
+                <div className="w1 flex column astart gap">
                     <CustomClickableSelect
                         label="Tipo de competición"
                         name="is_tag"
@@ -90,19 +83,6 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
                         value={wrestlerData.kayfabe_status}
                     />
 
-                    {/* <InputSelect
-                        label="Estado"
-                        name="status"
-                        value={wrestlerData.status.trim()}
-                    >
-                        <option value="active">En activo</option>
-                        <option value="released">Despedido</option>
-                        <option value="retired">Retirado</option>
-                        <option value="not-active">No activo</option>
-                        <option value="manager">Manager</option>
-                        <option value="semi-active">Semi-activo</option>
-                    </InputSelect> */}
-
                     <WrestlerStatusSelect
                         label="Estado"
                         name="status"
@@ -118,8 +98,7 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
             </div>
 
             <div className="w1 boxed">
-                <h2 className="space-down">Datos de Twitter</h2>
-                <div className="w1 flex column astart gap-small">
+                <div className="w1 flex column astart gap">
                     <Input
                         placeholder="Nombre de cuenta de twitter"
                         type="text"
@@ -137,11 +116,12 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
                 </div>
             </div>
 
-            <div className="w1 boxed desktop-mt-72a">
-                <h2 className="space-down">Imágenes</h2>
-                <div className="w1 flex column astart gap-small">
+            <div className="w1 boxed">
+                <div className="w1 flex column astart gap">
                     <div className="w1 flex start al-center gap-small">
                         <ImageInput
+                            required={false}
+                            label="Imagen de App"
                             imageSrc={wrestlerData.image_name as string}
                             name="app_image"
                             placeholder="Imagen de App"
@@ -149,6 +129,8 @@ export default function WrestlerCreateUpdateFields({ wrestler }: Props) {
                     </div>
                     <div className="w1 flex start al-center gap-small">
                         <ImageInput
+                            required={false}
+                            label="Imagen para Twitter"
                             imageSrc={wrestlerData.twitter_image as string}
                             name="twitter_image"
                             placeholder="Imagen para Twitter"

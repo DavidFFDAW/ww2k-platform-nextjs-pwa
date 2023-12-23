@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import Image from "@/components/Image/Image";
 import dynamic from "next/dynamic";
 import { useState } from "react";
@@ -7,12 +7,16 @@ interface ImageProps {
     placeholder?: string;
     name?: string;
     imageSrc?: string;
+    label: string;
+    required?: boolean;
 }
 
 export function ImageInput({
     placeholder = "Imagen",
     name = "image",
     imageSrc = "",
+    label,
+    required = true,
 }: ImageProps) {
     const Gallery = dynamic(() => import("@/modules/gallery/GalleryModule"), {
         ssr: false,
@@ -30,25 +34,31 @@ export function ImageInput({
     };
 
     return (
-        <div className="w1 flex between al-center gap-small">
-            <Image
-                width={size}
-                height={size}
-                src={image}
-                alt="post banner image preview"
-            />
-            <div className="w1 flex column gap-smaller">
-                <input
-                    className="w1"
-                    maxLength={255}
-                    type={"text"}
-                    name={name}
-                    required={true}
-                    value={image}
-                    placeholder={placeholder}
-                    onChange={handleImageChange}
+        <div className="w1 flex column astart gap-small">
+            <label htmlFor={name} className="label">
+                {label}
+                {required ? <span className="required">*</span> : null}
+            </label>
+            <div className="w1 flex between acenter gap-small">
+                <Image
+                    width={size}
+                    height={size}
+                    src={image}
+                    alt="post banner image preview"
                 />
-                <Gallery selectImageCallback={selectImage} />
+                <div className="w1 flex column gap-smaller a">
+                    <input
+                        className="w1"
+                        maxLength={255}
+                        type={"text"}
+                        name={name}
+                        required={required}
+                        value={image}
+                        placeholder={placeholder}
+                        onChange={handleImageChange}
+                    />
+                    <Gallery selectImageCallback={selectImage} />
+                </div>
             </div>
         </div>
     );
