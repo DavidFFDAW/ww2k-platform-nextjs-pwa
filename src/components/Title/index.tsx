@@ -1,5 +1,6 @@
-import React from 'react';
-import { BootstrapIcon } from '../Icon/BootstrapIcon';
+import React from "react";
+import { BootstrapIcon } from "../Icon/BootstrapIcon";
+import GoBackButton from "../Links/GoBackButton";
 
 interface TitleProps {
     title: string;
@@ -10,12 +11,13 @@ interface TitleProps {
 function TitleWithChildren({ title, icon, children }: TitleProps) {
     return (
         <div className="title-container flex between acenter">
+            <GoBackButton />
             <div className="flex start acenter gap-small">
-                {icon ?
+                {icon ? (
                     <div>
                         <BootstrapIcon icon={icon} />
                     </div>
-                    : null}
+                ) : null}
                 <h2 className="page-title-custom dreadnotus">{title}</h2>
             </div>
             {children}
@@ -33,11 +35,12 @@ export default function Title({ title, icon, children }: TitleProps) {
 
     return (
         <div className="title-container flex start acenter gap-small">
-            {icon ?
+            <GoBackButton />
+            {icon ? (
                 <div>
                     <BootstrapIcon icon={icon} />
                 </div>
-                : null}
+            ) : null}
             <h1 className="page-title-custom dreadnotus">{title}</h1>
         </div>
     );
