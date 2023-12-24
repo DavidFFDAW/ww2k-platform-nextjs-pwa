@@ -1,12 +1,12 @@
-'use client';
-import { Report } from '@prisma/client'
-import React from 'react'
-import { ImageInput, Input, InputDate, ToggleInput } from '@/components/Forms';
-import { parseFormatDate } from '@/utilities/date.normalizer.utility';
-import { ButtonCTA } from '@/components/Buttons/Buttons';
-import { Boxed } from '@/components/Box/Boxed';
-import { QuillEditor } from '@/components/Forms';
-import useUpdatePost from '../../create/hooks/useUpdatePost';
+"use client";
+import { Report } from "@prisma/client";
+import React from "react";
+import { ImageInput, Input, InputDate, ToggleInput } from "@/components/Forms";
+import { parseFormatDate } from "@/utilities/date.normalizer.utility";
+import { ButtonCTA } from "@/components/Buttons/Buttons";
+import { Boxed } from "@/components/Box/Boxed";
+import { QuillEditor } from "@/components/Forms";
+import useUpdatePost from "../../create/hooks/useUpdatePost";
 
 export default function UpdateForm({ post }: { post: Report }) {
     const { handleUpdatePostSubmit } = useUpdatePost();
@@ -33,7 +33,12 @@ export default function UpdateForm({ post }: { post: Report }) {
                             value={post.title}
                         />
 
-                        <ImageInput placeholder="Imagen de la noticia" name="image" imageSrc={post.image as string} />
+                        <ImageInput
+                            label="Imagen de la noticia"
+                            placeholder="Imagen de la noticia"
+                            name="image"
+                            imageSrc={post.image as string}
+                        />
 
                         {/* <Textarea
                             label={"Contenido"}
@@ -43,7 +48,11 @@ export default function UpdateForm({ post }: { post: Report }) {
                             value={post.content}
                         /> */}
 
-                        <QuillEditor name="content" placeholder='Contenido del post' value={post.content as string} />
+                        <QuillEditor
+                            name="content"
+                            placeholder="Contenido del post"
+                            value={post.content as string}
+                        />
 
                         <InputDate
                             label={"Fecha de publicacion"}
@@ -57,8 +66,16 @@ export default function UpdateForm({ post }: { post: Report }) {
                 <Boxed title={"Estado"} w="100">
                     <div className="w1 flex column al-start gap-small">
                         <div className="w1 flex evenly al-center gap">
-                            <ToggleInput label="Publicado" name="published" checked={post.visible as boolean} />
-                            <ToggleInput label="¿Se puede borrar?" name="is_deletable" checked={post.deletable as boolean} />
+                            <ToggleInput
+                                label="Publicado"
+                                name="published"
+                                checked={post.visible as boolean}
+                            />
+                            <ToggleInput
+                                label="¿Se puede borrar?"
+                                name="is_deletable"
+                                checked={post.deletable as boolean}
+                            />
                         </div>
                     </div>
                 </Boxed>
@@ -68,5 +85,5 @@ export default function UpdateForm({ post }: { post: Report }) {
                 </div>
             </form>
         </>
-    )
+    );
 }

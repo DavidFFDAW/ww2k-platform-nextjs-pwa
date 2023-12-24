@@ -32,6 +32,18 @@
     color: #fff;
     background-color: #616161;
 }
+.svg-filter-icon.filter-icon,
+.svg-filter-icon.filter-icon-cross-close {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.svg-filter-icon.filter-icon.active,
+.svg-filter-icon.filter-icon-cross-close.active {
+    position: static;
+    opacity: 1;
+}
 
 @media only screen and (max-width: 767px) {
     .admin-table.admin-display.admin-teams.team-wrestlers-image {

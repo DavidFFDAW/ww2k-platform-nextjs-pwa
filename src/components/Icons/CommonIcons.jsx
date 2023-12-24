@@ -1,10 +1,39 @@
-import React from 'react';
+import React from "react";
 
-export function FilterIcon({ w, h }) {
+export function FilterIcon({ w, h, isShown }) {
     return (
-        <svg height={h} viewBox="0 0 1792 1792" width={w} xmlns="http://www.w3.org/2000/svg">
-            <path d="M1595 295q17 41-14 70l-493 493v742q0 42-39 59-13 5-25 5-27 0-45-19l-256-256q-19-19-19-45v-486l-493-493q-31-29-14-70 17-39 59-39h1280q42 0 59 39z" />
-        </svg>
+        <div className="relative">
+            <svg
+                height={h}
+                viewBox="0 0 1792 1792"
+                width={w}
+                xmlns="http://www.w3.org/2000/svg"
+                className={
+                    "svg-filter-icon filter-icon " +
+                    (isShown ? "not-active" : "active")
+                }
+            >
+                <path
+                    className="filter-path"
+                    d="M1595 295q17 41-14 70l-493 493v742q0 42-39 59-13 5-25 5-27 0-45-19l-256-256q-19-19-19-45v-486l-493-493q-31-29-14-70 17-39 59-39h1280q42 0 59 39z"
+                />
+            </svg>
+            <svg
+                fill="#000000"
+                width={w}
+                height={h}
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 490 490"
+                xmlSpace="preserve"
+                className={
+                    "svg-filter-icon filter-icon-cross-close " +
+                    (isShown ? "active" : "not-active")
+                }
+            >
+                <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490 489.292,457.678 277.331,245.004 489.292,32.337 "></polygon>
+            </svg>
+        </div>
     );
 }
 
@@ -13,7 +42,7 @@ export function ArrowDown({ w, h }) {
         <svg
             height={h}
             id="Layer_1"
-            style={{ enableBackground: 'new 0 0 512 512' }}
+            style={{ enableBackground: "new 0 0 512 512" }}
             version="1.1"
             viewBox="0 0 512 512"
             width={w}
@@ -30,7 +59,10 @@ export function ArrowUp({ w, h }) {
         <svg
             height={h}
             id="Layer_1"
-            style={{ transform: 'rotate(180deg)', enableBackground: 'new 0 0 512 512' }}
+            style={{
+                transform: "rotate(180deg)",
+                enableBackground: "new 0 0 512 512",
+            }}
             version="1.1"
             viewBox="0 0 512 512"
             width={w}
@@ -54,8 +86,18 @@ export function CreateIcon() {
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
         >
-            <g id="Page-1" stroke="none" strokeWidth=".1" fill="none" fillRule="evenodd">
-                <g id="scheduler" fill="#000" transform="translate(85.333333, 85.333333)">
+            <g
+                id="Page-1"
+                stroke="none"
+                strokeWidth=".1"
+                fill="none"
+                fillRule="evenodd"
+            >
+                <g
+                    id="scheduler"
+                    fill="#000"
+                    transform="translate(85.333333, 85.333333)"
+                >
                     <path
                         strokeWidth=".1"
                         d="M170.666667,1.42108547e-14 C264.923264,-3.10380131e-15 341.333333,76.4100694 341.333333,170.666667 C341.333333,264.923264 264.923264,341.333333 170.666667,341.333333 C76.4100694,341.333333 2.57539587e-14,264.923264 1.42108547e-14,170.666667 C2.6677507e-15,76.4100694 76.4100694,3.15255107e-14 170.666667,1.42108547e-14 Z M170.666667,42.6666667 C99.9742187,42.6666667 42.6666667,99.9742187 42.6666667,170.666667 C42.6666667,241.359115 99.9742187,298.666667 170.666667,298.666667 C241.359115,298.666667 298.666667,241.359115 298.666667,170.666667 C298.666667,99.9742187 241.359115,42.6666667 170.666667,42.6666667 Z M192,85.3333333 L191.999333,149.333333 L256,149.333333 L256,192 L191.999333,191.999333 L192,256 L149.333333,256 L149.333333,191.999333 L85.3333333,192 L85.3333333,149.333333 L149.333333,149.333333 L149.333333,85.3333333 L192,85.3333333 Z"
@@ -139,7 +181,12 @@ export function TrashIcon({ fill }) {
 
 export function DotsIcon() {
     return (
-        <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg
+            width="800px"
+            height="800px"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+        >
             <circle
                 fill="transparent"
                 stroke="#000"
@@ -206,7 +253,10 @@ export function ReleaseIcon() {
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <path d="M182.52 146.2h585.14v402.28h73.15V73.06H109.38v877.71h402.36v-73.14H182.52z" fill="#0F1F3C" />
+            <path
+                d="M182.52 146.2h585.14v402.28h73.15V73.06H109.38v877.71h402.36v-73.14H182.52z"
+                fill="#0F1F3C"
+            />
             <path
                 d="M255.67 219.34h438.86v73.14H255.67zM255.67 365.63h365.71v73.14H255.67zM255.67 511.91H475.1v73.14H255.67zM731.17 584.97c-100.99 0-182.86 81.87-182.86 182.86s81.87 182.86 182.86 182.86c100.99 0 182.86-81.87 182.86-182.86s-81.87-182.86-182.86-182.86z m0 292.57c-60.5 0-109.71-49.22-109.71-109.71 0-60.5 49.22-109.71 109.71-109.71 60.5 0 109.71 49.22 109.71 109.71 0.01 60.49-49.21 109.71-109.71 109.71z"
                 fill="#0F1F3C"

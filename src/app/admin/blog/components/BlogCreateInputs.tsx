@@ -17,7 +17,11 @@ export default function BlogDatas() {
                 placeholder="Titulo de la noticia"
             />
 
-            <ImageInput placeholder="Imagen de la noticia" name="image" />
+            <ImageInput
+                label="Imagen de la noticia"
+                placeholder="Imagen de la noticia"
+                name="image"
+            />
 
             <QuillEditor name="content" placeholder="Contenido del post" />
 

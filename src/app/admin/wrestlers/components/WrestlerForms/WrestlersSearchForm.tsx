@@ -48,10 +48,10 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                     />
                     <button
                         type="button"
-                        className="filters"
+                        className="filters relative"
                         onClick={handleShowFilters}
                     >
-                        <FilterIcon w={20} h={25} />
+                        <FilterIcon w={20} h={25} isShown={showFilters} />
                     </button>
                 </div>
 

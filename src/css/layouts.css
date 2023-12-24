@@ -30,6 +30,11 @@ button {
 .absolute {
     position: absolute;
 }
+.absolute.absolute-centered {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .relative {
     position: relative;
