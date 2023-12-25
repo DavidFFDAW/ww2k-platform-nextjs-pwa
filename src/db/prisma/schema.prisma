@@ -202,3 +202,14 @@ model ChampionshipReign {
 
   @@map(name: "championship_reigns")
 }
+
+model Gallery {
+  id         Int       @id @default(autoincrement())
+  external_item_id Int? @db.Int
+  type       String?    @db.VarChar(15)
+  image      String    @db.VarChar(255)
+  assigned   Boolean?  @default(false) @db.TinyInt
+  created_at DateTime? @default(now())
+
+  @@map(name: "gallery")
+}

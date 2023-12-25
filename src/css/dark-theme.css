@@ -6,6 +6,7 @@
 }
 body.dark {
     --accent-color: #ffff00;
+    --font-color: #fff;
     color: #fff;
     background: var(--background-dark);
 }

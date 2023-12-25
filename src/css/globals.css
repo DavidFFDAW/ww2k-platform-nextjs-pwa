@@ -9,6 +9,7 @@
     --raw: #f44336;
     --awl: rgb(164, 63, 184);
     --legend: #ff9800;
+    --font-color: #2f2f2f;
 }
 
 * {
@@ -281,6 +282,20 @@ a {
     text-decoration: none;
     color: #2f2f2f;
     cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+label,
+a,
+div {
+    color: var(--font-color);
 }
 
 .mat-icons.material-symbols-outlined {
@@ -826,6 +841,10 @@ img.rounded-preview-icon,
 .dark-theme .boxed {
     background-color: #282a36;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.app-header + .has-header.app-page-wrapper .custom-totalpage-wallpaper {
+    padding-top: 50px;
 }
 
 .boxed * {

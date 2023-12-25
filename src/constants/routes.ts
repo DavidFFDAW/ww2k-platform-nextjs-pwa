@@ -3,6 +3,7 @@ import {
     BlogIcon,
     DraftIcon,
     ExportDownloadIcon,
+    GalleryImagesIcon,
     TeamsIcon,
     TwitterIcon,
     UserIcon,
@@ -118,6 +119,15 @@ export const AdminMenu = [
         icon: DraftIcon,
         showOnSidebar: true,
         bootstrap: "arrows-move",
+    },
+    {
+        key: "gallery",
+        name: "Galeria",
+        url: "/admin/gallery/pages/list",
+        material: "images",
+        icon: GalleryImagesIcon,
+        showOnSidebar: true,
+        bootstrap: "images",
     },
     {
         key: "exportation",

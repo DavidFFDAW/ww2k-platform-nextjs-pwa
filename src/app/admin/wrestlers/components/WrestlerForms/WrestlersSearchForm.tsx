@@ -44,6 +44,7 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                         label={"Nombre"}
                         type="search"
                         name={"name"}
+                        placeholder="Buscador de luchador por nombre"
                         value={params.name}
                     />
                     <button

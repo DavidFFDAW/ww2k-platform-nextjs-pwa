@@ -27,12 +27,18 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    const hasHeader = Boolean(Header);
     return (
         <html lang="es">
             <body className="app-body nextjs-app react-router-wrapper wwe2k-app-container">
                 <AppProviders>
                     <Header />
-                    <main className="app-page-wrapper">
+                    <main
+                        className={
+                            "app-page-wrapper " +
+                            (hasHeader ? "has-header" : "does-not-have-header")
+                        }
+                    >
                         <div className="boxed-content">{children}</div>
                     </main>
                 </AppProviders>

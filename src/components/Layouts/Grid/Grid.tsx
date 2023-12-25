@@ -7,6 +7,7 @@ interface Props {
     align?: string;
     place?: string;
     min?: number;
+    responsive?: boolean;
     children: React.ReactNode;
 }
 
@@ -18,6 +19,7 @@ export default function Grid({
     align,
     min,
     place,
+    responsive = false,
 }: Props) {
     const styles: React.CSSProperties = {
         display: "grid",
@@ -31,7 +33,13 @@ export default function Grid({
     };
 
     return (
-        <div className="grid responsive-grid-2" style={styles}>
+        <div
+            className={
+                "grid custom-component-grid responsive-grid-2 " +
+                (responsive ? "grid-responsive" : "not-responsive-grid")
+            }
+            style={styles}
+        >
             {children}
         </div>
     );
