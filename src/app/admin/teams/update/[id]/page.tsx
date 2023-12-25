@@ -4,7 +4,6 @@ import LoadedUpdateInputs from "../../components/LoadedUpdateInputs";
 import { Metadata } from "next";
 
 export const revalidate = 0;
-
 export const metadata: Metadata = {
     title: "Actualizar equipo",
     description: "Actualizar equipo",

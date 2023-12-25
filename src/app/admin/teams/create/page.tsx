@@ -10,6 +10,7 @@ import { Metadata } from "next";
 import { getNamedTitle } from "@/utilities/metadatas.utility";
 import { ButtonCTA } from "@/components/Buttons/Buttons";
 
+export const revalidate = 0;
 export const metadata: Metadata = {
     title: getNamedTitle("Nuevo equipo"),
     description: "Crear un nuevo equipo",
