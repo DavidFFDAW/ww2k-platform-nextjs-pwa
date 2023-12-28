@@ -1,17 +1,12 @@
 "use client";
-import { WrestlerTeam } from "@prisma/client";
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import LazyImageTwo from "@/components/Image/LazyImageTwo";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { TeamMembers } from "../../models/team.members.model";
 import "swiper/css/pagination";
 import "swiper/css";
 
-interface RenderTeamProps {
-    members: WrestlerTeam[];
-}
-
-export default function SliderTeamMembers({ members }: RenderTeamProps) {
+export default function SliderTeamMembers({ members }: TeamMembers) {
     return (
         <Swiper
             modules={[Pagination]}

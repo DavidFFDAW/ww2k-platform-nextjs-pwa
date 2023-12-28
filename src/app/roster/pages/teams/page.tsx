@@ -4,7 +4,7 @@ import StatusLabel, {
 import Title from "@/components/Title";
 import { PageContext } from "@/shared/models";
 import React, { Suspense } from "react";
-import RosterWrestlersListSkeleton from "../components/RosterWrestlersListSkeleton";
+import RosterWrestlersListSkeleton from "../../components/RosterWrestlersListSkeleton";
 import { ButtonSecondary } from "@/components/Buttons/Buttons";
 import { SearchForm } from "@/components/Forms";
 import { Metadata } from "next";

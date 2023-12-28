@@ -1,4 +1,3 @@
-import { Team, Wrestler } from "@prisma/client";
 import React from "react";
 import TeamRosterItem from "./TeamRosterItem";
 import { getTeamsWithMembers } from "@/queries/teams.queries";

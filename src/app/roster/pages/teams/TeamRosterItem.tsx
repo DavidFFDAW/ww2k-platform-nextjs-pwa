@@ -1,7 +1,7 @@
 import React from "react";
 import { Team, WrestlerTeam } from "@prisma/client";
-import BrandImage from "../components/BrandImage";
-import RosterCardName from "../components/RosterCardName";
+import BrandImage from "../../components/BrandImage";
+import RosterCardName from "../../components/RosterCardName";
 import { NullableLoading } from "@/components/Loading";
 import SliderTeamMembers from "./SliderTeamMembers";
 
@@ -31,7 +31,7 @@ export default function TeamRosterItem({ team, members }: TeamRosterItemProps) {
                     (team.active ? "active" : "inactive")
                 }
             >
-                <SliderTeamMembers members={members} />
+                    <SliderTeamMembers members={members} />
 
                 <div className="roster-card-wrestler-name-container">
                     <RosterCardName name={team.name} brand={team.brand} />
