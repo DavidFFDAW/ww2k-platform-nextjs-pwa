@@ -2,7 +2,7 @@ import React from "react";
 import { prisma } from "@/db/conn";
 import { Wrestler } from "@prisma/client";
 import Form from "@/components/Forms/Form/Form";
-import GroupSelection from "../components/GroupSelection";
+import GroupSelection from "../../components/GroupSelection";
 import { Boxed } from "@/components/Box/Boxed";
 import { BrandSelect, Input, ToggleInput } from "@/components/Forms";
 import { NumberInput } from "@/components/Forms/Inputs/Number";

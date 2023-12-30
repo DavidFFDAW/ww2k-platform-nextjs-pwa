@@ -15,19 +15,19 @@ export default function TeamActions({
                 <Actions.Link
                     text={`Editar equipo '${team.name}'`}
                     color={Actions.Colors.DEFAULT}
-                    toHref={`/admin/teams/update/${team.id}`}
+                    toHref={`/admin/teams/pages/update/${team.id}`}
                     icon={"pencil-square"}
                 />
                 <Actions.Link
-                    text={'Panel de equipo aleatorio'}
+                    text={"Panel de equipo aleatorio"}
                     color={Actions.Colors.DEFAULT}
-                    toHref={'/admin/teams/random'}
+                    toHref={"/admin/teams/pages/random"}
                     icon={"question-diamond"}
                 />
                 <Actions.Link
                     text={"Crear nuevo equipo"}
                     color={Actions.Colors.DEFAULT}
-                    toHref={"/admin/teams/create"}
+                    toHref={"/admin/teams/pages/create"}
                     icon={"plus-circle"}
                 />
                 {team.ChampionshipReign.length <= 0 ? (

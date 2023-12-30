@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
-import TeamUpdateSkeleton from "../../components/TeamUpdateSkeleton";
-import LoadedUpdateInputs from "../../components/LoadedUpdateInputs";
 import { Metadata } from "next";
+import LoadedUpdateInputs from "../../../components/LoadedUpdateInputs";
+import TeamUpdateSkeleton from "../../../components/TeamUpdateSkeleton";
 
 export const revalidate = 0;
 export const metadata: Metadata = {

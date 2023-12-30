@@ -23,7 +23,7 @@ export default function AdminTeamsPage() {
                 <TableList />
             </Suspense>
 
-            <CreateButton endpoint="teams/create" />
+            <CreateButton endpoint="teams/pages/create" />
         </>
     );
 }
