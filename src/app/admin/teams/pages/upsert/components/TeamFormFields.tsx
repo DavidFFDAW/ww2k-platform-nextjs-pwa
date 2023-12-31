@@ -1,9 +1,9 @@
 import React from "react";
 import { Boxed } from "@/components/Box/Boxed";
-import { BrandSelect, Input, ToggleInput } from "@/components/Forms";
-import GroupSelection from "./GroupSelection";
-import { NumberInput } from "@/components/Forms/Inputs/Number";
+import { BrandSelect, ToggleInput } from "@/components/Forms";
+import GroupSelection from "../../../components/GroupSelection";
 import { Team } from "@prisma/client";
+import TeamInputs from "./TeamInputs";
 
 interface Props {
     teamData?: Team;
@@ -21,28 +21,12 @@ export default function TeamFormFields({
             <div className="grid two-column-grid responsive-grid gap">
                 <Boxed title={"Datos del equipo"} w={"100"}>
                     <div className="flex start column astart gap-small">
-                        <Input
-                            required={true}
-                            max={150}
-                            label={"Nombre"}
-                            name={"name"}
-                            value={teamData?.name}
+                        <TeamInputs
+                            name={teamData?.name}
+                            average={Number(teamData?.average)}
+                            slug={teamData?.slug}
                         />
-                        <NumberInput
-                            type={"number"}
-                            max={3}
-                            required={false}
-                            label={"Media"}
-                            name={"overall"}
-                            value={teamData?.average}
-                        />
-                        <Input
-                            required={true}
-                            max={150}
-                            label={"Slug"}
-                            name={"slug"}
-                            value={teamData?.slug || teamData?.name || ""}
-                        />
+
                         <ToggleInput
                             label={"Activo"}
                             name={"active"}

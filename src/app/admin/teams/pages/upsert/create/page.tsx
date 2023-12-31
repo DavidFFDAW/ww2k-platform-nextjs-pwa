@@ -5,7 +5,7 @@ import Form from "@/components/Forms/Form/Form";
 import { Metadata } from "next";
 import { getNamedTitle } from "@/utilities/metadatas.utility";
 import { ButtonCTA } from "@/components/Buttons/Buttons";
-import TeamFormFields from "../../../components/TeamFormFields";
+import TeamFormFields from "../components/TeamFormFields";
 
 export const revalidate = 0;
 export const metadata: Metadata = {

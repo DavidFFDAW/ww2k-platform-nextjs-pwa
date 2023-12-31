@@ -8,7 +8,7 @@ import GroupSelection from "./GroupSelection";
 import { getWrestlersWithoutTeam } from "@/queries/wrestler.queries";
 import Title from "@/components/Title";
 import { ButtonCTA } from "@/components/Buttons/Buttons";
-import TeamFormFields from "./TeamFormFields";
+import TeamFormFields from "../pages/upsert/components/TeamFormFields";
 
 export default async function LoadedUpdateInputs({ id }: { id: string }) {
     const [currentTeamData, possibleMembers] = await Promise.all([
