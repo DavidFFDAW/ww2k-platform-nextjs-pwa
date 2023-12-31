@@ -1,7 +1,8 @@
-import React, { Suspense } from "react";
+import LoadedUpdateInputs from "@/app/admin/teams/components/LoadedUpdateInputs";
+import TeamUpdateSkeleton from "@/app/admin/teams/components/TeamUpdateSkeleton";
 import { Metadata } from "next";
-import LoadedUpdateInputs from "../../../components/LoadedUpdateInputs";
-import TeamUpdateSkeleton from "../../../components/TeamUpdateSkeleton";
+import React, { Suspense } from "react";
+import TeamsUpsertLoadingPage from "../../loading";
 
 export const revalidate = 0;
 export const metadata: Metadata = {

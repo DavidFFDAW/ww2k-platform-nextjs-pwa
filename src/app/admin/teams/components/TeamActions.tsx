@@ -15,7 +15,7 @@ export default function TeamActions({
                 <Actions.Link
                     text={`Editar equipo '${team.name}'`}
                     color={Actions.Colors.DEFAULT}
-                    toHref={`/admin/teams/pages/update/${team.id}`}
+                    toHref={`/admin/teams/pages/upsert/update/${team.id}`}
                     icon={"pencil-square"}
                 />
                 <Actions.Link
@@ -27,7 +27,7 @@ export default function TeamActions({
                 <Actions.Link
                     text={"Crear nuevo equipo"}
                     color={Actions.Colors.DEFAULT}
-                    toHref={"/admin/teams/pages/create"}
+                    toHref={"/admin/teams/pages/upsert/create"}
                     icon={"plus-circle"}
                 />
                 {team.ChampionshipReign.length <= 0 ? (

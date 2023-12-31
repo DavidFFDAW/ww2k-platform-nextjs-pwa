@@ -8,6 +8,7 @@ import GroupSelection from "./GroupSelection";
 import { getWrestlersWithoutTeam } from "@/queries/wrestler.queries";
 import Title from "@/components/Title";
 import { ButtonCTA } from "@/components/Buttons/Buttons";
+import TeamFormFields from "./TeamFormFields";
 
 export default async function LoadedUpdateInputs({ id }: { id: string }) {
     const [currentTeamData, possibleMembers] = await Promise.all([
@@ -35,58 +36,11 @@ export default async function LoadedUpdateInputs({ id }: { id: string }) {
                 sendHttp={true}
                 refresh={true}
             >
-                <div className="grid two-column-grid responsive-grid gap">
-                    <Boxed title={"Datos del equipo"} w={"100"}>
-                        <div className="flex column start astart gap-small">
-                            <HiddenInput
-                                name={"id"}
-                                value={currentTeamData.id}
-                            />
-                            <Input
-                                required={true}
-                                max={150}
-                                label={"Nombre"}
-                                name={"name"}
-                                value={currentTeamData.name}
-                            />
-                            <NumberInput
-                                type={"number"}
-                                max={3}
-                                required={false}
-                                label={"Media"}
-                                name={"overall"}
-                                value={currentTeamData.average}
-                            />
-                            <Input
-                                required={true}
-                                max={150}
-                                label={"Slug"}
-                                name={"slug"}
-                                value={
-                                    currentTeamData.slug || currentTeamData.name
-                                }
-                            />
-                            <ToggleInput
-                                label={"Activo"}
-                                name={"active"}
-                                checked={currentTeamData.active}
-                            />
-                        </div>
-                    </Boxed>
-
-                    <GroupSelection
-                        list={possibleMembers}
-                        members={teamMembers}
-                    />
-                </div>
-
-                <Boxed title={"Datos de la marca"} w={"100"}>
-                    <BrandSelect
-                        label={"Marca"}
-                        name={"brand"}
-                        value={currentTeamData.brand}
-                    />
-                </Boxed>
+                <TeamFormFields
+                    possibleMembers={possibleMembers}
+                    members={teamMembers}
+                    teamData={currentTeamData}
+                />
 
                 <div className="flex end acenter fixed-button">
                     <ButtonCTA type={"submit"} text={"Guardar"} />
