@@ -19,7 +19,11 @@ function GalleryContainer() {
                 className="gallery-module-box boxed dialog"
             >
                 <header className="flex end acenter gallery-header">
-                    <button className="btn close" onClick={toggleGallery}>
+                    <button
+                        type="button"
+                        className="btn close"
+                        onClick={toggleGallery}
+                    >
                         &times;
                     </button>
                 </header>
