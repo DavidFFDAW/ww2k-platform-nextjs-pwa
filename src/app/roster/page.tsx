@@ -6,10 +6,9 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: getNamedTitle('Roster'),
 };
-
 export const revalidate = 0;
 
-export default async function RosterPage() {
+export default function RosterPage() {
     
     return (
         <>
