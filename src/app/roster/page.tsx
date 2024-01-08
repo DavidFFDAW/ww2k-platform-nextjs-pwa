@@ -22,6 +22,10 @@ export default function RosterPage() {
                 <Link className="possible-state-item label" href="/roster/pages/teams">
                     Equipos
                 </Link>
+
+                <Link className="possible-state-item label" href="/roster/pages/champions">
+                    Campeones
+                </Link>
             </div>
         </>
     );

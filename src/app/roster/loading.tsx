@@ -16,6 +16,10 @@ export default function RosterPageLoading() {
                 <Link className="possible-state-item label" href="/roster/pages/teams">
                     <SkeletonLine w={100} h={20} />
                 </Link>
+
+                <Link className="possible-state-item label" href="/roster/pages/champions">
+                    <SkeletonLine w={100} h={20} />
+                </Link>
             </div>
 
         </>

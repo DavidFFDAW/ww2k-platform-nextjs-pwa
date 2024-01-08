@@ -1,3 +1,5 @@
+import { Championship } from '@prisma/client';
+import { ChampionshipReign } from '@prisma/client';
 import { prisma } from "@/db/conn";
 
 export function getAllWrestlers() {
@@ -82,6 +84,33 @@ export function getActiveWrestlersWithoutTeam() {
         },
         where: {
             AND: [{ WrestlerTeam: { none: {} } }, { status: "active" }],
+        },
+    });
+}
+
+export function getChampionsWrestler() {
+    return prisma.wrestler.findMany({
+        where: {
+            ChampionshipReign: {
+                some: {
+                    current: true,
+                },
+            },
+        },
+        include: {
+            ChampionshipReign: {
+                orderBy: {
+                    days: "desc",
+                },
+                include: {
+                    Championship: true,
+                },
+            },
+            WrestlerTeam: {
+                include: {
+                    Team: true,
+                },
+            }
         },
     });
 }
