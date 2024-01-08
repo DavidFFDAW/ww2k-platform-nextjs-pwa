@@ -1,11 +1,11 @@
+import { CreateButton } from "@/components/Buttons";
 import { SearchForm } from "@/components/Forms";
+import Title from "@/components/Title";
 import LazyImageTwo from "@/components/Image/LazyImageTwo";
 import { Pagination, SimplePagination } from "@/components/Pagination";
-import Title from "@/components/Title";
-import { Likes, Replies, Retweets } from "@/components/Twitter/Icons";
+import { Likes, Retweets } from "@/components/Twitter/Icons";
 import { getAllTweets } from "@/queries/twitter.queries";
 import { PageContext } from "@/shared/models";
-import { transformDate } from "@/utilities/date.normalizer.utility";
 import { getNamedTitle } from "@/utilities/metadatas.utility";
 import { Metadata } from "next";
 import React from "react";
@@ -36,6 +36,8 @@ export default async function AdminTwitterPage(context: PageContext) {
                 </div>
                 <button type="submit" className="btn btn-secondary">Buscar</button>
             </SearchForm>
+
+            <CreateButton endpoint="twitter/pages/create" />
 
             <div className="w1 down flex between column al-center gap">
                 {tweets.map((tweet) => (
