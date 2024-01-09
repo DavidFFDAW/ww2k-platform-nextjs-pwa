@@ -1,5 +1,3 @@
-import { Championship } from '@prisma/client';
-import { ChampionshipReign } from '@prisma/client';
 import { prisma } from "@/db/conn";
 
 export function getAllWrestlers() {

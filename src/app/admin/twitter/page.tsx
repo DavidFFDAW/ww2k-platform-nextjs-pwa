@@ -96,7 +96,7 @@ export default async function AdminTwitterPage(context: PageContext) {
                                 icon="reply"
                                 text={`Crear respuesta a este Tweet`}
                             />
-                            <Form action={`/api/twitter/delete/${tweet.id}`} method="POST" refresh={true} sendHttp={true}>
+                            <Form action={`/api/twitter/delete`} method="POST" refresh={true} sendHttp={true}>
                                 <ActionSubmit
                                     color={ActionColors.DELETE}
                                     icon="trash-fill"

@@ -31,3 +31,11 @@ export function getAllTweets(page: number | string, filters: any) {
         }
     });
 }
+
+export function getTweetByID(id: number) {
+    return prisma.tweets.findUnique({
+        where: {
+            id: id,
+        },
+    });
+}
