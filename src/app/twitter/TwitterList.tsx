@@ -12,6 +12,9 @@ function getTweets() {
             wrestler: true,
             replies: true,
         },
+        where: {
+            reply_to: null,
+        },
     });
 }
 

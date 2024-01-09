@@ -37,5 +37,22 @@ export function getTweetByID(id: number) {
         where: {
             id: id,
         },
+        include: {
+            wrestler: true,
+        }
+    });
+}
+
+export function getTweetRepliesByID(id: number) {
+    return prisma.tweets.findMany({
+        where: {
+            reply_to: id,
+        },
+        orderBy: {
+            created_at: "desc",
+        },
+        include: {
+            wrestler: true,
+        }
     });
 }

@@ -32,9 +32,11 @@ export default function Tweet({ tweet, wrestler, replies = 0 }: TweetProps) {
                     {existingDateToString(tweet.created_at)}
                 </aside>
             </header>
+            
             <section className="tweet-content">
                 <TweetContent content={tweet.message} />
             </section>
+
             <footer className="tweet-footer">
                 <aside className="tweet-footer-item">
                     <div className="icon">
