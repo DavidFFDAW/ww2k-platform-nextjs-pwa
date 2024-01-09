@@ -1,9 +1,8 @@
-import { getTweetAndReplies, getTweetByID, getTweetRepliesByID } from '@/queries/twitter.queries';
-import { PageContext } from '@/shared/models'
 import React from 'react'
 import Tweet from '../../Tweet';
-import { Tweets } from '@prisma/client';
+import { PageContext } from '@/shared/models'
 import { NullableLoading } from '@/components/Loading';
+import { getTweetByID, getTweetRepliesByID } from '@/queries/twitter.queries';
 
 export const revalidate = 0;
 
@@ -13,7 +12,6 @@ export default async function PublicTweetPage({ params }: PageContext) {
         getTweetRepliesByID(Number(params.id))
     ]);
     if (!tweet) return <div>Not Found</div>;
-    console.log({ tweet });
 
 
     return (
