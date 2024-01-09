@@ -1,6 +1,6 @@
 import { BootstrapIcon } from '@/components/Icon/BootstrapIcon';
 import { NullableLoading } from '@/components/Loading';
-import React, { MouseEvent } from 'react'
+import React from 'react'
 
 interface ActionSubmitProps {
     text: string;

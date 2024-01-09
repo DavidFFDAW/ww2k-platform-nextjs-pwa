@@ -53,7 +53,11 @@ html.dark-theme {
     font-size: 16px;
     text-align: start;
 }
-
+.actions-option-group.absolute-right-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
 .actions-option-group .actions-group-actions-list .action-text {
     font-weight: 400;
     color: var(--blackwhite);
@@ -106,6 +110,9 @@ html.dark-theme {
 .actions-option-group .actions-group-actions-list .action-link:hover .icon-wrapper {
     background-color: var(--action-hover-icon);
 }
+.actions-option-group .actions-group-actions-list .action-link:hover .icon-wrapper .bi.app-bootstrap-custom-icon {
+    color: #000;
+}
 
 .actions-option-group .icon-wrapper {
     max-height: 31px;
@@ -117,25 +124,43 @@ html.dark-theme {
 .actions-option-group .success-action .icon-wrapper {
     background: #85e4ad;
 }
+.actions-option-group .success-action .icon-wrapper .bi.app-bootstrap-custom-icon {
+    color: #16a475;
+}
 
 .actions-option-group .default-action .icon-wrapper {
     background: #deffec;
+}
+.actions-option-group .default-action .icon-wrapper .bi.app-bootstrap-custom-icon {
+    color: #53655a;
 }
 
 .actions-option-group .delete-action .icon-wrapper {
     background: #ffcccc;
 }
+.actions-option-group .delete-action .icon-wrapper .bi.app-bootstrap-custom-icon {
+    color: #8f1e1e;
+}
 
 .actions-option-group .warning-action .icon-wrapper {
     background: #f5edbb;
 }
+.actions-option-group .warning-action .icon-wrapper .bi.app-bootstrap-custom-icon {
+    color: #deac16;
+}
 
 .actions-option-group .info-action .icon-wrapper {
-    background: #a8bef4;
+    background: #bfdffc;
+}
+.actions-option-group .info-action .icon-wrapper .bi.app-bootstrap-custom-icon {
+    color: #0b448f;
 }
 
 .actions-option-group .dark-action .icon-wrapper {
     background: #2c2c2c;
+}
+.actions-option-group .dark-action .icon-wrapper .bi.app-bootstrap-custom-icon {
+    color: #fff;
 }
 
 .actions-option-group .actions-group-actions-list .warning-action .action-text {

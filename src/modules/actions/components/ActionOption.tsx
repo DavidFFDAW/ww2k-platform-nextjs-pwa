@@ -2,13 +2,20 @@ import Link from "next/link";
 import { NullableLoading } from "@/components/Loading";
 import { BootstrapIcon } from "@/components/Icon/BootstrapIcon";
 
-export function ActionOption({ toHref, text, icon, color }) {
+interface ActionLinkProps {
+    toHref: string;
+    text: string;
+    icon: string;
+    color: string;
+}
+
+export function ActionLink({ toHref, text, icon, color }: ActionLinkProps) {
     return (
         <Link
             className={`flex start acenter gap-small action-link ${color}`}
             href={toHref}
         >
-            <NullableLoading condition={icon}>
+            <NullableLoading condition={Boolean(icon)}>
                 <div className="icon-wrapper">
                     <BootstrapIcon icon={icon} />
                 </div>

@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 
 export default async function AdminTwitterCreatePage() {
     const wrestlers = await getAllWrestlers();
-    const randomComents = getRandomNumber(3000, 100000);
-    const randomLikes = getRandomNumber(3000, 100000);
-    const randomRetweets = getRandomNumber(3000, 100000);
+    const randomComents = getRandomNumber(3000, 100000).toLocaleString();
+    const randomLikes = getRandomNumber(3000, 100000).toLocaleString();
+    const randomRetweets = getRandomNumber(3000, 100000).toLocaleString();
 
     return (
         <>
@@ -48,9 +48,9 @@ export default async function AdminTwitterCreatePage() {
                 </Boxed>
 
                 <Boxed className='w1 flex column gap-small' w={'100'}>
-                    <Input name='comments' label='Comentarios' value={randomComents.toString()} placeholder='Comentarios del tweet' required />
-                    <Input name='likes' label='Likes' value={randomLikes.toString()} placeholder='Likes del tweet' required />
-                    <Input name='retweets' label='Retweets' value={randomRetweets.toString()} placeholder='Retweets del tweet' required />
+                    <Input name='comments' label='Comentarios' value={randomComents} placeholder='Comentarios del tweet' required />
+                    <Input name='likes' label='Likes' value={randomLikes} placeholder='Likes del tweet' required />
+                    <Input name='retweets' label='Retweets' value={randomRetweets} placeholder='Retweets del tweet' required />
                     <Input name='device' label='Dispositivo' value={'Android'} placeholder='Dispositivo desde el que se ha enviado el tweet' required />
                 </Boxed>
 

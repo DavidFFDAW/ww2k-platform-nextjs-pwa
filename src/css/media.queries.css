@@ -1,4 +1,38 @@
 @media only screen and (max-width: 768px) {
+    .w1-responsive {
+        width: 100%;
+    }
+    .flex.responsive-align-end {
+        align-items: flex-end;
+    }
+    .flex.responsive-align-start {
+        align-items: flex-start;
+    }
+    .flex.responsive-align-center {
+        align-items: center;
+    }
+    .flex.responsive-justify-end {
+        justify-content: flex-end;
+    }
+    .flex.responsive-justify-start {
+        justify-content: flex-start;
+    }
+    .flex.responsive-justify-center {
+        justify-content: center;
+    }
+    .flex.responsive-justify-space-between {
+        justify-content: space-between;
+    }
+    .flex.responsive-justify-space-around {
+        justify-content: space-around;
+    }
+    .flex.responsive-justify-space-evenly {
+        justify-content: space-evenly;
+    }
+    .flex.responsive-column {
+        flex-direction: column;
+    }
+
     .page-title-custom {
         font-size: 20px;
     }

@@ -1,32 +1,16 @@
+'use client';
 import React, { useRef, useState } from "react";
 import { NullableLoading } from "@/components/Loading";
 import { DotsIcon } from "@/components/Icons/CommonIcons";
-import { ActionOption } from "./ActionOption";
-import { ActionFetch } from "./ActionFetch";
-import { ActionSubmit } from "./ActionSubmit";
 import useClickOutside from "@/hooks/useClickOutside";
 import "./actions.css";
 
-const ActionTypes = {
-    BUTTON: "button",
-    DEFAULT: "default",
-    LINK: "link",
-};
-
-const ColorTypes = {
-    SUCCESS: "success-action",
-    DEFAULT: "default-action",
-    DELETE: "delete-action",
-    WARNING: "warning-action",
-    INFO: "info-action",
-    DARK: "dark-action",
-};
-
 interface ActionsContainerProps {
+    absolute?: boolean;
     children: React.ReactNode;
 }
 
-function ActionsContainer({ children }: ActionsContainerProps) {
+export default function ActionsContainer({ absolute, children }: ActionsContainerProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [showOptions, setShowOptions] = useState<boolean>(false);
     const toggleShowOpts = () => setShowOptions((show) => !show);
@@ -35,8 +19,10 @@ function ActionsContainer({ children }: ActionsContainerProps) {
         setShowOptions(false);
     });
 
+    const absoluteActionsListClass = `actions-option-group ${absolute ? "absolute-right-actions" : "relative"}`;
+
     return (
-        <div className="actions-option-group relative" ref={ref}>
+        <div className={absoluteActionsListClass} ref={ref}>
             <button
                 className={`three-dots-actions ${showOptions ? "active" : "normal"
                     }`}
@@ -56,14 +42,3 @@ function ActionsContainer({ children }: ActionsContainerProps) {
         </div>
     );
 }
-
-const Actions = {
-    Container: ActionsContainer,
-    Link: ActionOption,
-    Fetch: ActionFetch,
-    Submit: ActionSubmit,
-    Types: ActionTypes,
-    Colors: ColorTypes,
-};
-
-export default Actions;
