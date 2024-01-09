@@ -11,6 +11,8 @@ import { Metadata } from "next";
 import React from "react";
 import ActionsContainer from "@/modules/actions/Actions";
 import { ActionColors, ActionLink, ActionSubmit } from "@/modules/actions";
+import { BootstrapIcon } from "@/components/Icon/BootstrapIcon";
+import { NullableLoading } from "@/components/Loading";
 
 export const revalidate = 0;
 export const metadata: Metadata = {
@@ -57,6 +59,17 @@ export default async function AdminTwitterPage(context: PageContext) {
                             <p>{tweet.message}</p>
 
                             <div className="w1 flex start astart gap">
+                                <NullableLoading condition={Boolean(tweet.reply_to)}>
+                                    <aside className="flex start astart gap-smaller tweet-footer-item">
+                                        <div className="icon">
+                                            <BootstrapIcon icon="reply" />
+                                        </div>
+                                        <div className="text">
+                                            <span>Reply</span>
+                                        </div>
+                                    </aside>
+                                </NullableLoading>
+
                                 <aside className="flex start astart gap-smaller tweet-footer-item">
                                     <div className="icon">
                                         <Retweets />
@@ -72,6 +85,15 @@ export default async function AdminTwitterPage(context: PageContext) {
                                     </div>
                                     <div className="text">
                                         <span>{tweet.likes.toLocaleString()}</span>
+                                    </div>
+                                </aside>
+
+                                <aside className="flex start astart gap-smaller tweet-footer-item">
+                                    <div className="icon">
+                                        <BootstrapIcon icon="phone" />
+                                    </div>
+                                    <div className="text">
+                                        <span>{tweet.device}</span>
                                     </div>
                                 </aside>
                             </div>

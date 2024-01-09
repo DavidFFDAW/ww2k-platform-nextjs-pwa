@@ -22,7 +22,7 @@ export default async function AdminTwitterCreatePage(context: PageContext) {
 
     return (
         <>
-            <Title title={"Crear Tweet"} icon="twitter-x" />
+            <Title title={"Actualizar Tweet"} icon="twitter-x" />
 
             <Form
                 method='POST'
@@ -32,7 +32,7 @@ export default async function AdminTwitterCreatePage(context: PageContext) {
                 redirect='/admin/twitter'
             >
                 <input type="hidden" name="tweet_id" value={id} />
-                
+
                 <TwitterUpsertFields datas={{
                     tweet_content: tweet?.message,
                     comments: tweet?.comments,
