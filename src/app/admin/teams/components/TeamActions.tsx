@@ -1,6 +1,7 @@
 "use client";
 import { deleteTeam } from "@/actions/team.actions";
-import Actions from "@/modules/actions/Actions";
+import { ActionColors, ActionLink, ActionSubmit } from "@/modules/actions";
+import ActionsContainer from "@/modules/actions/Actions";
 import { ChampionshipReign, Team } from "@prisma/client";
 import React from "react";
 
@@ -11,37 +12,37 @@ export default function TeamActions({
 }) {
     return (
         <div className="actions-grouped-container">
-            <Actions.Container>
-                <Actions.Link
+            <ActionsContainer>
+                <ActionLink
                     text={`Editar equipo '${team.name}'`}
-                    color={Actions.Colors.DEFAULT}
+                    color={ActionColors.DEFAULT}
                     toHref={`/admin/teams/pages/upsert/update/${team.id}`}
                     icon={"pencil-square"}
                 />
-                <Actions.Link
+                <ActionLink
                     text={"Panel de equipo aleatorio"}
-                    color={Actions.Colors.DEFAULT}
+                    color={ActionColors.DEFAULT}
                     toHref={"/admin/teams/pages/random"}
                     icon={"question-diamond"}
                 />
-                <Actions.Link
+                <ActionLink
                     text={"Crear nuevo equipo"}
-                    color={Actions.Colors.DEFAULT}
+                    color={ActionColors.DEFAULT}
                     toHref={"/admin/teams/pages/upsert/create"}
                     icon={"plus-circle"}
                 />
                 {team.ChampionshipReign.length <= 0 ? (
                     <form action={deleteTeam} className="w1 form-delete">
-                        <Actions.Submit
+                        <ActionSubmit
                             text={`Borrar equipo '${team.name}'`}
-                            color={Actions.Colors.DELETE}
+                            color={ActionColors.DELETE}
                             icon={"trash"}
                             name="team_id"
                             value={team.id.toString()}
                         />
                     </form>
                 ) : null}
-            </Actions.Container>
+            </ActionsContainer>
         </div>
     );
 }

@@ -1,27 +1,26 @@
 "use client";
-import Actions from "@/modules/actions/Actions";
+import { ActionColors, ActionFetch } from "@/modules/actions";
+import ActionsContainer from "@/modules/actions/Actions";
 import { Championship } from "@prisma/client";
 import React from "react";
 
 interface Props {
-    championship: Championship
+    championship: Championship;
 }
 
-export default function ChampionshipActions({
-    championship,
-}: Props) {
+export default function ChampionshipActions({ championship }: Props) {
     return (
         <>
-            <Actions.Container>
-                <Actions.Fetch
+            <ActionsContainer>
+                <ActionFetch
                     href={`/api/championships/delete/${championship.id}`}
                     text="Borrar championship y reinados"
                     icon="trash-fill"
-                    color={Actions.Colors.DELETE}
+                    color={ActionColors.DELETE}
                     method="delete"
                     refresh={true}
                 />
-            </Actions.Container>
+            </ActionsContainer>
         </>
     );
 }

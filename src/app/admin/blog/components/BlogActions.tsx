@@ -1,51 +1,70 @@
-import { Report } from '@prisma/client'
-import React from 'react'
-import Actions from '@/modules/actions/Actions';
-import { changePublishedState, deletePost, toggleAutomaticPostDeletion } from '@/actions/blog.actions';
+import { Report } from "@prisma/client";
+import React from "react";
+import {
+    changePublishedState,
+    deletePost,
+    toggleAutomaticPostDeletion,
+} from "@/actions/blog.actions";
+import ActionsContainer from "@/modules/actions/Actions";
+import { ActionColors, ActionLink, ActionSubmit } from "@/modules/actions";
 
 interface BlogProps {
     post: Report;
 }
 
 export default function BlogActions({ post }: BlogProps) {
-
     return (
         <>
             <div className="actions-grouped-container">
-                <Actions.Container>
-                    <Actions.Link
+                <ActionsContainer>
+                    <ActionLink
                         text={"Editar Post"}
-                        color={Actions.Colors.DEFAULT}
+                        color={ActionColors.DEFAULT}
                         toHref={`/admin/blog/update/${post.id}`}
                         icon={"pencil-square"}
                     />
-                    <Actions.Link
+                    <ActionLink
                         text={"Crear Nuevo Post"}
-                        color={Actions.Colors.DEFAULT}
+                        color={ActionColors.DEFAULT}
                         toHref={"/admin/blog/create"}
                         icon={"plus-circle"}
                     />
                     <form action={toggleAutomaticPostDeletion}>
-                        <input type="hidden" name="current_status" value={post.deletable ? 1 : 0} />
+                        <input
+                            type="hidden"
+                            name="current_status"
+                            value={post.deletable ? 1 : 0}
+                        />
 
-                        <Actions.Submit
+                        <ActionSubmit
                             text={
                                 post.deletable
                                     ? "Desactivar borrado automático"
                                     : "Activar borrado automático"
                             }
-                            color={Actions.Colors.WARNING}
+                            color={ActionColors.WARNING}
                             icon={post.deletable ? "toggle-on" : "toggle-off"}
                             name="post_id"
                             value={post.id.toString()}
                         />
                     </form>
 
-                    <form action={changePublishedState} className="w1 form-delete">
-                        <input type="hidden" name="post_current_publish_state" value={post.visible ? 1 : 0} />
-                        <Actions.Submit
-                            text={post.visible ? "Despublicar Post" : "Publicar Post"}
-                            color={Actions.Colors.WARNING}
+                    <form
+                        action={changePublishedState}
+                        className="w1 form-delete"
+                    >
+                        <input
+                            type="hidden"
+                            name="post_current_publish_state"
+                            value={post.visible ? 1 : 0}
+                        />
+                        <ActionSubmit
+                            text={
+                                post.visible
+                                    ? "Despublicar Post"
+                                    : "Publicar Post"
+                            }
+                            color={ActionColors.WARNING}
                             icon={post.visible ? "eye-slash" : "eye"}
                             name="post_id"
                             value={post.id.toString()}
@@ -53,17 +72,16 @@ export default function BlogActions({ post }: BlogProps) {
                     </form>
 
                     <form action={deletePost} className="w1 form-delete">
-                        <Actions.Submit
+                        <ActionSubmit
                             text={"Borrar Post"}
-                            color={Actions.Colors.DELETE}
+                            color={ActionColors.DELETE}
                             icon={"trash-fill"}
                             name="post_id"
                             value={post.id.toString()}
                         />
                     </form>
-                </Actions.Container>
+                </ActionsContainer>
             </div>
-
         </>
-    )
+    );
 }
