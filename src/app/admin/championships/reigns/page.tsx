@@ -3,6 +3,7 @@ import React from "react";
 import { prisma } from "@/db/conn";
 import { existingDateToString } from "@/utilities/date.normalizer.utility";
 import Image from "@/components/Image/Image";
+import { CreateButton } from "@/components/Buttons";
 
 function getReigns() {
     return prisma.championshipReign.findMany({
@@ -83,6 +84,8 @@ export default async function AdminChampionshipsPage() {
                         <p>{reign.days} días</p>
                     </div>
                 ))}
+
+                <CreateButton endpoint="/championships/reigns/pages/create" />
             </section>
         </>
     );

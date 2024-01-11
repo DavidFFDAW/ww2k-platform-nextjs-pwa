@@ -535,6 +535,29 @@ textarea.custom {
     resize: vertical;
 }
 
+.numeric-input.numeric-input-wrapper-container-div .btn-list {
+    width: 50px;
+    height: 40px;
+    padding: 10px;
+    font-weight: 400;
+    font-size: 0.8em;
+    background-color: transparent;
+    border: 1px solid lightgray;
+    border-radius: 0;
+}
+.numeric-input.numeric-input-wrapper-container-div .btn-list:first-child {
+    border-right: none;
+    border-radius: var(--borderRadius) 0 0 var(--borderRadius);
+}
+.numeric-input.numeric-input-wrapper-container-div .btn-list:last-child {
+    border-left: none;
+    border-radius: 0 var(--borderRadius) var(--borderRadius) 0;
+}
+.numeric-input.numeric-input-wrapper-container-div input {
+    height: 40px;
+    border-radius: 0;
+}
+
 .fixed-button {
     position: fixed;
     bottom: 15px;
