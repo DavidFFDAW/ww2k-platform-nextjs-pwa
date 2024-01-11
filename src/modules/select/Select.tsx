@@ -10,6 +10,9 @@ interface SelectProps {
     list: any[];
     name: string;
     zIndex?: number;
+    label?: string;
+    required?: boolean;
+    placeholder?: string;
     listHeight?: number;
     removeText?: boolean;
     selectCallback?: (selected: any) => void;
@@ -19,7 +22,10 @@ export default function Select({
     list,
     name,
     zIndex,
+    label,
+    required,
     listHeight,
+    placeholder = "Buscar...",
     removeText = false,
     selectCallback,
 }: SelectProps) {
@@ -41,12 +47,20 @@ export default function Select({
 
     return (
         <section className="custom-select-container">
+            <NullableLoading condition={Boolean(label)}>
+                <label className="label" htmlFor={name}>
+                    {label}
+                    {required ? <span className="required">*</span> : null}
+                </label>
+            </NullableLoading>
+
             <div className="custom-select flex start acenter">
                 <input
                     type="text"
                     className="input"
                     onChange={handleChangeSearch}
                     value={search}
+                    placeholder={placeholder}
                     onClick={toggleList}
                 />
                 {selectedItem ? (
