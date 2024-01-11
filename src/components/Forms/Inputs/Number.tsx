@@ -41,7 +41,7 @@ export function NumberInput({
 
             <div className="w1 flex acenter numeric-input numeric-input-wrapper-container-div relative">
                 <button className="btn-list" type="button" onClick={substractNumber}>
-                    <BootstrapIcon icon="dash" />
+                    <BootstrapIcon icon="dash-circle" />
                 </button>
 
                 <div className="w1 input-wrapper-container-div relative">
@@ -58,7 +58,7 @@ export function NumberInput({
                 </div>
 
                 <button className="btn-list" type="button" onClick={addNumber}>
-                    <BootstrapIcon icon="plus" />
+                    <BootstrapIcon icon="plus-circle" />
                 </button>
             </div>
 
