@@ -5,6 +5,7 @@ interface DateProps {
     name: string;
     required?: boolean;
     value?: string;
+    onChangeDate?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export function InputDate({
     min = "2020-01-01",
@@ -12,6 +13,7 @@ export function InputDate({
     label,
     name,
     required = false,
+    onChangeDate,
     value = new Date().toISOString().split("T")[0],
 }: DateProps) {
     return (
@@ -27,7 +29,10 @@ export function InputDate({
                 type="date"
                 name={name}
                 required={required}
-                defaultValue={value}
+                defaultValue={
+                    !value ? new Date().toISOString().split("T")[0] : value
+                }
+                {...(onChangeDate && { onChange: onChangeDate })}
             />
         </div>
     );

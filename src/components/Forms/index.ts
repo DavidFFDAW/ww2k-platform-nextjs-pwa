@@ -2,6 +2,8 @@ export { default as Form } from "./Form/Form";
 export { default as useForm } from "./Form/useForm";
 export { default as HttpForm } from "./HttpForm/HttpForm";
 export { default as useHttpForm } from "./HttpForm/useHttpForm";
+export { default as CustomClickableSelect } from "./Inputs/CustomClickableSelect";
+export { default as BrandItem } from "./Inputs/brand-select/BrandItem";
 export { default as BrandSelect } from "./Inputs/brand-select/BrandSelect";
 export * from "./Inputs";
 export { default as QuillEditor } from "./QuillEditor/QuillEditor";

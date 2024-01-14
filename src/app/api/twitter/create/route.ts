@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { getJWT, getNonValidTokenResponse } from "../../helpers/token.helper";
 import { revalidatePath } from "next/cache";
 import { checkRequiredFields } from "../../helpers/request.helper";
-import { Tweets } from "@prisma/client";
 
 export async function POST(request: NextRequest) {
     const body = await request.json();
@@ -36,7 +35,8 @@ export async function POST(request: NextRequest) {
             message: body.tweet_content,
             author_id: Number(body.wrestler_id),
         };
-        if (body.tweet_replying_to) data['reply_to'] = Number(body.tweet_replying_to);
+        if (body.tweet_replying_to)
+            data["reply_to"] = Number(body.tweet_replying_to);
 
         const inserted = await prisma.tweets.create({
             data: data,
@@ -51,11 +51,11 @@ export async function POST(request: NextRequest) {
                 { status: 500 }
             );
 
-        revalidatePath("/admin/twitter", 'page');
-        revalidatePath("/twitter", 'page');
+        revalidatePath("/admin/twitter", "page");
+        revalidatePath("/twitter", "page");
 
         return NextResponse.json(
-            { message: 'Se ha creado el nuevo tweet'  },
+            { message: "Se ha creado el nuevo tweet" },
             { status: 200 }
         );
     } catch (error: any) {

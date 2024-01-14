@@ -4,9 +4,15 @@ interface ToggleProps {
     name: string;
     checked?: boolean;
     label: string;
+    onChangeCallback?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function ToggleInput({ name, checked = false, label }: ToggleProps) {
+export function ToggleInput({
+    name,
+    checked = false,
+    label,
+    onChangeCallback = () => {},
+}: ToggleProps) {
     return (
         <div className="custom-toggle-switch flex column center acenter">
             <label className="form-label block" htmlFor={name}>
@@ -17,6 +23,7 @@ export function ToggleInput({ name, checked = false, label }: ToggleProps) {
                     type="checkbox"
                     name={name}
                     defaultChecked={checked || false}
+                    onChange={onChangeCallback}
                 />
                 <span className="slider round"></span>
             </label>

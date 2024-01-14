@@ -24,6 +24,13 @@ export default function useSelect({
     removeText,
     selectCallback = (item) => {},
 }: useSelectParameters) {
+    React.useEffect(() => {
+        setState((prev: ISelectState) => ({
+            ...prev,
+            list: givenList,
+        }));
+    }, [givenList]);
+
     const [state, setState] = React.useState<ISelectState>({
         list: givenList,
         showList: false,
