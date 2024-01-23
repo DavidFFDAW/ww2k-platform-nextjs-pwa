@@ -34,6 +34,17 @@ export function getTeams() {
     });
 }
 
+export function getTeamMembers(id: string) {
+    return prisma.wrestlerTeam.findMany({
+        where: {
+            team_id: Number(id),
+        },
+        include: {
+            Wrestler: true,
+        },
+    });
+}
+
 export function getTeamsWithMembers() {
     return prisma.team.findMany({
         orderBy: {

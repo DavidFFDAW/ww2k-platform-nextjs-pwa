@@ -18,7 +18,6 @@ model Brand {
   created_at   DateTime?      @default(now())
   updated_at   DateTime?      @updatedAt
   background   String?        @db.VarChar(255)
-  Championship Championship[]
 
   @@map(name: "brands")
 }
@@ -33,8 +32,7 @@ model Championship {
   active            Boolean             @db.TinyInt
   created_at        DateTime?           @default(now())
   updated_at        DateTime?           @updatedAt
-  brand_model       Brand?              @relation(fields: [brand], references: [id])
-  brand             Int?                @db.Int
+  brand             String?                @db.VarChar(10)
   short_title       String?             @db.VarChar(20)
   ChampionshipReign ChampionshipReign[]
 
