@@ -33,7 +33,7 @@ export async function getCurrentChampionshipReigns() {
     WHERE c.active= TRUE 
     AND cr.lost_date IS NULL 
     AND cr.current = true 
-    ORDER BY cr.won_date DESC;`) as IChampionshipReigns[];
+    ORDER BY cr.won_date, cr.days, c.brand DESC;`) as IChampionshipReigns[];
 
     const data = original.map(async (ch) => {
         // if (ch.ch_tag) {
