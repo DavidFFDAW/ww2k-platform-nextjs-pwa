@@ -1,10 +1,9 @@
-import React, { Suspense } from "react";
-import RosterWrestlersListSkeleton from "../../components/RosterWrestlersListSkeleton";
+import React from "react";
 import Title from "@/components/Title";
-import ChampionsRosterList from "./ChampionsRosterList";
 import { getCurrentChampionshipReigns } from "@/queries/championship.reigns.queries";
 import RosterCard from "../../components/RosterCard";
 import { Wrestler } from "@prisma/client";
+import ChampionCard from "./components/ChampionCard";
 
 export default async function RosterChampionsPage() {
     const champs = await getCurrentChampionshipReigns();
@@ -17,38 +16,11 @@ export default async function RosterChampionsPage() {
         <>
             <Title title="Campeones" icon="people" />
 
-            {/* <StatusLabelContainer fixed={true}>
-                <StatusLabel
-                    name="all"
-                    text={"Todos"}
-                    href={"?"}
-                    activeLink={searchBrand}
-                />
-                <StatusLabel
-                    name="RAW"
-                    text={"RAW"}
-                    href={"?brand=RAW"}
-                    activeLink={searchBrand}
-                />
-                <StatusLabel
-                    name="SD"
-                    text={"SmackDown"}
-                    href={"?brand=SD"}
-                    activeLink={searchBrand}
-                />
-                <StatusLabel
-                    name="AWL"
-                    text={"AWL"}
-                    href={"?brand=AWL"}
-                    activeLink={searchBrand}
-                />
-            </StatusLabelContainer> */}
-
             <div className="grid-pre-container" style={{ marginTop: 80 }}>
                 <div className="grid responsive-grid grid-three-column unconventional-grid gap">
                     {champs.map((champ) => {
                         return (
-                            <RosterCard
+                            <ChampionCard
                                 key={champ.id}
                                 imgSrc={
                                     champ.ch_tag
@@ -64,6 +36,12 @@ export default async function RosterChampionsPage() {
                                         id: champ.id,
                                     } as Wrestler
                                 }
+                                championship={{
+                                    name: champ.ch_name,
+                                    brand: champ.ch_brand as string,
+                                    image: champ.ch_image as string,
+                                    is_tag: champ.ch_tag,
+                                }}
                                 brand={champ.ch_brand as string}
                             />
                         );

@@ -18,7 +18,6 @@ interface Props {
 export default function LazyImageTwo({
     src,
     className,
-    imgClassName,
     alt = "defaul image",
     srcError = "/noimage.jpg",
     draggable = false,
@@ -39,7 +38,7 @@ export default function LazyImageTwo({
     };
 
     const imageSrcF = isInView ? imageSrc : "/noimage.jpg";
-    const imageClassName = `lazy-image total-image ${imgClassName}`;
+    const imageClassName = `lazy-image total-image ${className}`;
 
     return (
         <>
