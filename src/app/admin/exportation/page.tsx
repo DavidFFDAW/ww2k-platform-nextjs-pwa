@@ -46,7 +46,8 @@ export default function AdminExportationPage() {
                         />
                         <ExportLink
                             text="Reinados"
-                            endpoint="championship/reigns"
+                            endpoint="championships/reigns"
+                            working={true}
                         />
                     </div>
                 </div>

@@ -9,9 +9,12 @@ interface Props {
     reign: IParsedChampionships;
 }
 
-export default function ChampionCard({ reign }: Props) {
+export default function TagTeamChampionCard({ reign }: Props) {
     return (
-        <div className="w1 entire-roster-champion-card" key={reign.id}>
+        <div
+            className="w1 entire-roster-champion-card is-tag-team-championships"
+            key={reign.id}
+        >
             <div
                 className={
                     "w1 roster-card relative brand-" + reign.championship.brand
@@ -24,14 +27,24 @@ export default function ChampionCard({ reign }: Props) {
                     />
                 </div>
 
-                <LazyImageTwo
-                    width={128}
-                    height={128}
-                    src={reign.wrestler.image}
-                    srcError={"/noimage.jpg"}
-                    alt={reign.wrestler.name}
-                    className="total-image roster-lazy-image image-container"
-                />
+                <div className="roster-card-tag-team team-members-champions">
+                    <LazyImageTwo
+                        width={128}
+                        height={128}
+                        src={reign.wrestler.image}
+                        srcError={"/noimage.jpg"}
+                        alt={reign.wrestler.name}
+                        className="total-image roster-lazy-image team-member-holder-1 image-container"
+                    />
+                    <LazyImageTwo
+                        width={128}
+                        height={128}
+                        src={reign.partner.image}
+                        srcError={"/noimage.jpg"}
+                        alt={reign.partner.name}
+                        className="total-image roster-lazy-image team-member-holder-2 image-container"
+                    />
+                </div>
 
                 <div className="championship-image-container">
                     <LazyImageTwo
@@ -46,7 +59,7 @@ export default function ChampionCard({ reign }: Props) {
 
                 <div className="roster-card-wrestler-name-container">
                     <RosterCardName
-                        name={reign.wrestler.name}
+                        name={reign.team.name}
                         brand={reign.championship.brand}
                     />
                 </div>
