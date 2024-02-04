@@ -1,9 +1,10 @@
 import React from "react";
 import Title from "@/components/Title";
 import { getCurrentChampionshipReigns } from "@/queries/championship.reigns.queries";
-import RosterCard from "../../components/RosterCard";
 import { Wrestler } from "@prisma/client";
 import ChampionCard from "./components/ChampionCard";
+
+export const revalidate = 0;
 
 export default async function RosterChampionsPage() {
     const champs = await getCurrentChampionshipReigns();

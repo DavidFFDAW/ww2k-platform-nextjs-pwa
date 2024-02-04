@@ -1,6 +1,7 @@
+import { DOMAIN } from "@/constants/config";
 import HttpService from "@/services/http.service";
 
-const API_ENDPOINT = "https://vps-f87b433e.vps.ovh.net/2k/api/v2/";
+const API_ENDPOINT = `${DOMAIN}/2k/api/v2/`;
 
 export async function getAllImages() {
     const response = await HttpService.get(`${API_ENDPOINT}images`);
@@ -30,43 +31,42 @@ export function uploadImages(filesArray: File[], token: string) {
     }
 
     const options: RequestInit = {
-        method: 'POST',
+        method: "POST",
         mode: "cors",
         headers: {
             // "Content-Type": "multipart/form-data",
-            "Authorization": "Bearer " + token,
+            Authorization: "Bearer " + token,
         },
-        body: sendingData
+        body: sendingData,
     };
 
+    return fetch(`${API_ENDPOINT}images/new`, options)
+        .then(async (response) => {
+            try {
+                const content = await response.json();
 
-    return fetch(`${API_ENDPOINT}images/new`, options).then(async (response) => {
-        try {
-            const content = await response.json();
-
-            return {
-                ...content,
-                ok: response.ok,
-                status: response.status,
-                content: content,
+                return {
+                    ...content,
+                    ok: response.ok,
+                    status: response.status,
+                    content: content,
+                };
+            } catch (error: any) {
+                return {
+                    ok: response.ok,
+                    status: response.status,
+                    message: error.message,
+                };
             }
-        } catch (error: any) {
+        })
+        .catch((error) => {
             return {
-                ok: response.ok,
-                status: response.status,
+                ok: false,
+                status: 500,
                 message: error.message,
-            }
-        };
-    }).catch((error) => {
-        return {
-            ok: false,
-            status: 500,
-            message: error.message,
-        };
-    });
+            };
+        });
 }
-
-
 
 // function wpGalleryDeleteImage(filename: string) {
 //     const urlGalleryDeletion = API_ENDPOINT + "images/delete?img=" + filename;

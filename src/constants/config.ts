@@ -1,5 +1,6 @@
 export const ITEMS_PER_PAGE = 10;
 export const TOKEN_COOKIE = "next-access-token";
+export const DOMAIN = "https://davidfernandezdeveloper.es";
 
 export const USER_ROLES = {
     ADMIN: "ADMIN",
