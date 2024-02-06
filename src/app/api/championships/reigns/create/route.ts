@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(
-        { message: "POST Not supported" },
+        { message: "POST is being debbuged just yet" },
         { status: 404 }
     );
 }

@@ -45,9 +45,53 @@
     opacity: 1;
 }
 
+.block-section-title {
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    background-color: #ccc;
+}
+.block-section-content {
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 15px;
+}
+.block-section-title .title {
+    font-size: 1em;
+    font-weight: 800;
+    font-family: 'dreadnotus', sans-serif;
+}
+.champ-reign-partners-block {
+    grid-column: span 2;
+}
+.member-partner-selector-container .selectable-partner {
+    border-radius: 20px;
+    padding: 5px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    cursor: pointer;
+}
+.member-partner-selector-container .selectable-partner.unselected-partner {
+    background-color: #f6f6f6;
+}
+.member-partner-selector-container .selectable-partner.selected-partner {
+    background-color: #cccccc;
+    border: 1px solid #000;
+    color: #000;
+}
+
 @media only screen and (max-width: 767px) {
     .admin-table.admin-display.admin-teams.team-wrestlers-image {
         width: 50px;
         height: 50px;
+    }
+    
+    .champ-reign-partners-block {
+        margin-top: 10px;
+        grid-column: span 1;
     }
 }

@@ -1,3 +1,4 @@
+'use client'
 import "./toggle.css";
 
 interface ToggleProps {
