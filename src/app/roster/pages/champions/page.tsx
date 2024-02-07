@@ -1,8 +1,6 @@
 import React from "react";
 import Title from "@/components/Title";
-import { IParsedChampionships, getCurrentChampionshipReigns } from "@/queries/championship.reigns.queries";
-import ChampionCard from "./components/ChampionCard";
-import TagTeamChampionCard from "./components/TagTeamChampionCard";
+import { getCurrentChampionshipReigns } from "@/queries/championship.reigns.queries";
 import BrandChampionsList from "./components/BrandChampionsList";
 import BrandImage from "../../components/BrandImage";
 
@@ -10,11 +8,7 @@ export const revalidate = 0;
 
 export default async function RosterChampionsPage() {
     const champs = await getCurrentChampionshipReigns();
-    console.log({
-        champs,
-    });
     
-
     return (
         <>
             <Title title="Campeones" icon="people" />

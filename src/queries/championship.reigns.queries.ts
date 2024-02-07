@@ -68,8 +68,8 @@ export async function getCurrentChampionshipReigns(): Promise<any> {
     INNER JOIN championship c ON cr.championship_id = c.id
     WHERE c.active = TRUE
     AND cr.lost_date IS NULL 
-    AND cr.current = true 
-    ORDER BY c.brand DESC, c.name ASC`;
+    AND cr.current = true
+    ORDER BY c.brand DESC, c.order ASC, c.name ASC`;
 
     return currentChampions.reduce((acc: any, champion: IChampionshipReigns) => {
         const parsedChampion = {
