@@ -13,6 +13,14 @@ export default function ChampionshipActions({ championship }: Props) {
         <>
             <ActionsContainer>
                 <ActionFetch
+                    href={`/api/championships/toggle-active/${championship.id}`}
+                    text={(championship.active ? "Desactivar" : "Activar")+' título'}
+                    icon={championship.active ? "eye-slash" : "eye"}
+                    color={ActionColors.WARNING}
+                    refresh={true}
+                    method="get"
+                />
+                <ActionFetch
                     href={`/api/championships/delete/${championship.id}`}
                     text="Borrar championship y reinados"
                     icon="trash-fill"
