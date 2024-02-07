@@ -5,10 +5,12 @@ import ReadonlyInput from "@/components/Forms/Inputs/Readonly";
 import { ConditionalLoading } from "@/components/Loading";
 
 export default function ReignsDatesDataFields() {
+    const now = new Date().toISOString().split("T")[0];
+
     const [datas, setDatas] = React.useState({
         days: 0,
-        won_date: "",
-        lost_date: "",
+        won_date: now,
+        lost_date: now,
         current: false,
     });
 
@@ -19,16 +21,47 @@ export default function ReignsDatesDataFields() {
         }));
     };
 
+    const changeWonDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log({ val: event.target.value });
+        const wonDate = new Date(event.target.value);
+        const lostDate = new Date(datas.lost_date);
+        const days = Math.abs(
+            (wonDate.getTime() - lostDate.getTime()) / (1000 * 60 * 60 * 24)
+        );
+        console.log({ days });
+        
+        
+        setDatas((previous) => ({
+            ...previous,
+            won_date: event.target.value,
+            days: days,
+        }));
+    };
+
     return (
         <>
             <div className="flex start aend place-items-end gap-small flex-responsive">
-                <ReadonlyInput
-                    name="days"
-                    value={datas.days}
-                    label="Días de reinado"
-                    placeholder="Días del reinado"
-                    required={true}
-                />
+                <div className="w1 flex column gap-5">
+                    <label className="label" htmlFor={'days'}>
+                        Dias del reinado
+                        <span className="required">*</span>
+                    </label>
+
+                    <div className="w1 flex acenter numeric-input numeric-input-wrapper-container-div relative">
+                        <div className="w1 input-wrapper-container-div relative">
+                            <input
+                                type="number"
+                                className="w1 readonly-input"
+                                name="days"
+                                required={true}
+                                value={datas.days.toString()}
+                                placeholder={"Dias del reinado"}
+                                readOnly={true}
+                            />
+                        </div>
+                    </div>
+                </div>
+                
 
                 <InputDate
                     value={datas.won_date}
@@ -36,6 +69,7 @@ export default function ReignsDatesDataFields() {
                     label="Fecha de inicio"
                     required={true}
                     max={new Date().toISOString().split("T")[0]}
+                    onChangeDate={changeWonDate}
                 />
             </div>
 

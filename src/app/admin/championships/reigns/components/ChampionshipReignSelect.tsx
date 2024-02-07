@@ -93,7 +93,7 @@ export default function ChampionshipReignSelect({
 
             <Select
                 zIndex={1000}
-                name={options.isChampionshipTag ? "team_id" : "wrestler_id"}
+                name="wrestler_or_team_id"
                 label={options.isChampionshipTag ? "Equipo" : "Luchador"}
                 required={true}
                 listHeight={350}
