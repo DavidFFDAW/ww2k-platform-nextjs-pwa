@@ -56,9 +56,7 @@ export interface IParsedChampionships {
     days: number;
 }
 
-export async function getCurrentChampionshipReigns(): Promise<
-    IParsedChampionships[]
-> {
+export async function getCurrentChampionshipReigns(): Promise<any> {
     const currentChampions: any =
         await prisma.$queryRaw`SELECT w.name AS wrestler_name, w.image_name AS w_image, 
     w.brand AS wrestler_brand, t.name AS team_name, c.name AS ch_name, c.image AS ch_image, 
@@ -71,10 +69,10 @@ export async function getCurrentChampionshipReigns(): Promise<
     WHERE c.active = TRUE
     AND cr.lost_date IS NULL 
     AND cr.current = true 
-    ORDER BY  ch_brand DESC, cr.days DESC`;
+    ORDER BY c.brand DESC, c.name ASC`;
 
-    return currentChampions.map((champion: IChampionshipReigns) => {
-        return {
+    return currentChampions.reduce((acc: any, champion: IChampionshipReigns) => {
+        const parsedChampion = {
             id: champion.id,
             championship: {
                 id: champion.championship_id,
@@ -103,5 +101,12 @@ export async function getCurrentChampionshipReigns(): Promise<
             current: champion.current,
             days: champion.days,
         };
-    });
+
+        if (!acc[champion.ch_brand]) {
+            acc[champion.ch_brand] = [parsedChampion];
+            return acc;
+        }
+        acc[champion.ch_brand] = [...acc[champion.ch_brand], parsedChampion];
+        return acc;
+    }, {});
 }
