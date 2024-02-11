@@ -4,6 +4,7 @@ import { prisma } from "@/db/conn";
 import { existingDateToString } from "@/utilities/date.normalizer.utility";
 import Image from "@/components/Image/Image";
 import { CreateButton } from "@/components/Buttons";
+import { Form } from "@/components/Forms";
 
 function getReigns() {
     return prisma.championshipReign.findMany({
@@ -33,11 +34,25 @@ export default async function AdminChampionshipsPage() {
         <>
             <Title title="Championship Reigns" icon="trophy-fill" />
 
-            <section className="title-reigns-container w1 flex column center acenter gap-small">
+            <Form
+                action="/api/championships/reigns/dates_adjust"
+                method="POST"
+                refresh={true}
+                sendHttp={true}
+            >
+                <button type="submit">Actualizar fechas de reinados</button>
+            </Form>
 
+            <section className="title-reigns-container w1 flex column center acenter gap-small">
                 {reigns.map((reign) => (
-                    <div key={reign.id} className="w1 boxed flex row acenter start gap">
-                        <div className="flex center acenter column gap-small" style={{ maxWidth: 160 }}>
+                    <div
+                        key={reign.id}
+                        className="w1 boxed flex row acenter start gap"
+                    >
+                        <div
+                            className="flex center acenter column gap-small"
+                            style={{ maxWidth: 160 }}
+                        >
                             <Image
                                 src={reign.Championship.image}
                                 alt={reign.Championship.name as string}
@@ -50,27 +65,32 @@ export default async function AdminChampionshipsPage() {
                             {reign.Championship.tag && reign.Team ? (
                                 <>
                                     <div className="flex center acenter row gap-small">
-                                        {reign.Team.WrestlerTeam.map((wrestler) => (
-                                            <Image
-                                                key={wrestler.id}
-                                                src={
-                                                    wrestler.Wrestler
-                                                        .image_name as string
-                                                }
-                                                alt={
-                                                    wrestler.Wrestler.name as string
-                                                }
-                                                width={100}
-                                                height={100}
-                                            />
-                                        ))}
+                                        {reign.Team.WrestlerTeam.map(
+                                            (wrestler) => (
+                                                <Image
+                                                    key={wrestler.id}
+                                                    src={
+                                                        wrestler.Wrestler
+                                                            .image_name as string
+                                                    }
+                                                    alt={
+                                                        wrestler.Wrestler
+                                                            .name as string
+                                                    }
+                                                    width={100}
+                                                    height={100}
+                                                />
+                                            )
+                                        )}
                                     </div>
                                     <h4>{reign.Team.name as string}</h4>
                                 </>
                             ) : (
                                 <>
                                     <Image
-                                        src={reign.Wrestler.image_name as string}
+                                        src={
+                                            reign.Wrestler.image_name as string
+                                        }
                                         alt={reign.Wrestler.name as string}
                                         width={100}
                                         height={100}
