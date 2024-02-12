@@ -5,12 +5,20 @@ import { existingDateToString } from "@/utilities/date.normalizer.utility";
 import Image from "@/components/Image/Image";
 import { CreateButton } from "@/components/Buttons";
 import { Form } from "@/components/Forms";
+import { NullableLoading } from "@/components/Loading";
+import LazyImageTwo from "@/components/Image/LazyImageTwo";
 
 function getReigns() {
     return prisma.championshipReign.findMany({
-        orderBy: {
-            won_date: "desc",
-        },
+        orderBy: [
+            { current: 'desc' },
+            {
+                Championship: {
+                    brand: 'desc'
+                }
+            },
+            { won_date: 'asc' },
+        ],
         include: {
             Championship: true,
             Wrestler: true,
@@ -47,7 +55,7 @@ export default async function AdminChampionshipsPage() {
                 {reigns.map((reign) => (
                     <div
                         key={reign.id}
-                        className="w1 boxed flex row acenter start gap"
+                        className="w1 boxed flex row acenter start gap relative"
                     >
                         <div
                             className="flex center acenter column gap-small"
@@ -60,28 +68,32 @@ export default async function AdminChampionshipsPage() {
                                 height={100}
                             />
                             <h4>{reign.Championship.name}</h4>
+
+                            <NullableLoading condition={ reign.current }>
+                                <h6 className="absolute top-0 right-0 is-current" style={{
+                                    padding: '10px 20px',
+                                    background: '#616161',
+                                    color: '#fff',
+                                    borderRadius: 10,
+                                }}>Actual</h6>
+                            </NullableLoading>
                         </div>
                         <div className="flex center acenter column gap-small">
                             {reign.Championship.tag && reign.Team ? (
                                 <>
                                     <div className="flex center acenter row gap-small">
-                                        {reign.Team.WrestlerTeam.map(
-                                            (wrestler) => (
-                                                <Image
-                                                    key={wrestler.id}
-                                                    src={
-                                                        wrestler.Wrestler
-                                                            .image_name as string
-                                                    }
-                                                    alt={
-                                                        wrestler.Wrestler
-                                                            .name as string
-                                                    }
-                                                    width={100}
-                                                    height={100}
-                                                />
-                                            )
-                                        )}
+                                        <LazyImageTwo
+                                            src={reign.Wrestler.image_name as string}
+                                            alt={reign.Wrestler.name as string}
+                                            width={100}
+                                            height={100}
+                                        />
+                                        <LazyImageTwo
+                                            src={reign.Partner.image_name as string}
+                                            alt={reign.Partner.name as string}
+                                            width={100}
+                                            height={100}
+                                        />
                                     </div>
                                     <h4>{reign.Team.name as string}</h4>
                                 </>
