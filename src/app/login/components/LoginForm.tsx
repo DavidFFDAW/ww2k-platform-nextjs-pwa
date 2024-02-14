@@ -60,7 +60,7 @@ export default function LoginForm() {
                         </button>
                     </div>
 
-                    <a href="#forgot" style={{ color: "#fff" }}>
+                    <a href="#forgot" className="forgot opensans fw-800">
                         He olvidado mi contraseña
                     </a>
                 </div>

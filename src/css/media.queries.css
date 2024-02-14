@@ -61,10 +61,12 @@
         overflow-y: auto;
     }
 
-    .custom-totalpage-wallpaper.principal {
+    .custom-totalpage-wallpaper.principal,
+    .custom-wallpaper.principal {
         background-image: url("/rhea.webp");
     }
 
+    .custom-wallpaper.default,
     .custom-totalpage-wallpaper.default {
         background-image: url("/cody.jpg");
     }

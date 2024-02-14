@@ -1,0 +1,34 @@
+.login-container {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff5e;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.login-container a.forgot {
+    color: #282828;
+    font-weight: 600;
+    text-align: start;
+}
+.login-container a,
+.login-container h2 span {
+    color: #282828;
+}
+
+@media only screen and (max-width: 768px) {
+    .login-container {
+        width: 100%;
+        max-width: 95%;
+        min-height: 250px;
+        left: 50%;
+        right: unset;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+    }
+}

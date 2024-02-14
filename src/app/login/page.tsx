@@ -1,27 +1,27 @@
-import React from 'react';
-import LoginForm from './components/LoginForm';
-import styles from './login.module.css'
-import PageBackground from '@/components/PageBackground/PageBackground';
+import React from "react";
+import LoginForm from "./components/LoginForm";
+import BodyDeletableClass from "@/components/PageBackground/BodyDeletableClass";
+import "./login.css";
 
 export default function Login() {
-
     return (
-        <PageBackground>
-            <div className={styles.login_container}>
-                <div className={`${styles.login} flex between a-center column`}>
+        <>
+            <BodyDeletableClass className="custom-totalpage-body-wallpaper custom-wallpaper login" />
+            <div className="login-container">
+                <div className="flex column acenter center">
                     <h1>
                         <img src="/icons/icon-96x96.png" alt="" />
                     </h1>
 
                     <h2>
-                        <span className="dreadnotus" style={{ color: '#fff' }}>Acceder</span>
+                        <span className="dreadnotus">Acceder</span>
                     </h2>
 
-                    <div className='down login-auth-form-container'>
+                    <div className="down login-auth-form-container">
                         <LoginForm />
                     </div>
                 </div>
             </div>
-        </PageBackground>
-    )
+        </>
+    );
 }

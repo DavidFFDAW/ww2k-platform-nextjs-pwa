@@ -338,10 +338,10 @@ body {
     cursor: pointer;
 }
 
-.boxed-content {
+/* .boxed-content {
     margin: 0 30px;
     padding: 5px 0 30px 0;
-}
+} */
 
 .uppercase {
     text-transform: uppercase;
@@ -431,17 +431,31 @@ dialog[open] {
     min-height: 99vh;
     z-index: 0;
 }
+.custom-totalpage-body-wallpaper {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 99vh;
+}
 
 .sidebar.shown + .sidebar-main-margin .custom-totalpage-wallpaper {
     margin-left: 320px;
     width: calc(100% - 320px);
 }
 
-.custom-totalpage-wallpaper.default {
+.custom-totalpage-wallpaper.login,
+.custom-wallpaper.login {
+    /* background-image: url("https://www.thesun.co.uk/wp-content/uploads/2017/04/nintchdbpict0003144230562.jpg"); */
+    background-image: url("https://media.bizj.us/view/img/10402994/wrestlemania-65*1200xx3710-2093-308-480.jpg");
+}
+.custom-totalpage-wallpaper.default,
+.custom-wallpaper.default {
     background-image: url("/roman.jpg");
 }
-
-.custom-totalpage-wallpaper.principal {
+.custom-totalpage-wallpaper.principal,
+.custom-wallpaper.principal {
     background-image: url("/owens.jpg");
 }
 
