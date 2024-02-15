@@ -27,7 +27,7 @@ export default function Sidebar() {
         }
     };
 
-    const showSidebar = sidebarData.showSidebar ? "shown" : "";
+    const showSidebar = sidebarData.showSidebar ? "shown" : "unshown";
 
     return (
         <aside className={`sidebar ${showSidebar}`} id="sidebear">

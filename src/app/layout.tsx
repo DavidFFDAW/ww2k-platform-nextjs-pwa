@@ -27,7 +27,7 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const hasHeader = false; // Boolean(Header);
+    const hasHeader = true; // Boolean(Header);
     return (
         <html lang="es">
             <body className="app-body nextjs-app react-router-wrapper wwe2k-app-container">

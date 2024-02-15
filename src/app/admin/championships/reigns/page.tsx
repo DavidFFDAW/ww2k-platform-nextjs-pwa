@@ -11,13 +11,13 @@ import LazyImageTwo from "@/components/Image/LazyImageTwo";
 function getReigns() {
     return prisma.championshipReign.findMany({
         orderBy: [
-            { current: 'desc' },
+            { current: "desc" },
             {
                 Championship: {
-                    brand: 'desc'
-                }
+                    brand: "desc",
+                },
             },
-            { won_date: 'asc' },
+            { won_date: "asc" },
         ],
         include: {
             Championship: true,
@@ -31,6 +31,7 @@ function getReigns() {
                     },
                 },
             },
+            Partner: true,
         },
     });
 }
@@ -69,13 +70,18 @@ export default async function AdminChampionshipsPage() {
                             />
                             <h4>{reign.Championship.name}</h4>
 
-                            <NullableLoading condition={ reign.current }>
-                                <h6 className="absolute top-0 right-0 is-current" style={{
-                                    padding: '10px 20px',
-                                    background: '#616161',
-                                    color: '#fff',
-                                    borderRadius: 10,
-                                }}>Actual</h6>
+                            <NullableLoading condition={reign.current}>
+                                <h6
+                                    className="absolute top-0 right-0 is-current"
+                                    style={{
+                                        padding: "10px 20px",
+                                        background: "#616161",
+                                        color: "#fff",
+                                        borderRadius: 10,
+                                    }}
+                                >
+                                    Actual
+                                </h6>
                             </NullableLoading>
                         </div>
                         <div className="flex center acenter column gap-small">
@@ -83,14 +89,20 @@ export default async function AdminChampionshipsPage() {
                                 <>
                                     <div className="flex center acenter row gap-small">
                                         <LazyImageTwo
-                                            src={reign.Wrestler.image_name as string}
+                                            src={
+                                                reign.Wrestler
+                                                    .image_name as string
+                                            }
                                             alt={reign.Wrestler.name as string}
                                             width={100}
                                             height={100}
                                         />
                                         <LazyImageTwo
-                                            src={reign.Partner.image_name as string}
-                                            alt={reign.Partner.name as string}
+                                            src={
+                                                reign.Partner
+                                                    ?.image_name as string
+                                            }
+                                            alt={reign.Partner?.name as string}
                                             width={100}
                                             height={100}
                                         />

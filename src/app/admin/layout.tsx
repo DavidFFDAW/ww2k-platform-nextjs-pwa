@@ -11,9 +11,9 @@ const Sidebar = dynamic(() => import("@/components/Sidebar/Sidebar"), {
 export default function AdminMainLayout({ children }: ChildrenInterface) {
     return (
         <>
-            <Header />
             <Sidebar />
             <section className="responsive-lockup sidebar-main-margin main-admin-layout">
+                <Header />
                 {children}
             </section>
             {/* <a type="button" id="back-top" href="#top">

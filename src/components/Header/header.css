@@ -1,10 +1,17 @@
 header.app-header.app-main-top-header-custom {
-    position: relative;
+    position: absolute;
+    top: 0;
+    right: 0;
     color: white;
     padding: 0 20px;
     min-height: 50px;
     background-color: #3d3f45;
     z-index: 5;
+}
+.sidebar.shown
+    + .sidebar-main-margin
+    header.app-header.app-main-top-header-custom {
+    width: calc(100% - 320px);
 }
 body.dark header.app-header.app-main-top-header-custom {
     background-color: #1d1e1f;

@@ -338,10 +338,10 @@ body {
     cursor: pointer;
 }
 
-/* .boxed-content {
+.boxed-content {
     margin: 0 30px;
     padding: 5px 0 30px 0;
-} */
+}
 
 .uppercase {
     text-transform: uppercase;
@@ -445,8 +445,7 @@ dialog[open] {
     width: calc(100% - 320px);
 }
 
-.custom-totalpage-wallpaper.login,
-.custom-wallpaper.login {
+body.custom-wallpaper.login {
     /* background-image: url("https://www.thesun.co.uk/wp-content/uploads/2017/04/nintchdbpict0003144230562.jpg"); */
     background-image: url("https://media.bizj.us/view/img/10402994/wrestlemania-65*1200xx3710-2093-308-480.jpg");
 }
