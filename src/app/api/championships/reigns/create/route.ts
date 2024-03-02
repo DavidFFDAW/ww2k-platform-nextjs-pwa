@@ -50,47 +50,48 @@ export async function POST(request: NextRequest) {
     });
 
     if (!currentChampion) {
-        console.log('no current champion found');
+        return NextResponse.json(
+            { message: "No championship was found" },
+            { status: 404 }
+        );
     }
 
     if (currentChampion && Boolean(body.current)) {
-        console.log('save current with days between', {
-            currentChampion,
-        });
-
-        const winDate = new Date(body.win_date);
+        const winDate = new Date(body.won_date);
         const lostDate = new Date(currentChampion.won_date);
-        const days = Math.abs(
+        const currentReignNewCalculatedDays = Math.abs(
             (winDate.getTime() - lostDate.getTime()) / (1000 * 60 * 60 * 24)
         );
-        
+
         await prisma?.championshipReign.update({
             where: { id: currentChampion.id },
             data: {
                 current: false,
                 lost_date: body.win_date,
-                days: days,
+                days: currentReignNewCalculatedDays,
             },
         });
     }
 
-    const data: any = isTagTeam ? {
-        championship_id: Number(body.championship_id),
-        team_id: Number(body.wrestler_or_team_id),
-        wrestler_id: Number(body.partners[0]),
-        partner: Number(body.partners[1]),
-        won_date: new Date(body.won_date),
-        lost_date: body.lost_date ? new Date(body.lost_date) : null,
-        current: Boolean(body.current),
-        days: body.days,
-    } : {
-        championship_id: Number(body.championship_id),
-        wrestler_id: Number(body.wrestler_or_team_id),
-        won_date: new Date(body.won_date),
-        lost_date: body.lost_date ? new Date(body.lost_date) : null,
-        current: Boolean(body.current),
-        days: body.days,
-    };
+    const data: any = isTagTeam
+        ? {
+              championship_id: Number(body.championship_id),
+              team_id: Number(body.wrestler_or_team_id),
+              wrestler_id: Number(body.partners[0]),
+              partner: Number(body.partners[1]),
+              won_date: new Date(body.won_date),
+              lost_date: body.lost_date ? new Date(body.lost_date) : null,
+              current: Boolean(body.current),
+              days: body.days,
+          }
+        : {
+              championship_id: Number(body.championship_id),
+              wrestler_id: Number(body.wrestler_or_team_id),
+              won_date: new Date(body.won_date),
+              lost_date: body.lost_date ? new Date(body.lost_date) : null,
+              current: Boolean(body.current),
+              days: body.days,
+          };
 
     await prisma?.championshipReign.create({
         data,
@@ -101,14 +102,9 @@ export async function POST(request: NextRequest) {
     // 3. Check if is a tag team championship
     // 4. Get current champion for that championship (CA)
     // 6. If the new reign is current, update the current champion (CA)
-    // with the end_date to the win_date of the new reign and calculate the days between 
+    // with the end_date to the win_date of the new reign and calculate the days between
     // the two dates. Update the old reign and set current to false.
     // 7. Save the new reign
-
-    console.log({
-        body,
-        data,
-    });
 
     return NextResponse.json(
         { message: "Championship reign has been saved" },
