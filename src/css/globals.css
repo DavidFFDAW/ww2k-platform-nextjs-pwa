@@ -693,11 +693,10 @@ button.unbutton {
     color: var(--blackwhite);
 }
 
-.btn.button.excel-action.btn-download-excel {
+.btn.button.excel-action {
     background-color: #1dbb20;
     color: #ffffff;
     font-weight: 500;
-    text-transform: uppercase;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
