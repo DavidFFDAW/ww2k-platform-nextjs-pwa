@@ -693,6 +693,26 @@ button.unbutton {
     color: var(--blackwhite);
 }
 
+.btn.button.excel-action.btn-download-excel {
+    background-color: #1dbb20;
+    color: #ffffff;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 1em;
+}
+.btn.button.excel-action * {
+    color: #ffffff;
+}
+.btn.button.excel-action.btn-import-csv {
+    background-color: #1da1f2;
+    color: #ffffff;
+}
+
 button.nradius {
     border-radius: 0;
 }

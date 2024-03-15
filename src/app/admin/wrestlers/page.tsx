@@ -1,24 +1,23 @@
-import React from "react";
-import { prisma } from "@/db/conn";
-import Title from "@/components/Title";
-import { NullableLoading } from "@/components/Loading";
-import CreateButton from "@/components/Buttons/CreateButton";
-import { PageContext } from "@/shared/models";
-import WrestlersSearchForm from "./components/WrestlerForms/WrestlersSearchForm";
-import { TableContainer } from "@/modules/tables";
-import TableItem, { TableRow } from "@/modules/tables/components/TableRows";
-import LazyImage from "@/components/Image/LazyImage";
-import { parseWrestlerStatus } from "@/utilities/wrestler.status.util";
-import { getNamedTitle } from "@/utilities/metadatas.utility";
-import { Metadata } from "next";
-import { Pagination, SimplePagination } from "@/components/Pagination";
-import WrestlerActions from "./components/WrestlerActions";
-import { DownloadExcel } from "@/components/Buttons/DownloadExcel";
+import React from 'react';
+import { prisma } from '@/db/conn';
+import Title from '@/components/Title';
+import { NullableLoading } from '@/components/Loading';
+import CreateButton from '@/components/Buttons/CreateButton';
+import { PageContext } from '@/shared/models';
+import WrestlersSearchForm from './components/WrestlerForms/WrestlersSearchForm';
+import { TableContainer } from '@/modules/tables';
+import TableItem, { TableRow } from '@/modules/tables/components/TableRows';
+import LazyImage from '@/components/Image/LazyImage';
+import { parseWrestlerStatus } from '@/utilities/wrestler.status.util';
+import { getNamedTitle } from '@/utilities/metadatas.utility';
+import { Metadata } from 'next';
+import { Pagination, SimplePagination } from '@/components/Pagination';
+import WrestlerActions from './components/WrestlerActions';
 // import WrestlerCard from "./components/Card";
 
 export const metadata: Metadata = {
-    title: getNamedTitle("Wrestlers"),
-    description: "Administrar luchadores",
+    title: getNamedTitle('Wrestlers'),
+    description: 'Administrar luchadores',
 };
 
 export const revalidate = 0;
@@ -28,13 +27,13 @@ async function getWrestlers(page: number, searchParams: any) {
     const offset = Math.abs((realPage - 1) * 10);
     const filters: any = {
         name: {
-            contains: searchParams.name || "",
+            contains: searchParams.name || '',
         },
     };
-    if (searchParams.status) filters["status"] = searchParams.status;
-    if (searchParams.gender) filters["sex"] = searchParams.gender;
+    if (searchParams.status) filters['status'] = searchParams.status;
+    if (searchParams.gender) filters['sex'] = searchParams.gender;
 
-    if (searchParams.brand) filters["brand"] = searchParams.brand;
+    if (searchParams.brand) filters['brand'] = searchParams.brand;
 
     const total = await prisma.wrestler.count({
         where: filters,
@@ -44,7 +43,7 @@ async function getWrestlers(page: number, searchParams: any) {
         skip: offset,
         where: filters,
         orderBy: {
-            name: "asc",
+            name: 'asc',
         },
     });
 
@@ -57,7 +56,7 @@ export default async function WrestlerListPage(context: PageContext) {
 
     return (
         <>
-            <Title title={"Wrestlers"} icon="list-ul" />
+            <Title title={'Wrestlers'} icon="list-ul" />
 
             <Pagination page={Number(page)} total={total} numberOfPages={3} />
 
@@ -67,10 +66,7 @@ export default async function WrestlerListPage(context: PageContext) {
                 <div className="w1 list-block overflow-y">
                     <div className="wrestlers-list items-listing">
                         <NullableLoading condition={wrestlers.length <= 0}>
-                            <div className="down">
-                                No se han encontrado resultados con estos
-                                criterios de busqueda
-                            </div>
+                            <div className="down">No se han encontrado resultados con estos criterios de busqueda</div>
                         </NullableLoading>
 
                         <div className="desktop-only">
@@ -97,14 +93,12 @@ export default async function WrestlerListPage(context: PageContext) {
 
                         <TableContainer>
                             <NullableLoading condition={wrestlers.length > 0}>
-                                {wrestlers.map((wrestler) => (
+                                {wrestlers.map(wrestler => (
                                     <TableRow key={wrestler.id}>
                                         <TableItem width={20} align="start">
                                             <LazyImage
                                                 className="table-list-image total-image"
-                                                src={
-                                                    wrestler.image_name as string
-                                                }
+                                                src={wrestler.image_name as string}
                                                 alt={wrestler.name}
                                             />
                                         </TableItem>
@@ -119,14 +113,10 @@ export default async function WrestlerListPage(context: PageContext) {
                                             {wrestler.sex}
                                         </TableItem>
                                         <TableItem width={30} align="start">
-                                            {parseWrestlerStatus(
-                                                wrestler.status
-                                            )}
+                                            {parseWrestlerStatus(wrestler.status)}
                                         </TableItem>
                                         <TableItem width={20} align="end">
-                                            <WrestlerActions
-                                                wrestler={wrestler}
-                                            />
+                                            <WrestlerActions wrestler={wrestler} />
                                         </TableItem>
                                     </TableRow>
                                     // <WrestlerCard
@@ -141,8 +131,7 @@ export default async function WrestlerListPage(context: PageContext) {
 
                 <SimplePagination page={Number(page)} total={total} />
 
-                <DownloadExcel excel="wrestlers" text="Descargar Excel" />
-                <CreateButton endpoint={"wrestlers/pages/create"} />
+                <CreateButton endpoint={'wrestlers/pages/create'} />
             </div>
         </>
     );

@@ -359,4 +359,34 @@ button {
     .desktop-mt-72 {
         margin-top: unset;
     }
+
+    .flex.flex-responsive-align-center {
+		align-items: center;
+	}
+    .flex.flex-responsive-align-start {
+        align-items: flex-start;
+    }
+    .flex.responsive,
+	.flex-responsive {
+		align-items: center;
+		flex-direction: column;
+	}
+	.flex-responsive-column {
+		flex-direction: column;
+	}
+	.responsive-gap-small {
+		gap: 10px;
+	}
+    .responsive-gap {
+        gap: 20px;
+    }
+    .responsive-gap-large {
+        gap: 30px;
+    }
+    .responsive-gap-5 {
+        gap: 5px;
+    }
+	.responsive-w1 {
+		width: 100%;
+	}
 }
