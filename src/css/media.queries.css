@@ -105,7 +105,12 @@
     }
 
     .home-spas-links .home-links {
-        width: 45%;
+        width: 100%;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        padding: 16px;
+        gap: 20px;
     }
 
     .home-links .link {

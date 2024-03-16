@@ -661,6 +661,19 @@ input.app-custom-input.nradius {
     padding: 35px;
 }
 
+.home-spas-links a.home-links * {
+    color: #7b7b7b;
+}
+.home-spas-links a.home-links i {
+    font-size: 50px;
+}
+.home-spas-links a.home-links.twitter * {
+    color: #127bbd;
+}
+.home-spas-links a.home-links.admin i {
+    color: #bc8f1d;
+}
+
 .home-links .link {
     text-transform: uppercase;
     font-size: 25px;
