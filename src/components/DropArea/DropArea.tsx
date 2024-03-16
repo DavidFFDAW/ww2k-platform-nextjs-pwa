@@ -1,13 +1,17 @@
 "use client";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import "./droparea.css";
 import { BootstrapIcon } from "../Icon/BootstrapIcon";
+import { enqueueSnackbar } from "notistack";
+import { NullableLoading } from "../Loading";
 
 interface DropAreaProps {
     accept?: string;
 }
 
 export default function DropArea({ accept }: DropAreaProps) {
+    const [test, setTestContent] = React.useState<any>([]);
+
     const dragOver = (event: any) => {
         event.preventDefault();
     };
@@ -15,10 +19,39 @@ export default function DropArea({ accept }: DropAreaProps) {
     const onDrop = (event: any) => {
         event.preventDefault();
         const file = event.dataTransfer.files[0];
-        console.log(file);
+        console.log({ file });
     };
 
-    const fireBoxSpaceUpdate = () => {};
+    const fireBoxSpaceUpdate = (e: ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        const target = e.target as HTMLInputElement;
+
+        if (!target.files || target.files.length < 1)
+            return console.log("No file");
+
+        const file = target.files[0];
+
+        if (file.type !== "text/csv") {
+            return enqueueSnackbar("El archivo no es un CSV", {
+                variant: "error",
+            });
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+            const textcsv = e.target.result;
+            const arrayzatedCSV = textcsv.split("\n").map((line: string) => {
+                return line.split(",");
+            });
+
+            setTestContent(arrayzatedCSV);
+        };
+        reader.readAsText(file);
+
+        console.log({ file });
+    };
+
+    console.log({ test });
 
     return (
         <div className="w1 panel-csv-import">
@@ -44,7 +77,6 @@ export default function DropArea({ accept }: DropAreaProps) {
                 </div>
 
                 <input
-                    id="csv-import-file-input"
                     type="file"
                     className="input-file-drag-drop"
                     name="import_csv_file_input"
@@ -52,6 +84,40 @@ export default function DropArea({ accept }: DropAreaProps) {
                     accept={accept}
                 />
             </div>
+
+            <table
+                style={{
+                    width: "100%",
+                    marginTop: "20px",
+                    borderCollapse: "collapse",
+                    border: "1px solid #000",
+                    borderSpacing: "5px",
+                }}
+            >
+                <thead>
+                    <NullableLoading condition={test.length > 1}>
+                        <tr>
+                            {test
+                                .slice(0, 1)
+                                .map((item: string, index: number) => {
+                                    return <th key={index}>{item}</th>;
+                                })}
+                        </tr>
+                    </NullableLoading>
+                </thead>
+
+                <tbody>
+                    <NullableLoading condition={test.length > 1}>
+                        <tr>
+                            {test
+                                .slice(1)
+                                .map((item: string, index: number) => {
+                                    return <td key={index}>{item}</td>;
+                                })}
+                        </tr>
+                    </NullableLoading>
+                </tbody>
+            </table>
         </div>
     );
 }
