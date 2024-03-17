@@ -1,6 +1,7 @@
-import { getAllWrestlers } from "@/queries/wrestler.queries";
-import { Wrestler } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { prisma } from '@/db/conn';
+import { Wrestler } from '@prisma/client';
+import { NextResponse } from 'next/server';
+import { getAllWrestlers } from '@/queries/wrestler.queries';
 
 const hasWrestlerChanged = (wrestler: Wrestler, updateWrestlerData: any) => {
     return (
@@ -8,7 +9,7 @@ const hasWrestlerChanged = (wrestler: Wrestler, updateWrestlerData: any) => {
         updateWrestlerData.alias !== wrestler.alias ||
         updateWrestlerData.brand !== wrestler.brand ||
         updateWrestlerData.status !== wrestler.status ||
-        Number(updateWrestlerData.overall) !== wrestler.overall ||
+        updateWrestlerData.overall !== wrestler.overall ||
         updateWrestlerData.finisher !== wrestler.finisher ||
         updateWrestlerData.twitter_account !== wrestler.twitter_acc ||
         updateWrestlerData.twitter_name !== wrestler.twitter_name ||
@@ -20,10 +21,7 @@ const hasWrestlerChanged = (wrestler: Wrestler, updateWrestlerData: any) => {
 function getUpdateAndInsertWrestlers(dataJson: any[]) {
     return {
         update: dataJson.filter((wrestler: any) => wrestler.id),
-        insert: dataJson.filter(
-            (wrestler: any) =>
-                (!wrestler.id || wrestler.id == 0) && wrestler.name
-        ),
+        insert: dataJson.filter((wrestler: any) => (!wrestler.id || wrestler.id == 0) && wrestler.name),
     };
 }
 
@@ -33,32 +31,50 @@ export async function POST(req: Request) {
     const dataJson = body._importcsv;
 
     if (!dataJson) {
-        return NextResponse.json(
-            { message: "No se ha enviado ningun archivo" },
-            { status: 400 }
-        );
+        return NextResponse.json({ message: 'No se ha enviado ningun archivo' }, { status: 400 });
     }
 
     const parsed = JSON.parse(dataJson);
-    const { update, insert } = getUpdateAndInsertWrestlers(parsed);
+    if (!parsed) {
+        return NextResponse.json({ message: 'No se ha podido parsear el archivo' }, { status: 400 });
+    }
+
+    const parsedDatas = parsed.map((value: any) => {
+        return {
+            ...value,
+            id: Number(value.id),
+            overall: Number(value.overall),
+        };
+    });
+
+    const { update, insert } = getUpdateAndInsertWrestlers(parsedDatas);
 
     const changedWrestlers = update.filter((updateWrestlerData: any) => {
-        const wrestler = wrestlers.find(
-            (w: Wrestler) => w.id === Number(updateWrestlerData.id)
-        );
+        const wrestler = wrestlers.find((w: Wrestler) => w.id === Number(updateWrestlerData.id));
         if (!wrestler) return false;
         return hasWrestlerChanged(wrestler, updateWrestlerData);
     });
 
-    console.log({
-        update: update.length,
-        insert: insert.length,
-        howManyChanged: changedWrestlers.length,
-        changingOnes: changedWrestlers.map((w) => w.name),
-    });
+    try {
+        for (const updatingWrestler of changedWrestlers) {
+            await prisma.wrestler.update({
+                where: { id: updatingWrestler.id },
+                data: {
+                    name: updatingWrestler.name,
+                    alias: updatingWrestler.alias,
+                    brand: updatingWrestler.brand,
+                    status: updatingWrestler.status,
+                    overall: updatingWrestler.overall,
+                    finisher: updatingWrestler.finisher,
+                    twitter_acc: updatingWrestler.twitter_account,
+                    twitter_name: updatingWrestler.twitter_name,
+                    kayfabe_status: updatingWrestler.kayfabe,
+                },
+            });
+        }
+    } catch (err) {
+        return NextResponse.json({ message: 'Error al actualizar los luchadores' }, { status: 500 });
+    }
 
-    return NextResponse.json(
-        { message: `Van a cambiar ${changedWrestlers.length} luchadores` },
-        { status: 404 }
-    );
+    return NextResponse.json({ message: `Se han actualizado ${changedWrestlers.length} luchadores` }, { status: 200 });
 }

@@ -1,5 +1,5 @@
-import { enqueueSnackbar } from "notistack";
-import React, { ChangeEvent } from "react";
+import { enqueueSnackbar } from 'notistack';
+import React, { ChangeEvent } from 'react';
 
 interface DropAreaState {
     headers: string[];
@@ -31,14 +31,13 @@ export default function useDropArea(csvHeader: string[]) {
         e.preventDefault();
         const target = e.target as HTMLInputElement;
 
-        if (!target.files || target.files.length < 1)
-            return console.log("No file");
+        if (!target.files || target.files.length < 1) return console.log('No file');
 
         const file = target.files[0];
 
-        if (file.type !== "text/csv") {
-            return enqueueSnackbar("El archivo no es un CSV", {
-                variant: "error",
+        if (file.type !== 'text/csv') {
+            return enqueueSnackbar('El archivo no es un CSV', {
+                variant: 'error',
             });
         }
 
@@ -46,31 +45,30 @@ export default function useDropArea(csvHeader: string[]) {
         reader.onload = (e: any) => {
             const textcsv = e.target.result;
             const arrayzatedCSV = textcsv
-                .split("\n")
+                .split('\n')
                 .map((line: string) => {
-                    return line.split(",");
+                    return line.split(',');
                 })
                 .filter((line: string[]) => line.length > 1);
 
             const values = arrayzatedCSV.slice(1);
             const objectzatedCSV = values.map((value: string[]) => {
-                return dropAreaState.headers.reduce(
-                    (acc: any, key: string, index: number) => {
-                        if (!value) return acc;
+                return dropAreaState.headers.reduce((acc: any, key: string, index: number) => {
+                    if (!value) return acc;
 
-                        return {
-                            ...acc,
-                            [key]: value[index].replace("\r", "").trim(),
-                            // [key]: value[index].replace("\r", ""),
-                        };
-                    },
-                    {}
-                );
+                    // const finalValue = Boolean(value[index]) ? value[index].replace('\r', '').trim() : null;
+
+                    return {
+                        ...acc,
+                        [key]: value[index].replace('\r', '').trim(),
+                        // [key]: value[index].replace("\r", ""),
+                    };
+                }, {});
             });
 
             console.log({ objectzatedCSV });
 
-            setDropAreaState((prev) => ({
+            setDropAreaState(prev => ({
                 ...prev,
                 content: objectzatedCSV,
                 renderContent: values,
