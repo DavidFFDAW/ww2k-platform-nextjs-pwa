@@ -1,9 +1,11 @@
-"use client";
-import React from "react";
-import useForm from "./useForm";
+'use client';
+import React from 'react';
+import useForm from './useForm';
+import { NullableLoading } from '@/components/Loading';
+import { AdaptativeSpinner } from '@/components/Spinner/Spinner';
 
 interface FormProps {
-    method: "POST" | "GET" | "PUT" | "DELETE";
+    method: 'POST' | 'GET' | 'PUT' | 'DELETE';
     action?: string;
     children: React.ReactNode;
     className?: string;
@@ -11,6 +13,7 @@ interface FormProps {
     debug?: boolean;
     onSubmitCallback?: (serializedDatas: any) => void;
     preParseCallback?: (serializedDatas: any) => any;
+    loadingState?: boolean;
     sendHttp?: boolean;
     redirect?: string;
     refresh?: boolean;
@@ -25,16 +28,17 @@ export default function Form({
     debug,
     onSubmitCallback,
     preParseCallback,
+    loadingState,
     sendHttp,
     redirect,
     refresh,
 }: FormProps) {
-    const { onSubmitHook, handleFormReset } = useForm({
+    const { loading, onSubmitHook, handleFormReset } = useForm({
         debug,
         refresh,
         action,
         redirectRoute: redirect,
-        method: method.toLowerCase() as "post" | "get" | "put" | "delete",
+        method: method.toLowerCase() as 'post' | 'get' | 'put' | 'delete',
     });
 
     return (
@@ -44,7 +48,7 @@ export default function Form({
             className={`custom-next-app-form ${className}`}
             style={style}
             onReset={handleFormReset}
-            onSubmit={(e) =>
+            onSubmit={e =>
                 onSubmitHook({
                     event: e,
                     onSubmitCallback,
@@ -53,6 +57,10 @@ export default function Form({
                 })
             }
         >
+            <NullableLoading condition={Boolean(loadingState) && loading}>
+                <AdaptativeSpinner />
+            </NullableLoading>
+
             {children}
         </form>
     );
