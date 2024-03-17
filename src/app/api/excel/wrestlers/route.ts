@@ -1,8 +1,7 @@
 import { getAllWrestlers } from "@/queries/wrestler.queries";
 import { Wrestler } from "@prisma/client";
-import { get } from "http";
 import { NextResponse } from "next/server";
-const ExcelJS = require("exceljs");
+import ExcelJS from "exceljs";
 
 const getDataValidationList = (list: any[]) => {
     return {
@@ -91,10 +90,10 @@ export async function GET() {
         { header: "Status", key: "status", width: 12 },
         { header: "Overall", key: "overall", width: 10 },
         { header: "Finisher", key: "finisher", width: 28 },
-        { header: "Twitter Account", key: "twitter_account", width: 20 },
-        { header: "Twitter Name", key: "twitter_name", width: 20 },
+        { header: "Twitter_Account", key: "twitter_account", width: 20 },
+        { header: "Twitter_Name", key: "twitter_name", width: 20 },
         { header: "Kayfabe", key: "kayfabe", width: 8 },
-        { header: "Sexo", key: "gender", width: 6 },
+        { header: "Sex", key: "gender", width: 6 },
     ];
 
     sheet.addRows(wrestlerFields);

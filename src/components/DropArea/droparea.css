@@ -1,4 +1,4 @@
-.panel-file-drop {
+.drop-area-wrapper-container .panel-file-drop {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +13,9 @@
     box-sizing: border-box;
     cursor: pointer;
 }
-.panel-file-drop input.input-file-drag-drop[type="file"] {
+.drop-area-wrapper-container
+    .panel-file-drop
+    input.input-file-drag-drop[type="file"] {
     position: absolute;
     opacity: 0;
     width: 100%;
@@ -22,6 +24,41 @@
     left: 0;
     cursor: pointer;
 }
-.panel-file-drop input[type="file"] {
+.drop-area-wrapper-container .panel-file-drop input[type="file"] {
     display: block;
+}
+.drop-area-wrapper-container .panel-file-drop .file-icon i.bi {
+    font-size: 60px;
+}
+.drop-area-wrapper-container .panel-file-drop .space-for-file {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.drop-area-wrapper-container table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+.drop-area-wrapper-container table th {
+    text-align: left;
+    padding: 10px;
+    background: #f5f5f5;
+    border: 1px solid #1da1f2;
+    color: #1da1f2;
+}
+.drop-area-wrapper-container table td {
+    padding: 10px;
+    border: 1px solid #1da1f2;
+}
+.drop-area-wrapper-container .import-preview-table {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.drop-area-wrapper-container .table-responsive-wrapper {
+    overflow: auto;
 }

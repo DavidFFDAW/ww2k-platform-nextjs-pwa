@@ -1,61 +1,28 @@
 "use client";
-import React, { ChangeEvent } from "react";
-import "./droparea.css";
+import React from "react";
 import { BootstrapIcon } from "../Icon/BootstrapIcon";
-import { enqueueSnackbar } from "notistack";
 import { NullableLoading } from "../Loading";
+import useDropArea from "./useDropArea";
+import "./droparea.css";
 
 interface DropAreaProps {
     accept?: string;
+    csvHeader: string[];
 }
 
-export default function DropArea({ accept }: DropAreaProps) {
-    const [test, setTestContent] = React.useState<any>([]);
-
-    const dragOver = (event: any) => {
-        event.preventDefault();
-    };
-
-    const onDrop = (event: any) => {
-        event.preventDefault();
-        const file = event.dataTransfer.files[0];
-        console.log({ file });
-    };
-
-    const fireBoxSpaceUpdate = (e: ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        const target = e.target as HTMLInputElement;
-
-        if (!target.files || target.files.length < 1)
-            return console.log("No file");
-
-        const file = target.files[0];
-
-        if (file.type !== "text/csv") {
-            return enqueueSnackbar("El archivo no es un CSV", {
-                variant: "error",
-            });
-        }
-
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-            const textcsv = e.target.result;
-            const arrayzatedCSV = textcsv.split("\n").map((line: string) => {
-                return line.split(",");
-            });
-
-            setTestContent(arrayzatedCSV);
-        };
-        reader.readAsText(file);
-
-        console.log({ file });
-    };
-
-    console.log({ test });
+export default function DropArea({ accept, csvHeader }: DropAreaProps) {
+    const { dropAreaState, fireBoxSpaceUpdate, onDrop, dragOver } =
+        useDropArea(csvHeader);
 
     return (
-        <div className="w1 panel-csv-import">
+        <div className="w1 panel-csv-import drop-area-wrapper-container">
             <p>Arrastra el archivo CSV o pincha para subirlo manualmente</p>
+
+            <input
+                type="hidden"
+                name="_importcsv"
+                value={JSON.stringify(dropAreaState.content)}
+            />
 
             <div
                 className="panel-file-drop"
@@ -67,13 +34,15 @@ export default function DropArea({ accept }: DropAreaProps) {
                     style={{ opacity: ".7" }}
                     className="space-for-file"
                 >
-                    <div className="file-icon">
-                        <BootstrapIcon icon="file-earmark-arrow-up" />
-                    </div>
+                    <NullableLoading condition={dropAreaState.hasUploadedFile}>
+                        <div className="file-icon">
+                            <BootstrapIcon icon="file-earmark-text-fill" />
+                        </div>
 
-                    <div className="file-name">
-                        ps__rfid_inventory_epc_sync.sql
-                    </div>
+                        <div className="file-name">
+                            {dropAreaState.uploadedFile?.name}
+                        </div>
+                    </NullableLoading>
                 </div>
 
                 <input
@@ -85,39 +54,51 @@ export default function DropArea({ accept }: DropAreaProps) {
                 />
             </div>
 
-            <table
-                style={{
-                    width: "100%",
-                    marginTop: "20px",
-                    borderCollapse: "collapse",
-                    border: "1px solid #000",
-                    borderSpacing: "5px",
-                }}
-            >
-                <thead>
-                    <NullableLoading condition={test.length > 1}>
-                        <tr>
-                            {test
-                                .slice(0, 1)
-                                .map((item: string, index: number) => {
-                                    return <th key={index}>{item}</th>;
-                                })}
-                        </tr>
-                    </NullableLoading>
-                </thead>
+            <div className="import-preview-table boxed down">
+                <h2 className="box-title import-preview-table-title">
+                    Vista previa
+                </h2>
 
-                <tbody>
-                    <NullableLoading condition={test.length > 1}>
-                        <tr>
-                            {test
-                                .slice(1)
-                                .map((item: string, index: number) => {
-                                    return <td key={index}>{item}</td>;
-                                })}
-                        </tr>
-                    </NullableLoading>
-                </tbody>
-            </table>
+                <div className="w1 table-responsive-wrapper">
+                    <table>
+                        <thead>
+                            <NullableLoading
+                                condition={dropAreaState.headers.length > 1}
+                            >
+                                <tr>
+                                    {dropAreaState.headers.map(
+                                        (item: string, index: number) => {
+                                            return <th key={index}>{item}</th>;
+                                        }
+                                    )}
+                                </tr>
+                            </NullableLoading>
+                        </thead>
+
+                        <tbody>
+                            <NullableLoading
+                                condition={dropAreaState.content.length > 1}
+                            >
+                                {dropAreaState.renderContent
+                                    .slice(0, 10)
+                                    .map((item: string[], index: number) => {
+                                        return (
+                                            <tr key={index}>
+                                                {item.map((value, index) => {
+                                                    return (
+                                                        <td key={index}>
+                                                            {value}
+                                                        </td>
+                                                    );
+                                                })}
+                                            </tr>
+                                        );
+                                    })}
+                            </NullableLoading>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 }
