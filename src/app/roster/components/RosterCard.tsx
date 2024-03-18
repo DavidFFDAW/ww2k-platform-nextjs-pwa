@@ -1,9 +1,9 @@
-"use client";
-import React from "react";
-import BrandImage from "./BrandImage";
-import LazyImage from "@/components/Image/LazyImage";
-import RosterCardName from "./RosterCardName";
-import { Wrestler } from "@prisma/client";
+'use client';
+import React from 'react';
+import BrandImage from './BrandImage';
+import LazyImage from '@/components/Image/LazyImage';
+import RosterCardName from './RosterCardName';
+import { Wrestler } from '@prisma/client';
 
 interface Props {
     imgAlt?: string;
@@ -12,19 +12,9 @@ interface Props {
     wrestler: Wrestler;
 }
 
-export default function RosterCard({
-    wrestler,
-    imgAlt = "/noimage.jpg",
-    imgSrc = "/noimage.jpg",
-    brand,
-}: Props) {
+export default function RosterCard({ wrestler, imgAlt = '/noimage.jpg', imgSrc = '/noimage.jpg', brand }: Props) {
     return (
-        <div
-            className={
-                "w1 grid-item roster-card relative brand-" +
-                (wrestler.status === "manager" ? "" : brand)
-            }
-        >
+        <div className={'w1 grid-item roster-card relative brand-' + (wrestler.status === 'manager' ? '' : brand)}>
             <div className="overlay-gradient"></div>
             <div className="roster-wrestler-brand">
                 <BrandImage brand={brand.toUpperCase()} />
@@ -37,6 +27,9 @@ export default function RosterCard({
                 alt={imgAlt}
                 className="total-image image-container"
             />
+
+            <div className="absolute top-0 right-0 wrestler-roster-overall-position">{wrestler.overall}</div>
+
             <div className="roster-card-wrestler-name-container">
                 <RosterCardName name={wrestler.name} brand={brand} />
             </div>
