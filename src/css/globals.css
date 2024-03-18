@@ -724,6 +724,45 @@ button.unbutton {
     background-color: #1da1f2;
     color: #ffffff;
 }
+
+
+.table-responsive-container-wrapper table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+.table-responsive-container-wrapper table th {
+    text-align: left;
+    padding: 10px;
+    background: #f5f5f5;
+    border: 1px solid #1da1f2;
+    color: #1da1f2;
+}
+.table-responsive-container-wrapper table td {
+    padding: 10px;
+    border: 1px solid #1da1f2;
+}
+.table-responsive-container-wrapper table tr.inputs-row-no-input-appearance td select,
+.table-responsive-container-wrapper table tr.inputs-row-no-input-appearance td input {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    /* border-bottom: 1px solid #1da1f2; */
+}
+.table-responsive-container-wrapper .preview-table {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
+.table-responsive-container-wrapper .table-responsive-wrapper {
+    overflow: auto;
+}
+
+
+
 button.nradius {
     border-radius: 0;
 }
