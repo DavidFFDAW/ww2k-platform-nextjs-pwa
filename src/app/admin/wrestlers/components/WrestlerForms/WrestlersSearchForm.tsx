@@ -102,7 +102,7 @@ export default function WrestlersSearchForm({ params }: SearchFormProps) {
                 </NullableLoading>
 
                 <div className="w1 flex between acenter flex-responsive responsive-align-start responsive-gap">
-                    <div className="w1 flex start acenter gap-small">
+                    <div className="w1 flex start acenter gap-small desktop-only">
                         <DownloadExcel
                             excel="wrestlers"
                             text="Exportar Excel"

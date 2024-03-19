@@ -27,7 +27,13 @@ export default function WrestlerActions({ wrestler }: { wrestler: Wrestler }) {
                     icon="collection"
                     text="Bulk update de wrestlers"
                 />
-                <form action="" method="POST">
+                <ActionLink
+                    color={ActionColors.DEFAULT}
+                    toHref="/admin/wrestlers/pages/update/bulk"
+                    icon="people"
+                    text="Tabla de edición de wrestlers por grupos"
+                />
+                {/* <form action="" method="POST">
                     <ActionSubmit
                         color={ActionColors.WARNING}
                         icon="trash-fill"
@@ -35,7 +41,7 @@ export default function WrestlerActions({ wrestler }: { wrestler: Wrestler }) {
                         name="wrestler_id"
                         value={wrestler.id.toString()}
                     />
-                </form>
+                </form> */}
             </ActionsContainer>
         </>
     );
