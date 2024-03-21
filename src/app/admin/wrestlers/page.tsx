@@ -30,7 +30,10 @@ async function getWrestlers(page: number, searchParams: any) {
             contains: searchParams.name || '',
         },
     };
-    if (searchParams.status) filters['status'] = searchParams.status;
+    if (searchParams.status)
+        filters['status'] = {
+            in: searchParams.status.map ? searchParams.status : [searchParams.status],
+        };
     if (searchParams.gender) filters['sex'] = searchParams.gender;
 
     if (searchParams.brand) filters['brand'] = searchParams.brand;
@@ -52,6 +55,8 @@ async function getWrestlers(page: number, searchParams: any) {
 
 export default async function WrestlerListPage(context: PageContext) {
     const { page } = context.searchParams;
+    console.log({ searchParams: context.searchParams });
+
     const { wrestlers, total } = await getWrestlers(page, context.searchParams);
 
     return (
