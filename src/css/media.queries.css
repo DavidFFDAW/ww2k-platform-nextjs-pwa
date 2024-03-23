@@ -1,4 +1,7 @@
 @media only screen and (max-width: 768px) {
+    .mobile-flex {
+        display: flex;
+    }
     .responsive-w1,
     .w1-responsive {
         width: 100% !important;

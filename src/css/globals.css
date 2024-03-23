@@ -504,6 +504,16 @@ label.label .required {
     vertical-align: middle;
     margin-left: 5px;
 }
+.req {
+    position: relative;
+}
+.req::after {
+    content: "*";
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--danger-red);
+}
 
 input,
 textarea.custom,
@@ -725,7 +735,6 @@ button.unbutton {
     color: #ffffff;
 }
 
-
 .table-responsive-container-wrapper table {
     width: 100%;
     margin-top: 20px;
@@ -742,8 +751,19 @@ button.unbutton {
     padding: 10px;
     border: 1px solid #1da1f2;
 }
-.table-responsive-container-wrapper table tr.inputs-row-no-input-appearance td select,
-.table-responsive-container-wrapper table tr.inputs-row-no-input-appearance td input {
+.table-responsive-container-wrapper table tr:hover td {
+    background-color: #dee;
+}
+.table-responsive-container-wrapper
+    table
+    tr.inputs-row-no-input-appearance
+    td
+    select,
+.table-responsive-container-wrapper
+    table
+    tr.inputs-row-no-input-appearance
+    td
+    input {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -761,8 +781,6 @@ button.unbutton {
     overflow: auto;
 }
 
-
-
 button.nradius {
     border-radius: 0;
 }
@@ -779,6 +797,11 @@ button.blue {
     color: #ffffff;
     font-weight: 500;
     text-transform: uppercase;
+}
+button.rounded,
+.btn.rounded,
+.button.rounded {
+    border-radius: 50px;
 }
 
 button:disabled {

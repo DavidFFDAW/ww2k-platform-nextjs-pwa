@@ -46,7 +46,7 @@ export default async function WrestlersBulkUpdatePage(context: PageContext) {
                 className="w1 boxed down"
             >
                 <h2 className="box-title">Buscador</h2>
-                <div className="w1 flex start gap down">
+                <div className="w1 flex start gap-small down mobile-flex responsive-column">
                     <input
                         type="search"
                         name="name"
