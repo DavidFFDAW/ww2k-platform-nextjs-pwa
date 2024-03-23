@@ -1,9 +1,9 @@
-import { prisma } from '@/db/conn';
+import { prisma } from "@/db/conn";
 
 export function getAllWrestlers() {
     return prisma.wrestler.findMany({
         orderBy: {
-            name: 'asc',
+            name: "asc",
         },
     });
 }
@@ -13,13 +13,28 @@ export function getWrestlersByLimit(limit: number, offset: number = 0) {
         take: limit,
         skip: offset,
         orderBy: {
-            name: 'asc',
+            name: "asc",
         },
     });
 }
 
-export function getCountedWrestlers(status: string = 'all') {
-    if (status === 'all') {
+export function getWrestlersByFiltersLimit(
+    filters: any,
+    limit: number = 0,
+    offset: number = 0
+) {
+    return prisma.wrestler.findMany({
+        where: filters,
+        take: limit,
+        skip: offset,
+        orderBy: {
+            name: "asc",
+        },
+    });
+}
+
+export function getCountedWrestlers(status: string = "all") {
+    if (status === "all") {
         return prisma.wrestler.count();
     }
     return prisma.wrestler.count({
@@ -57,23 +72,23 @@ export function getRosterWrestlers(searchParams: any) {
     const filters: any = {
         status: {
             not: {
-                in: ['released'],
+                in: ["released"],
             },
         },
     };
     if (searchParams.search) {
-        filters['name'] = {
+        filters["name"] = {
             contains: searchParams.search,
         };
     }
     if (searchParams.brand) {
-        filters['brand'] = searchParams.brand;
+        filters["brand"] = searchParams.brand;
     }
 
     return prisma.wrestler.findMany({
         where: filters,
         orderBy: {
-            name: 'asc',
+            name: "asc",
         },
     });
 }
@@ -81,16 +96,16 @@ export function getRosterWrestlers(searchParams: any) {
 export function getActiveWrestlers() {
     return prisma.wrestler.findMany({
         orderBy: {
-            name: 'asc',
+            name: "asc",
         },
-        where: { status: 'active' },
+        where: { status: "active" },
     });
 }
 
 export function getWrestlersWithoutTeam() {
     return prisma.wrestler.findMany({
         orderBy: {
-            name: 'asc',
+            name: "asc",
         },
         where: { WrestlerTeam: { none: {} } },
     });
@@ -99,10 +114,10 @@ export function getWrestlersWithoutTeam() {
 export function getActiveWrestlersWithoutTeam() {
     return prisma.wrestler.findMany({
         orderBy: {
-            name: 'asc',
+            name: "asc",
         },
         where: {
-            AND: [{ WrestlerTeam: { none: {} } }, { status: 'active' }],
+            AND: [{ WrestlerTeam: { none: {} } }, { status: "active" }],
         },
     });
 }
@@ -119,7 +134,7 @@ export function getChampionsWrestler() {
         include: {
             ChampionshipReign: {
                 orderBy: {
-                    days: 'desc',
+                    days: "desc",
                 },
                 include: {
                     Championship: true,
